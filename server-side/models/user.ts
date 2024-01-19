@@ -39,6 +39,14 @@ const UserSchema = new Schema(
     },
 
     notifications: [{ type: Types.ObjectId, ref: "Notification" }],
+
+    accessToken: {
+      type: String,
+    },
+
+    refreshToken: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
