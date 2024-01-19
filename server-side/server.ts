@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 import { connectToDatabase } from "./configurations/connectToDatabase";
 
 const port = 5000;
