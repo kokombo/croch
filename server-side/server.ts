@@ -7,7 +7,7 @@ const port = 5000;
 
 const Start = async () => {
   try {
-    await connectToDatabase("url");
+    await connectToDatabase(process.env.MONGODB_URI as string);
 
     app.listen(port, console.log(`app listening in port ${port}`));
   } catch (error: any) {
