@@ -26,8 +26,7 @@ const UserSchema = new Schema(
     },
 
     role: {
-      type: String,
-      enum: ["customer", "creative"],
+      type: String, // customer or creative
       required: true,
     },
 

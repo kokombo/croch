@@ -10,6 +10,7 @@ import notificationRouter = require("./routes/notification");
 import orderRouter = require("./routes/order");
 import productRouter = require("./routes/product");
 import tagRouter = require("./routes/tag");
+import creativeRouter = require("./routes/creative");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/creative", creativeRouter);
 app.use("/api/v1/notification", notificationRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/product", productRouter);

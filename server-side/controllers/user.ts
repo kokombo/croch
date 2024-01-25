@@ -5,7 +5,13 @@ import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
 
 const signUp = async (req: Request, res: Response) => {
-  const { email } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
+
+  if (!firstName || !lastName || !email || !password || !role) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Please provide all necessary credentials." });
+  }
 
   try {
     const userExists = await User.findOne({ email });
@@ -18,7 +24,7 @@ const signUp = async (req: Request, res: Response) => {
 
     const user = await User.create({ ...req.body });
 
-    return res.json({ user }).status(StatusCodes.OK);
+    return res.json(user).status(StatusCodes.OK);
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -69,13 +75,15 @@ const signIn = async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 60 * 1000,
     });
 
-    res.json({
+    const accessToken = generateAccessToken(user?._id);
+
+    return res.status(StatusCodes.OK).json({
       id: user?._id,
       firstName: user?.firstName,
       lastName: user?.lastName,
       email: user?.email,
       role: user?.role,
-      accessToken: generateAccessToken(user?._id),
+      accessToken,
     });
   } catch (error) {
     return res

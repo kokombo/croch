@@ -1,55 +1,57 @@
 import mongoose = require("mongoose");
-const { Schema, model, models } = mongoose;
+const { Schema, model, models, Types } = mongoose;
 
 const ProductSchema = new Schema(
   {
-    productAvailability: {
-      type: String,
-      enum: ["available", "pre-order"],
-      required: true,
-    },
-
-    productName: {
+    title: {
       type: String,
       required: true,
     },
-
-    productPrice: {
+    availability: {
+      type: String, // available or pre-order
+      required: true,
+    },
+    price: {
       type: Number,
       required: true,
     },
 
-    productDescription: {
+    description: {
       type: String,
       required: true,
     },
 
-    productGender: {
-      type: String,
-      enum: ["male", "female", "unisex"],
+    gender: {
+      type: String, //male or female or unisex
       required: true,
     },
 
-    productTag: {
+    tag: {
       type: String,
-      enum: [],
       required: true,
     },
 
-    productPhotos: {
-      type: Array,
+    photos: {
+      type: Array(String),
       default: [],
       required: true,
     },
 
-    availableColors: {
-      type: Array,
+    colors: {
+      type: Array(String),
       enum: ["red", "green", "yellow", "orange", "purple"],
+      default: [],
     },
 
-    availableSizes: {
-      type: Array,
-      enum: ["small", "medium", "large", "extra-large"],
+    sizes: {
+      type: Array(String),
+      enum: ["small", "medium", "large", "extraLarge"],
+      default: [],
+    },
+
+    owner: {
+      type: Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }
