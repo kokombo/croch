@@ -1,4 +1,5 @@
-import { Schema, model, Types } from "mongoose";
+import mongoose = require("mongoose");
+const { Schema, model, Types, models } = mongoose;
 
 const CreativeSchema = new Schema(
   {
@@ -62,4 +63,4 @@ const CreativeSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model("Creative", CreativeSchema);
+export = models.Creative || model("Creative", CreativeSchema);

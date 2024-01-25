@@ -1,4 +1,7 @@
-import { Schema, model, Types } from "mongoose";
+import mongoose = require("mongoose");
+const { Schema, model, Types, models } = mongoose;
+import bcrypt = require("bcrypt");
+import crypto = require("crypto");
 
 const UserSchema = new Schema(
   {
@@ -40,15 +43,32 @@ const UserSchema = new Schema(
 
     notifications: [{ type: Types.ObjectId, ref: "Notification" }],
 
-    accessToken: {
-      type: String,
-    },
+    accessToken: String,
 
-    refreshToken: {
-      type: String,
-    },
+    refreshToken: String,
+
+    emailVerificationToken: String,
+
+    emailVerificationTokenExpiresAt: Date,
+
+    passwordResetToken: String,
+
+    passwordResetTokenExpiresAt: Date,
   },
   { timestamps: true }
 );
 
-module.exports = model("User", UserSchema);
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+UserSchema.methods.checkPassword = async function (password: string) {
+  return await bcrypt.compare(password, this.password);
+};
+
+export = models.User || model("User", UserSchema);

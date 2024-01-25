@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
+import mongoose = require("mongoose");
 
-export const validateId = (id: string) => {
+const validateId = (id: string) => {
   const IdIsValid = mongoose.Types.ObjectId.isValid(id);
 
   if (!IdIsValid) {
     throw new Error("Invalid id");
   }
 };
+
+export = validateId;

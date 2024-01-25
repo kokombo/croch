@@ -1,4 +1,5 @@
-import { Schema, model, Types } from "mongoose";
+import mongoose = require("mongoose");
+const { Schema, model, Types, models } = mongoose;
 
 const AdminSchema = new Schema(
   {
@@ -30,4 +31,4 @@ const AdminSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model("Admin", AdminSchema);
+export = models.Admin || model("Admin", AdminSchema);

@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import mongoose = require("mongoose");
+const { Schema, model, Types, models } = mongoose;
 
 const TagSchema = new Schema(
   {
@@ -13,4 +14,4 @@ const TagSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model("Tag", TagSchema);
+export = models.Tag || model("Tag", TagSchema);

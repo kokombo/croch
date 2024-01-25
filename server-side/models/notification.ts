@@ -1,5 +1,6 @@
-import { Schema, model } from "mongoose";
+import mongoose = require("mongoose");
+const { Schema, model, models } = mongoose;
 
 const NotificationSchema = new Schema({}, { timestamps: true });
 
-module.exports = model("Notification", NotificationSchema);
+export = models.Notification || model("Notification", NotificationSchema);
