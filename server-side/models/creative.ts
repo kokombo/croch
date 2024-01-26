@@ -3,7 +3,7 @@ const { Schema, model, Types, models } = mongoose;
 
 const CreativeSchema = new Schema(
   {
-    creativeId: {
+    _id: {
       type: Types.ObjectId,
       ref: "User",
     },
@@ -37,8 +37,9 @@ const CreativeSchema = new Schema(
       ],
     },
 
-    isCreativeAvailable: {
+    isAvailable: {
       type: Boolean,
+      default: true,
     },
 
     superCreative: {
@@ -47,19 +48,20 @@ const CreativeSchema = new Schema(
     },
 
     yearsOfExperience: {
+      type: Number,
+    },
+
+    personalDescription: {
       type: String,
     },
 
-    creativePersonalDescription: {
-      type: String,
-    },
-
-    creativeFunFacts: {
-      type: Array,
+    funFacts: {
+      type: Array(String),
     },
 
     products: [{ type: Types.ObjectId, ref: "Product" }],
   },
+
   { timestamps: true }
 );
 

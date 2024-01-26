@@ -18,3 +18,17 @@ type ProductBody = {
 type Error = {
   message: string;
 };
+
+type Creative = {
+  _id: string;
+  orders: {
+    pendingOrders: string[];
+    fulfilledOrders: string[];
+    cancelledOrders: string[];
+  };
+  isAvailable: boolean;
+  superCreative: boolean;
+  yearsOfExperience: number;
+  personalDescription: string;
+  funFacts: string[];
+};

@@ -3,7 +3,7 @@ const { Schema, model, Types, models } = mongoose;
 
 const CustomerSchema = new Schema(
   {
-    customerId: {
+    _id: {
       type: Types.ObjectId,
       ref: "User",
     },
@@ -37,7 +37,18 @@ const CustomerSchema = new Schema(
       ],
     },
 
-    cart: [{ type: Types.ObjectId, ref: "Cart" }],
+    cart: {
+      cartItems: [
+        {
+          _id: { type: Types.ObjectId, ref: "Product" },
+          count: Number,
+        },
+      ],
+
+      totalPrice: Number,
+
+      totalPriceAfterDiscount: Number,
+    },
   },
   { timestamps: true }
 );

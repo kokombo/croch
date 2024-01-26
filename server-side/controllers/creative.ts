@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import Product = require("../models/product");
+import Creative = require("../models/creative");
 import { Response, Request } from "express";
 import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
@@ -66,7 +67,6 @@ const updateProduct = async (req: Request, res: Response) => {
 
   const { title, availability, price, description, gender, tag }: ProductBody =
     req.body;
-  console.log("files", req.files, { ...req.body });
 
   if (
     !title ||
@@ -145,6 +145,8 @@ const deleteProduct = async (req: Request, res: Response) => {
 const getProducts = async (req: Request, res: Response) => {
   const creativeId = req.user._id;
 
+  validateId(creativeId);
+
   try {
     const products = await Product.find({ owner: creativeId });
 
@@ -156,4 +158,127 @@ const getProducts = async (req: Request, res: Response) => {
   }
 };
 
-export = { createProduct, updateProduct, deleteProduct, getProducts };
+const updateFunFacts = async (req: Request, res: Response) => {
+  const funFacts: string[] = req.body;
+
+  if (!funFacts) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Invalid input." });
+  }
+
+  const { _id } = req.user;
+
+  validateId(_id);
+
+  try {
+    const creative = await Creative.findById(_id);
+
+    if (creative) {
+      creative.funFacts = funFacts;
+    }
+
+    await creative.save();
+
+    return res.json(creative.funFacts);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const updateIsAvailable = async (req: Request, res: Response) => {
+  const isAvailable: boolean = req.body;
+
+  const { _id } = req.user;
+
+  validateId(_id);
+
+  try {
+    const creative = await Creative.findById(_id);
+
+    if (creative) {
+      creative.isAvailable = isAvailable;
+    }
+
+    await creative.save();
+
+    return res.json(creative.isAvailable);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const updatePersonalDescription = async (req: Request, res: Response) => {
+  const personalDescription: string = req.body;
+
+  if (!personalDescription) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Invalid input." });
+  }
+
+  const { _id } = req.user;
+
+  validateId(_id);
+
+  try {
+    const creative = await Creative.findById(_id);
+
+    if (creative) {
+      creative.personalDescription = personalDescription;
+    }
+
+    await creative.save();
+
+    return res.json(creative.personalDescription);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const updateYearsOfExperience = async (req: Request, res: Response) => {
+  const yearsOfExperience: number = req.body;
+
+  if (!yearsOfExperience) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Invalid input." });
+  }
+
+  const { _id } = req.user;
+
+  validateId(_id);
+
+  try {
+    const creative = await Creative.findById(_id);
+
+    if (creative) {
+      creative.yearsOfExperience = yearsOfExperience;
+    }
+
+    await creative.save();
+
+    return res.json(creative.yearsOfExperience);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+export = {
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProducts,
+  updateFunFacts,
+  updateIsAvailable,
+  updatePersonalDescription,
+  updateYearsOfExperience,
+};

@@ -11,6 +11,7 @@ import orderRouter = require("./routes/order");
 import productRouter = require("./routes/product");
 import tagRouter = require("./routes/tag");
 import creativeRouter = require("./routes/creative");
+import customerRouter = require("./routes/customer");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +24,7 @@ app.use("/api/v1/notification", notificationRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/tag", tagRouter);
+app.use("/api/v1/customer", customerRouter);
 
 const port = 5000;
 

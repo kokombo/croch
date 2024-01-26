@@ -12,9 +12,7 @@ const CartSchema = new Schema(
       },
     ],
 
-    totalPrice: {
-      type: Number,
-    },
+    totalPrice: Number,
   },
   { timestamps: true }
 );

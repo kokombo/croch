@@ -1,4 +1,6 @@
 import User = require("../models/user");
+import Creative = require("../models/creative");
+import Customer = require("../models/customer");
 import generateAccessToken = require("../utilities/generateAccessToken");
 import generateRefreshToken = require("../utilities/generateRefreshToken");
 import { StatusCodes } from "http-status-codes";
@@ -23,6 +25,14 @@ const signUp = async (req: Request, res: Response) => {
     }
 
     const user = await User.create({ ...req.body });
+
+    if (role === "customer") {
+      await Customer.create({ _id: user._id });
+    }
+
+    if (role === "creative") {
+      await Creative.create({ _id: user._id });
+    }
 
     return res.json(user).status(StatusCodes.OK);
   } catch (error) {
