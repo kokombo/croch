@@ -30,7 +30,12 @@ const UserSchema = new Schema(
       required: true,
     },
 
-    userBlocked: {
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+
+    accountDisabled: {
       type: Boolean,
       default: false,
     },

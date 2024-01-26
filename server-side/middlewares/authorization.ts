@@ -43,8 +43,6 @@ const isCreative = async (req: Request, res: Response, next: NextFunction) => {
 
   const user = await User.findOne({ email });
 
-  console.log(user.role);
-
   if (user.role !== "creative") {
     return res
       .status(StatusCodes.UNAUTHORIZED)

@@ -5,3 +5,16 @@ type User = {
   role: string;
   email: string;
 };
+
+type ProductBody = {
+  title: string;
+  availability: boolean;
+  price: string;
+  description: string;
+  gender: string;
+  tag: string;
+};
+
+type Error = {
+  message: string;
+};

@@ -2,18 +2,14 @@ import { StatusCodes } from "http-status-codes";
 import Product = require("../models/product");
 import { Response, Request } from "express";
 import validateId = require("../utilities/validateId");
+import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
+import fs = require("fs");
 
 const createProduct = async (req: Request, res: Response) => {
-  const { title, availability, price, description, gender, tag, photos } =
+  const { title, availability, price, description, gender, tag }: ProductBody =
     req.body;
 
   const user = req.user;
-
-  if (user.role !== "creative") {
-    return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .json({ message: "You are not authorized to create a listing." });
-  }
 
   if (
     !title ||
@@ -22,7 +18,7 @@ const createProduct = async (req: Request, res: Response) => {
     !description ||
     !gender ||
     !tag ||
-    !photos
+    !req.files
   ) {
     return res
       .status(StatusCodes.BAD_REQUEST)
@@ -30,7 +26,32 @@ const createProduct = async (req: Request, res: Response) => {
   }
 
   try {
-    const product = await Product.create({ ...req.body, owner: user._id });
+    const uploader = (file: string) =>
+      uploadImageToCloudinary(file, "product-images");
+
+    const urls: string[] = [];
+
+    const files = req.files;
+
+    for (const file of files) {
+      const { path } = file;
+
+      const imageUrl = await uploader(path);
+
+      urls.push(imageUrl);
+
+      fs.unlinkSync(path);
+    }
+
+    const product = await Product.create({
+      ...req.body,
+
+      photos: urls.map((url) => {
+        return url;
+      }),
+
+      owner: user._id,
+    });
 
     return res.json(product);
   } catch (error) {
@@ -43,10 +64,59 @@ const createProduct = async (req: Request, res: Response) => {
 const updateProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
 
+  const { title, availability, price, description, gender, tag }: ProductBody =
+    req.body;
+  console.log("files", req.files, { ...req.body });
+
+  if (
+    !title ||
+    !availability ||
+    !price ||
+    !description ||
+    !gender ||
+    !tag ||
+    !req.files
+  ) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide all necessary listing details." });
+  }
+
   validateId(id);
 
   try {
-    await Product.findByIdAndUpdate(id, { ...req.body }, { new: true });
+    const uploader = (file: string) =>
+      uploadImageToCloudinary(file, "product-images");
+
+    const urls: string[] = [];
+
+    const files = req.files;
+
+    for (const file of files) {
+      const { path } = file;
+
+      const imageUrl = await uploader(path);
+
+      urls.push(imageUrl);
+
+      fs.unlinkSync(path);
+    }
+
+    await Product.findByIdAndUpdate(
+      id,
+
+      {
+        ...req.body,
+
+        photos: urls.map((url) => {
+          return url;
+        }),
+
+        owner: req.user._id,
+      },
+
+      { new: true }
+    );
 
     return res.json({ message: "Listing updated successfully." });
   } catch (error) {
