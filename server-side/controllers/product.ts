@@ -26,7 +26,7 @@ const getProduct = async (req: Request, res: Response) => {
   try {
     const product = await Product.findById(id).populate({
       path: "owner",
-      select: "_id, firstName",
+      select: "_id firstName",
     });
 
     return res.json(product);

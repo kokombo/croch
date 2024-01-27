@@ -10,7 +10,7 @@ const createProduct = async (req: Request, res: Response) => {
   const { title, availability, price, description, gender, tag }: ProductBody =
     req.body;
 
-  const user = req.user;
+  const creative = req.user;
 
   if (
     !title ||
@@ -51,7 +51,7 @@ const createProduct = async (req: Request, res: Response) => {
         return url;
       }),
 
-      owner: user._id,
+      owner: creative._id,
     });
 
     return res.json(product);
@@ -64,6 +64,8 @@ const createProduct = async (req: Request, res: Response) => {
 
 const updateProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
+
+  const creative = req.user;
 
   const { title, availability, price, description, gender, tag }: ProductBody =
     req.body;
@@ -112,7 +114,7 @@ const updateProduct = async (req: Request, res: Response) => {
           return url;
         }),
 
-        owner: req.user._id,
+        owner: creative._id,
       },
 
       { new: true }
@@ -167,12 +169,12 @@ const updateFunFacts = async (req: Request, res: Response) => {
       .json({ message: "Invalid input." });
   }
 
-  const { _id } = req.user;
+  const { _id: creativeId } = req.user;
 
-  validateId(_id);
+  validateId(creativeId);
 
   try {
-    const creative = await Creative.findById(_id);
+    const creative = await Creative.findById(creativeId);
 
     if (creative) {
       creative.funFacts = funFacts;
@@ -191,12 +193,12 @@ const updateFunFacts = async (req: Request, res: Response) => {
 const updateIsAvailable = async (req: Request, res: Response) => {
   const isAvailable: boolean = req.body;
 
-  const { _id } = req.user;
+  const { _id: creativeId } = req.user;
 
-  validateId(_id);
+  validateId(creativeId);
 
   try {
-    const creative = await Creative.findById(_id);
+    const creative = await Creative.findById(creativeId);
 
     if (creative) {
       creative.isAvailable = isAvailable;
@@ -221,12 +223,12 @@ const updatePersonalDescription = async (req: Request, res: Response) => {
       .json({ message: "Invalid input." });
   }
 
-  const { _id } = req.user;
+  const { _id: creativeId } = req.user;
 
-  validateId(_id);
+  validateId(creativeId);
 
   try {
-    const creative = await Creative.findById(_id);
+    const creative = await Creative.findById(creativeId);
 
     if (creative) {
       creative.personalDescription = personalDescription;
@@ -251,12 +253,12 @@ const updateYearsOfExperience = async (req: Request, res: Response) => {
       .json({ message: "Invalid input." });
   }
 
-  const { _id } = req.user;
+  const { _id: creativeId } = req.user;
 
-  validateId(_id);
+  validateId(creativeId);
 
   try {
-    const creative = await Creative.findById(_id);
+    const creative = await Creative.findById(creativeId);
 
     if (creative) {
       creative.yearsOfExperience = yearsOfExperience;

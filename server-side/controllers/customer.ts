@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import Customer from "../models/customer";
+import Customer = require("../models/customer");
 import validateId = require("../utilities/validateId");
 import { StatusCodes } from "http-status-codes";
 import mongoose = require("mongoose");
+import Product = require("../models/product");
 
 type CartItem = {
   _id: mongoose.Types.ObjectId;
@@ -12,19 +13,21 @@ type CartItem = {
 const addToCart = async (req: Request, res: Response) => {
   const { productId } = req.body;
 
-  const { _id } = req.user;
+  const { _id: customerId } = req.user;
 
   validateId(productId);
 
-  validateId(_id);
+  validateId(customerId);
 
   try {
-    const customer = await Customer.findById(_id).populate(
+    const customer = await Customer.findById(customerId).populate(
       "cart.cartItems._id"
     );
 
-    const alreadyInCart = customer.cart.cartItems.find((cartItem: CartItem) =>
-      cartItem._id.equals(productId)
+    const cartItems: CartItem[] = customer.cart.cartItems;
+
+    const alreadyInCart = Boolean(
+      cartItems.find((cartItem) => cartItem._id.equals(productId))
     );
 
     if (alreadyInCart) {
@@ -34,9 +37,9 @@ const addToCart = async (req: Request, res: Response) => {
     }
 
     await Customer.findByIdAndUpdate(
-      _id,
+      customerId,
 
-      { $push: { "cart.cartItems": { _id: productId } } },
+      { $push: { "cart.cartItems": { _id: productId, count: 1 } } },
 
       { new: true }
     );
@@ -49,27 +52,59 @@ const addToCart = async (req: Request, res: Response) => {
   }
 };
 
-const removeFromCart = async (req: Request, res: Response) => {
-  const { productId } = req.body;
+const updateCartItemCount = async (req: Request, res: Response) => {
+  const { productId, count } = req.body;
 
-  const { _id } = req.user;
+  const { _id: customerId } = req.user;
 
   validateId(productId);
 
-  validateId(_id);
+  try {
+    const customer = await Customer.findById(customerId);
+
+    const cartItems: CartItem[] = customer.cart.cartItems;
+
+    const product = cartItems.find((cartItem) =>
+      cartItem._id.equals(productId)
+    );
+
+    if (product) {
+      product.count = count;
+    }
+
+    await customer.save();
+
+    return res.json(product);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const removeFromCart = async (req: Request, res: Response) => {
+  const { productId } = req.body;
+
+  const { _id: customerId } = req.user;
+
+  validateId(productId);
+
+  validateId(customerId);
 
   try {
-    const customer = await Customer.findById(_id);
+    const customer = await Customer.findById(customerId);
 
-    const alreadyInCart = customer.cart.cartItems.find((cartItem: CartItem) =>
-      cartItem._id.equals(productId)
+    const cartItems: CartItem[] = customer.cart.cartItems;
+
+    const alreadyInCart = Boolean(
+      cartItems.find((cartItem) => cartItem._id.equals(productId))
     );
 
     if (alreadyInCart) {
       await Customer.findByIdAndUpdate(
-        _id,
+        customerId,
 
-        { $pull: { "cart.cartItems": { cartItemId: productId } } },
+        { $pull: { "cart.cartItems": { _id: productId } } },
 
         { new: true }
       );
@@ -84,26 +119,22 @@ const removeFromCart = async (req: Request, res: Response) => {
 };
 
 const getCartItems = async (req: Request, res: Response) => {
-  const { _id } = req.user;
+  const { _id: customerId } = req.user;
 
-  validateId(_id);
+  validateId(customerId);
 
   try {
-    const customer = await Customer.findById(_id).populate(
-      "cart.cartItems._id"
-    );
-
+    const customer = await Customer.findById(customerId).populate({
+      path: "cart.cartItems._id",
+      select: "title price",
+    });
     const cartItems = customer.cart.cartItems;
 
     let totalPrice = 0;
 
     for (let i = 0; i < cartItems.length; i++) {
-      totalPrice += cartItems[i]._id.price;
-
-      console.log("totalPrice", totalPrice);
+      totalPrice += cartItems[i]._id.price * cartItems[i].count;
     }
-
-    // * cartItems[i].count;
 
     res.json({ cartItems, totalPrice });
   } catch (error) {
@@ -118,4 +149,10 @@ const clearCartItems = async (req: Request, res: Response) => {
   } catch (error) {}
 };
 
-export = { addToCart, removeFromCart, getCartItems, clearCartItems };
+export = {
+  addToCart,
+  removeFromCart,
+  getCartItems,
+  clearCartItems,
+  updateCartItemCount,
+};
