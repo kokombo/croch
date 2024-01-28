@@ -19,7 +19,13 @@ const {
   updatePersonalDescription,
 } = creativeController;
 
-router.post("/createProduct", authorizeUser, isCreative, createProduct);
+router.post(
+  "/createProduct",
+  authorizeUser,
+  isCreative,
+  uploadPhoto.array("files", 10),
+  createProduct
+);
 
 router.get("/getProducts", authorizeUser, getProducts);
 

@@ -30,7 +30,7 @@ const multerFilter = (
 const uploadPhoto = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
-  limits: { fieldSize: 2000000 },
+  limits: { fieldSize: 9000000 },
 });
 
 const resizePhoto = async (req: Request, res: Response, next: NextFunction) => {

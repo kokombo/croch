@@ -14,6 +14,7 @@ const CartSchema = new Schema(
 
     totalPrice: Number,
   },
+
   { timestamps: true }
 );
 

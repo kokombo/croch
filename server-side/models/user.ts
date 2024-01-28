@@ -26,7 +26,7 @@ const UserSchema = new Schema(
     },
 
     role: {
-      type: String, // customer or creative
+      type: String,
       required: true,
     },
 

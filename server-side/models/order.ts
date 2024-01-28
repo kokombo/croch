@@ -3,14 +3,12 @@ const { Schema, model, Types, models } = mongoose;
 
 const OrderSchema = new Schema(
   {
-    item: {
-      type: Types.ObjectId,
-      ref: "Product",
-    },
-
-    size: {
-      type: String,
-    },
+    items: [
+      {
+        type: Types.ObjectId,
+        ref: "Product",
+      },
+    ],
 
     customerId: {
       type: Types.ObjectId,

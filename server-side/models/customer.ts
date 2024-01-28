@@ -40,7 +40,7 @@ const CustomerSchema = new Schema(
     cart: {
       cartItems: [
         {
-          _id: { type: Types.ObjectId, ref: "Product" },
+          info: { type: Types.ObjectId, ref: "Product" },
           count: Number,
         },
       ],

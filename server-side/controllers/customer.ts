@@ -6,9 +6,20 @@ import mongoose = require("mongoose");
 import Product = require("../models/product");
 
 type CartItem = {
-  _id: mongoose.Types.ObjectId;
+  info: {
+    _id: mongoose.Types.ObjectId;
+    title: string;
+    price: number;
+    owner: mongoose.Types.ObjectId;
+  };
   count: number;
 };
+
+//A user can only add products from one vendor at a time to ensure seperate orders tracking with each vendor.
+//Find the product in the database through it's ID and check for the owner which references a creative.
+//Get the current customer's cart and check for the owner ID of the product/item in the cart (if there is any).
+//If the owner ID of the products in the cart does not match the owner ID of the new product added, the cart(old items) will be overriden by the new product.
+//
 
 const addToCart = async (req: Request, res: Response) => {
   const { productId } = req.body;
@@ -21,13 +32,13 @@ const addToCart = async (req: Request, res: Response) => {
 
   try {
     const customer = await Customer.findById(customerId).populate(
-      "cart.cartItems._id"
+      "cart.cartItems.info"
     );
 
     const cartItems: CartItem[] = customer.cart.cartItems;
 
     const alreadyInCart = Boolean(
-      cartItems.find((cartItem) => cartItem._id.equals(productId))
+      cartItems.find((cartItem) => cartItem.info._id.equals(productId))
     );
 
     if (alreadyInCart) {
@@ -36,16 +47,34 @@ const addToCart = async (req: Request, res: Response) => {
         .json({ message: "Product already in cart." });
     }
 
+    const newlyAddedProduct = await Product.findById(productId);
+
+    const newlyAddedProductOwnerId = newlyAddedProduct.owner;
+
+    if (cartItems.length > 0) {
+      const ownerIdOfItemsAlreadyInCart = cartItems.map(
+        (cartItem) => cartItem.info.owner
+      )[0];
+
+      if (!ownerIdOfItemsAlreadyInCart.equals(newlyAddedProductOwnerId)) {
+        customer.cart.cartItems = [];
+      }
+
+      await customer.save();
+    }
+
     await Customer.findByIdAndUpdate(
       customerId,
 
-      { $push: { "cart.cartItems": { _id: productId, count: 1 } } },
+      { $push: { "cart.cartItems": { info: productId, count: 1 } } },
 
       { new: true }
     );
 
     return res.json({ message: "Product added to cart." });
   } catch (error) {
+    console.log(error);
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
@@ -65,7 +94,7 @@ const updateCartItemCount = async (req: Request, res: Response) => {
     const cartItems: CartItem[] = customer.cart.cartItems;
 
     const product = cartItems.find((cartItem) =>
-      cartItem._id.equals(productId)
+      cartItem.info._id.equals(productId)
     );
 
     if (product) {
@@ -92,25 +121,15 @@ const removeFromCart = async (req: Request, res: Response) => {
   validateId(customerId);
 
   try {
-    const customer = await Customer.findById(customerId);
+    await Customer.findByIdAndUpdate(
+      customerId,
 
-    const cartItems: CartItem[] = customer.cart.cartItems;
+      { $pull: { "cart.cartItems": { info: productId } } },
 
-    const alreadyInCart = Boolean(
-      cartItems.find((cartItem) => cartItem._id.equals(productId))
+      { new: true }
     );
 
-    if (alreadyInCart) {
-      await Customer.findByIdAndUpdate(
-        customerId,
-
-        { $pull: { "cart.cartItems": { _id: productId } } },
-
-        { new: true }
-      );
-
-      return res.json({ message: "Product removed from cart." });
-    }
+    return res.json({ message: "Product removed from cart." });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -125,15 +144,16 @@ const getCartItems = async (req: Request, res: Response) => {
 
   try {
     const customer = await Customer.findById(customerId).populate({
-      path: "cart.cartItems._id",
-      select: "title price",
+      path: "cart.cartItems.info",
+      select: "title price owner",
     });
+
     const cartItems = customer.cart.cartItems;
 
     let totalPrice = 0;
 
     for (let i = 0; i < cartItems.length; i++) {
-      totalPrice += cartItems[i]._id.price * cartItems[i].count;
+      totalPrice += cartItems[i].info.price * cartItems[i].count;
     }
 
     res.json({ cartItems, totalPrice });

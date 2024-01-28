@@ -47,6 +47,8 @@ const createProduct = async (req: Request, res: Response) => {
     const product = await Product.create({
       ...req.body,
 
+      price: Number(req.body.price),
+
       photos: urls.map((url) => {
         return url;
       }),
@@ -56,6 +58,8 @@ const createProduct = async (req: Request, res: Response) => {
 
     return res.json(product);
   } catch (error) {
+    console.log("error", error);
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
