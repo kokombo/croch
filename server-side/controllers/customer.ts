@@ -16,9 +16,9 @@ type CartItem = {
 };
 
 //A user can only add products from one vendor at a time to ensure seperate orders tracking with each vendor.
-//Find the product in the database through it's ID and check for the owner which references a creative.
+//Find the product in the database through it's ID and check for the owner which references a user.
 //Get the current customer's cart and check for the owner ID of the product/item in the cart (if there is any).
-//If the owner ID of the products in the cart does not match the owner ID of the new product added, the cart(old items) will be overriden by the new product.
+//If the owner ID of the products in the cart does not match the owner ID of the new product added, the new product will override the items in the cart.
 //
 
 const addToCart = async (req: Request, res: Response) => {
@@ -73,8 +73,6 @@ const addToCart = async (req: Request, res: Response) => {
 
     return res.json({ message: "Product added to cart." });
   } catch (error) {
-    console.log(error);
-
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
