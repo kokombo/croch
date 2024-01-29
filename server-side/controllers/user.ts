@@ -15,8 +15,10 @@ const signUp = async (req: Request, res: Response) => {
       .json({ message: "Please provide all necessary credentials." });
   }
 
+  const refinedEmail = email.toLowerCase();
+
   try {
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ refinedEmail });
 
     if (userExists) {
       return res
@@ -24,7 +26,7 @@ const signUp = async (req: Request, res: Response) => {
         .json({ message: "User already exists." });
     }
 
-    const user = await User.create({ ...req.body });
+    const user = await User.create({ ...req.body, email: refinedEmail });
 
     if (role === "customer") {
       await Customer.create({ _id: user._id });
@@ -45,14 +47,16 @@ const signUp = async (req: Request, res: Response) => {
 const signIn = async (req: Request, res: Response) => {
   const { password, email } = req.body;
 
-  try {
-    if (!email || !password) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "Provide your login credentials." });
-    }
+  if (!email || !password) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide your login credentials." });
+  }
 
-    const user = await User.findOne({ email });
+  const refinedEmail = email.toLowerCase();
+
+  try {
+    const user = await User.findOne({ email: refinedEmail });
 
     if (!user) {
       return res

@@ -163,8 +163,25 @@ const getCartItems = async (req: Request, res: Response) => {
 };
 
 const clearCartItems = async (req: Request, res: Response) => {
+  const { _id: customerId } = req.user;
+
+  validateId(customerId);
+
   try {
-  } catch (error) {}
+    const customer = await Customer.findById(customerId).populate(
+      "cart.cartItems.info"
+    );
+
+    customer.cart.cartItems = [];
+
+    await customer.save();
+
+    return res.json({ message: "Cart cleared" });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
 };
 
 export = {
