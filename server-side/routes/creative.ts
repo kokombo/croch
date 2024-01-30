@@ -17,6 +17,7 @@ const {
   updateFunFacts,
   updateIsAvailable,
   updatePersonalDescription,
+  getOrders,
 } = creativeController;
 
 router.post(
@@ -29,6 +30,8 @@ router.post(
 
 router.get("/getProducts", authorizeUser, getProducts);
 
+router.get("/getOrders", authorizeUser, isCreative, getOrders);
+
 router.put(
   "/updateProduct/:id",
   authorizeUser,
@@ -37,13 +40,23 @@ router.put(
   updateProduct
 );
 
-router.put("/updateYearsOfExperience", updateYearsOfExperience);
+router.put(
+  "/updateYearsOfExperience",
+  authorizeUser,
+  isCreative,
+  updateYearsOfExperience
+);
 
-router.put("/updateFunFacts", updateFunFacts);
+router.put("/updateFunFacts", authorizeUser, isCreative, updateFunFacts);
 
-router.put("/updateIsAvailable", updateIsAvailable);
+router.put("/updateIsAvailable", authorizeUser, isCreative, updateIsAvailable);
 
-router.put("/updatePersonalDescription", updatePersonalDescription);
+router.put(
+  "/updatePersonalDescription",
+  authorizeUser,
+  isCreative,
+  updatePersonalDescription
+);
 
 router.delete(
   "/deleteProduct/:id",

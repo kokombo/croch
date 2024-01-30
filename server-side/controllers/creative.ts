@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Product = require("../models/product");
 import Creative = require("../models/creative");
+import Order = require("../models/order");
 import { Response, Request } from "express";
 import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
@@ -58,8 +59,6 @@ const createProduct = async (req: Request, res: Response) => {
 
     return res.json(product);
   } catch (error) {
-    console.log("error", error);
-
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
@@ -67,7 +66,7 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const updateProduct = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id: productId } = req.params;
 
   const creative = req.user;
 
@@ -88,7 +87,7 @@ const updateProduct = async (req: Request, res: Response) => {
       .json({ message: "Provide all necessary listing details." });
   }
 
-  validateId(id);
+  validateId(productId);
 
   try {
     const uploader = (file: string) =>
@@ -109,7 +108,7 @@ const updateProduct = async (req: Request, res: Response) => {
     }
 
     await Product.findByIdAndUpdate(
-      id,
+      productId,
 
       {
         ...req.body,
@@ -133,12 +132,12 @@ const updateProduct = async (req: Request, res: Response) => {
 };
 
 const deleteProduct = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id: productId } = req.params;
 
-  validateId(id);
+  validateId(productId);
 
   try {
-    await Product.findByIdAndDelete(id);
+    await Product.findByIdAndDelete(productId);
 
     return res.json({ message: "Job deleted successfully." });
   } catch (error) {
@@ -149,7 +148,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 };
 
 const getProducts = async (req: Request, res: Response) => {
-  const creativeId = req.user._id;
+  const { _id: creativeId } = req.user;
 
   validateId(creativeId);
 
@@ -165,15 +164,15 @@ const getProducts = async (req: Request, res: Response) => {
 };
 
 const updateFunFacts = async (req: Request, res: Response) => {
-  const funFacts: string[] = req.body;
+  const { funFacts } = req.body;
+
+  const { _id: creativeId } = req.user;
 
   if (!funFacts) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Invalid input." });
   }
-
-  const { _id: creativeId } = req.user;
 
   validateId(creativeId);
 
@@ -195,7 +194,7 @@ const updateFunFacts = async (req: Request, res: Response) => {
 };
 
 const updateIsAvailable = async (req: Request, res: Response) => {
-  const isAvailable: boolean = req.body;
+  const { isAvailable } = req.body;
 
   const { _id: creativeId } = req.user;
 
@@ -219,7 +218,7 @@ const updateIsAvailable = async (req: Request, res: Response) => {
 };
 
 const updatePersonalDescription = async (req: Request, res: Response) => {
-  const personalDescription: string = req.body;
+  const { personalDescription } = req.body;
 
   if (!personalDescription) {
     return res
@@ -249,15 +248,15 @@ const updatePersonalDescription = async (req: Request, res: Response) => {
 };
 
 const updateYearsOfExperience = async (req: Request, res: Response) => {
-  const yearsOfExperience: number = req.body;
+  const { yearsOfExperience } = req.body;
+
+  const { _id: creativeId } = req.user;
 
   if (!yearsOfExperience) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Invalid input." });
   }
-
-  const { _id: creativeId } = req.user;
 
   validateId(creativeId);
 
@@ -278,6 +277,22 @@ const updateYearsOfExperience = async (req: Request, res: Response) => {
   }
 };
 
+const getOrders = async (req: Request, res: Response) => {
+  const { _id: creativeId } = req.user;
+
+  const status = req.query.status as string;
+
+  try {
+    const orders = await Order.find({ creativeId, status });
+
+    return res.json(orders);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 export = {
   createProduct,
   updateProduct,
@@ -287,4 +302,5 @@ export = {
   updateIsAvailable,
   updatePersonalDescription,
   updateYearsOfExperience,
+  getOrders,
 };
