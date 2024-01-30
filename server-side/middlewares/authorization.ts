@@ -3,7 +3,6 @@ import jwt = require("jsonwebtoken");
 import { Response, Request, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import Product = require("../models/product");
-import mongoose = require("mongoose");
 
 const authorizeUser = async (
   req: Request,
