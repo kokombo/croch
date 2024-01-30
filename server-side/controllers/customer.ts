@@ -4,6 +4,7 @@ import validateId = require("../utilities/validateId");
 import { StatusCodes } from "http-status-codes";
 import mongoose = require("mongoose");
 import Product = require("../models/product");
+import Order = require("../models/order");
 
 type CartItem = {
   info: {
@@ -13,6 +14,8 @@ type CartItem = {
     owner: mongoose.Types.ObjectId;
   };
   count: number;
+
+  price: number;
 };
 
 //A user can only add products from one vendor at a time to ensure seperate orders tracking with each vendor.
@@ -66,7 +69,15 @@ const addToCart = async (req: Request, res: Response) => {
     await Customer.findByIdAndUpdate(
       customerId,
 
-      { $push: { "cart.cartItems": { info: productId, count: 1 } } },
+      {
+        $push: {
+          "cart.cartItems": {
+            info: productId,
+            count: 1,
+            price: newlyAddedProduct.price,
+          },
+        },
+      },
 
       { new: true }
     );
@@ -97,6 +108,8 @@ const updateCartItemCount = async (req: Request, res: Response) => {
 
     if (product) {
       product.count = count;
+
+      product.price = product.info.price * count;
     }
 
     await customer.save();
@@ -152,6 +165,8 @@ const getCartItems = async (req: Request, res: Response) => {
 
     for (let i = 0; i < cartItems.length; i++) {
       totalPrice += cartItems[i].info.price * cartItems[i].count;
+
+      //   totalPrice += cartItems[i].price
     }
 
     res.json({ cartItems, totalPrice });
@@ -184,10 +199,100 @@ const clearCartItems = async (req: Request, res: Response) => {
   }
 };
 
+const placeAnOrder = async (req: Request, res: Response) => {
+  const { _id: customerId } = req.user;
+
+  validateId(customerId);
+
+  try {
+    const customer = await Customer.findById(customerId).populate(
+      "cart.cartItems.info"
+    );
+
+    const cartItems: CartItem[] = customer.cart.cartItems;
+
+    const order = await Order.create({
+      items: cartItems,
+      customerId,
+      creativeId: cartItems[0].info.owner,
+      status: "pending",
+      totalPrice: customer.cart.totalPrice,
+    });
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ order, message: "Order successfully placed." });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const cancelAnOrder = async (req: Request, res: Response) => {
+  const { orderId } = req.body;
+
+  const { _id: customerId } = req.user;
+
+  const order = await Order.findById(orderId);
+
+  if (customerId !== order.customerId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "You cannot perform action." });
+  }
+
+  order.status = "cancelled";
+
+  await order.save();
+
+  return res.json({ message: "Order cancelled." });
+};
+
+const confirmAnOrder = async (req: Request, res: Response) => {
+  const { orderId } = req.body;
+
+  const { _id: customerId } = req.user;
+
+  const order = await Order.findById(orderId);
+
+  if (customerId !== order.customerId) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "You cannot perform action." });
+  }
+
+  order.status = "fulfilled";
+
+  await order.save();
+
+  return res.json({ message: "You have confirmed this order as complete." });
+};
+
+const getOrders = async (req: Request, res: Response) => {
+  const { _id: customerId } = req.user;
+
+  const status = req.query.status as string;
+
+  try {
+    const orders = await Order.find({ customerId, status });
+
+    return res.json(orders);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 export = {
   addToCart,
   removeFromCart,
   getCartItems,
   clearCartItems,
   updateCartItemCount,
+  placeAnOrder,
+  cancelAnOrder,
+  getOrders,
+  confirmAnOrder,
 };

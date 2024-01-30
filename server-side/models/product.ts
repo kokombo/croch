@@ -7,10 +7,12 @@ const ProductSchema = new Schema(
       type: String,
       required: true,
     },
+
     availability: {
       type: String, // available or pre-order
       required: true,
     },
+
     price: {
       type: Number,
       required: true,
@@ -52,6 +54,25 @@ const ProductSchema = new Schema(
     owner: {
       type: Types.ObjectId,
       ref: "User",
+    },
+
+    nationWideDelivery: {
+      type: Boolean,
+      required: true,
+    },
+
+    primaryLocation: {
+      name: String,
+
+      minDeliveryDays: Number,
+
+      maxDeliveryDays: Number,
+    },
+
+    otherLocations: {
+      minDeliveryDays: Number,
+
+      maxDeliveryDays: Number,
     },
   },
 

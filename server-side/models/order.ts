@@ -5,8 +5,12 @@ const OrderSchema = new Schema(
   {
     items: [
       {
-        type: Types.ObjectId,
-        ref: "Product",
+        info: {
+          type: Types.ObjectId,
+          ref: "Product",
+        },
+
+        price: Number,
       },
     ],
 
@@ -23,7 +27,14 @@ const OrderSchema = new Schema(
     status: {
       type: String, //pending, fulfilled, cancelled
     },
+
+    expectedDeliveryTime: Number,
+
+    totalPrice: Number,
+
+    totalPriceAfterDiscount: Number,
   },
+
   { timestamps: true }
 );
 
