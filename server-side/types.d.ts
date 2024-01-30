@@ -32,3 +32,7 @@ type Creative = {
   personalDescription: string;
   funFacts: string[];
 };
+
+type Notification = {
+  message: string;
+};
