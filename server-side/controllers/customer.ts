@@ -13,6 +13,7 @@ type CartItem = {
     price: number;
     owner: mongoose.Types.ObjectId;
   };
+
   count: number;
 
   price: number;
@@ -77,6 +78,10 @@ const addToCart = async (req: Request, res: Response) => {
             price: newlyAddedProduct.price,
           },
         },
+
+        $set: {
+          "cart.totalPrice": newlyAddedProduct.price,
+        },
       },
 
       { new: true }
@@ -98,7 +103,10 @@ const updateCartItemCount = async (req: Request, res: Response) => {
   validateId(productId);
 
   try {
-    const customer = await Customer.findById(customerId);
+    const customer = await Customer.findById(customerId).populate({
+      path: "cart.cartItems.info",
+      select: "price",
+    });
 
     const cartItems: CartItem[] = customer.cart.cartItems;
 
@@ -159,17 +167,19 @@ const getCartItems = async (req: Request, res: Response) => {
       select: "title price owner",
     });
 
-    const cartItems = customer.cart.cartItems;
-
     let totalPrice = 0;
 
-    for (let i = 0; i < cartItems.length; i++) {
-      totalPrice += cartItems[i].info.price * cartItems[i].count;
+    const cart = customer.cart;
 
-      //   totalPrice += cartItems[i].price
+    for (let i = 0; i < cart.cartItems.length; i++) {
+      totalPrice += cart.cartItems[i].price;
     }
 
-    res.json({ cartItems, totalPrice });
+    cart.totalPrice = totalPrice;
+
+    await customer.save();
+
+    res.json(cart);
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -183,9 +193,7 @@ const clearCartItems = async (req: Request, res: Response) => {
   validateId(customerId);
 
   try {
-    const customer = await Customer.findById(customerId).populate(
-      "cart.cartItems.info"
-    );
+    const customer = await Customer.findById(customerId);
 
     customer.cart.cartItems = [];
 
@@ -236,7 +244,7 @@ const cancelAnOrder = async (req: Request, res: Response) => {
 
   const order = await Order.findById(orderId);
 
-  if (customerId !== order.customerId) {
+  if (customerId.toString() !== order.customerId.toString()) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "You cannot perform action." });
@@ -256,7 +264,7 @@ const confirmAnOrder = async (req: Request, res: Response) => {
 
   const order = await Order.findById(orderId);
 
-  if (customerId !== order.customerId) {
+  if (customerId.toString() !== order.customerId.toString()) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "You cannot perform action." });

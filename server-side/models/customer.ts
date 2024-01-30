@@ -48,11 +48,16 @@ const CustomerSchema = new Schema(
         },
       ],
 
-      totalPrice: Number,
+      totalPrice: {
+        type: Number,
+      },
 
-      totalPriceAfterDiscount: Number,
+      totalPriceAfterDiscount: {
+        type: Number,
+      },
     },
   },
+
   { timestamps: true }
 );
 
