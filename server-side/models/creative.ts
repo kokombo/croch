@@ -8,6 +8,10 @@ const CreativeSchema = new Schema(
       ref: "User",
     },
 
+    brandName: {
+      type: String,
+    },
+
     orders: {
       pendingOrders: [
         {

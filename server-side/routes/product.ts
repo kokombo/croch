@@ -5,6 +5,6 @@ import product = require("../controllers/product");
 const { getAllProducts, getProduct } = product;
 
 router.get("/getAllProducts", getAllProducts);
-router.get("/getProduct/:id", getProduct);
+router.get("/getProduct", getProduct);
 
 export = router;

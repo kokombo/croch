@@ -23,7 +23,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       select: "_id, firstName",
     });
 
-    //An algorithm to display products based on performance or owner's performance.
+    //An algorithm to display products based on product performance or creative's overall performance.
 
     const sort = req.query.sort as string;
 
@@ -51,15 +51,21 @@ const getAllProducts = async (req: Request, res: Response) => {
 };
 
 const getProduct = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { productId } = req.query;
 
-  validateId(id);
+  validateId(productId as string);
 
   try {
-    const product = await Product.findById(id).populate({
+    const product = await Product.findById(productId).populate({
       path: "owner",
       select: "_id firstName",
     });
+
+    if (!product) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Product not found." });
+    }
 
     return res.json(product);
   } catch (error) {

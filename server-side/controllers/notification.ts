@@ -5,15 +5,14 @@ import validateId = require("../utilities/validateId");
 import { StatusCodes } from "http-status-codes";
 
 const createNotification = async (req: Request, res: Response) => {
-  const { message: notificationMessage } = req.body;
-
-  const { _id: userId } = req.user;
+  const { message: notificationMessage, receiver: userId } = req.body;
 
   validateId(userId);
 
   try {
     const notification = await Notification.create({
       message: notificationMessage,
+      receiver: userId,
     });
 
     await User.findByIdAndUpdate(
