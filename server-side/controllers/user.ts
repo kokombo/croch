@@ -106,4 +106,18 @@ const signIn = async (req: Request, res: Response) => {
   }
 };
 
-export = { signUp, signIn };
+const handleRefreshToken = async (req: Request, res: Response) => {};
+const updatePassword = async (req: Request, res: Response) => {};
+const resetPassword = async (req: Request, res: Response) => {};
+const forgotPasswordToken = async (req: Request, res: Response) => {};
+const logOut = async (req: Request, res: Response) => {};
+
+export = {
+  signUp,
+  signIn,
+  handleRefreshToken,
+  updatePassword,
+  resetPassword,
+  forgotPasswordToken,
+  logOut,
+};
