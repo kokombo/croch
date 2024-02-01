@@ -277,6 +277,36 @@ const updateYearsOfExperience = async (req: Request, res: Response) => {
   }
 };
 
+const setBrandName = async (req: Request, res: Response) => {
+  const { brandName } = req.body;
+
+  const { _id: creativeId } = req.user;
+
+  if (!brandName) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Invalid input." });
+  }
+
+  validateId(creativeId);
+
+  try {
+    const creative = await Creative.findById(creativeId);
+
+    if (creative) {
+      creative.brandName = brandName;
+    }
+
+    await creative.save();
+
+    return res.json(creative.brandName);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 const getOrders = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
 
@@ -303,4 +333,5 @@ export = {
   updatePersonalDescription,
   updateYearsOfExperience,
   getOrders,
+  setBrandName,
 };

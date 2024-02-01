@@ -4,6 +4,7 @@ import validateId = require("../utilities/validateId");
 import { StatusCodes } from "http-status-codes";
 import mongoose = require("mongoose");
 import Product = require("../models/product");
+import Creative = require("../models/creative");
 import Order = require("../models/order");
 
 type CartItem = {
@@ -16,14 +17,16 @@ type CartItem = {
 
   count: number;
 
-  price: number;
+  price: number; //info.price * count
 };
 
-//A user can only add products from one vendor at a time to ensure seperate orders tracking with each vendor.
-//Find the product in the database through it's ID and check for the owner which references a user.
-//Get the current customer's cart and check for the owner ID of the product/item in the cart (if there is any).
-//If the owner ID of the products in the cart does not match the owner ID of the new product added, the new product will override the items in the cart.
-//
+type Cart = {
+  cartItems: CartItem[];
+  totalPrice: number;
+  _id: string;
+};
+
+type CItem = Map<string, Cart>;
 
 const addToCart = async (req: Request, res: Response) => {
   const { productId } = req.body;
@@ -35,44 +38,16 @@ const addToCart = async (req: Request, res: Response) => {
   validateId(customerId);
 
   try {
-    const customer = await Customer.findById(customerId).populate(
-      "cart.cartItems.info"
-    );
-
-    const cartItems: CartItem[] = customer.cart.cartItems;
-
-    const alreadyInCart = Boolean(
-      cartItems.find((cartItem) => cartItem.info._id.equals(productId))
-    );
-
-    if (alreadyInCart) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "Product already in cart." });
-    }
-
     const newlyAddedProduct = await Product.findById(productId);
 
-    const newlyAddedProductOwnerId = newlyAddedProduct.owner;
-
-    if (cartItems.length > 0) {
-      const ownerIdOfItemsAlreadyInCart = cartItems.map(
-        (cartItem) => cartItem.info.owner
-      )[0];
-
-      if (!ownerIdOfItemsAlreadyInCart.equals(newlyAddedProductOwnerId)) {
-        customer.cart.cartItems = [];
-      }
-
-      await customer.save();
-    }
+    const creativeId = newlyAddedProduct.owner;
 
     await Customer.findByIdAndUpdate(
       customerId,
 
       {
         $push: {
-          "cart.cartItems": {
+          [`carts.${creativeId}.cartItems`]: {
             info: productId,
             count: 1,
             price: newlyAddedProduct.price,
@@ -80,11 +55,11 @@ const addToCart = async (req: Request, res: Response) => {
         },
 
         $set: {
-          "cart.totalPrice": newlyAddedProduct.price,
+          [`carts.${creativeId}.totalPrice`]: newlyAddedProduct.price,
         },
       },
 
-      { new: true }
+      { new: true, upsert: true, setDefaultsOnInsert: true }
     );
 
     return res.json({ message: "Product added to cart." });
@@ -96,33 +71,41 @@ const addToCart = async (req: Request, res: Response) => {
 };
 
 const updateCartItemCount = async (req: Request, res: Response) => {
-  const { productId, count } = req.body;
+  const { productId, count, creativeId: creativeIdFromClient } = req.body;
 
   const { _id: customerId } = req.user;
 
   validateId(productId);
 
+  validateId(creativeIdFromClient);
+
   try {
     const customer = await Customer.findById(customerId).populate({
-      path: "cart.cartItems.info",
+      path: `carts.${creativeIdFromClient}.cartItems.info`,
       select: "price",
     });
 
-    const cartItems: CartItem[] = customer.cart.cartItems;
+    const carts: CItem = customer.carts;
 
-    const product = cartItems.find((cartItem) =>
-      cartItem.info._id.equals(productId)
-    );
+    for (const [creativeId, cart] of carts.entries()) {
+      if (Boolean(creativeId === creativeIdFromClient)) {
+        const vendorCart: CartItem[] = cart.cartItems;
 
-    if (product) {
-      product.count = count;
+        const product = vendorCart.find(
+          (cartItem) => cartItem.info._id.toString() === productId
+        );
 
-      product.price = product.info.price * count;
+        if (product) {
+          product.count = count;
+
+          product.price = product.info.price * count;
+        }
+      }
     }
 
     await customer.save();
 
-    return res.json(product);
+    return res.json({ message: "Count updated" });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -140,10 +123,20 @@ const removeFromCart = async (req: Request, res: Response) => {
   validateId(customerId);
 
   try {
+    const newlyAddedProduct = await Product.findById(productId);
+
+    const creativeId = newlyAddedProduct.owner;
+
     await Customer.findByIdAndUpdate(
       customerId,
 
-      { $pull: { "cart.cartItems": { info: productId } } },
+      {
+        $pull: {
+          [`carts.${creativeId}.cartItems`]: {
+            info: productId,
+          },
+        },
+      },
 
       { new: true }
     );
@@ -156,38 +149,7 @@ const removeFromCart = async (req: Request, res: Response) => {
   }
 };
 
-const getCartItems = async (req: Request, res: Response) => {
-  const { _id: customerId } = req.user;
-
-  validateId(customerId);
-
-  try {
-    const customer = await Customer.findById(customerId).populate({
-      path: "cart.cartItems.info",
-      select: "title price owner",
-    });
-
-    let totalPrice = 0;
-
-    const cart = customer.cart;
-
-    for (let i = 0; i < cart.cartItems.length; i++) {
-      totalPrice += cart.cartItems[i].price;
-    }
-
-    cart.totalPrice = totalPrice;
-
-    await customer.save();
-
-    res.json(cart);
-  } catch (error) {
-    return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ message: "Something went wrong, please try again." });
-  }
-};
-
-const clearCartItems = async (req: Request, res: Response) => {
+const getCarts = async (req: Request, res: Response) => {
   const { _id: customerId } = req.user;
 
   validateId(customerId);
@@ -195,11 +157,81 @@ const clearCartItems = async (req: Request, res: Response) => {
   try {
     const customer = await Customer.findById(customerId);
 
-    customer.cart.cartItems = [];
+    const carts: CItem = customer.carts;
+
+    let Ids: string[] = [];
+
+    for (const [creativeId, cart] of carts.entries()) {
+      Ids.push(creativeId);
+    }
+
+    return res.json(Ids);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const getCartItems = async (req: Request, res: Response) => {
+  const { creativeId: creativeIdFromClient } = req.body;
+
+  const { _id: customerId } = req.user;
+
+  validateId(customerId);
+
+  validateId(creativeIdFromClient);
+
+  try {
+    const customer = await Customer.findById(customerId);
+
+    const carts: CItem = customer.carts;
+
+    let totalPrice = 0;
+
+    let vendorCart; //vendor here is used as substitute for creative.
+
+    for (const [creativeId, cart] of carts.entries()) {
+      if (Boolean(creativeId === creativeIdFromClient)) {
+        vendorCart = cart;
+
+        const vendorCartItems: CartItem[] = vendorCart.cartItems;
+
+        for (let i = 0; i < vendorCartItems.length; i++) {
+          totalPrice += vendorCartItems[i].price;
+        }
+
+        vendorCart.totalPrice = totalPrice;
+      }
+    }
 
     await customer.save();
 
-    return res.json({ message: "Cart cleared" });
+    res.json(vendorCart);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const deleteCart = async (req: Request, res: Response) => {
+  const { creativeId: creativeIdFromClient } = req.body;
+
+  const { _id: customerId } = req.user;
+
+  validateId(customerId);
+
+  validateId(creativeIdFromClient);
+
+  try {
+    const customer = await Customer.findById(customerId);
+
+    customer.carts.delete(creativeIdFromClient);
+
+    await customer.save();
+
+    return res.json({ message: "Cart removed!" });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -210,22 +242,33 @@ const clearCartItems = async (req: Request, res: Response) => {
 const placeAnOrder = async (req: Request, res: Response) => {
   const { _id: customerId } = req.user;
 
+  const { creativeId: creativeIdFromClient } = req.body;
+
   validateId(customerId);
 
   try {
-    const customer = await Customer.findById(customerId).populate(
-      "cart.cartItems.info"
-    );
-
-    const cartItems: CartItem[] = customer.cart.cartItems;
-
-    const order = await Order.create({
-      items: cartItems,
-      customerId,
-      creativeId: cartItems[0].info.owner,
-      status: "pending",
-      totalPrice: customer.cart.totalPrice,
+    const customer = await Customer.findById(customerId).populate({
+      path: `carts.${creativeIdFromClient}.cartItems.info`,
+      select: "owner",
     });
+
+    const carts: CItem = customer.carts;
+
+    let order;
+
+    for (const [creativeId, cart] of carts.entries()) {
+      if (Boolean(creativeId === creativeIdFromClient)) {
+        const cartItems = cart.cartItems;
+
+        order = await Order.create({
+          items: cartItems,
+          customerId,
+          creativeId: cartItems[0].info.owner,
+          status: "pending",
+          totalPrice: cart.totalPrice,
+        });
+      }
+    }
 
     return res
       .status(StatusCodes.OK)
@@ -297,10 +340,11 @@ export = {
   addToCart,
   removeFromCart,
   getCartItems,
-  clearCartItems,
   updateCartItemCount,
   placeAnOrder,
   cancelAnOrder,
   getOrders,
   confirmAnOrder,
+  getCarts,
+  deleteCart,
 };

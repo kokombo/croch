@@ -43,7 +43,7 @@ const CreativeSchema = new Schema(
 
     isAvailable: {
       type: Boolean,
-      default: true,
+      default: true, //Available to take orders
     },
 
     superCreative: {

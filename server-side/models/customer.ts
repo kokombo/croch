@@ -37,23 +37,26 @@ const CustomerSchema = new Schema(
       ],
     },
 
-    cart: {
-      cartItems: [
-        {
-          info: { type: Types.ObjectId, ref: "Product" },
+    carts: {
+      type: Map,
+      of: {
+        cartItems: [
+          {
+            info: { type: Types.ObjectId, ref: "Product" },
 
-          price: Number,
+            price: Number,
 
-          count: Number,
+            count: Number,
+          },
+        ],
+
+        totalPrice: {
+          type: Number,
         },
-      ],
 
-      totalPrice: {
-        type: Number,
-      },
-
-      totalPriceAfterDiscount: {
-        type: Number,
+        totalPriceAfterDiscount: {
+          type: Number,
+        },
       },
     },
   },
