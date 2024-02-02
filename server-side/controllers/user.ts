@@ -9,11 +9,6 @@ import jwt = require("jsonwebtoken");
 import validateId = require("../utilities/validateId");
 import sendEmail = require("../utilities/sendEmail");
 
-type JwtCallback = (
-  error: Error | null,
-  decoded: jwt.JwtPayload | undefined
-) => void;
-
 const signUp = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password, role } = req.body;
 
@@ -251,6 +246,38 @@ const resetPassword = async (req: Request, res: Response) => {
   }
 };
 
+const sendEmailVerificationToken = async (req: Request, res: Response) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "User with this email not found." });
+    }
+
+    const token = await user.generateEmailVerificationToken();
+
+    const data: Email = {
+      from: "",
+      to: email,
+      subject: "Verify Your Email Address",
+      text: "",
+      html: "",
+    };
+
+    await sendEmail(data);
+
+    return res.json({ message: "Email verification link sent successfully." });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 const verifyEmailAddress = async (req: Request, res: Response) => {
   const token = req.query.token;
 
@@ -262,7 +289,7 @@ const verifyEmailAddress = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(StatusCodes.BAD_REQUEST).json({
-        message: "Invalid  verification link. Link must have expired.",
+        message: "Invalid email verification link. Link must have expired.",
       });
     }
 
@@ -281,7 +308,39 @@ const verifyEmailAddress = async (req: Request, res: Response) => {
 };
 
 const logOut = async (req: Request, res: Response) => {
+  const cookies = req.cookies;
+
+  if (!cookies.refreshToken) {
+    return res
+      .status(StatusCodes.FORBIDDEN)
+      .json({ message: "Cookies not found." });
+  }
+
+  const refreshToken = cookies.refreshToken;
+
   try {
+    const user = await User.findOne({ refreshToken });
+
+    if (!user) {
+      return res
+        .status(StatusCodes.FORBIDDEN)
+        .json({ message: "You cannot perform action." });
+    }
+
+    await User.findOneAndUpdate(
+      refreshToken,
+
+      { accessToken: "", refreshToken: "" },
+
+      { new: true }
+    );
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+    });
+
+    return res.json({ message: "You have logged out successfully" });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -298,4 +357,5 @@ export = {
   sendForgotPasswordToken,
   logOut,
   verifyEmailAddress,
+  sendEmailVerificationToken,
 };

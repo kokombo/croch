@@ -85,6 +85,8 @@ UserSchema.methods.generatePasswordResetToken = async function () {
     .digest("hex");
 
   this.passwordResetTokenExpiresAt = Date.now() + 60 * 60 * 1000; //Password reset token to expire in one hour.
+
+  return token;
 };
 
 UserSchema.methods.generateEmailVerificationToken = async function () {
@@ -96,6 +98,8 @@ UserSchema.methods.generateEmailVerificationToken = async function () {
     .digest("hex");
 
   this.emailVerificationTokenExpiresAt = Date.now() + 24 * 60 * 60 * 1000; //Password reset token to expire 24 hours.
+
+  return token;
 };
 
 export = models.User || model("User", UserSchema);
