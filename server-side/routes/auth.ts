@@ -24,7 +24,7 @@ router.post("/sendEmailVerificationToken", sendEmailVerificationToken);
 router.post("/verifyEmailAddress", authorizeUser, verifyEmailAddress);
 router.get("/refreshToken", handleRefreshToken);
 router.get("/logOut", logOut);
-router.patch("/resetPassword", resetPassword);
 router.patch("/updatePassword", authorizeUser, updatePassword);
+router.patch("/resetPassword", resetPassword);
 
 export = router;

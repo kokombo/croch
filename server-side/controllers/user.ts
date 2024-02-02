@@ -134,7 +134,7 @@ const handleRefreshToken = async (req: Request, res: Response) => {
 
       process.env.JWT_SECRET as string,
 
-      { clockTolerance: 5 * 60, complete: true }, //5 minutes
+      { complete: true },
 
       (error: Error | null, decoded: jwt.JwtPayload | undefined) => {
         if (error || decoded?.id !== user._id) {
