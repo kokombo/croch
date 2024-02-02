@@ -59,6 +59,7 @@ const UserSchema = new Schema(
 
     passwordResetTokenExpiresAt: Date,
   },
+
   { timestamps: true }
 );
 
@@ -73,6 +74,28 @@ UserSchema.pre("save", async function (next) {
 
 UserSchema.methods.checkPassword = async function (password: string) {
   return await bcrypt.compare(password, this.password);
+};
+
+UserSchema.methods.generatePasswordResetToken = async function () {
+  const token = crypto.randomBytes(32).toString("hex");
+
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(token)
+    .digest("hex");
+
+  this.passwordResetTokenExpiresAt = Date.now() + 60 * 60 * 1000; //Password reset token to expire in one hour.
+};
+
+UserSchema.methods.generateEmailVerificationToken = async function () {
+  const token = crypto.randomBytes(32).toString("hex");
+
+  this.emailVerificationToken = crypto
+    .createHash("sha256")
+    .update(token)
+    .digest("hex");
+
+  this.emailVerificationTokenExpiresAt = Date.now() + 24 * 60 * 60 * 1000; //Password reset token to expire 24 hours.
 };
 
 export = models.User || model("User", UserSchema);

@@ -36,3 +36,11 @@ type Creative = {
 type Notification = {
   message: string;
 };
+
+type Email = {
+  from: string;
+  to: string | string[];
+  subject: string;
+  text: string;
+  html: string;
+};
