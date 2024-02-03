@@ -105,7 +105,7 @@ const updateCartItemCount = async (req: Request, res: Response) => {
 
     await customer.save();
 
-    return res.json({ message: "Count updated" });
+    return res.json({ message: "Count updated." });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

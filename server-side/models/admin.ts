@@ -28,6 +28,7 @@ const AdminSchema = new Schema(
       type: String,
     },
   },
+
   { timestamps: true }
 );
 

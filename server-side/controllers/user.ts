@@ -21,7 +21,7 @@ const signUp = async (req: Request, res: Response) => {
   const refinedEmail = email.toLowerCase();
 
   try {
-    const userExists = await User.findOne({ refinedEmail });
+    const userExists = await User.findOne({ email: refinedEmail });
 
     if (userExists) {
       return res
@@ -348,6 +348,8 @@ const logOut = async (req: Request, res: Response) => {
   }
 };
 
+const deleteMyAccount = async (req: Request, res: Response) => {};
+
 export = {
   signUp,
   signIn,
@@ -358,4 +360,5 @@ export = {
   logOut,
   verifyEmailAddress,
   sendEmailVerificationToken,
+  deleteMyAccount,
 };
