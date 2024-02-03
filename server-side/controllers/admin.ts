@@ -7,6 +7,7 @@ const blockUser = async (req: Request, res: Response) => {};
 const unblockUser = async (req: Request, res: Response) => {};
 const getAllUsers = async (req: Request, res: Response) => {};
 const getAllCustomers = async (req: Request, res: Response) => {};
+const getAllCreatives = async (req: Request, res: Response) => {};
 const getCreative = async (req: Request, res: Response) => {};
 const getCustomer = async (req: Request, res: Response) => {};
 const giveSuperCreativeTag = async (req: Request, res: Response) => {};
@@ -17,6 +18,7 @@ export = {
   blockUser,
   unblockUser,
   getAllCustomers,
+  getAllCreatives,
   getAllUsers,
   getCreative,
   getCustomer,

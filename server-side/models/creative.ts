@@ -12,35 +12,6 @@ const CreativeSchema = new Schema(
       type: String,
     },
 
-    orders: {
-      pendingOrders: [
-        {
-          order: {
-            type: Types.ObjectId,
-            ref: "Order",
-          },
-        },
-      ],
-
-      fulfilledOrders: [
-        {
-          order: {
-            type: Types.ObjectId,
-            ref: "Order",
-          },
-        },
-      ],
-
-      cancelledOrders: [
-        {
-          order: {
-            type: Types.ObjectId,
-            ref: "Order",
-          },
-        },
-      ],
-    },
-
     isAvailable: {
       type: Boolean,
       default: true, //Available to take orders
@@ -62,8 +33,6 @@ const CreativeSchema = new Schema(
     funFacts: {
       type: Array(String),
     },
-
-    products: [{ type: Types.ObjectId, ref: "Product" }],
   },
 
   { timestamps: true }

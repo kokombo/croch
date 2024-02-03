@@ -8,35 +8,6 @@ const CustomerSchema = new Schema(
       ref: "User",
     },
 
-    orders: {
-      pendingOrders: [
-        {
-          order: {
-            type: Types.ObjectId,
-            ref: "Order",
-          },
-        },
-      ],
-
-      fulfilledOrders: [
-        {
-          order: {
-            type: Types.ObjectId,
-            ref: "Order",
-          },
-        },
-      ],
-
-      cancelledOrders: [
-        {
-          order: {
-            type: Types.ObjectId,
-            ref: "Order",
-          },
-        },
-      ],
-    },
-
     carts: {
       type: Map,
       of: {

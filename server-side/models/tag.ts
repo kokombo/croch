@@ -11,6 +11,7 @@ const TagSchema = new Schema(
       type: String,
     },
   },
+
   { timestamps: true }
 );
 
