@@ -9,7 +9,7 @@ type User = {
 type ProductBody = {
   title: string;
   availability: boolean;
-  price: string;
+  price: number;
   description: string;
   gender: string;
   tag: string;
@@ -44,3 +44,32 @@ type Email = {
   text: string;
   html: string;
 };
+
+interface Product extends ProductBody {
+  _id: string;
+  photos: string[];
+  colors: string[];
+  sizes: string[];
+  owner: string;
+}
+
+type CartItem = {
+  info: {
+    _id: mongoose.Types.ObjectId;
+    title: string;
+    price: number;
+    owner: mongoose.Types.ObjectId;
+  };
+
+  count: number;
+
+  price: number; //info.price * count
+};
+
+type Cart = {
+  cartItems: CartItem[];
+  totalPrice: number;
+  _id: string;
+};
+
+type Carts = Map<string, Cart>;

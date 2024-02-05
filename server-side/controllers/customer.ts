@@ -7,27 +7,6 @@ import Product = require("../models/product");
 import Creative = require("../models/creative");
 import Order = require("../models/order");
 
-type CartItem = {
-  info: {
-    _id: mongoose.Types.ObjectId;
-    title: string;
-    price: number;
-    owner: mongoose.Types.ObjectId;
-  };
-
-  count: number;
-
-  price: number; //info.price * count
-};
-
-type Cart = {
-  cartItems: CartItem[];
-  totalPrice: number;
-  _id: string;
-};
-
-type CItem = Map<string, Cart>;
-
 const addToCart = async (req: Request, res: Response) => {
   const { productId } = req.body;
 
@@ -85,7 +64,7 @@ const updateCartItemCount = async (req: Request, res: Response) => {
       select: "price",
     });
 
-    const carts: CItem = customer.carts;
+    const carts: Carts = customer.carts;
 
     for (const [creativeId, cart] of carts.entries()) {
       if (Boolean(creativeId === creativeIdFromClient)) {
@@ -157,7 +136,7 @@ const getCarts = async (req: Request, res: Response) => {
   try {
     const customer = await Customer.findById(customerId);
 
-    const carts: CItem = customer.carts;
+    const carts: Carts = customer.carts;
 
     let Ids: string[] = [];
 
@@ -185,7 +164,7 @@ const getCartItems = async (req: Request, res: Response) => {
   try {
     const customer = await Customer.findById(customerId);
 
-    const carts: CItem = customer.carts;
+    const carts: Carts = customer.carts;
 
     let totalPrice = 0;
 
@@ -252,7 +231,7 @@ const placeAnOrder = async (req: Request, res: Response) => {
       select: "owner",
     });
 
-    const carts: CItem = customer.carts;
+    const carts: Carts = customer.carts;
 
     let order;
 
@@ -336,6 +315,65 @@ const getOrders = async (req: Request, res: Response) => {
   }
 };
 
+const addAndRemoveWishlist = async (req: Request, res: Response) => {
+  const { productId } = req.body;
+
+  const { _id: customerId } = req.user;
+
+  validateId(productId);
+
+  validateId(customerId);
+
+  try {
+    const customer = await Customer.findById(customerId).populate("wishLists");
+
+    const wishlists: Product[] = customer.wishLists;
+
+    const alreadyInWishlists = Boolean(
+      wishlists.find(
+        (wishList) => wishList._id.toString() === productId.toString()
+      )
+    );
+
+    if (alreadyInWishlists) {
+      await Customer.findByIdAndUpdate(customerId, {
+        $pull: { wishLists: productId },
+      });
+
+      return res.json({ message: "Product removed from wishlist." });
+    } else {
+      await Customer.findByIdAndUpdate(customerId, {
+        $push: { wishLists: productId },
+      });
+
+      return res.json({ message: "Product added to wishlist." });
+    }
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const getWishlists = async (req: Request, res: Response) => {
+  const { _id: customerId } = req.user;
+
+  try {
+    const customer = await Customer.findById(customerId).populate({
+      path: "wishLists",
+      select: "_id owner photos title availability price",
+    });
+
+    const wishlists = customer.wishLists;
+
+    return res.json(wishlists);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 export = {
   addToCart,
   removeFromCart,
@@ -347,4 +385,6 @@ export = {
   confirmAnOrder,
   getCarts,
   deleteCart,
+  addAndRemoveWishlist,
+  getWishlists,
 };

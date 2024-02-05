@@ -6,6 +6,8 @@ import validateId = require("../utilities/validateId");
 const getAllProducts = async (req: Request, res: Response) => {
   const queryObject = { ...req.query };
 
+  //Filtering
+
   const excludeFields = ["page", "sort", "limit", "fields", "search"];
 
   excludeFields.forEach((item) => delete queryObject[item]);
@@ -20,17 +22,20 @@ const getAllProducts = async (req: Request, res: Response) => {
   try {
     let result = Product.find(JSON.parse(numericQuery)).populate({
       path: "owner",
-      select: "_id, firstName",
+      select: "_id firstName",
     });
 
     //An algorithm to display products based on product performance or creative's overall performance.
+
+    //Sorting
 
     const sort = req.query.sort as string;
 
     if (sort) {
       result = result.sort({ [sort]: "desc" });
-    } else {
     }
+
+    //Pagination
 
     const page = Number(req.query.page);
 
@@ -39,6 +44,8 @@ const getAllProducts = async (req: Request, res: Response) => {
     const skip = (page - 1) * limit;
 
     result = result.skip(skip).limit(limit);
+
+    //Implement search
 
     const products = await result;
 

@@ -7,6 +7,7 @@ const NotificationSchema = new Schema(
 
     receiver: [{ type: Types.ObjectId, ref: "User" }],
   },
+
   { timestamps: true }
 );
 

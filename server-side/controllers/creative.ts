@@ -153,7 +153,17 @@ const getProducts = async (req: Request, res: Response) => {
   validateId(creativeId);
 
   try {
-    const products = await Product.find({ owner: creativeId });
+    let results = Product.find({ owner: creativeId });
+
+    const page = Number(req.query.page);
+
+    const limit = Number(req.query.limit);
+
+    const skip = (page - 1) * limit;
+
+    results = results.skip(skip).limit(limit);
+
+    const products = await results;
 
     return res.json(products);
   } catch (error) {

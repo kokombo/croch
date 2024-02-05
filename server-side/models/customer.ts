@@ -1,38 +1,36 @@
 import mongoose = require("mongoose");
 const { Schema, model, Types, models } = mongoose;
 
-const CustomerSchema = new Schema(
-  {
-    _id: {
-      type: Types.ObjectId,
-      ref: "User",
-    },
+const CustomerSchema = new Schema({
+  _id: {
+    type: Types.ObjectId,
+    ref: "User",
+  },
 
-    carts: {
-      type: Map,
-      of: {
-        cartItems: [
-          {
-            info: { type: Types.ObjectId, ref: "Product" },
+  carts: {
+    type: Map,
+    of: {
+      cartItems: [
+        {
+          info: { type: Types.ObjectId, ref: "Product" },
 
-            price: Number,
+          price: Number,
 
-            count: Number,
-          },
-        ],
-
-        totalPrice: {
-          type: Number,
+          count: Number,
         },
+      ],
 
-        totalPriceAfterDiscount: {
-          type: Number,
-        },
+      totalPrice: {
+        type: Number,
+      },
+
+      totalPriceAfterDiscount: {
+        type: Number,
       },
     },
   },
 
-  { timestamps: true }
-);
+  wishLists: [{ type: Types.ObjectId, ref: "Product" }],
+});
 
 export = models.Customer || model("Customer", CustomerSchema);
