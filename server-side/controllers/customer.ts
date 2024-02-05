@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import Customer = require("../models/customer");
+import Creative = require("../models/creative");
 import validateId = require("../utilities/validateId");
 import { StatusCodes } from "http-status-codes";
-import mongoose = require("mongoose");
 import Product = require("../models/product");
-import Creative = require("../models/creative");
 import Order = require("../models/order");
 
 const addToCart = async (req: Request, res: Response) => {
@@ -28,8 +27,10 @@ const addToCart = async (req: Request, res: Response) => {
         $push: {
           [`carts.${creativeId}.cartItems`]: {
             info: productId,
+            title: newlyAddedProduct.title,
+            thumbNail: newlyAddedProduct.photos[0],
             count: 1,
-            price: newlyAddedProduct.price,
+            cummulativePrice: newlyAddedProduct.price,
           },
         },
 
@@ -77,7 +78,7 @@ const updateCartItemCount = async (req: Request, res: Response) => {
         if (product) {
           product.count = count;
 
-          product.price = product.info.price * count;
+          product.cummulativePrice = product.info.price * count;
         }
       }
     }
@@ -138,13 +139,19 @@ const getCarts = async (req: Request, res: Response) => {
 
     const carts: Carts = customer.carts;
 
-    let Ids: string[] = [];
+    let result = [];
 
     for (const [creativeId, cart] of carts.entries()) {
-      Ids.push(creativeId);
+      const creative = await Creative.findById(creativeId);
+
+      result.push({
+        creativeId,
+        brandName: creative.brandName,
+        brandLogo: creative.brandLogo,
+      });
     }
 
-    return res.json(Ids);
+    return res.json(result);
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -177,7 +184,7 @@ const getCartItems = async (req: Request, res: Response) => {
         const vendorCartItems: CartItem[] = vendorCart.cartItems;
 
         for (let i = 0; i < vendorCartItems.length; i++) {
-          totalPrice += vendorCartItems[i].price;
+          totalPrice += vendorCartItems[i].cummulativePrice; //cummulativePrice is price of each item * count
         }
 
         vendorCart.totalPrice = totalPrice;
@@ -206,7 +213,9 @@ const deleteCart = async (req: Request, res: Response) => {
   try {
     const customer = await Customer.findById(customerId);
 
-    customer.carts.delete(creativeIdFromClient);
+    if (customer.carts.has(creativeIdFromClient)) {
+      customer.carts.delete(creativeIdFromClient);
+    }
 
     await customer.save();
 
@@ -305,7 +314,10 @@ const getOrders = async (req: Request, res: Response) => {
   const status = req.query.status as string;
 
   try {
-    const orders = await Order.find({ customerId, status });
+    const orders = await Order.find({ customerId, status }).populate({
+      path: "items.info",
+      select: "title photos",
+    });
 
     return res.json(orders);
   } catch (error) {
@@ -374,6 +386,22 @@ const getWishlists = async (req: Request, res: Response) => {
   }
 };
 
+const getCreativeAllProducts = async (req: Request, res: Response) => {
+  const { creativeId } = req.body;
+
+  validateId(creativeId);
+
+  try {
+    const products = await Product.find({ owner: creativeId });
+
+    return res.json(products);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 export = {
   addToCart,
   removeFromCart,
@@ -387,4 +415,5 @@ export = {
   deleteCart,
   addAndRemoveWishlist,
   getWishlists,
+  getCreativeAllProducts,
 };

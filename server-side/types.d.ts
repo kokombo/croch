@@ -56,14 +56,17 @@ interface Product extends ProductBody {
 type CartItem = {
   info: {
     _id: mongoose.Types.ObjectId;
-    title: string;
     price: number;
     owner: mongoose.Types.ObjectId;
   };
 
+  title: String;
+
+  thumbNail: String;
+
   count: number;
 
-  price: number; //info.price * count
+  cummulativePrice: number; //info.price * count
 };
 
 type Cart = {

@@ -14,7 +14,11 @@ const CustomerSchema = new Schema({
         {
           info: { type: Types.ObjectId, ref: "Product" },
 
-          price: Number,
+          title: String,
+
+          thumbNail: String,
+
+          cummulativePrice: Number,
 
           count: Number,
         },

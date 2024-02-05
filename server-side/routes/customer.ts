@@ -17,12 +17,14 @@ const {
   getCarts,
   addAndRemoveWishlist,
   getWishlists,
+  getCreativeAllProducts,
 } = customerController;
 
 router.get("/getCartItems", authorizeUser, getCartItems);
 router.get("/getOrders", authorizeUser, getOrders);
 router.get("/getCarts", authorizeUser, getCarts);
 router.get("/getWishlists", authorizeUser, getWishlists);
+router.get("/getCreativeAllProducts", authorizeUser, getCreativeAllProducts);
 router.post("/placeAnOrder", authorizeUser, placeAnOrder);
 router.put("/addToCart", authorizeUser, addToCart);
 router.put("/removeFromCart", authorizeUser, removeFromCart);

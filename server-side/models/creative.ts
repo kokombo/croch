@@ -12,6 +12,10 @@ const CreativeSchema = new Schema(
       type: String,
     },
 
+    brandLogo: {
+      type: String,
+    },
+
     isAvailable: {
       type: Boolean,
       default: true, //Available to take orders

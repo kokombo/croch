@@ -317,6 +317,8 @@ const setBrandName = async (req: Request, res: Response) => {
   }
 };
 
+//setBrandLogo
+
 const getOrders = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
 

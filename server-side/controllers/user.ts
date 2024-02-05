@@ -1,6 +1,7 @@
 import User = require("../models/user");
 import Creative = require("../models/creative");
 import Customer = require("../models/customer");
+import Product = require("../models/product");
 import generateAccessToken = require("../utilities/generateAccessToken");
 import generateRefreshToken = require("../utilities/generateRefreshToken");
 import { StatusCodes } from "http-status-codes";
@@ -8,6 +9,7 @@ import { Request, Response } from "express";
 import jwt = require("jsonwebtoken");
 import validateId = require("../utilities/validateId");
 import sendEmail = require("../utilities/sendEmail");
+import crypto = require("crypto");
 
 const signUp = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password, role } = req.body;
@@ -216,13 +218,15 @@ const sendForgotPasswordToken = async (req: Request, res: Response) => {
 };
 
 const resetPassword = async (req: Request, res: Response) => {
-  const token = req.query.token;
+  const token = req.query.token as string;
+
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
   const { password } = req.body;
 
   try {
     const user = await User.findOne({
-      passwordResetToken: token,
+      passwordResetToken: hashedToken,
       passwordResetTokenExpries: { $gt: Date.now() },
     });
 
@@ -279,11 +283,13 @@ const sendEmailVerificationToken = async (req: Request, res: Response) => {
 };
 
 const verifyEmailAddress = async (req: Request, res: Response) => {
-  const token = req.query.token;
+  const token = req.query.token as string;
+
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
   try {
     const user = await User.findOne({
-      emailVerificationToken: token,
+      emailVerificationToken: hashedToken,
       emailVerificationTokenExpires: { $gt: Date.now() },
     });
 
@@ -348,7 +354,31 @@ const logOut = async (req: Request, res: Response) => {
   }
 };
 
-const deleteMyAccount = async (req: Request, res: Response) => {};
+const deleteMyAccount = async (req: Request, res: Response) => {
+  const { _id: userId } = req.user;
+
+  validateId(userId);
+
+  try {
+    const user = await User.findById(userId);
+
+    if (user.role === "customer") {
+      await Customer.findByIdAndDelete(userId);
+    } else {
+      await Creative.findByIdAndDelete(userId);
+
+      await Product.findOneAndDelete({ owner: userId });
+    }
+
+    await User.findByIdAndDelete(userId);
+
+    return res.json({ messaage: "Account deleted." });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
 
 export = {
   signUp,
