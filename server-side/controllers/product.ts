@@ -25,7 +25,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       select: "_id firstName",
     });
 
-    //An algorithm to display products based on product performance or creative's overall performance.
+    //An algorithm to display products based on product performance or creative's overall performance and/or product performance.
 
     //Sorting
 

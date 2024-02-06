@@ -51,6 +51,10 @@ const ProductSchema = new Schema(
       default: [],
     },
 
+    rating: {
+      type: Number,
+    },
+
     owner: {
       type: Types.ObjectId,
       ref: "User",

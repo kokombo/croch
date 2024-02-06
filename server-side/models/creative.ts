@@ -21,6 +21,10 @@ const CreativeSchema = new Schema(
       default: true, //Available to take orders
     },
 
+    rating: {
+      type: Number,
+    },
+
     superCreative: {
       type: Boolean,
       default: false,
