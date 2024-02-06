@@ -38,7 +38,7 @@ router.get("/getOrders", authorizeUser, isCreative, getOrders);
 router.get("/getCreativeById", getCreativeById);
 
 router.put(
-  "/updateProduct/:id",
+  "/updateProduct",
   authorizeUser,
   isProductOwner,
   uploadPhoto.array("product-photos", 10),
@@ -78,11 +78,6 @@ router.patch(
   setBrandLogo
 );
 
-router.delete(
-  "/deleteProduct/:id",
-  authorizeUser,
-  isProductOwner,
-  deleteProduct
-);
+router.delete("/deleteProduct", authorizeUser, isProductOwner, deleteProduct);
 
 export = router;

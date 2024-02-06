@@ -4,6 +4,7 @@ require("dotenv").config();
 import connectToDatabase = require("./configurations/connectToDatabase");
 import bodyParser = require("body-parser");
 import cookieParser = require("cookie-parser");
+import cors = require("cors");
 import authRouter = require("./routes/auth");
 import adminRouter = require("./routes/admin");
 import notificationRouter = require("./routes/notification");
@@ -16,6 +17,7 @@ import customerRouter = require("./routes/customer");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/admin", adminRouter);

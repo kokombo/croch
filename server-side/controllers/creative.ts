@@ -20,7 +20,7 @@ const createProduct = async (req: Request, res: Response) => {
     !description ||
     !gender ||
     !tag ||
-    !req.files
+    req.files.length < 1
   ) {
     return res
       .status(StatusCodes.BAD_REQUEST)
@@ -45,7 +45,9 @@ const createProduct = async (req: Request, res: Response) => {
     const product = await Product.create({
       ...req.body,
 
-      price: Number(req.body.price),
+      nationwideDelivery: req.body.nationwideDelivery === "true" ? true : false,
+
+      price: parseInt(req.body.price),
 
       photos: urls.map((url) => {
         return url;
@@ -63,7 +65,7 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const updateProduct = async (req: Request, res: Response) => {
-  const { id: productId } = req.params;
+  const { productId } = req.query;
 
   const creative = req.user;
 
@@ -77,14 +79,14 @@ const updateProduct = async (req: Request, res: Response) => {
     !description ||
     !gender ||
     !tag ||
-    !req.files
+    req.files.length < 1
   ) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Provide all necessary listing details." });
   }
 
-  validateId(productId);
+  validateId(productId as string);
 
   try {
     const urls: string[] = [];
@@ -107,6 +109,8 @@ const updateProduct = async (req: Request, res: Response) => {
       {
         ...req.body,
 
+        price: parseInt(req.body.price),
+
         photos: urls.map((url) => {
           return url;
         }),
@@ -126,7 +130,7 @@ const updateProduct = async (req: Request, res: Response) => {
 };
 
 const deleteProduct = async (req: Request, res: Response) => {
-  const { id: productId } = req.params;
+  const { productId } = req.body;
 
   validateId(productId);
 

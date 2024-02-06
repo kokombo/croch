@@ -255,8 +255,12 @@ const placeAnOrder = async (req: Request, res: Response) => {
           status: "pending",
           totalPrice: cart.totalPrice,
         });
+
+        carts.delete(creativeIdFromClient);
       }
     }
+
+    await customer.save();
 
     return res
       .status(StatusCodes.OK)
