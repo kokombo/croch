@@ -28,9 +28,6 @@ const createProduct = async (req: Request, res: Response) => {
   }
 
   try {
-    const uploader = (file: string) =>
-      uploadImageToCloudinary(file, "product-images");
-
     const urls: string[] = [];
 
     const files = req.files;
@@ -38,7 +35,7 @@ const createProduct = async (req: Request, res: Response) => {
     for (const file of files) {
       const { path } = file;
 
-      const imageUrl = await uploader(path);
+      const imageUrl = await uploadImageToCloudinary(path, "product-images");
 
       urls.push(imageUrl);
 
@@ -90,9 +87,6 @@ const updateProduct = async (req: Request, res: Response) => {
   validateId(productId);
 
   try {
-    const uploader = (file: string) =>
-      uploadImageToCloudinary(file, "product-images");
-
     const urls: string[] = [];
 
     const files = req.files;
@@ -100,7 +94,7 @@ const updateProduct = async (req: Request, res: Response) => {
     for (const file of files) {
       const { path } = file;
 
-      const imageUrl = await uploader(path);
+      const imageUrl = await uploadImageToCloudinary(path, "product-images");
 
       urls.push(imageUrl);
 
@@ -317,10 +311,40 @@ const setBrandName = async (req: Request, res: Response) => {
   }
 };
 
-//setBrandLogo
+const setBrandLogo = async (req: Request, res: Response) => {
+  const files = req.files;
+
+  const { _id: creativeId } = req.user;
+
+  validateId(creativeId);
+
+  try {
+    const creative = await Creative.findById(creativeId);
+
+    const file = files[0];
+
+    if (file) {
+      const { path } = file;
+
+      const imageUrl = await uploadImageToCloudinary(path, "brand-logos");
+
+      creative.brandLogo = imageUrl;
+    }
+
+    await creative.save();
+
+    return res.json(creative.brandLogo);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
 
 const getOrders = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
+
+  validateId(creativeId);
 
   const status = req.query.status as string;
 
@@ -328,6 +352,28 @@ const getOrders = async (req: Request, res: Response) => {
     const orders = await Order.find({ creativeId, status });
 
     return res.json(orders);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const getCreativeById = async (req: Request, res: Response) => {
+  const { creativeId } = req.body;
+
+  validateId(creativeId);
+
+  try {
+    const creative = await Creative.findById(creativeId);
+
+    if (!creative) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Creative not found" });
+    }
+
+    return res.json(creative);
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -346,4 +392,6 @@ export = {
   updateYearsOfExperience,
   getOrders,
   setBrandName,
+  setBrandLogo,
+  getCreativeById,
 };

@@ -275,6 +275,12 @@ const cancelAnOrder = async (req: Request, res: Response) => {
 
   const order = await Order.findById(orderId);
 
+  if (!order) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ message: "No order found!" });
+  }
+
   if (customerId.toString() !== order.customerId.toString()) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
@@ -295,6 +301,12 @@ const confirmAnOrder = async (req: Request, res: Response) => {
 
   const order = await Order.findById(orderId);
 
+  if (!order) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ message: "No order found!" });
+  }
+
   if (customerId.toString() !== order.customerId.toString()) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
@@ -314,10 +326,7 @@ const getOrders = async (req: Request, res: Response) => {
   const status = req.query.status as string;
 
   try {
-    const orders = await Order.find({ customerId, status }).populate({
-      path: "items.info",
-      select: "title photos",
-    });
+    const orders = await Order.find({ customerId, status });
 
     return res.json(orders);
   } catch (error) {

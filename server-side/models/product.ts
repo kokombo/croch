@@ -56,7 +56,7 @@ const ProductSchema = new Schema(
       ref: "User",
     },
 
-    nationWideDelivery: {
+    nationwideDelivery: {
       type: Boolean,
       required: true,
     },

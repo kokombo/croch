@@ -22,6 +22,14 @@ const authorizeUser = async (
 
       const user = await User.findById(decodedToken?.id);
 
+      if (!user) {
+        return res
+          .status(StatusCodes.UNAUTHORIZED)
+          .json({
+            message: "Session expired!. You are not currently logged in.",
+          });
+      }
+
       req.user = user;
 
       next();

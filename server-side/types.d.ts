@@ -72,7 +72,6 @@ type CartItem = {
 type Cart = {
   cartItems: CartItem[];
   totalPrice: number;
-  _id: string;
 };
 
 type Carts = Map<string, Cart>;

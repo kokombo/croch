@@ -19,13 +19,15 @@ const {
   updatePersonalDescription,
   getOrders,
   setBrandName,
+  setBrandLogo,
+  getCreativeById,
 } = creativeController;
 
 router.post(
   "/createProduct",
   authorizeUser,
   isCreative,
-  uploadPhoto.array("files", 10),
+  uploadPhoto.array("product-photos", 10),
   createProduct
 );
 
@@ -33,11 +35,13 @@ router.get("/getProducts", authorizeUser, getProducts);
 
 router.get("/getOrders", authorizeUser, isCreative, getOrders);
 
+router.get("/getCreativeById", getCreativeById);
+
 router.put(
   "/updateProduct/:id",
   authorizeUser,
   isProductOwner,
-  uploadPhoto.array("files", 10),
+  uploadPhoto.array("product-photos", 10),
   updateProduct
 );
 
@@ -65,6 +69,14 @@ router.patch(
 );
 
 router.patch("/setBrandName", authorizeUser, isCreative, setBrandName);
+
+router.patch(
+  "/setBrandLogo",
+  authorizeUser,
+  isCreative,
+  uploadPhoto.array("logo", 1),
+  setBrandLogo
+);
 
 router.delete(
   "/deleteProduct/:id",

@@ -4,7 +4,7 @@ const validateId = (id: string) => {
   const IdIsValid = mongoose.Types.ObjectId.isValid(id);
 
   if (!IdIsValid) {
-    throw new Error("Invalid id");
+    return "Invalid id";
   }
 };
 
