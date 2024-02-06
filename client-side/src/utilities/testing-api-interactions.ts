@@ -65,3 +65,44 @@ export const getProductById = (productId: string) => {
 
   return { data, isLoading, isError, error };
 };
+
+export const getMyProducts = () => {
+  const getMyProductsRequest = async (): Promise<Product[] | undefined> => {
+    const res = await axios.get(`${api_base_url}/creative/getProducts`, {
+      headers: {
+        Authorization: `Bearer ${creative_token}`,
+      },
+    });
+
+    return res.data;
+  };
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["getMyProducts"],
+    queryFn: getMyProductsRequest,
+  });
+
+  return { data, isLoading, isError, error };
+};
+
+export const getCreativeOrders = (status: string) => {
+  const getCreativeOrdersRequest = async (): Promise<Order[] | undefined> => {
+    const res = await axios.get(
+      `${api_base_url}/creative/getOrders?status=${status}`,
+      {
+        headers: {
+          Authorization: `Bearer ${creative_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, isLoading, error } = useQuery({
+    queryKey: ["getCreativeOrders"],
+    queryFn: getCreativeOrdersRequest,
+  });
+
+  return { data, isError, isLoading, error };
+};

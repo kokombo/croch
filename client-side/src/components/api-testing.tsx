@@ -3,6 +3,8 @@ import {
   createProductFunction,
   getAllProducts,
   getProductById,
+  getMyProducts,
+  getCreativeOrders,
 } from "@/utilities/testing-api-interactions";
 
 const ApiTesting = () => {
@@ -49,6 +51,15 @@ const ApiTesting = () => {
   const { data: product, error: prError } = getProductById(
     "65c1e5fc48118bd7f496b0c5"
   );
+
+  const {
+    data: myProducts,
+    isLoading,
+    isError: myIsError,
+    error: myError,
+  } = getMyProducts();
+
+  const { data: orders } = getCreativeOrders("pending");
 
   return (
     <div>

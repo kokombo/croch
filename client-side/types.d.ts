@@ -16,3 +16,18 @@ type Product = {
   price: number;
   sizes: string[];
 };
+
+type Order = {
+  creativeId: string;
+  customerId: string;
+  items: {
+    cummulativePrice: number;
+    info: string;
+    thumbNail: string;
+    title: string;
+    _id: string;
+  }[];
+  status: string;
+  price: number;
+  _id: string;
+};
