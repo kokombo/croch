@@ -109,6 +109,9 @@ const updateProduct = async (req: Request, res: Response) => {
       {
         ...req.body,
 
+        nationwideDelivery:
+          req.body.nationwideDelivery === "true" ? true : false,
+
         price: parseInt(req.body.price),
 
         photos: urls.map((url) => {
@@ -130,9 +133,9 @@ const updateProduct = async (req: Request, res: Response) => {
 };
 
 const deleteProduct = async (req: Request, res: Response) => {
-  const { productId } = req.body;
+  const { productId } = req.query;
 
-  validateId(productId);
+  validateId(productId as string);
 
   try {
     await Product.findByIdAndDelete(productId);
@@ -175,12 +178,6 @@ const updateFunFacts = async (req: Request, res: Response) => {
   const { funFacts } = req.body;
 
   const { _id: creativeId } = req.user;
-
-  if (!funFacts) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Invalid input." });
-  }
 
   validateId(creativeId);
 
@@ -228,12 +225,6 @@ const updateIsAvailable = async (req: Request, res: Response) => {
 const updatePersonalDescription = async (req: Request, res: Response) => {
   const { personalDescription } = req.body;
 
-  if (!personalDescription) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Invalid input." });
-  }
-
   const { _id: creativeId } = req.user;
 
   validateId(creativeId);
@@ -259,12 +250,6 @@ const updateYearsOfExperience = async (req: Request, res: Response) => {
   const { yearsOfExperience } = req.body;
 
   const { _id: creativeId } = req.user;
-
-  if (!yearsOfExperience) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Invalid input." });
-  }
 
   validateId(creativeId);
 
@@ -293,7 +278,7 @@ const setBrandName = async (req: Request, res: Response) => {
   if (!brandName) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Invalid input." });
+      .json({ message: "Brand name cannot be empty." });
   }
 
   validateId(creativeId);
@@ -327,13 +312,17 @@ const setBrandLogo = async (req: Request, res: Response) => {
 
     const file = files[0];
 
-    if (file) {
-      const { path } = file;
-
-      const imageUrl = await uploadImageToCloudinary(path, "brand-logos");
-
-      creative.brandLogo = imageUrl;
+    if (!file) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Invalid input." });
     }
+
+    const { path } = file;
+
+    const imageUrl = await uploadImageToCloudinary(path, "brand-logos");
+
+    creative.brandLogo = imageUrl;
 
     await creative.save();
 
@@ -364,9 +353,9 @@ const getOrders = async (req: Request, res: Response) => {
 };
 
 const getCreativeById = async (req: Request, res: Response) => {
-  const { creativeId } = req.body;
+  const { creativeId } = req.query;
 
-  validateId(creativeId);
+  validateId(creativeId as string);
 
   try {
     const creative = await Creative.findById(creativeId);

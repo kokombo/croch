@@ -14,8 +14,8 @@ import tagRouter = require("./routes/tag");
 import creativeRouter = require("./routes/creative");
 import customerRouter = require("./routes/customer");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 

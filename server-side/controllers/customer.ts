@@ -160,13 +160,13 @@ const getCarts = async (req: Request, res: Response) => {
 };
 
 const getCartItems = async (req: Request, res: Response) => {
-  const { creativeId: creativeIdFromClient } = req.body;
+  const { creativeId: creativeIdFromClient } = req.query;
 
   const { _id: customerId } = req.user;
 
   validateId(customerId);
 
-  validateId(creativeIdFromClient);
+  validateId(creativeIdFromClient as string);
 
   try {
     const customer = await Customer.findById(customerId);
@@ -193,7 +193,7 @@ const getCartItems = async (req: Request, res: Response) => {
 
     await customer.save();
 
-    res.json(vendorCart);
+    return res.json(vendorCart);
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

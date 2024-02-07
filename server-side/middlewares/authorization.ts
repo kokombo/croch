@@ -23,11 +23,9 @@ const authorizeUser = async (
       const user = await User.findById(decodedToken?.id);
 
       if (!user) {
-        return res
-          .status(StatusCodes.UNAUTHORIZED)
-          .json({
-            message: "Session expired!. You are not currently logged in.",
-          });
+        return res.status(StatusCodes.UNAUTHORIZED).json({
+          message: "Session expired!. You are not currently logged in.",
+        });
       }
 
       req.user = user;
@@ -66,9 +64,15 @@ const isProductOwner = async (
 ) => {
   const { _id: userId } = req.user;
 
-  const { id: productId } = req.params;
+  const { productId } = req.query;
 
   const product = await Product.findById(productId);
+
+  if (!product) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ message: "No product found." });
+  }
 
   if (!product.owner.equals(userId)) {
     return res

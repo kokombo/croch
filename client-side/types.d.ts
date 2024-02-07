@@ -31,3 +31,37 @@ type Order = {
   price: number;
   _id: string;
 };
+
+type Creative = {
+  brandName: string;
+  brandLogo: string;
+  funFacts: string[];
+  isAvailable: boolean;
+  superCreative: boolean;
+  personalDescription: string;
+  yearsOfExperience: number;
+  _id: string;
+};
+
+type CartItem = {
+  info: {
+    _id: mongoose.Types.ObjectId;
+    price: number;
+    owner: mongoose.Types.ObjectId;
+  };
+
+  title: String;
+
+  thumbNail: String;
+
+  count: number;
+
+  cummulativePrice: number;
+};
+
+type Cart = {
+  cartItems: CartItem[];
+  totalPrice: number;
+};
+
+type Carts = Map<string, Cart>;
