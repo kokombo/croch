@@ -25,6 +25,7 @@ import {
   addAndRemoveWishlistFunction,
   cancelAnOrderFunction,
   confirmAnOrderFunction,
+  deleteCartFunction,
 } from "@/utilities/testing-api-interactions";
 
 const ApiTesting = () => {
@@ -206,6 +207,12 @@ const ApiTesting = () => {
     confirmOrder,
   } = confirmAnOrderFunction("65c212cc06028eb6f6c4eb98");
 
+  const {
+    deleteCart,
+    data: deletecartres,
+    error: deletecarterror,
+  } = deleteCartFunction("65c1e36573fe216ae67a1573");
+
   return (
     <div>
       Home
@@ -286,6 +293,10 @@ const ApiTesting = () => {
 
         <button type="button" onClick={confirmOrder}>
           confirm order
+        </button>
+
+        <button type="button" onClick={deleteCart}>
+          delete cart
         </button>
       </div>
     </div>

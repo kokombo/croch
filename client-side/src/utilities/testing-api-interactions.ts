@@ -707,3 +707,32 @@ export const confirmAnOrderFunction = (orderId: string) => {
 
   return { confirmOrder, data, isPending, error, isError };
 };
+
+export const deleteCartFunction = (creativeId: string) => {
+  const deleteCartRequest = async (
+    creativeId: string
+  ): Promise<{ message: string }> => {
+    const res = await axios.delete(
+      `${api_base_url}/customer/deleteCart?cart=${creativeId}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, isError, error } = useMutation({
+    mutationKey: ["deleteCart", creativeId],
+    mutationFn: deleteCartRequest,
+  });
+
+  const deleteCart = async () => {
+    await mutateAsync(creativeId);
+  };
+
+  return { deleteCart, data, isPending, isError, error };
+};

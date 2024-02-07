@@ -202,13 +202,13 @@ const getCartItems = async (req: Request, res: Response) => {
 };
 
 const deleteCart = async (req: Request, res: Response) => {
-  const { creativeId: creativeIdFromClient } = req.body;
+  const { cart: creativeIdFromClient } = req.query;
 
   const { _id: customerId } = req.user;
 
   validateId(customerId);
 
-  validateId(creativeIdFromClient);
+  validateId(creativeIdFromClient as string);
 
   try {
     const customer = await Customer.findById(customerId);
