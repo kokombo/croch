@@ -646,7 +646,7 @@ export const cancelAnOrderFunction = (orderId: string) => {
   const cancelAnOrderRequest = async (
     orderId: string
   ): Promise<{ message: string }> => {
-    const res = await axios.post(
+    const res = await axios.patch(
       `${api_base_url}/customer/cancelAnOrder`,
 
       {
@@ -679,7 +679,7 @@ export const confirmAnOrderFunction = (orderId: string) => {
   const confirmAnOrderRequest = async (
     orderId: string
   ): Promise<{ message: string }> => {
-    const res = await axios.post(
+    const res = await axios.patch(
       `${api_base_url}/customer/confirmAnOrder`,
 
       {
