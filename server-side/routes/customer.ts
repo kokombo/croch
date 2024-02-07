@@ -26,12 +26,12 @@ router.get("/getCarts", authorizeUser, getCarts);
 router.get("/getWishlists", authorizeUser, getWishlists);
 router.get("/getCreativeAllProducts", getCreativeAllProducts);
 router.post("/placeAnOrder", authorizeUser, placeAnOrder);
+router.patch("/cancelAnOrder", authorizeUser, cancelAnOrder);
+router.patch("/confirmAnOrder", authorizeUser, confirmAnOrder);
 router.put("/addToCart", authorizeUser, addToCart);
 router.put("/removeFromCart", authorizeUser, removeFromCart);
 router.put("/updateCartItemCount", authorizeUser, updateCartItemCount);
 router.put("/addAndRemoveWishlist", authorizeUser, addAndRemoveWishlist);
-router.patch("/cancelAnOrder", authorizeUser, cancelAnOrder);
-router.patch("/confirmAnOrder", authorizeUser, confirmAnOrder);
 router.delete("/deleteCart", authorizeUser, deleteCart);
 
 export = router;

@@ -14,6 +14,17 @@ import {
   getCreativeById,
   deleteProductFunction,
   getCartItems,
+  getCustomerOrders,
+  getCarts,
+  getWishlists,
+  getCreativeAllProducts,
+  placeAnOrderFunction,
+  addToCartFunction,
+  removeFromCartFunction,
+  updateCartItemCountFunction,
+  addAndRemoveWishlistFunction,
+  cancelAnOrderFunction,
+  confirmAnOrderFunction,
 } from "@/utilities/testing-api-interactions";
 
 const ApiTesting = () => {
@@ -64,7 +75,7 @@ const ApiTesting = () => {
   } = getAllProducts();
 
   const { data: product, error: prError } = getProductById(
-    "65c1e5fc48118bd7f496b0c5"
+    "65c26b0c85fbd2c50ca29318"
   );
 
   const {
@@ -139,6 +150,62 @@ const ApiTesting = () => {
     isLoading: cartItemsLoading,
   } = getCartItems("65c1e36573fe216ae67a1573");
 
+  const { data: customerOrder, error: coError } = getCustomerOrders("pending");
+
+  const { data: carts, error: cartsError } = getCarts();
+
+  const { data: wishlists, error: wisshlistsError } = getWishlists();
+
+  const { data: creativeProducts, error: creativePErrors } =
+    getCreativeAllProducts("65c1e36573fe216ae67a1573");
+
+  const {
+    data: placeorderres,
+    isPending: placingorder,
+    error: placeordererror,
+    placeAnOrder,
+  } = placeAnOrderFunction("65c1e36573fe216ae67a1573");
+
+  const {
+    addToCart,
+    data: addCartRes,
+    error: addToCartError,
+  } = addToCartFunction("65c26b0c85fbd2c50ca29318");
+
+  const {
+    removeFromCart,
+    data: removeFromCartRes,
+    error: removeFromCartError,
+  } = removeFromCartFunction("65c26b0c85fbd2c50ca29318");
+
+  const {
+    data: count,
+    error: countError,
+    updateCartItemCount,
+  } = updateCartItemCountFunction(
+    "65c26b0c85fbd2c50ca29318",
+    5,
+    "65c1e36573fe216ae67a1573"
+  );
+
+  const {
+    data: wishlist,
+    error: wishlisterror,
+    addAndRemoveWishlist,
+  } = addAndRemoveWishlistFunction("65c26b0c85fbd2c50ca29318");
+
+  const {
+    data: cancelorderres,
+    error: cancelordererror,
+    cancelOrder,
+  } = cancelAnOrderFunction("");
+
+  const {
+    data: confirmorderres,
+    error: confirmordererror,
+    confirmOrder,
+  } = confirmAnOrderFunction("");
+
   return (
     <div>
       Home
@@ -191,6 +258,34 @@ const ApiTesting = () => {
 
         <button type="button" onClick={setBrandLogo}>
           Set brand logo
+        </button>
+
+        <button type="button" onClick={placeAnOrder}>
+          Place an order
+        </button>
+
+        <button type="button" onClick={addToCart}>
+          Add to cart
+        </button>
+
+        <button type="button" onClick={removeFromCart}>
+          Remove from cart
+        </button>
+
+        <button type="button" onClick={updateCartItemCount}>
+          Update cart item count
+        </button>
+
+        <button type="button" onClick={addAndRemoveWishlist}>
+          Add and remove wishlist
+        </button>
+
+        <button type="button" onClick={cancelOrder}>
+          cancel order
+        </button>
+
+        <button type="button" onClick={confirmOrder}>
+          confirm order
         </button>
       </div>
     </div>

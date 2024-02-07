@@ -3,7 +3,9 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { customer_token, creative_token, api_base_url } from "../../testing";
 
 export const createProductFunction = (productData: FormData) => {
-  const createProductRequest = async (productData: FormData) => {
+  const createProductRequest = async (
+    productData: FormData
+  ): Promise<Product | undefined> => {
     const res = await axios.post(
       `${api_base_url}/creative/createProduct`,
 
@@ -38,7 +40,9 @@ export const updateProductFunction = (
   productData: FormData,
   productId: string
 ) => {
-  const updateProductRequest = async (productData: FormData) => {
+  const updateProductRequest = async (
+    productData: FormData
+  ): Promise<Product | undefined> => {
     const res = await axios.put(
       `${api_base_url}/creative/updateProduct?productId=${productId}`,
 
@@ -70,7 +74,9 @@ export const updateProductFunction = (
 };
 
 export const deleteProductFunction = (productId: string) => {
-  const deleteProductRequest = async (productId: string) => {
+  const deleteProductRequest = async (
+    productId: string
+  ): Promise<{ message: string }> => {
     const res = await axios.delete(
       `${api_base_url}/creative/deleteProduct?productId=${productId}`,
 
@@ -165,6 +171,28 @@ export const getCreativeOrders = (status: string) => {
   const { data, isError, isLoading, error } = useQuery({
     queryKey: ["getCreativeOrders"],
     queryFn: getCreativeOrdersRequest,
+  });
+
+  return { data, isError, isLoading, error };
+};
+
+export const getCustomerOrders = (status: string) => {
+  const getCustomerOrdersRequest = async (): Promise<Order[] | undefined> => {
+    const res = await axios.get(
+      `${api_base_url}/customer/getOrders?status=${status}`,
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, isLoading, error } = useQuery({
+    queryKey: ["getCustomerOrders"],
+    queryFn: getCustomerOrdersRequest,
   });
 
   return { data, isError, isLoading, error };
@@ -370,4 +398,312 @@ export const getCartItems = (creativeId: string) => {
   });
 
   return { data, isError, error, isLoading };
+};
+
+export const getCarts = () => {
+  const getCartsRequest = async (): Promise<Carts | undefined> => {
+    const res = await axios.get(
+      `${api_base_url}/customer/getCarts`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ["getCarts"],
+    queryFn: getCartsRequest,
+  });
+
+  return { data, isError, error, isLoading };
+};
+
+export const getWishlists = () => {
+  const getWishlistsRequest = async () => {
+    const res = await axios.get(
+      `${api_base_url}/customer/getWishlists`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ["getWishlists"],
+    queryFn: getWishlistsRequest,
+  });
+
+  return { data, isError, error, isLoading };
+};
+
+export const getCreativeAllProducts = (creativeId: string) => {
+  const getCreativeAllProductsRequest = async (): Promise<
+    Product[] | undefined
+  > => {
+    const res = await axios.get(
+      `${api_base_url}/customer/getCreativeAllProducts?creativeId=${creativeId}`
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ["getCreativeAllProducts"],
+    queryFn: getCreativeAllProductsRequest,
+  });
+
+  return { data, isError, error, isLoading };
+};
+
+export const placeAnOrderFunction = (creativeId: string) => {
+  const placeAnOrderRequest = async (
+    creativeId: string
+  ): Promise<{ message: string; order: Order }> => {
+    const res = await axios.post(
+      `${api_base_url}/customer/placeAnOrder`,
+
+      {
+        creativeId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, error, isError } = useMutation({
+    mutationKey: ["placeAnOrder"],
+    mutationFn: placeAnOrderRequest,
+  });
+
+  const placeAnOrder = async () => {
+    await mutateAsync(creativeId);
+  };
+
+  return { placeAnOrder, data, isPending, error, isError };
+};
+
+export const addToCartFunction = (productId: string) => {
+  const addToCartRequest = async (
+    productId: string
+  ): Promise<{ message: string }> => {
+    const res = await axios.put(
+      `${api_base_url}/customer/addToCart`,
+
+      {
+        productId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, isPending, error } = useMutation({
+    mutationKey: ["addToCart", productId],
+    mutationFn: addToCartRequest,
+  });
+
+  const addToCart = async () => {
+    await mutateAsync(productId);
+  };
+
+  return { addToCart, data, isError, isPending, error };
+};
+
+export const removeFromCartFunction = (productId: string) => {
+  const removeFromCartRequest = async (
+    productId: string
+  ): Promise<{ message: string }> => {
+    const res = await axios.put(
+      `${api_base_url}/customer/removeFromCart`,
+
+      {
+        productId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, isPending, error } = useMutation({
+    mutationKey: ["removeFromCart", productId],
+    mutationFn: removeFromCartRequest,
+  });
+
+  const removeFromCart = async () => {
+    await mutateAsync(productId);
+  };
+
+  return { removeFromCart, data, isError, isPending, error };
+};
+
+export const updateCartItemCountFunction = (
+  productId: string,
+  count: number,
+  creativeId: string
+) => {
+  const updateCartItemCountRequest = async ({
+    productId,
+    count,
+    creativeId,
+  }: {
+    productId: string;
+    count: number;
+    creativeId: string;
+  }) => {
+    const res = await axios.put(
+      `${api_base_url}/customer/updateCartItemCount`,
+
+      {
+        productId,
+        count,
+        creativeId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, isPending, error } = useMutation({
+    mutationKey: ["updateCartItemCount", productId],
+    mutationFn: updateCartItemCountRequest,
+  });
+
+  const updateCartItemCount = async () => {
+    await mutateAsync({ productId, count, creativeId });
+  };
+
+  return { updateCartItemCount, data, isError, isPending, error };
+};
+
+export const addAndRemoveWishlistFunction = (productId: string) => {
+  const addAndRemoveWishlistRequest = async (
+    productId: string
+  ): Promise<{ message: string }> => {
+    const res = await axios.put(
+      `${api_base_url}/customer/addAndRemoveWishlist`,
+
+      {
+        productId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, isPending, error } = useMutation({
+    mutationKey: ["addAndRemoveWishlist"],
+    mutationFn: addAndRemoveWishlistRequest,
+  });
+
+  const addAndRemoveWishlist = async () => {
+    await mutateAsync(productId);
+  };
+
+  return { addAndRemoveWishlist, data, isError, isPending, error };
+};
+
+export const cancelAnOrderFunction = (orderId: string) => {
+  const cancelAnOrderRequest = async (
+    orderId: string
+  ): Promise<{ message: string }> => {
+    const res = await axios.post(
+      `${api_base_url}/customer/cancelAnOrder`,
+
+      {
+        orderId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, error, isError } = useMutation({
+    mutationKey: ["cancelAnOrder"],
+    mutationFn: cancelAnOrderRequest,
+  });
+
+  const cancelOrder = async () => {
+    await mutateAsync(orderId);
+  };
+
+  return { cancelOrder, data, isPending, error, isError };
+};
+
+export const confirmAnOrderFunction = (orderId: string) => {
+  const confirmAnOrderRequest = async (
+    orderId: string
+  ): Promise<{ message: string }> => {
+    const res = await axios.post(
+      `${api_base_url}/customer/confirmAnOrder`,
+
+      {
+        orderId,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, error, isError } = useMutation({
+    mutationKey: ["confirmAnOrder"],
+    mutationFn: confirmAnOrderRequest,
+  });
+
+  const confirmOrder = async () => {
+    await mutateAsync(orderId);
+  };
+
+  return { confirmOrder, data, isPending, error, isError };
 };

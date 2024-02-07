@@ -64,4 +64,8 @@ type Cart = {
   totalPrice: number;
 };
 
-type Carts = Map<string, Cart>;
+type Carts = {
+  brandName: string;
+  brandLogo: string;
+  creativeId: string;
+}[];

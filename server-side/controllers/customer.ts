@@ -400,9 +400,9 @@ const getWishlists = async (req: Request, res: Response) => {
 };
 
 const getCreativeAllProducts = async (req: Request, res: Response) => {
-  const { creativeId } = req.body;
+  const { creativeId } = req.query;
 
-  validateId(creativeId);
+  validateId(creativeId as string);
 
   try {
     const products = await Product.find({ owner: creativeId });
