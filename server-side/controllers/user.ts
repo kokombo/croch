@@ -164,16 +164,23 @@ const handleRefreshToken = async (req: Request, res: Response) => {
 const updatePassword = async (req: Request, res: Response) => {
   const { _id } = req.user;
 
-  const { password } = req.body;
+  const { oldPassword, newPassword } = req.body;
 
   validateId(_id);
 
   try {
     const user = await User.findById(_id);
 
-    if (user) {
-      user.password = password;
+    const passwordIsCorrect = await user.checkPassword(oldPassword);
+
+    if (!passwordIsCorrect) {
+      return res.status(StatusCodes.UNAUTHORIZED).json({
+        message:
+          "Incorrect old password. You cannot change your password at this time.",
+      });
     }
+
+    user.password = newPassword;
 
     await user.save();
 

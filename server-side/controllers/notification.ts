@@ -54,11 +54,11 @@ const getNotifications = async (req: Request, res: Response) => {
 };
 
 const deleteNotification = async (req: Request, res: Response) => {
-  const { notificationId } = req.body;
+  const { notificationId } = req.query;
 
   const { _id: userId } = req.user;
 
-  validateId(notificationId);
+  validateId(notificationId as string);
 
   try {
     await User.findByIdAndUpdate(

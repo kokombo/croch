@@ -69,3 +69,25 @@ type Carts = {
   brandLogo: string;
   creativeId: string;
 }[];
+
+type SignupDataType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: string;
+};
+
+type UpdatePassword = {
+  oldPassword: string;
+  newPassword: string;
+};
+
+type NotificationData = {
+  message: string;
+  receiver: string;
+};
+
+interface NotificationRes extends NotificationData {
+  createdAt: string;
+}

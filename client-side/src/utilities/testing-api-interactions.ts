@@ -468,7 +468,7 @@ export const getCreativeAllProducts = (creativeId: string) => {
 export const placeAnOrderFunction = (creativeId: string) => {
   const placeAnOrderRequest = async (
     creativeId: string
-  ): Promise<{ message: string; order: Order }> => {
+  ): Promise<{ message: string; order: Order } | undefined> => {
     const res = await axios.post(
       `${api_base_url}/customer/placeAnOrder`,
 
@@ -501,7 +501,7 @@ export const placeAnOrderFunction = (creativeId: string) => {
 export const addToCartFunction = (productId: string) => {
   const addToCartRequest = async (
     productId: string
-  ): Promise<{ message: string }> => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.put(
       `${api_base_url}/customer/addToCart`,
 
@@ -534,7 +534,7 @@ export const addToCartFunction = (productId: string) => {
 export const removeFromCartFunction = (productId: string) => {
   const removeFromCartRequest = async (
     productId: string
-  ): Promise<{ message: string }> => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.put(
       `${api_base_url}/customer/removeFromCart`,
 
@@ -612,7 +612,7 @@ export const updateCartItemCountFunction = (
 export const addAndRemoveWishlistFunction = (productId: string) => {
   const addAndRemoveWishlistRequest = async (
     productId: string
-  ): Promise<{ message: string }> => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.put(
       `${api_base_url}/customer/addAndRemoveWishlist`,
 
@@ -645,7 +645,7 @@ export const addAndRemoveWishlistFunction = (productId: string) => {
 export const cancelAnOrderFunction = (orderId: string) => {
   const cancelAnOrderRequest = async (
     orderId: string
-  ): Promise<{ message: string }> => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.patch(
       `${api_base_url}/customer/cancelAnOrder`,
 
@@ -678,7 +678,7 @@ export const cancelAnOrderFunction = (orderId: string) => {
 export const confirmAnOrderFunction = (orderId: string) => {
   const confirmAnOrderRequest = async (
     orderId: string
-  ): Promise<{ message: string }> => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.patch(
       `${api_base_url}/customer/confirmAnOrder`,
 
@@ -711,7 +711,7 @@ export const confirmAnOrderFunction = (orderId: string) => {
 export const deleteCartFunction = (creativeId: string) => {
   const deleteCartRequest = async (
     creativeId: string
-  ): Promise<{ message: string }> => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.delete(
       `${api_base_url}/customer/deleteCart?cart=${creativeId}`,
 
@@ -735,4 +735,231 @@ export const deleteCartFunction = (creativeId: string) => {
   };
 
   return { deleteCart, data, isPending, isError, error };
+};
+
+export const signupFunction = (signupData: SignupDataType) => {
+  const signupRequest = async (signupData: SignupDataType) => {
+    const res = await axios.post(`${api_base_url}/auth/signup`, { signupData });
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, isPending, error } = useMutation({
+    mutationKey: ["signup"],
+    mutationFn: signupRequest,
+  });
+
+  const signup = async () => {
+    await mutateAsync(signupData);
+  };
+
+  return { signup, data, isError, isPending, error };
+};
+
+export const sendEmailVerificationTokenFunction = (email: string) => {
+  const sendEmailVerificationTokenRequest = async (
+    email: string
+  ): Promise<{ message: string } | undefined> => {
+    const res = await axios.post(
+      `${api_base_url}/auth/sendEmailVerificationToken`,
+
+      { email }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, isPending, isError, error, data } = useMutation({
+    mutationKey: ["sendEmailVerificationToken"],
+    mutationFn: sendEmailVerificationTokenRequest,
+  });
+
+  const sendEmailVerificationToken = async () => {
+    await mutateAsync(email);
+  };
+
+  return { sendEmailVerificationToken, isPending, isError, error, data };
+};
+
+export const verifyEmailFunction = (token: string) => {
+  const verifyEmailRequest = async (
+    token: string
+  ): Promise<{ message: string } | undefined> => {
+    const res = await axios.post(
+      `${api_base_url}/auth/verifyEmailAddress?token=${token}`
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, isError, error } = useMutation({
+    mutationKey: ["verifyEmail"],
+    mutationFn: verifyEmailRequest,
+  });
+
+  const verifyEmail = async () => {
+    await mutateAsync(token);
+  };
+
+  return { verifyEmail, data, isPending, isError, error };
+};
+
+export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
+  const updatePasswordRequest = async (
+    passwordInfo: UpdatePassword
+  ): Promise<{ message: string } | undefined> => {
+    const res = await axios.patch(
+      `${api_base_url}/auth/updatePassword`,
+
+      { passwordInfo },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, isPending, error } = useMutation({
+    mutationKey: ["updatePassword"],
+    mutationFn: updatePasswordRequest,
+  });
+
+  const updatePassword = async () => {
+    await mutateAsync(passwordInfo);
+  };
+
+  return { updatePassword, data, isError, error, isPending };
+};
+
+export const sendForgotPasswordTokenFunction = (email: string) => {
+  const sendForgotPasswordTokenRequest = async (
+    email: string
+  ): Promise<{ message: string } | undefined> => {
+    const res = await axios.post(
+      `${api_base_url}/auth/sendForgotPasswordToken`,
+
+      { email }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, isPending, isError, error, data } = useMutation({
+    mutationKey: ["sendForgotPasswordToken"],
+    mutationFn: sendForgotPasswordTokenRequest,
+  });
+
+  const sendForgotPasswordToken = async () => {
+    await mutateAsync(email);
+  };
+
+  return { sendForgotPasswordToken, isPending, isError, error, data };
+};
+
+export const resetPasswordFunction = (token: string) => {
+  const resetPasswordRequest = async (
+    token: string
+  ): Promise<{ message: string } | undefined> => {
+    const res = await axios.patch(
+      `${api_base_url}/auth/resetPassword?token=${token}`
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, isError, error } = useMutation({
+    mutationKey: ["resetPassword"],
+    mutationFn: resetPasswordRequest,
+  });
+
+  const resetPassword = async () => {
+    await mutateAsync(token);
+  };
+
+  return { resetPassword, data, isPending, isError, error };
+};
+
+export const deleteMyAccountFunction = () => {
+  const deleteMyAccountRequest = async () => {
+    const res = await axios.delete(`${api_base_url}/auth/deleteMyAccount`, {
+      headers: {
+        Authorization: `Bearer ${customer_token}`,
+      },
+    });
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, error, isError } = useMutation({
+    mutationKey: ["deleteMyAccount"],
+    mutationFn: deleteMyAccountRequest,
+  });
+
+  const deleteMyAccount = async () => {
+    await mutateAsync();
+  };
+
+  return { deleteMyAccount, data, isPending, error, isError };
+};
+
+export const createNotificationFunction = (
+  notificationData: NotificationData
+) => {
+  const createNotificationRequest = async (
+    notificationData: NotificationData
+  ) => {
+    const res = await axios.post(
+      `${api_base_url}/notification/createNotification`,
+
+      { notificationData },
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync } = useMutation({
+    mutationKey: ["createNotification"],
+    mutationFn: createNotificationRequest,
+  });
+
+  const createNotification = async () => {
+    await mutateAsync(notificationData);
+  };
+
+  return { createNotification };
+};
+
+export const getNotifications = () => {
+  const getNotificationsRequest = async (): Promise<
+    NotificationRes[] | undefined
+  > => {
+    const res = await axios.get(
+      `${api_base_url}/notification/getNotifications`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ["getNotifications"],
+    queryFn: getNotificationsRequest,
+  });
+
+  return { data, isError, error, isLoading };
 };
