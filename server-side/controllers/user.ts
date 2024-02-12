@@ -180,6 +180,12 @@ const updatePassword = async (req: Request, res: Response) => {
       });
     }
 
+    if (!newPassword) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: "Invalid new password",
+      });
+    }
+
     user.password = newPassword;
 
     await user.save();
@@ -207,11 +213,11 @@ const sendForgotPasswordToken = async (req: Request, res: Response) => {
     const token = await user.generatePasswordResetToken();
 
     const data: Email = {
-      from: "",
+      from: "Croch",
       to: email,
       subject: "Reset Your Password",
-      text: "",
-      html: "",
+      text: "Follow this link to reset your password.",
+      html: `Follow this link to reset your password <a href = "${process.env.BASE_URL}/auth/reset-password?token=${token}">Click Here To Verify</a>.`,
     };
 
     await sendEmail(data);
@@ -272,11 +278,11 @@ const sendEmailVerificationToken = async (req: Request, res: Response) => {
     const token = await user.generateEmailVerificationToken();
 
     const data: Email = {
-      from: "",
+      from: "Croch",
       to: email,
       subject: "Verify Your Email Address",
-      text: "",
-      html: "",
+      text: "Verify Your Email Addresss",
+      html: `Follow this link to verify your email address <a href = "${process.env.BASE_URL}/auth/verifyEmail?token=${token}">Click Here To Verify</a>.`,
     };
 
     await sendEmail(data);
@@ -289,7 +295,7 @@ const sendEmailVerificationToken = async (req: Request, res: Response) => {
   }
 };
 
-const verifyEmailAddress = async (req: Request, res: Response) => {
+const verifyEmail = async (req: Request, res: Response) => {
   const token = req.query.token as string;
 
   const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
@@ -395,7 +401,7 @@ export = {
   resetPassword,
   sendForgotPasswordToken,
   logOut,
-  verifyEmailAddress,
+  verifyEmail,
   sendEmailVerificationToken,
   deleteMyAccount,
 };

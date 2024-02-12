@@ -30,6 +30,9 @@ import {
   addNewTagFunction,
   getAllTags,
   updateTagFunction,
+  sendEmailVerificationTokenFunction,
+  sendForgotPasswordTokenFunction,
+  updatePasswordFunction,
 } from "@/utilities/testing-api-interactions";
 
 const ApiTesting = () => {
@@ -250,6 +253,27 @@ const ApiTesting = () => {
     error: updatedTagError,
   } = updateTagFunction("65c9d55240347b054000c309", formD);
 
+  const {
+    sendEmailVerificationToken,
+    data: emailV,
+    error: emailVError,
+  } = sendEmailVerificationTokenFunction("samuelibrahim3029@gmail.com");
+
+  const {
+    sendForgotPasswordToken,
+    data: forgorPasswordD,
+    error: forgorPasswordE,
+  } = sendForgotPasswordTokenFunction("samuelibrahim3029@gmail.com");
+
+  const oldPassword = "";
+  const newPassword = "";
+
+  const {
+    updatePassword,
+    data: updatePasswordD,
+    error: updatePasswordE,
+  } = updatePasswordFunction({ oldPassword, newPassword });
+
   return (
     <div>
       Home
@@ -348,6 +372,18 @@ const ApiTesting = () => {
 
         <button type="button" onClick={updateTag}>
           update tag
+        </button>
+
+        <button type="button" onClick={sendEmailVerificationToken}>
+          send email Verification Token
+        </button>
+
+        <button type="button" onClick={sendForgotPasswordToken}>
+          send forgot password token
+        </button>
+
+        <button type="button" onClick={updatePassword}>
+          update password
         </button>
       </div>
     </div>

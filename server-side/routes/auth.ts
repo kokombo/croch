@@ -13,7 +13,7 @@ const {
   resetPassword,
   sendForgotPasswordToken,
   logOut,
-  verifyEmailAddress,
+  verifyEmail,
   sendEmailVerificationToken,
 } = userController;
 
@@ -25,7 +25,7 @@ router.post("/sendForgotPasswordToken", sendForgotPasswordToken);
 
 router.post("/sendEmailVerificationToken", sendEmailVerificationToken);
 
-router.post("/verifyEmailAddress", verifyEmailAddress);
+router.post("/verifyEmail", verifyEmail);
 
 router.get("/refreshToken", handleRefreshToken);
 

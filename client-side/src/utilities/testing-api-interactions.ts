@@ -781,27 +781,23 @@ export const sendEmailVerificationTokenFunction = (email: string) => {
   return { sendEmailVerificationToken, isPending, isError, error, data };
 };
 
-export const verifyEmailFunction = (token: string) => {
-  const verifyEmailRequest = async (
-    token: string
-  ): Promise<{ message: string } | undefined> => {
+export const verifyEmail = (token: string) => {
+  const verifyEmailRequest = async (): Promise<
+    { message: string } | undefined
+  > => {
     const res = await axios.post(
-      `${api_base_url}/auth/verifyEmailAddress?token=${token}`
+      `${api_base_url}/auth/verifyEmail?token=${token}`
     );
 
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, isError, error } = useMutation({
-    mutationKey: ["verifyEmail"],
-    mutationFn: verifyEmailRequest,
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["verifyEmail"],
+    queryFn: verifyEmailRequest,
   });
 
-  const verifyEmail = async () => {
-    await mutateAsync(token);
-  };
-
-  return { verifyEmail, data, isPending, isError, error };
+  return { data, isPending, isError, error };
 };
 
 export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
@@ -811,7 +807,7 @@ export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
     const res = await axios.patch(
       `${api_base_url}/auth/updatePassword`,
 
-      { passwordInfo },
+      passwordInfo,
 
       {
         headers: {
