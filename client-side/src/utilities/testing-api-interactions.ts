@@ -911,7 +911,7 @@ export const createNotificationFunction = (
 ) => {
   const createNotificationRequest = async (
     notificationData: NotificationData
-  ) => {
+  ): Promise<{ message: string } | undefined> => {
     const res = await axios.post(
       `${api_base_url}/notification/createNotification`,
 
@@ -962,4 +962,114 @@ export const getNotifications = () => {
   });
 
   return { data, isError, error, isLoading };
+};
+
+export const deleteNotificationFunction = (notificationId: string) => {
+  const deleteNotificationRequest = async (
+    notificationId: string
+  ): Promise<{ message: string } | undefined> => {
+    const res = await axios.delete(
+      `${api_base_url}/notification/deleteNotification?notificationId=${notificationId}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isPending, isError, error } = useMutation({
+    mutationKey: ["deleteNotification"],
+    mutationFn: deleteNotificationRequest,
+  });
+
+  const deleteNotification = async () => {
+    await mutateAsync(notificationId);
+  };
+
+  return { deleteNotification, data, isPending, isError, error };
+};
+
+export const addNewTagFunction = (tagData: FormData) => {
+  const addNewTagRequest = async (
+    tagData: FormData
+  ): Promise<Tag | undefined> => {
+    const res = await axios.post(
+      `${api_base_url}/tag/addNewTag`,
+
+      tagData,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, error, isPending } = useMutation({
+    mutationKey: ["addNewTag"],
+    mutationFn: addNewTagRequest,
+  });
+
+  const addNewTag = async () => {
+    await mutateAsync(tagData);
+  };
+
+  return { addNewTag, data, isError, error, isPending };
+};
+
+export const updateTagFunction = (tagId: string, tagData: FormData) => {
+  const updateTagRequest = async (
+    tagData: FormData
+  ): Promise<Tag | undefined> => {
+    const res = await axios.put(
+      `${api_base_url}/tag/updateTag?tagId=${tagId}`,
+
+      tagData,
+
+      {
+        headers: {
+          Authorization: `Bearer ${customer_token}`,
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, data, isError, error, isPending } = useMutation({
+    mutationKey: ["updateTag", tagId],
+    mutationFn: updateTagRequest,
+  });
+
+  const updateTag = async () => {
+    await mutateAsync(tagData);
+  };
+
+  return { updateTag, data, isError, error, isPending };
+};
+
+export const getAllTags = () => {
+  const getAllTagsRequest = async (): Promise<Tag[] | undefined> => {
+    const res = await axios.get(`${api_base_url}/tag/getAllTags`);
+
+    return res.data;
+  };
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["getAllTags"],
+    queryFn: getAllTagsRequest,
+  });
+
+  return { data, isLoading, isError, error };
 };

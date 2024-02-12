@@ -41,7 +41,7 @@ const signUp = async (req: Request, res: Response) => {
       await Creative.create({ _id: user._id });
     }
 
-    return res.json(user).status(StatusCodes.OK);
+    return res.json(user);
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

@@ -9,7 +9,9 @@ const { createNotification, getNotifications, deleteNotification } =
   notificationController;
 
 router.post("/createNotification", authorizeUser, createNotification);
+
 router.get("/getNotifications", authorizeUser, getNotifications);
+
 router.delete("/deleteNotification", authorizeUser, deleteNotification);
 
 export = router;

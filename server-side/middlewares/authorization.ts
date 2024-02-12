@@ -57,6 +57,20 @@ const isCreative = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
+  const { email } = req.user;
+
+  const user = await User.findOne({ email });
+
+  if (user.role !== "admin") {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: "You are not authorized to perform action." });
+  } else {
+    next();
+  }
+};
+
 const isProductOwner = async (
   req: Request,
   res: Response,
@@ -83,4 +97,4 @@ const isProductOwner = async (
   }
 };
 
-export = { authorizeUser, isCreative, isProductOwner };
+export = { authorizeUser, isCreative, isProductOwner, isAdmin };

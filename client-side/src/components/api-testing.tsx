@@ -26,11 +26,16 @@ import {
   cancelAnOrderFunction,
   confirmAnOrderFunction,
   deleteCartFunction,
+  deleteNotificationFunction,
+  addNewTagFunction,
+  getAllTags,
+  updateTagFunction,
 } from "@/utilities/testing-api-interactions";
 
 const ApiTesting = () => {
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);
   const [logo, setLogo] = useState<File | null | undefined>(null);
+  const [tag, setTag] = useState<File | null | undefined>(null);
 
   const funFacts: string[] = [
     "I love listening to amapiano while making crochets",
@@ -213,6 +218,38 @@ const ApiTesting = () => {
     error: deletecarterror,
   } = deleteCartFunction("65c1e36573fe216ae67a1573");
 
+  const {
+    data: deleteNRes,
+    deleteNotification,
+    isError: delNIsError,
+    isPending: delNLoading,
+    error: delNError,
+  } = deleteNotificationFunction("");
+
+  const formD = new FormData();
+
+  formD.append("label", "Beenieee");
+  if (tag) formD.append("tag-icon", tag);
+
+  const {
+    addNewTag,
+    data: addTagData,
+    isPending: addTagPending,
+    error: addTagError,
+  } = addNewTagFunction(formD);
+
+  const {
+    data: allTags,
+    isLoading: tagsLoading,
+    error: tagsError,
+  } = getAllTags();
+
+  const {
+    updateTag,
+    data: updatedTag,
+    error: updatedTagError,
+  } = updateTagFunction("65c9d55240347b054000c309", formD);
+
   return (
     <div>
       Home
@@ -233,6 +270,12 @@ const ApiTesting = () => {
           type="file"
           name="logo"
           onChange={(e) => setLogo(e.target.files?.item(0))}
+        />
+
+        <input
+          type="file"
+          name="tag"
+          onChange={(e) => setTag(e.target.files?.item(0))}
         />
 
         <button type="button" onClick={updateProduct}>
@@ -297,6 +340,14 @@ const ApiTesting = () => {
 
         <button type="button" onClick={deleteCart}>
           delete cart
+        </button>
+
+        <button type="button" onClick={addNewTag}>
+          Add tag
+        </button>
+
+        <button type="button" onClick={updateTag}>
+          update tag
         </button>
       </div>
     </div>

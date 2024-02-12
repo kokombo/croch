@@ -91,3 +91,9 @@ type NotificationData = {
 interface NotificationRes extends NotificationData {
   createdAt: string;
 }
+
+type Tag = {
+  _id: string;
+  label: string;
+  icon: string;
+};

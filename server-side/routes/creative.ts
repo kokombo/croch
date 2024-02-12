@@ -5,7 +5,6 @@ import authorization = require("../middlewares/authorization");
 import imageOptimization = require("../middlewares/imageOptimization");
 
 const { authorizeUser, isCreative, isProductOwner } = authorization;
-
 const { resizePhoto, uploadPhoto } = imageOptimization;
 
 const {

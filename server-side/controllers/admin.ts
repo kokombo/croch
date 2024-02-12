@@ -5,6 +5,104 @@ import Customer = require("../models/customer");
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import validateId = require("../utilities/validateId");
+import generateAccessToken = require("../utilities/generateAccessToken");
+import generateRefreshToken = require("../utilities/generateRefreshToken");
+
+const createAdminAccount = async (req: Request, res: Response) => {
+  const { firstName, lastName, email, password } = req.body;
+
+  if (!firstName || !lastName || !email || !password) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Please provide all necessary credentials." });
+  }
+
+  const refinedEmail = email.toLowerCase();
+
+  try {
+    const adminExists = await User.findOne({ email: refinedEmail });
+
+    if (adminExists) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Account already exists." });
+    }
+
+    const admin = await User.create({
+      ...req.body,
+      email: refinedEmail,
+      role: "admin",
+    });
+
+    return res.json(admin);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
+const adminSignIn = async (req: Request, res: Response) => {
+  const { password, email } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Provide your login credentials." });
+  }
+
+  const refinedEmail = email.toLowerCase();
+
+  try {
+    const user = await User.findOne({ email: refinedEmail });
+
+    if (!user || user.role !== "admin") {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "You are not authorized to perform action" });
+    }
+
+    const passwordIsCorrect = await user.checkPassword(password);
+
+    if (!passwordIsCorrect) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Incorrect password." });
+    }
+
+    const refreshToken = generateRefreshToken(user?._id);
+
+    await User.findByIdAndUpdate(
+      user?._id,
+
+      { refreshToken },
+
+      {
+        new: true,
+      }
+    );
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 60 * 1000,
+    });
+
+    const accessToken = generateAccessToken(user?._id);
+
+    return res.json({
+      id: user?._id,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      email: user?.email,
+      role: user?.role,
+      accessToken,
+    });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
 
 const blockAUser = async (req: Request, res: Response) => {
   const { userId } = req.body;
@@ -149,4 +247,6 @@ export = {
   getCreative,
   getCustomer,
   giveSuperCreativeTag,
+  adminSignIn,
+  createAdminAccount,
 };
