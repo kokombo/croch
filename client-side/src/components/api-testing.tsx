@@ -257,13 +257,13 @@ const ApiTesting = () => {
     sendEmailVerificationToken,
     data: emailV,
     error: emailVError,
-  } = sendEmailVerificationTokenFunction("samuelibrahim3029@gmail.com");
+  } = sendEmailVerificationTokenFunction("");
 
   const {
     sendForgotPasswordToken,
     data: forgorPasswordD,
     error: forgorPasswordE,
-  } = sendForgotPasswordTokenFunction("samuelibrahim3029@gmail.com");
+  } = sendForgotPasswordTokenFunction("");
 
   const oldPassword = "";
   const newPassword = "";
@@ -273,6 +273,26 @@ const ApiTesting = () => {
     data: updatePasswordD,
     error: updatePasswordE,
   } = updatePasswordFunction({ oldPassword, newPassword });
+
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      console.log(pos.coords.latitude);
+      console.log(pos.coords.longitude);
+      console.log(pos.coords.accuracy);
+    },
+
+    (err) => {
+      console.log(err.message, err.code);
+    },
+
+    options
+  );
 
   return (
     <div>

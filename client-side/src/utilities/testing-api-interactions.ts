@@ -1069,3 +1069,20 @@ export const getAllTags = () => {
 
   return { data, isLoading, isError, error };
 };
+
+export const getOrder = (orderId: string) => {
+  const getOrderRequest = async (): Promise<Order | undefined> => {
+    const res = await axios.get(
+      `${api_base_url}/order/getOrder?orderId=${orderId}`
+    );
+
+    return res.data;
+  };
+
+  const { data, error, isError, isLoading } = useQuery({
+    queryKey: ["getOrder"],
+    queryFn: getOrderRequest,
+  });
+
+  return { data, error, isError, isLoading };
+};
