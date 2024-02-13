@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.18.1",
+    "@types/googlemaps": "^3.43.3",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"

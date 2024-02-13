@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createProductFunction,
   getAllProducts,
@@ -280,11 +280,16 @@ const ApiTesting = () => {
     maximumAge: 0,
   };
 
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+
   navigator.geolocation.getCurrentPosition(
     (pos) => {
-      console.log(pos.coords.latitude);
-      console.log(pos.coords.longitude);
-      console.log(pos.coords.accuracy);
+      setLat(pos.coords.latitude);
+      setLng(pos.coords.longitude);
+      // console.log(pos.coords.latitude);
+      // console.log(pos.coords.longitude);
+      // console.log(pos.coords.accuracy);
     },
 
     (err) => {
@@ -293,6 +298,30 @@ const ApiTesting = () => {
 
     options
   );
+
+  // const initMap = () => {
+  //   const map = new google.maps.Map(
+  //     document.getElementById("div") as HTMLElement,
+  //     {
+  //       zoom: 8,
+  //       center: { lat, lng },
+  //     }
+  //   );
+  // };
+
+  // const latlng = { lat, lng };
+
+  // useEffect(() => {
+  //   initMap();
+
+  //   const geocoder = new google.maps.Geocoder();
+
+  //   geocoder.geocode({ location: latlng }, (response) => {
+  //     if (response[0]) {
+  //       console.log(response[0].formatted_address);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div>

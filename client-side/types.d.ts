@@ -15,6 +15,14 @@ type Product = {
   photos: string[];
   price: number;
   sizes: string[];
+  primaryLocation: {
+    minDeliveryDays: number;
+    maxDeliveryDays: number;
+  };
+  otherLocations: {
+    minDeliveryDays: number;
+    maxDeliveryDays: number;
+  };
 };
 
 type Order = {
