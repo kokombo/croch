@@ -103,6 +103,8 @@ const signIn = async (req: Request, res: Response) => {
       email: user?.email,
       role: user?.role,
       accessToken,
+      accountDisabled: user?.accountDisabled,
+      emailVerified: user?.emailVerified,
     });
   } catch (error) {
     return res

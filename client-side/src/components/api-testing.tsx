@@ -34,6 +34,7 @@ import {
   sendForgotPasswordTokenFunction,
   updatePasswordFunction,
 } from "@/utilities/testing-api-interactions";
+import { signIn, signOut } from "next-auth/react";
 
 const ApiTesting = () => {
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);
@@ -274,30 +275,30 @@ const ApiTesting = () => {
     error: updatePasswordE,
   } = updatePasswordFunction({ oldPassword, newPassword });
 
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
+  // const options = {
+  //   enableHighAccuracy: true,
+  //   timeout: 5000,
+  //   maximumAge: 0,
+  // };
 
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  // const [lat, setLat] = useState(0);
+  // const [lng, setLng] = useState(0);
 
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      setLat(pos.coords.latitude);
-      setLng(pos.coords.longitude);
-      // console.log(pos.coords.latitude);
-      // console.log(pos.coords.longitude);
-      // console.log(pos.coords.accuracy);
-    },
+  // navigator.geolocation.getCurrentPosition(
+  //   (pos) => {
+  //     setLat(pos.coords.latitude);
+  //     setLng(pos.coords.longitude);
+  //     // console.log(pos.coords.latitude);
+  //     // console.log(pos.coords.longitude);
+  //     // console.log(pos.coords.accuracy);
+  //   },
 
-    (err) => {
-      console.log(err.message, err.code);
-    },
+  //   (err) => {
+  //     console.log(err.message, err.code);
+  //   },
 
-    options
-  );
+  //   options
+  // );
 
   // const initMap = () => {
   //   const map = new google.maps.Map(
@@ -350,6 +351,23 @@ const ApiTesting = () => {
           name="tag"
           onChange={(e) => setTag(e.target.files?.item(0))}
         />
+
+        <button
+          type="button"
+          onClick={async () =>
+            await signIn("credentials", {
+              email: "",
+              password: "",
+              redirect: false,
+            })
+          }
+        >
+          Sign In
+        </button>
+
+        <button type="button" onClick={() => signOut()}>
+          sign out
+        </button>
 
         <button type="button" onClick={updateProduct}>
           Update Product
