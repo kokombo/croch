@@ -35,8 +35,11 @@ import {
   updatePasswordFunction,
 } from "@/utilities/testing-api-interactions";
 import { signIn, signOut } from "next-auth/react";
+import { useCurrentUser } from "@/utilities";
 
 const ApiTesting = () => {
+  const { accessToken } = useCurrentUser();
+
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);
   const [logo, setLogo] = useState<File | null | undefined>(null);
   const [tag, setTag] = useState<File | null | undefined>(null);
@@ -164,7 +167,7 @@ const ApiTesting = () => {
 
   const { data: carts, error: cartsError } = getCarts();
 
-  const { data: wishlists, error: wisshlistsError } = getWishlists();
+  const { data: wishlists, error: wishlistsError } = getWishlists();
 
   const { data: creativeProducts, error: creativePErrors } =
     getCreativeAllProducts("65c1e36573fe216ae67a1573");
@@ -324,6 +327,14 @@ const ApiTesting = () => {
   //   });
   // }, []);
 
+  const signin = async () => {
+    await signIn("credentials", {
+      email: "",
+      password: "",
+      redirect: false,
+    });
+  };
+
   return (
     <div>
       Home
@@ -352,16 +363,7 @@ const ApiTesting = () => {
           onChange={(e) => setTag(e.target.files?.item(0))}
         />
 
-        <button
-          type="button"
-          onClick={async () =>
-            await signIn("credentials", {
-              email: "",
-              password: "",
-              redirect: false,
-            })
-          }
-        >
+        <button type="button" onClick={signin}>
           Sign In
         </button>
 

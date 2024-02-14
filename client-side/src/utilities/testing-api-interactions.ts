@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { customer_token, creative_token, api_base_url } from "../../testing";
+import { api_base_url } from "../../testing";
+import { useCurrentUser } from ".";
 
 export const createProductFunction = (productData: FormData) => {
+  const { accessToken } = useCurrentUser();
+
   const createProductRequest = async (
     productData: FormData
   ): Promise<Product | undefined> => {
@@ -13,7 +16,7 @@ export const createProductFunction = (productData: FormData) => {
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
@@ -40,6 +43,8 @@ export const updateProductFunction = (
   productData: FormData,
   productId: string
 ) => {
+  const { accessToken } = useCurrentUser();
+
   const updateProductRequest = async (
     productData: FormData
   ): Promise<Product | undefined> => {
@@ -50,7 +55,7 @@ export const updateProductFunction = (
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
@@ -74,6 +79,8 @@ export const updateProductFunction = (
 };
 
 export const deleteProductFunction = (productId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const deleteProductRequest = async (
     productId: string
   ): Promise<{ message: string }> => {
@@ -82,7 +89,7 @@ export const deleteProductFunction = (productId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -136,10 +143,12 @@ export const getProductById = (productId: string) => {
 };
 
 export const getMyProducts = () => {
+  const { accessToken } = useCurrentUser();
+
   const getMyProductsRequest = async (): Promise<Product[] | undefined> => {
     const res = await axios.get(`${api_base_url}/creative/getProducts`, {
       headers: {
-        Authorization: `Bearer ${creative_token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
@@ -149,18 +158,21 @@ export const getMyProducts = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["getMyProducts"],
     queryFn: getMyProductsRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isLoading, isError, error };
 };
 
 export const getCreativeOrders = (status: string) => {
+  const { accessToken } = useCurrentUser();
+
   const getCreativeOrdersRequest = async (): Promise<Order[] | undefined> => {
     const res = await axios.get(
       `${api_base_url}/creative/getOrders?status=${status}`,
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -171,18 +183,21 @@ export const getCreativeOrders = (status: string) => {
   const { data, isError, isLoading, error } = useQuery({
     queryKey: ["getCreativeOrders"],
     queryFn: getCreativeOrdersRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isError, isLoading, error };
 };
 
 export const getCustomerOrders = (status: string) => {
+  const { accessToken } = useCurrentUser();
+
   const getCustomerOrdersRequest = async (): Promise<Order[] | undefined> => {
     const res = await axios.get(
       `${api_base_url}/customer/getOrders?status=${status}`,
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -193,12 +208,15 @@ export const getCustomerOrders = (status: string) => {
   const { data, isError, isLoading, error } = useQuery({
     queryKey: ["getCustomerOrders"],
     queryFn: getCustomerOrdersRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isError, isLoading, error };
 };
 
 export const updateYearsOfExperienceFunction = (yearsOfExperience: number) => {
+  const { accessToken } = useCurrentUser();
+
   const updateYearsOfExperienceRequest = async (
     years: number
   ): Promise<number | undefined> => {
@@ -209,7 +227,7 @@ export const updateYearsOfExperienceFunction = (yearsOfExperience: number) => {
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       }
@@ -231,6 +249,8 @@ export const updateYearsOfExperienceFunction = (yearsOfExperience: number) => {
 };
 
 export const updateFunFactsFunction = (funFacts: string[]) => {
+  const { accessToken } = useCurrentUser();
+
   const updateFunFactsRequest = async (
     funFacts: string[]
   ): Promise<string[] | undefined> => {
@@ -241,7 +261,7 @@ export const updateFunFactsFunction = (funFacts: string[]) => {
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       }
@@ -265,6 +285,8 @@ export const updateFunFactsFunction = (funFacts: string[]) => {
 export const updatePersonalDescriptionFunction = (
   personalDescription: string
 ) => {
+  const { accessToken } = useCurrentUser();
+
   const updatePersonalDescriptionRequest = async (
     personalDescription: string
   ): Promise<string | undefined> => {
@@ -275,7 +297,7 @@ export const updatePersonalDescriptionFunction = (
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       }
@@ -297,6 +319,8 @@ export const updatePersonalDescriptionFunction = (
 };
 
 export const setBrandNameFunction = (brandName: string) => {
+  const { accessToken } = useCurrentUser();
+
   const setBrandNameRequest = async (
     brandName: string
   ): Promise<string | undefined> => {
@@ -307,7 +331,7 @@ export const setBrandNameFunction = (brandName: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       }
@@ -329,6 +353,8 @@ export const setBrandNameFunction = (brandName: string) => {
 };
 
 export const setBrandLogoFunction = (brandLogo: FormData) => {
+  const { accessToken } = useCurrentUser();
+
   const setBrandLogoRequest = async (
     brandLogo: FormData
   ): Promise<string | undefined> => {
@@ -339,7 +365,7 @@ export const setBrandLogoFunction = (brandLogo: FormData) => {
 
       {
         headers: {
-          Authorization: `Bearer ${creative_token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "multipart/form-data",
         },
       }
@@ -378,13 +404,15 @@ export const getCreativeById = (creativeId: string) => {
 };
 
 export const getCartItems = (creativeId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const getCartItemsRequest = async (): Promise<Cart | undefined> => {
     const res = await axios.get(
       `${api_base_url}/customer/getCartItems?creativeId=${creativeId}`,
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -395,19 +423,22 @@ export const getCartItems = (creativeId: string) => {
   const { data, isError, error, isLoading } = useQuery({
     queryKey: ["getCartItems"],
     queryFn: getCartItemsRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isError, error, isLoading };
 };
 
 export const getCarts = () => {
+  const { accessToken } = useCurrentUser();
+
   const getCartsRequest = async (): Promise<Carts | undefined> => {
     const res = await axios.get(
       `${api_base_url}/customer/getCarts`,
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -418,19 +449,22 @@ export const getCarts = () => {
   const { data, isError, error, isLoading } = useQuery({
     queryKey: ["getCarts"],
     queryFn: getCartsRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isError, error, isLoading };
 };
 
 export const getWishlists = () => {
+  const { accessToken } = useCurrentUser();
+
   const getWishlistsRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/customer/getWishlists`,
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -441,6 +475,7 @@ export const getWishlists = () => {
   const { data, isError, error, isLoading } = useQuery({
     queryKey: ["getWishlists"],
     queryFn: getWishlistsRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isError, error, isLoading };
@@ -466,6 +501,8 @@ export const getCreativeAllProducts = (creativeId: string) => {
 };
 
 export const placeAnOrderFunction = (creativeId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const placeAnOrderRequest = async (
     creativeId: string
   ): Promise<{ message: string; order: Order } | undefined> => {
@@ -478,7 +515,7 @@ export const placeAnOrderFunction = (creativeId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -499,6 +536,8 @@ export const placeAnOrderFunction = (creativeId: string) => {
 };
 
 export const addToCartFunction = (productId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const addToCartRequest = async (
     productId: string
   ): Promise<{ message: string } | undefined> => {
@@ -511,7 +550,7 @@ export const addToCartFunction = (productId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -532,6 +571,8 @@ export const addToCartFunction = (productId: string) => {
 };
 
 export const removeFromCartFunction = (productId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const removeFromCartRequest = async (
     productId: string
   ): Promise<{ message: string } | undefined> => {
@@ -544,7 +585,7 @@ export const removeFromCartFunction = (productId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -569,6 +610,8 @@ export const updateCartItemCountFunction = (
   count: number,
   creativeId: string
 ) => {
+  const { accessToken } = useCurrentUser();
+
   const updateCartItemCountRequest = async ({
     productId,
     count,
@@ -589,7 +632,7 @@ export const updateCartItemCountFunction = (
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -610,6 +653,8 @@ export const updateCartItemCountFunction = (
 };
 
 export const addAndRemoveWishlistFunction = (productId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const addAndRemoveWishlistRequest = async (
     productId: string
   ): Promise<{ message: string } | undefined> => {
@@ -622,7 +667,7 @@ export const addAndRemoveWishlistFunction = (productId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -643,6 +688,8 @@ export const addAndRemoveWishlistFunction = (productId: string) => {
 };
 
 export const cancelAnOrderFunction = (orderId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const cancelAnOrderRequest = async (
     orderId: string
   ): Promise<{ message: string } | undefined> => {
@@ -655,7 +702,7 @@ export const cancelAnOrderFunction = (orderId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -676,6 +723,8 @@ export const cancelAnOrderFunction = (orderId: string) => {
 };
 
 export const confirmAnOrderFunction = (orderId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const confirmAnOrderRequest = async (
     orderId: string
   ): Promise<{ message: string } | undefined> => {
@@ -688,7 +737,7 @@ export const confirmAnOrderFunction = (orderId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -709,6 +758,8 @@ export const confirmAnOrderFunction = (orderId: string) => {
 };
 
 export const deleteCartFunction = (creativeId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const deleteCartRequest = async (
     creativeId: string
   ): Promise<{ message: string } | undefined> => {
@@ -717,7 +768,7 @@ export const deleteCartFunction = (creativeId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -801,6 +852,8 @@ export const verifyEmail = (token: string) => {
 };
 
 export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
+  const { accessToken } = useCurrentUser();
+
   const updatePasswordRequest = async (
     passwordInfo: UpdatePassword
   ): Promise<{ message: string } | undefined> => {
@@ -811,7 +864,7 @@ export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -880,10 +933,12 @@ export const resetPasswordFunction = (token: string) => {
 };
 
 export const deleteMyAccountFunction = () => {
+  const { accessToken } = useCurrentUser();
+
   const deleteMyAccountRequest = async () => {
     const res = await axios.delete(`${api_base_url}/auth/deleteMyAccount`, {
       headers: {
-        Authorization: `Bearer ${customer_token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
@@ -905,6 +960,8 @@ export const deleteMyAccountFunction = () => {
 export const createNotificationFunction = (
   notificationData: NotificationData
 ) => {
+  const { accessToken } = useCurrentUser();
+
   const createNotificationRequest = async (
     notificationData: NotificationData
   ): Promise<{ message: string } | undefined> => {
@@ -915,7 +972,7 @@ export const createNotificationFunction = (
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -936,6 +993,8 @@ export const createNotificationFunction = (
 };
 
 export const getNotifications = () => {
+  const { accessToken } = useCurrentUser();
+
   const getNotificationsRequest = async (): Promise<
     NotificationRes[] | undefined
   > => {
@@ -944,7 +1003,7 @@ export const getNotifications = () => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -955,12 +1014,15 @@ export const getNotifications = () => {
   const { data, isError, error, isLoading } = useQuery({
     queryKey: ["getNotifications"],
     queryFn: getNotificationsRequest,
+    enabled: !!accessToken,
   });
 
   return { data, isError, error, isLoading };
 };
 
 export const deleteNotificationFunction = (notificationId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const deleteNotificationRequest = async (
     notificationId: string
   ): Promise<{ message: string } | undefined> => {
@@ -969,7 +1031,7 @@ export const deleteNotificationFunction = (notificationId: string) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -990,6 +1052,8 @@ export const deleteNotificationFunction = (notificationId: string) => {
 };
 
 export const addNewTagFunction = (tagData: FormData) => {
+  const { accessToken } = useCurrentUser();
+
   const addNewTagRequest = async (
     tagData: FormData
   ): Promise<Tag | undefined> => {
@@ -1000,7 +1064,7 @@ export const addNewTagFunction = (tagData: FormData) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
@@ -1023,6 +1087,8 @@ export const addNewTagFunction = (tagData: FormData) => {
 };
 
 export const updateTagFunction = (tagId: string, tagData: FormData) => {
+  const { accessToken } = useCurrentUser();
+
   const updateTagRequest = async (
     tagData: FormData
   ): Promise<Tag | undefined> => {
@@ -1033,7 +1099,7 @@ export const updateTagFunction = (tagId: string, tagData: FormData) => {
 
       {
         headers: {
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
