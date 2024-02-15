@@ -3,6 +3,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { api_base_url } from "../../testing";
 import { useCurrentUser } from ".";
 
+/**
+ * Function to create a new product
+ * @param {FormData} productData
+ * @returns object containing isPending, isError, isSuccess, data, createProduct, error
+ */
+
 export const createProductFunction = (productData: FormData) => {
   const { accessToken } = useCurrentUser();
 
