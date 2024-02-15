@@ -27,7 +27,7 @@ router.post("/sendEmailVerificationToken", sendEmailVerificationToken);
 
 router.post("/verifyEmail", verifyEmail);
 
-router.get("/refreshToken", handleRefreshToken);
+router.post("/refreshToken", handleRefreshToken);
 
 router.get("/logOut", authorizeUser, logOut);
 

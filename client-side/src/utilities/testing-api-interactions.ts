@@ -813,6 +813,27 @@ export const signupFunction = (signupData: SignupDataType) => {
   return { signup, data, isError, isPending, error };
 };
 
+export const refreshAccessTokenFunction = () => {
+  const refreshAccessTokenRequest = async () => {
+    const res = await axios.post(`${api_base_url}/auth/refreshToken`, {
+      credentials: "include",
+    });
+
+    return res.data;
+  };
+
+  const { mutateAsync } = useMutation({
+    mutationKey: ["refreshAccessToken"],
+    mutationFn: refreshAccessTokenRequest,
+  });
+
+  const refreshAccessToken = async () => {
+    await mutateAsync();
+  };
+
+  return { refreshAccessToken };
+};
+
 export const sendEmailVerificationTokenFunction = (email: string) => {
   const sendEmailVerificationTokenRequest = async (
     email: string

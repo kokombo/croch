@@ -1,7 +1,7 @@
 import jwt = require("jsonwebtoken");
 
 /**
- *
+ * Generates refresh token
  * @param {string} id
  * @returns refresh token
  */

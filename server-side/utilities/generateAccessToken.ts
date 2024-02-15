@@ -1,7 +1,7 @@
 import jwt = require("jsonwebtoken");
 
 /**
- *
+ * Generates access token
  * @param {string} id
  * @returns access token
  */

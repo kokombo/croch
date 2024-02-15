@@ -3,21 +3,23 @@ import { useSession } from "next-auth/react";
 export const useCurrentUser = () => {
   const { data: session } = useSession();
 
-  const id = session?.user?.id;
+  const sessionExpireTime = session?.expires;
 
-  const accessToken = session?.user?.accessToken;
+  const id = session?.user.id;
 
-  const accountDisabled = session?.user?.accountDisabled;
+  const accessToken = session?.user.accessToken;
 
-  const email = session?.user?.email;
+  const accountDisabled = session?.user.accountDisabled;
 
-  const emailVerified = session?.user?.emailVerified;
+  const email = session?.user.email;
 
-  const firstName = session?.user?.firstName;
+  const emailVerified = session?.user.emailVerified;
 
-  const lastName = session?.user?.lastName;
+  const firstName = session?.user.firstName;
 
-  const role = session?.user?.role;
+  const lastName = session?.user.lastName;
+
+  const role = session?.user.role;
 
   return {
     id,
@@ -28,5 +30,6 @@ export const useCurrentUser = () => {
     lastName,
     firstName,
     role,
+    sessionExpireTime,
   };
 };
