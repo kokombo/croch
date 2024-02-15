@@ -339,7 +339,7 @@ const ApiTesting = () => {
     <div>
       Home
       <div className="relative h-20 w-20">\</div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
         <input
           type="file"
           multiple
