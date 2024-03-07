@@ -1,29 +1,22 @@
 "use client";
 
-import ApiTesting from "@/components/api-testing";
-import { Slider } from "@/components";
+import { ProductCard, Slider } from "@/components";
+
 
 const Home = () => {
   return (
     <>
-      <ApiTesting />
+    
+      <ProductCard title="Hand Woven Top" price={4000} />
 
-      <Slider
-        sliderData={[
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-        ]}
-      />
+
+   
+  
     </>
   );
 };
 
 export default Home;
+
+
+   

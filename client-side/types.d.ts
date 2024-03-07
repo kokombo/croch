@@ -11,6 +11,8 @@ type Product = {
   owner: {
     _id: string;
     firstName: string;
+    picture:string;
+
   };
   photos: string[];
   price: number;
