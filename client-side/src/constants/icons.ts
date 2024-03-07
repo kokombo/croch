@@ -1,8 +1,19 @@
-import chevronright from "../../public/icons/chevronright.png"
-import chevronleft from "../../public/icons/chevronleft.png"
-import bookmark from "../../public/icons/bookmark.png"
+import chevronright from "../../public/icons/chevronright.png";
+import chevronleft from "../../public/icons/chevronleft.png";
+import bookmark from "../../public/icons/bookmark.png";
+import logo from "../../public/icons/logo.png";
+import search from "../../public/icons/search.png";
+import user from "../../public/icons/user.png";
+import chevrondown from "../../public/icons/chevrondown.png";
 
+const icons = {
+  chevronleft,
+  chevronright,
+  bookmark,
+  logo,
+  search,
+  user,
+  chevrondown,
+};
 
-const icons = {chevronleft, chevronright, bookmark}
-
-export default icons
+export default icons;

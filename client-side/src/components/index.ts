@@ -9,6 +9,11 @@ import UnclickableRating from "./unclickable-rating";
 import ProductCard from "./product-card";
 import AddToWishlist from "./add-to-wishlist";
 import ProductCardOwnerInfo from "./product-card-owner-info";
+import ProductsList from "./products-list";
+import Logo from "./logo";
+import NavigationBar from "./navigation-bar";
+import SearchBox from "./search-box";
+import NavAccount from "./nav-account";
 
 export {
   ReactQueryProvider,
@@ -21,5 +26,10 @@ export {
   UnclickableRating,
   ProductCard,
   AddToWishlist,
-  ProductCardOwnerInfo
+  ProductCardOwnerInfo,
+  ProductsList,
+  Logo,
+  NavigationBar,
+  SearchBox,
+  NavAccount,
 };

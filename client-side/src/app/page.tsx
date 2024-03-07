@@ -1,22 +1,13 @@
 "use client";
 
-import { ProductCard, Slider } from "@/components";
-
+import { ProductCard, Slider, ProductsList } from "@/components";
 
 const Home = () => {
   return (
-    <>
-    
-      <ProductCard title="Hand Woven Top" price={4000} />
-
-
-   
-  
-    </>
+    <div className="m-5">
+      <ProductsList />
+    </div>
   );
 };
 
 export default Home;
-
-
-   

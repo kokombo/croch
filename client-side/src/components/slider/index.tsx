@@ -5,7 +5,7 @@ import { icons } from "@/constants";
 
 type Props = {
   sliderData: string[];
-  hideButton: boolean
+  hideButton: boolean;
 };
 
 const Slider = (props: Props) => {
@@ -30,7 +30,7 @@ const Slider = (props: Props) => {
 
   return (
     <div
-      className="relative overflow-hidden w-full h-[300px] rounded-lg"
+      className="relative overflow-hidden w-full h-[389px] rounded-lg"
       onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
       onTouchMove={swipeSlider}
       onTouchEnd={() => setTouchStart(null)}
@@ -42,7 +42,7 @@ const Slider = (props: Props) => {
           return (
             <div
               key={sliderIndex}
-              className={`relative h-[300px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out ${opacity}`}
+              className={`relative h-[389px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               <Image
@@ -53,41 +53,54 @@ const Slider = (props: Props) => {
                 quality={100}
                 loading="lazy"
                 sizes="any"
+                className="object-cover"
               />
             </div>
           );
         })}
 
-
-        <AddToWishlist extraClasses="absolute right-6 top-6"/>
+        <AddToWishlist extraClasses="absolute right-[5%] top-6" />
 
         {!props.hideButton && index > 0 && (
           <RoundIconButton
-            hidden={props.hideButton}
             onClick={() => setIndex(index - 1)}
-            label= {<Image src = {icons.chevronleft} alt = "chevron prev button icon" height = {10} width = {6} />}
-            extraClasses="absolute left-6 top-1/2 bg-white"
+            label={
+              <Image
+                src={icons.chevronleft}
+                alt="chevron prev button icon"
+                height={10}
+                width={6}
+              />
+            }
+            extraClasses="absolute left-[5%] top-1/2 bg-white"
             arialabel="Slider prev button"
-            
           />
         )}
 
         {!props.hideButton && index < props.sliderData.length - 1 && (
           <RoundIconButton
-            hidden={props.hideButton}
             onClick={() => setIndex(index + 1)}
-            label= {<Image src = {icons.chevronright} alt = "chevron next button icon" height = {10} width = {6} />}
-            extraClasses="absolute right-6 top-1/2 bg-white"
+            label={
+              <Image
+                src={icons.chevronright}
+                alt="chevron next button icon"
+                height={10}
+                width={6}
+              />
+            }
+            extraClasses="absolute right-[5%] top-1/2 bg-white"
             arialabel="Slider next button"
           />
         )}
 
-
-        {!props.hideButton && <ProductCardOwnerInfo product = {{owner: {firstName:"Nifemi", picture: "", _id:"123"}}} extraClasses="absolute bottom-6" />}
-
-     
-
-
+        {!props.hideButton && (
+          <ProductCardOwnerInfo
+            product={{
+              owner: { firstName: "Nifemi", picture: "/cp.png", _id: "123" },
+            }}
+            extraClasses="absolute bottom-6 right-[5%] left-[5%] "
+          />
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 "use client";
 
-import { ReactQueryProvider, NextAuthProvider } from "@/components";
+import {
+  ReactQueryProvider,
+  NextAuthProvider,
+  NavigationBar,
+} from "@/components";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,7 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextAuthProvider>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <ReactQueryProvider>
+            <NavigationBar />
+
+            {children}
+          </ReactQueryProvider>
         </NextAuthProvider>
       </body>
     </html>
