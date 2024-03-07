@@ -9,7 +9,7 @@ import { useCurrentUser } from ".";
  * @returns object containing isPending, isError, isSuccess, data, createProduct, error
  */
 
-export const createProductFunction = (productData: FormData) => {
+export const useCreateProduct = (productData: FormData) => {
   const { accessToken } = useCurrentUser();
 
   const createProductRequest = async (
@@ -45,7 +45,7 @@ export const createProductFunction = (productData: FormData) => {
   return { isPending, isError, isSuccess, data, createProduct, error };
 };
 
-export const updateProductFunction = (
+export const useUpdateProduct = (
   productData: FormData,
   productId: string
 ) => {
@@ -84,7 +84,7 @@ export const updateProductFunction = (
   return { isPending, isError, isSuccess, data, updateProduct, error };
 };
 
-export const deleteProductFunction = (productId: string) => {
+export const useDeleteProduct = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
   const deleteProductRequest = async (
@@ -116,7 +116,7 @@ export const deleteProductFunction = (productId: string) => {
   return { isPending, isError, isSuccess, data, deleteProduct, error };
 };
 
-export const getAllProducts = () => {
+export const useGetAllProducts = () => {
   const getAllProductsRequest = async (): Promise<Product[] | undefined> => {
     const res = await axios.get(`${api_base_url}/product/getAllProducts`);
 
@@ -131,7 +131,7 @@ export const getAllProducts = () => {
   return { data, isLoading, isError, error, isSuccess };
 };
 
-export const getProductById = (productId: string) => {
+export const useGetProductById = (productId: string) => {
   const getProductByIdRequest = async (): Promise<Product | undefined> => {
     const res = await axios.get(
       `${api_base_url}/product/getProduct?productId=${productId}`
@@ -148,7 +148,7 @@ export const getProductById = (productId: string) => {
   return { data, isLoading, isError, error };
 };
 
-export const getMyProducts = () => {
+export const useGetMyProducts = () => {
   const { accessToken } = useCurrentUser();
 
   const getMyProductsRequest = async (): Promise<Product[] | undefined> => {
@@ -170,7 +170,7 @@ export const getMyProducts = () => {
   return { data, isLoading, isError, error };
 };
 
-export const getCreativeOrders = (status: string) => {
+export const useGetCreativeOrders = (status: string) => {
   const { accessToken } = useCurrentUser();
 
   const getCreativeOrdersRequest = async (): Promise<Order[] | undefined> => {
@@ -195,7 +195,7 @@ export const getCreativeOrders = (status: string) => {
   return { data, isError, isLoading, error };
 };
 
-export const getCustomerOrders = (status: string) => {
+export const useGetCustomerOrders = (status: string) => {
   const { accessToken } = useCurrentUser();
 
   const getCustomerOrdersRequest = async (): Promise<Order[] | undefined> => {
@@ -220,7 +220,7 @@ export const getCustomerOrders = (status: string) => {
   return { data, isError, isLoading, error };
 };
 
-export const updateYearsOfExperienceFunction = (yearsOfExperience: number) => {
+export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
   const { accessToken } = useCurrentUser();
 
   const updateYearsOfExperienceRequest = async (
@@ -254,7 +254,7 @@ export const updateYearsOfExperienceFunction = (yearsOfExperience: number) => {
   return { data, isPending, isError, error, updateYearsOfExperience };
 };
 
-export const updateFunFactsFunction = (funFacts: string[]) => {
+export const useUpdateFunFacts = (funFacts: string[]) => {
   const { accessToken } = useCurrentUser();
 
   const updateFunFactsRequest = async (
@@ -288,7 +288,7 @@ export const updateFunFactsFunction = (funFacts: string[]) => {
   return { data, isPending, isError, error, updateFunFacts };
 };
 
-export const updatePersonalDescriptionFunction = (
+export const useUpdatePersonalDescription = (
   personalDescription: string
 ) => {
   const { accessToken } = useCurrentUser();
@@ -324,7 +324,7 @@ export const updatePersonalDescriptionFunction = (
   return { data, isPending, isError, error, updatePersonalDescription };
 };
 
-export const setBrandNameFunction = (brandName: string) => {
+export const useSetBrandName = (brandName: string) => {
   const { accessToken } = useCurrentUser();
 
   const setBrandNameRequest = async (
@@ -358,7 +358,7 @@ export const setBrandNameFunction = (brandName: string) => {
   return { setBrandName, data, isError, isPending, error };
 };
 
-export const setBrandLogoFunction = (brandLogo: FormData) => {
+export const useSetBrandLogo = (brandLogo: FormData) => {
   const { accessToken } = useCurrentUser();
 
   const setBrandLogoRequest = async (
@@ -392,7 +392,7 @@ export const setBrandLogoFunction = (brandLogo: FormData) => {
   return { setBrandLogo, data, isError, isPending, error };
 };
 
-export const getCreativeById = (creativeId: string) => {
+export const useGetCreativeById = (creativeId: string) => {
   const getCreativeByIdRequest = async (): Promise<Creative | undefined> => {
     const res = await axios.get(
       `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
@@ -409,7 +409,7 @@ export const getCreativeById = (creativeId: string) => {
   return { data, isLoading, isError, error };
 };
 
-export const getCartItems = (creativeId: string) => {
+export const useGetCartItems = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
   const getCartItemsRequest = async (): Promise<Cart | undefined> => {
@@ -435,7 +435,7 @@ export const getCartItems = (creativeId: string) => {
   return { data, isError, error, isLoading };
 };
 
-export const getCarts = () => {
+export const useGetCarts = () => {
   const { accessToken } = useCurrentUser();
 
   const getCartsRequest = async (): Promise<Carts | undefined> => {
@@ -461,7 +461,7 @@ export const getCarts = () => {
   return { data, isError, error, isLoading };
 };
 
-export const getWishlists = () => {
+export const useGetWishlists = () => {
   const { accessToken } = useCurrentUser();
 
   const getWishlistsRequest = async () => {
@@ -487,7 +487,7 @@ export const getWishlists = () => {
   return { data, isError, error, isLoading };
 };
 
-export const getCreativeAllProducts = (creativeId: string) => {
+export const useGetCreativeAllProducts = (creativeId: string) => {
   const getCreativeAllProductsRequest = async (): Promise<
     Product[] | undefined
   > => {
@@ -506,7 +506,7 @@ export const getCreativeAllProducts = (creativeId: string) => {
   return { data, isError, error, isLoading };
 };
 
-export const placeAnOrderFunction = (creativeId: string) => {
+export const usePlaceAnOrder = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
   const placeAnOrderRequest = async (
@@ -541,7 +541,7 @@ export const placeAnOrderFunction = (creativeId: string) => {
   return { placeAnOrder, data, isPending, error, isError };
 };
 
-export const addToCartFunction = (productId: string) => {
+export const useAddToCart = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
   const addToCartRequest = async (
@@ -576,7 +576,7 @@ export const addToCartFunction = (productId: string) => {
   return { addToCart, data, isError, isPending, error };
 };
 
-export const removeFromCartFunction = (productId: string) => {
+export const useRemoveFromCart = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
   const removeFromCartRequest = async (
@@ -611,7 +611,7 @@ export const removeFromCartFunction = (productId: string) => {
   return { removeFromCart, data, isError, isPending, error };
 };
 
-export const updateCartItemCountFunction = (
+export const useUpdateCartItemCount = (
   productId: string,
   count: number,
   creativeId: string
@@ -658,7 +658,7 @@ export const updateCartItemCountFunction = (
   return { updateCartItemCount, data, isError, isPending, error };
 };
 
-export const addAndRemoveWishlistFunction = (productId: string) => {
+export const useAddAndRemoveWishlist = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
   const addAndRemoveWishlistRequest = async (
@@ -693,7 +693,7 @@ export const addAndRemoveWishlistFunction = (productId: string) => {
   return { addAndRemoveWishlist, data, isError, isPending, error };
 };
 
-export const cancelAnOrderFunction = (orderId: string) => {
+export const useCancelAnOrder = (orderId: string) => {
   const { accessToken } = useCurrentUser();
 
   const cancelAnOrderRequest = async (
@@ -728,7 +728,7 @@ export const cancelAnOrderFunction = (orderId: string) => {
   return { cancelOrder, data, isPending, error, isError };
 };
 
-export const confirmAnOrderFunction = (orderId: string) => {
+export const useConfirmAnOrder = (orderId: string) => {
   const { accessToken } = useCurrentUser();
 
   const confirmAnOrderRequest = async (
@@ -763,7 +763,7 @@ export const confirmAnOrderFunction = (orderId: string) => {
   return { confirmOrder, data, isPending, error, isError };
 };
 
-export const deleteCartFunction = (creativeId: string) => {
+export const useDeleteCart = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
   const deleteCartRequest = async (
@@ -794,9 +794,9 @@ export const deleteCartFunction = (creativeId: string) => {
   return { deleteCart, data, isPending, isError, error };
 };
 
-export const signupFunction = (signupData: SignupDataType) => {
+export const useSignup = (signupData: SignupDataType) => {
   const signupRequest = async (signupData: SignupDataType) => {
-    const res = await axios.post(`${api_base_url}/auth/signup`, { signupData });
+    const res = await axios.post(`${api_base_url}/auth/signup`, signupData);
 
     return res.data;
   };
@@ -813,7 +813,7 @@ export const signupFunction = (signupData: SignupDataType) => {
   return { signup, data, isError, isPending, error };
 };
 
-export const refreshAccessTokenFunction = () => {
+export const useRefreshAccessToken = () => {
   const refreshAccessTokenRequest = async () => {
     const res = await axios.post(`${api_base_url}/auth/refreshToken`, {
       credentials: "include",
@@ -834,7 +834,7 @@ export const refreshAccessTokenFunction = () => {
   return { refreshAccessToken };
 };
 
-export const sendEmailVerificationTokenFunction = (email: string) => {
+export const useSendEmailVerificationToken = (email: string) => {
   const sendEmailVerificationTokenRequest = async (
     email: string
   ): Promise<{ message: string } | undefined> => {
@@ -859,7 +859,7 @@ export const sendEmailVerificationTokenFunction = (email: string) => {
   return { sendEmailVerificationToken, isPending, isError, error, data };
 };
 
-export const verifyEmail = (token: string) => {
+export const useVerifyEmail = (token: string) => {
   const verifyEmailRequest = async (): Promise<
     { message: string } | undefined
   > => {
@@ -878,7 +878,7 @@ export const verifyEmail = (token: string) => {
   return { data, isPending, isError, error };
 };
 
-export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
+export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
   const { accessToken } = useCurrentUser();
 
   const updatePasswordRequest = async (
@@ -911,7 +911,7 @@ export const updatePasswordFunction = (passwordInfo: UpdatePassword) => {
   return { updatePassword, data, isError, error, isPending };
 };
 
-export const sendForgotPasswordTokenFunction = (email: string) => {
+export const useSendForgotPasswordToken = (email: string) => {
   const sendForgotPasswordTokenRequest = async (
     email: string
   ): Promise<{ message: string } | undefined> => {
@@ -936,7 +936,7 @@ export const sendForgotPasswordTokenFunction = (email: string) => {
   return { sendForgotPasswordToken, isPending, isError, error, data };
 };
 
-export const resetPasswordFunction = (token: string) => {
+export const useResetPassword = (token: string) => {
   const resetPasswordRequest = async (
     token: string
   ): Promise<{ message: string } | undefined> => {
@@ -959,7 +959,7 @@ export const resetPasswordFunction = (token: string) => {
   return { resetPassword, data, isPending, isError, error };
 };
 
-export const deleteMyAccountFunction = () => {
+export const useDeleteMyAccount = () => {
   const { accessToken } = useCurrentUser();
 
   const deleteMyAccountRequest = async () => {
@@ -984,7 +984,7 @@ export const deleteMyAccountFunction = () => {
   return { deleteMyAccount, data, isPending, error, isError };
 };
 
-export const createNotificationFunction = (
+export const useCreateNotification = (
   notificationData: NotificationData
 ) => {
   const { accessToken } = useCurrentUser();
@@ -1019,7 +1019,7 @@ export const createNotificationFunction = (
   return { createNotification };
 };
 
-export const getNotifications = () => {
+export const useGetNotifications = () => {
   const { accessToken } = useCurrentUser();
 
   const getNotificationsRequest = async (): Promise<
@@ -1047,7 +1047,7 @@ export const getNotifications = () => {
   return { data, isError, error, isLoading };
 };
 
-export const deleteNotificationFunction = (notificationId: string) => {
+export const useDeleteNotification = (notificationId: string) => {
   const { accessToken } = useCurrentUser();
 
   const deleteNotificationRequest = async (
@@ -1078,7 +1078,7 @@ export const deleteNotificationFunction = (notificationId: string) => {
   return { deleteNotification, data, isPending, isError, error };
 };
 
-export const addNewTagFunction = (tagData: FormData) => {
+export const useAddNewTag = (tagData: FormData) => {
   const { accessToken } = useCurrentUser();
 
   const addNewTagRequest = async (
@@ -1113,7 +1113,7 @@ export const addNewTagFunction = (tagData: FormData) => {
   return { addNewTag, data, isError, error, isPending };
 };
 
-export const updateTagFunction = (tagId: string, tagData: FormData) => {
+export const useUpdateTag = (tagId: string, tagData: FormData) => {
   const { accessToken } = useCurrentUser();
 
   const updateTagRequest = async (
@@ -1148,7 +1148,7 @@ export const updateTagFunction = (tagId: string, tagData: FormData) => {
   return { updateTag, data, isError, error, isPending };
 };
 
-export const getAllTags = () => {
+export const useGetAllTags = () => {
   const getAllTagsRequest = async (): Promise<Tag[] | undefined> => {
     const res = await axios.get(`${api_base_url}/tag/getAllTags`);
 
@@ -1163,7 +1163,7 @@ export const getAllTags = () => {
   return { data, isLoading, isError, error };
 };
 
-export const getOrder = (orderId: string) => {
+export const useGetOrder = (orderId: string) => {
   const getOrderRequest = async (): Promise<Order | undefined> => {
     const res = await axios.get(
       `${api_base_url}/order/getOrder?orderId=${orderId}`

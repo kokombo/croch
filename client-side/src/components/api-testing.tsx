@@ -1,38 +1,39 @@
 import { useEffect, useState } from "react";
 import {
-  createProductFunction,
-  getAllProducts,
-  getProductById,
-  getMyProducts,
-  getCreativeOrders,
-  updateYearsOfExperienceFunction,
-  updateFunFactsFunction,
-  updatePersonalDescriptionFunction,
-  setBrandNameFunction,
-  setBrandLogoFunction,
-  updateProductFunction,
-  getCreativeById,
-  deleteProductFunction,
-  getCartItems,
-  getCustomerOrders,
-  getCarts,
-  getWishlists,
-  getCreativeAllProducts,
-  placeAnOrderFunction,
-  addToCartFunction,
-  removeFromCartFunction,
-  updateCartItemCountFunction,
-  addAndRemoveWishlistFunction,
-  cancelAnOrderFunction,
-  confirmAnOrderFunction,
-  deleteCartFunction,
-  deleteNotificationFunction,
-  addNewTagFunction,
-  getAllTags,
-  updateTagFunction,
-  sendEmailVerificationTokenFunction,
-  sendForgotPasswordTokenFunction,
-  updatePasswordFunction,
+ useCreateProduct,
+ useGetAllProducts,
+  useGetProductById,
+  useGetMyProducts,
+  useGetCreativeOrders,
+  useGetCreativeAllProducts,
+  useUpdateYearsOfExperience,
+  useUpdateFunFacts,
+  useUpdatePersonalDescription,
+  useSetBrandName,
+  useSetBrandLogo,
+  useUpdateProduct,
+  useGetCreativeById,
+  useDeleteProduct,
+  useGetCartItems,
+  useGetCustomerOrders,
+  useGetCarts,
+  useGetWishlists,
+  usePlaceAnOrder,
+  useAddToCart,
+  useRemoveFromCart,
+  useUpdateCartItemCount,
+  useAddAndRemoveWishlist,
+  useCancelAnOrder,
+  useConfirmAnOrder,
+  useDeleteCart,
+  useDeleteNotification,
+  useAddNewTag,
+  useGetAllTags,
+  useUpdateTag,
+  useSendEmailVerificationToken,
+  useSendForgotPasswordToken,
+  useUpdatePassword,
+  useSignup
 } from "@/utilities/testing-api-interactions";
 import { signIn, signOut } from "next-auth/react";
 import { useCurrentUser } from "@/utilities";
@@ -74,7 +75,7 @@ const ApiTesting = () => {
   });
 
   const { isError, isPending, isSuccess, createProduct, data, error } =
-    createProductFunction(formData);
+    useCreateProduct(formData);
 
   let errorResponse: any;
 
@@ -85,9 +86,9 @@ const ApiTesting = () => {
     isError: pError,
     isLoading: pLoading,
     isSuccess: pSuccess,
-  } = getAllProducts();
+  } = useGetAllProducts();
 
-  const { data: product, error: prError } = getProductById(
+  const { data: product, error: prError } = useGetProductById(
     "65c26b0c85fbd2c50ca29318"
   );
 
@@ -96,23 +97,23 @@ const ApiTesting = () => {
     isLoading,
     isError: myIsError,
     error: myError,
-  } = getMyProducts();
+  } = useGetMyProducts();
 
-  const { data: orders } = getCreativeOrders("pending");
+  const { data: orders } = useGetCreativeOrders("pending");
 
   const {
     data: years,
     isPending: updatingYears,
     updateYearsOfExperience,
     isError: yearsError,
-  } = updateYearsOfExperienceFunction(5);
+  } = useUpdateYearsOfExperience(5);
 
   const {
     data: facts,
     updateFunFacts,
     isError: factsError,
     isPending: factsPending,
-  } = updateFunFactsFunction(funFacts);
+  } = useUpdateFunFacts(funFacts);
 
   const {
     data: personalDescription,
@@ -120,7 +121,7 @@ const ApiTesting = () => {
     isError: pdIsError,
     error: pdError,
     updatePersonalDescription,
-  } = updatePersonalDescriptionFunction(
+  } = useUpdatePersonalDescription(
     "I am an amazing crochet vendor with massive creativity."
   );
 
@@ -130,7 +131,7 @@ const ApiTesting = () => {
     isError: bnIsError,
     error: bnError,
     setBrandName,
-  } = setBrandNameFunction("Layomi Appareal");
+  } = useSetBrandName("Layomi Appareal");
 
   const logoData = new FormData();
 
@@ -141,61 +142,61 @@ const ApiTesting = () => {
     isPending: blPending,
     error: blError,
     setBrandLogo,
-  } = setBrandLogoFunction(logoData);
+  } = useSetBrandLogo(logoData);
 
   const {
     data: updatedProduct,
     error: updateError,
     updateProduct,
-  } = updateProductFunction(formData, "65c1e5fc48118bd7f496b0c5");
+  } = useUpdateProduct(formData, "65c1e5fc48118bd7f496b0c5");
 
-  const { data: creative } = getCreativeById("65c1e36573fe216ae67a1573");
+  const { data: creative } = useGetCreativeById("65c1e36573fe216ae67a1573");
 
   const {
     data: deletedP,
     error: delError,
     deleteProduct,
-  } = deleteProductFunction("65c1e5fc48118bd7f496b0c5");
+  } = useDeleteProduct("65c1e5fc48118bd7f496b0c5");
 
   const {
     data: cartItems,
     error: cartItemsError,
     isLoading: cartItemsLoading,
-  } = getCartItems("65c1e36573fe216ae67a1573");
+  } = useGetCartItems("65c1e36573fe216ae67a1573");
 
-  const { data: customerOrder, error: coError } = getCustomerOrders("pending");
+  const { data: customerOrder, error: coError } = useGetCustomerOrders("pending");
 
-  const { data: carts, error: cartsError } = getCarts();
+  const { data: carts, error: cartsError } = useGetCarts();
 
-  const { data: wishlists, error: wishlistsError } = getWishlists();
+  const { data: wishlists, error: wishlistsError } = useGetWishlists();
 
   const { data: creativeProducts, error: creativePErrors } =
-    getCreativeAllProducts("65c1e36573fe216ae67a1573");
+    useGetCreativeAllProducts("65c1e36573fe216ae67a1573");
 
   const {
     data: placeorderres,
     isPending: placingorder,
     error: placeordererror,
     placeAnOrder,
-  } = placeAnOrderFunction("65c1e36573fe216ae67a1573");
+  } = usePlaceAnOrder("65c1e36573fe216ae67a1573");
 
   const {
     addToCart,
     data: addCartRes,
     error: addToCartError,
-  } = addToCartFunction("65c26b0c85fbd2c50ca29318");
+  } = useAddToCart("65c26b0c85fbd2c50ca29318");
 
   const {
     removeFromCart,
     data: removeFromCartRes,
     error: removeFromCartError,
-  } = removeFromCartFunction("65c26b0c85fbd2c50ca29318");
+  } = useRemoveFromCart("65c26b0c85fbd2c50ca29318");
 
   const {
     data: count,
     error: countError,
     updateCartItemCount,
-  } = updateCartItemCountFunction(
+  } = useUpdateCartItemCount(
     "65c26b0c85fbd2c50ca29318",
     5,
     "65c1e36573fe216ae67a1573"
@@ -205,25 +206,25 @@ const ApiTesting = () => {
     data: wishlist,
     error: wishlisterror,
     addAndRemoveWishlist,
-  } = addAndRemoveWishlistFunction("65c26b0c85fbd2c50ca29318");
+  } = useAddAndRemoveWishlist("65c26b0c85fbd2c50ca29318");
 
   const {
     data: cancelorderres,
     error: cancelordererror,
     cancelOrder,
-  } = cancelAnOrderFunction("65c212cc06028eb6f6c4eb98");
+  } = useCancelAnOrder("65c212cc06028eb6f6c4eb98");
 
   const {
     data: confirmorderres,
     error: confirmordererror,
     confirmOrder,
-  } = confirmAnOrderFunction("65c212cc06028eb6f6c4eb98");
+  } = useConfirmAnOrder("65c212cc06028eb6f6c4eb98");
 
   const {
     deleteCart,
     data: deletecartres,
     error: deletecarterror,
-  } = deleteCartFunction("65c1e36573fe216ae67a1573");
+  } =useDeleteCart("65c1e36573fe216ae67a1573");
 
   const {
     data: deleteNRes,
@@ -231,7 +232,7 @@ const ApiTesting = () => {
     isError: delNIsError,
     isPending: delNLoading,
     error: delNError,
-  } = deleteNotificationFunction("");
+  } = useDeleteNotification("");
 
   const formD = new FormData();
 
@@ -243,31 +244,31 @@ const ApiTesting = () => {
     data: addTagData,
     isPending: addTagPending,
     error: addTagError,
-  } = addNewTagFunction(formD);
+  } = useAddNewTag(formD);
 
   const {
     data: allTags,
     isLoading: tagsLoading,
     error: tagsError,
-  } = getAllTags();
+  } = useGetAllTags();
 
   const {
     updateTag,
     data: updatedTag,
     error: updatedTagError,
-  } = updateTagFunction("65c9d55240347b054000c309", formD);
+  } = useUpdateTag("65c9d55240347b054000c309", formD);
 
   const {
     sendEmailVerificationToken,
     data: emailV,
     error: emailVError,
-  } = sendEmailVerificationTokenFunction("");
+  } = useSendEmailVerificationToken("");
 
   const {
     sendForgotPasswordToken,
     data: forgorPasswordD,
     error: forgorPasswordE,
-  } = sendForgotPasswordTokenFunction("");
+  } = useSendForgotPasswordToken("");
 
   const oldPassword = "";
   const newPassword = "";
@@ -276,7 +277,11 @@ const ApiTesting = () => {
     updatePassword,
     data: updatePasswordD,
     error: updatePasswordE,
-  } = updatePasswordFunction({ oldPassword, newPassword });
+  } = useUpdatePassword({ oldPassword, newPassword });
+
+  const {data: newUser, error: newUserError, signup } = useSignup({firstName:"", lastName:"", email:"", password:"", role:"customer"})
+
+ 
 
   // const options = {
   //   enableHighAccuracy: true,
@@ -327,13 +332,22 @@ const ApiTesting = () => {
   //   });
   // }, []);
 
+
+
+  const [err, setErr] = useState('')
+
   const signin = async () => {
-    await signIn("credentials", {
+    const res = await signIn("credentials", {
       email: "",
       password: "",
       redirect: false,
     });
+
+    if(res?.error){
+      setErr(res.error)
+    }
   };
+
 
   return (
     <div>
@@ -370,6 +384,10 @@ const ApiTesting = () => {
 
         <button type="button" onClick={() => signOut()}>
           sign out
+        </button>
+
+        <button type="button" onClick={signup}>
+          sign up
         </button>
 
         <button type="button" onClick={updateProduct}>
