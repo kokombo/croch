@@ -14,8 +14,8 @@ const AddToWishlist = (props: Props) => {
       <Image
         src={icons.bookmark}
         alt="add to wishlist icon"
-        height={32}
-        width={32}
+        height={24}
+        width={24}
       />
     </button>
   );

@@ -32,7 +32,7 @@ const ProductCard = (props: Partial<Product>) => {
 
         <h1>{props.title}</h1>
 
-        <h2 className="text-xl leading-6 font-[900]">#{props.price}</h2>
+        <h2 className="text-lg font-[900]">#{props.price}</h2>
       </div>
     </div>
   );

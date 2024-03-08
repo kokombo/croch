@@ -6,6 +6,7 @@ import search from "../../public/icons/search.png";
 import user from "../../public/icons/user.png";
 import chevrondown from "../../public/icons/chevrondown.png";
 import top from "../../public/icons/top.png";
+import filter from "../../public/icons/filter.png";
 
 const icons = {
   chevronleft,
@@ -16,6 +17,7 @@ const icons = {
   user,
   chevrondown,
   top,
+  filter,
 };
 
 export default icons;

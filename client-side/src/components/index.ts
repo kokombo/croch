@@ -16,6 +16,7 @@ import SearchBox from "./search-box";
 import NavAccount from "./nav-account";
 import Tag from "./tag";
 import TagsList from "./tags-list";
+import FilterButton from "./filter-button";
 
 export {
   ReactQueryProvider,
@@ -36,4 +37,5 @@ export {
   NavAccount,
   Tag,
   TagsList,
+  FilterButton,
 };

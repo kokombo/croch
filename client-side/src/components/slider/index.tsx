@@ -30,7 +30,7 @@ const Slider = (props: Props) => {
 
   return (
     <div
-      className="relative overflow-hidden w-full h-[389px] rounded-lg"
+      className="relative overflow-hidden w-full h-[300px] rounded-lg"
       onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
       onTouchMove={swipeSlider}
       onTouchEnd={() => setTouchStart(null)}
@@ -42,7 +42,7 @@ const Slider = (props: Props) => {
           return (
             <div
               key={sliderIndex}
-              className={`relative h-[389px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out ${opacity}`}
+              className={`relative h-[300px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               <Image
@@ -59,7 +59,7 @@ const Slider = (props: Props) => {
           );
         })}
 
-        <AddToWishlist extraClasses="absolute right-[5%] top-6" />
+        <AddToWishlist extraClasses="absolute right-[5%] top-4" />
 
         {!props.hideButton && index > 0 && (
           <RoundIconButton

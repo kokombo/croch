@@ -11,7 +11,12 @@ const TagsList = (props: Props) => {
     >
       {[...Array(10)].map((_, index) => {
         return (
-          <Tag key={index} label="Beanie" icon={icons.top} activeTab={false} />
+          <Tag
+            key={index}
+            label="Beanie"
+            icon={icons.top}
+            activeTab={index === 0 ? true : false}
+          />
         );
       })}
     </div>
