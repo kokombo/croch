@@ -14,6 +14,8 @@ import Logo from "./logo";
 import NavigationBar from "./navigation-bar";
 import SearchBox from "./search-box";
 import NavAccount from "./nav-account";
+import Tag from "./tag";
+import TagsList from "./tags-list";
 
 export {
   ReactQueryProvider,
@@ -32,4 +34,6 @@ export {
   NavigationBar,
   SearchBox,
   NavAccount,
+  Tag,
+  TagsList,
 };

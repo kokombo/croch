@@ -16,6 +16,9 @@ const config: Config = {
 
       colors: {
         grey: "#DDDDDD",
+        green: "#006C00",
+        gray: "#F3F3F3",
+        fadeWhite: "#FAFAFA",
       },
     },
   },
