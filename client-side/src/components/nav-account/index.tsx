@@ -1,9 +1,18 @@
 import { icons } from "@/constants";
 import Image from "next/image";
 
-const NavAccount = () => {
+type Props = {
+  onClick: () => void;
+  opened: boolean;
+};
+
+const NavAccount = (props: Props) => {
   return (
-    <button className="w-[101px] h-[56px] p-2 flex items-center justify-center gap-2 border-[1px] border-grey rounded-[100px] hover:shadow-lg">
+    <button
+      onClick={props.onClick}
+      className={`w-[101px] h-[56px] p-2 flex items-center justify-center gap-2 border-[1px] border-grey rounded-[100px] hover:shadow-lg ${props.opened ? "shadow-lg" : ""}`}
+      aria-label="account dropdown button"
+    >
       <Image
         src={icons.chevrondown}
         alt="show select options icon"

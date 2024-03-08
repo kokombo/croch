@@ -19,6 +19,7 @@ const config: Config = {
         green: "#006C00",
         gray: "#F3F3F3",
         fadeWhite: "#FAFAFA",
+        modalblack: "rgba(0, 0, 0, 0.5)",
       },
     },
   },

@@ -8,6 +8,8 @@ import {
 
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthProvider>
-          <ReactQueryProvider>
-            <NavigationBar />
+        <Provider store={store}>
+          <NextAuthProvider>
+            <ReactQueryProvider>
+              <NavigationBar />
 
-            {children}
-          </ReactQueryProvider>
-        </NextAuthProvider>
+              {children}
+            </ReactQueryProvider>
+          </NextAuthProvider>
+        </Provider>
       </body>
     </html>
   );
