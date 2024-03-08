@@ -33,7 +33,7 @@ const NavigationBar = () => {
     <nav className="w-full flex items-center justify-between py-[18px] px-[4.6%] border-b-[1px] border-grey">
       <Logo />
 
-      <SearchBox />
+      <SearchBox onChange={() => {}} />
 
       <span className="flex items-center gap-6">
         <Link href={"/"} className="text-base font-bold">

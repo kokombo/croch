@@ -7,7 +7,7 @@ type Props = {
 const ProductsList = () => {
   return (
     <div className="grid grid-cols-4 gap-x-4 gap-y-10">
-      {[...Array(16)].map((_, index) => {
+      {[...Array(24)].map((_, index) => {
         return <ProductCard key={index} title="Hand Woven Top" price={4000} />;
       })}
     </div>

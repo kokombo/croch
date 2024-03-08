@@ -3,14 +3,29 @@ import { FlatGreenButton, SelectAccountType, TextField } from "@/components";
 import { icons } from "@/constants";
 import { SetStateAction, Dispatch, useState } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";
+import { useSignup } from "@/utilities/api-interactions/user";
 
 type Props = {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
 };
 
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  role: "",
+};
+
 const SignupForm = (props: Props) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { mutateAsync, data, isError, isPending, error } = useSignup();
+
+  const createAccount = async (values: SignupDataType) => {
+    await mutateAsync({ ...values });
+  };
 
   return (
     <div className="flex flex-col gap-10 ">
@@ -27,8 +42,8 @@ const SignupForm = (props: Props) => {
       </h2>
 
       <Formik
-        initialValues={{ name: "" }}
-        onSubmit={() => {}}
+        initialValues={initialValues}
+        onSubmit={createAccount}
         validationSchema={signupFormValidationSchema}
       >
         <Form>
@@ -58,6 +73,7 @@ const SignupForm = (props: Props) => {
                 label="Continue"
                 onClick={() => props.setStep(2)}
                 extraClasses="mt-10"
+                type="button"
               />
             </span>
           ) : props.step === 2 ? (
@@ -72,6 +88,7 @@ const SignupForm = (props: Props) => {
               <FlatGreenButton
                 label="Continue"
                 onClick={() => props.setStep(3)}
+                type="button"
               />
             </span>
           ) : props.step === 3 ? (
@@ -93,6 +110,7 @@ const SignupForm = (props: Props) => {
               <FlatGreenButton
                 label="Continue"
                 onClick={() => props.setStep(4)}
+                type="button"
               />
             </span>
           ) : props.step === 4 ? (
@@ -119,7 +137,11 @@ const SignupForm = (props: Props) => {
                 }
               />
 
-              <FlatGreenButton label="Continue" onClick={() => {}} />
+              <FlatGreenButton label="Continue" type="submit" />
+
+              {isPending && <p>{isPending}</p>}
+
+              {isError && <p>{error?.message} </p>}
             </span>
           ) : null}
         </Form>

@@ -1,7 +1,12 @@
 import { icons } from "@/constants";
 import Image from "next/image";
+import { ChangeEventHandler } from "react";
 
-const SearchBox = () => {
+type Props = {
+  onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+};
+
+const SearchBox = (props: Props) => {
   return (
     <div className="relative w-[458px] h-16">
       <input
@@ -11,6 +16,7 @@ const SearchBox = () => {
         value=""
         name=""
         id=""
+        onChange={props.onChange}
         placeholder="Search for anything"
       />
 

@@ -3,6 +3,9 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { loginFormValidationSchema } from "@/utilities";
 import { signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { setOpenLoginModal } from "@/redux/slices/modal";
+import { DispatchType } from "@/redux/store";
 
 const initialValues = {
   email: "",
@@ -14,13 +17,13 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const dispatch: DispatchType = useDispatch();
+
   const login = async (
     values: LoginData,
     onsubmitProps: FormikHelpers<LoginData>
   ) => {
     try {
-      setLoading(true);
-
       const res = await signIn("credentials", {
         ...values,
         callbackUrl: "",
@@ -28,6 +31,7 @@ const LoginForm = () => {
       });
 
       if (res?.ok) {
+        dispatch(setOpenLoginModal(false));
         onsubmitProps.resetForm();
       }
 
@@ -73,7 +77,7 @@ const LoginForm = () => {
           />
 
           <span className="flex flex-col gap-5">
-            <FlatGreenButton label="Sign in" />
+            <FlatGreenButton label="Sign in" type="submit" />
 
             {loading && <p>Loading...</p>}
 

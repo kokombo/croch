@@ -65,7 +65,7 @@ const TextField = (props: Props) => {
         <ErrorMessage
           name={props.name}
           component="p"
-          className="text-red-700 text-sm mt-1 absolute"
+          className="text-red-700 text-[12px] mt-1 absolute"
         />
       </div>
     </div>
