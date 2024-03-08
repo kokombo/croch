@@ -1,6 +1,7 @@
 type Props = {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
+  extraClasses?: string;
 };
 
 const FlatGreenButton = (props: Props) => {
@@ -8,7 +9,7 @@ const FlatGreenButton = (props: Props) => {
     <button
       type="button"
       onClick={props.onClick}
-      className="w-full p-4 rounded-lg bg-green text-white"
+      className={`${props.extraClasses} w-full p-4 rounded-lg bg-green text-white`}
     >
       {props.label}
     </button>

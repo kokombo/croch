@@ -11,8 +11,7 @@ type Product = {
   owner: {
     _id: string;
     firstName: string;
-    picture:string;
-
+    picture: string;
   };
   photos: string[];
   price: number;
@@ -88,6 +87,11 @@ type SignupDataType = {
   role: string;
 };
 
+type LoginData = {
+  email: string;
+  password: string;
+};
+
 type UpdatePassword = {
   oldPassword: string;
   newPassword: string;
@@ -106,4 +110,11 @@ type Tag = {
   _id: string;
   label: string;
   icon: string;
+};
+
+type AccountType = {
+  img: string | StaticImageData;
+  value: string;
+  iconWidth: any;
+  iconHeight: any;
 };

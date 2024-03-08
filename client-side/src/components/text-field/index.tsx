@@ -17,55 +17,57 @@ type Props = {
 const TextField = (props: Props) => {
   return (
     <div className="flex flex-col items-start gap-2">
-      <span className="relative w-full">
-        <Field name={props.name} id={props.id}>
-          {({ field, form, meta }: FieldProps) => {
-            return (
-              <input
-                {...field}
-                className="border-grey border-[1px] rounded-lg w-full p-4"
-                type={props.type}
-                placeholder={props.placeholder}
-                autoComplete={props.autoComplete}
-                disabled={props.disabled}
-              />
-            );
-          }}
-        </Field>
-
-        <>
-          {props.passwordField && (
-            <button
-              type="button"
-              aria-label="password-visibility-icon"
-              onClick={props.togglePasswordVisibilityIcon}
-              className="absolute right-4 top-4"
-            >
-              {props.passwordVisible ? (
-                <Image
-                  src={icons.visibility}
-                  alt="hide password icon"
-                  height={24}
-                  width={24}
+      <div className="relative w-full">
+        <div>
+          <Field name={props.name} id={props.id}>
+            {({ field, form, meta }: FieldProps) => {
+              return (
+                <input
+                  {...field}
+                  className="border-grey border-[1px] rounded-lg w-full p-4"
+                  type={props.type}
+                  placeholder={props.placeholder}
+                  autoComplete={props.autoComplete}
+                  disabled={props.disabled}
                 />
-              ) : (
-                <Image
-                  src={icons.visibility}
-                  alt="show password icon"
-                  height={24}
-                  width={24}
-                />
-              )}
-            </button>
-          )}
-        </>
-      </span>
+              );
+            }}
+          </Field>
 
-      <ErrorMessage
-        name={props.name}
-        component="p"
-        className="text-red text-sm mt-1"
-      />
+          <>
+            {props.passwordField && (
+              <button
+                type="button"
+                aria-label="password-visibility-icon"
+                onClick={props.togglePasswordVisibilityIcon}
+                className="absolute right-4 top-4"
+              >
+                {props.passwordVisible ? (
+                  <Image
+                    src={icons.visibility}
+                    alt="hide password icon"
+                    height={24}
+                    width={24}
+                  />
+                ) : (
+                  <Image
+                    src={icons.visibility}
+                    alt="show password icon"
+                    height={24}
+                    width={24}
+                  />
+                )}
+              </button>
+            )}
+          </>
+        </div>
+
+        <ErrorMessage
+          name={props.name}
+          component="p"
+          className="text-red-700 text-sm mt-1 absolute"
+        />
+      </div>
     </div>
   );
 };

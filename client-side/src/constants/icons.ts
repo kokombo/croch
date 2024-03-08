@@ -9,6 +9,9 @@ import top from "../../public/icons/top.png";
 import filter from "../../public/icons/filter.png";
 import arrowleft from "../../public/icons/arrowleft.png";
 import visibility from "../../public/icons/visibility.png";
+import close from "../../public/icons/close.png";
+import customer from "../../public/icons/customer.png";
+import creative from "../../public/icons/creative.png";
 
 const icons = {
   chevronleft,
@@ -22,6 +25,9 @@ const icons = {
   filter,
   arrowleft,
   visibility,
+  close,
+  customer,
+  creative,
 };
 
 export default icons;

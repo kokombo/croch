@@ -5,6 +5,7 @@ type Props = {
   onClickModalButton: () => void;
   icon: string | StaticImageData;
   closeModal: () => void;
+  label: string;
 };
 
 const Modal = (props: Props) => {
@@ -24,8 +25,12 @@ const Modal = (props: Props) => {
         className="bg-white z-1 h-fit rounded-[10px] w-[45%] mt-12 py-6 modal"
         style={{ scrollbarWidth: "none" }}
       >
-        <span className="px-10 flex items-center">
-          <button type="button" onClick={props.onClickModalButton}>
+        <div className="px-10 flex items-center justify-between w-full ">
+          <button
+            type="button"
+            onClick={props.onClickModalButton}
+            className="hover:bg-gray h-10 w-10 rounded-full flex items-center justify-center"
+          >
             <Image
               src={props.icon}
               alt="modal header icon"
@@ -33,7 +38,11 @@ const Modal = (props: Props) => {
               height={32}
             />
           </button>
-        </span>
+
+          <p className=" text-xl font-bold">{props.label} </p>
+
+          <div className="w-8"></div>
+        </div>
 
         <div className="border-b-[1px] border-grey w-full mt-6"></div>
 

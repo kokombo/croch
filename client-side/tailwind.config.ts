@@ -22,6 +22,7 @@ const config: Config = {
         modalblack: "rgba(0, 0, 0, 0.5)",
         inputborder: "#B8C5CA",
         neutral: "#717171",
+        ash: "#F4F4F4",
       },
     },
   },

@@ -21,6 +21,7 @@ import TextField from "./text-field";
 import LoginForm from "./forms/login-form";
 import SignupForm from "./forms/signup-form";
 import FlatGreenButton from "./buttons/flat-green-button";
+import SelectAccountType from "./select-account-type";
 
 export {
   ReactQueryProvider,
@@ -46,4 +47,5 @@ export {
   LoginForm,
   SignupForm,
   FlatGreenButton,
+  SelectAccountType,
 };
