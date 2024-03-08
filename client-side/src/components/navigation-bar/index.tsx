@@ -17,6 +17,18 @@ const NavigationBar = () => {
 
   const dispatch: DispatchType = useDispatch();
 
+  const openLoginModal = () => {
+    dispatch(setOpenLoginModal(true));
+
+    document.body.style.overflow = "hidden";
+  };
+
+  const openSignupModal = () => {
+    dispatch(setOpenSignupModal(true));
+
+    document.body.style.overflow = "hidden";
+  };
+
   return (
     <nav className="w-full flex items-center justify-between py-[18px] px-[4.6%] border-b-[1px] border-grey">
       <Logo />
@@ -50,9 +62,9 @@ const NavigationBar = () => {
                           : null;
 
                       item.href === "/login"
-                        ? dispatch(setOpenLoginModal(true))
+                        ? openLoginModal()
                         : item.href === "/signup"
-                          ? dispatch(setOpenSignupModal(true))
+                          ? openSignupModal()
                           : null;
 
                       setOpenDropDown(false);

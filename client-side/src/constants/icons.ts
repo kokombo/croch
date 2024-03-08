@@ -8,6 +8,7 @@ import chevrondown from "../../public/icons/chevrondown.png";
 import top from "../../public/icons/top.png";
 import filter from "../../public/icons/filter.png";
 import arrowleft from "../../public/icons/arrowleft.png";
+import visibility from "../../public/icons/visibility.png";
 
 const icons = {
   chevronleft,
@@ -20,6 +21,7 @@ const icons = {
   top,
   filter,
   arrowleft,
+  visibility,
 };
 
 export default icons;

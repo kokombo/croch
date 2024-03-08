@@ -1,5 +1,12 @@
 "use client";
-import { ProductsList, TagsList, FilterButton, Modal } from "@/components";
+import {
+  ProductsList,
+  TagsList,
+  FilterButton,
+  Modal,
+  LoginForm,
+  SignupForm,
+} from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
@@ -17,24 +24,26 @@ const Home = () => {
       {openLoginModal && (
         <Modal
           closeModal={() => dispatch(setOpenLoginModal(false))}
-          onClickModalButton={() => dispatch(setOpenLoginModal(false))}
+          onClickModalButton={() => {
+            dispatch(setOpenLoginModal(false));
+            document.body.style.overflow = "auto";
+          }}
           icon={icons.arrowleft}
         >
-          <div className="w-[500px]">
-            <p>Login</p>
-          </div>
+          <LoginForm />
         </Modal>
       )}
 
       {openSignupModal && (
         <Modal
           closeModal={() => dispatch(setOpenSignupModal(false))}
-          onClickModalButton={() => dispatch(setOpenSignupModal(false))}
+          onClickModalButton={() => {
+            dispatch(setOpenSignupModal(false));
+            document.body.style.overflow = "auto";
+          }}
           icon={icons.arrowleft}
         >
-          <div className="w-[500px]">
-            <p>Sign up</p>
-          </div>
+          <SignupForm />
         </Modal>
       )}
 

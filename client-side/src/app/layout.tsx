@@ -5,13 +5,10 @@ import {
   NextAuthProvider,
   NavigationBar,
 } from "@/components";
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -20,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Provider store={store}>
           <NextAuthProvider>
             <ReactQueryProvider>

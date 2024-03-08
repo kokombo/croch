@@ -8,17 +8,23 @@ type Props = {
 };
 
 const Modal = (props: Props) => {
+  const closeModal = () => {
+    props.closeModal();
+
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <div
-      onClick={props.closeModal}
-      className="fixed top-0 left-0 flex items-center md:justify-center w-full h-full bg-black md:px-0 px-5 z-[1000] bg-modalblack"
+      onClick={closeModal}
+      className="fixed top-0 left-0 flex items-start md:justify-center w-full h-full bg-black md:px-0 px-5 z-[9999] bg-modalblack"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white z-1 h-fit p-5 overflow-y-scroll rounded-[10px] w-[500px]"
+        className="bg-white z-1 h-fit rounded-[10px] w-[45%] mt-12 py-6 modal"
         style={{ scrollbarWidth: "none" }}
       >
-        <span className="mt-10">
+        <span className="px-10 flex items-center">
           <button type="button" onClick={props.onClickModalButton}>
             <Image
               src={props.icon}
@@ -29,7 +35,14 @@ const Modal = (props: Props) => {
           </button>
         </span>
 
-        <div className="mt-2 max-w-full">{props.children}</div>
+        <div className="border-b-[1px] border-grey w-full mt-6"></div>
+
+        <div
+          className="max-w-full overflow-y-scroll h-[70vh] p-10"
+          style={{ scrollbarWidth: "thin" }}
+        >
+          {props.children}
+        </div>
       </div>
     </div>
   );

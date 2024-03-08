@@ -20,6 +20,8 @@ const config: Config = {
         gray: "#F3F3F3",
         fadeWhite: "#FAFAFA",
         modalblack: "rgba(0, 0, 0, 0.5)",
+        inputborder: "#B8C5CA",
+        neutral: "#717171",
       },
     },
   },
