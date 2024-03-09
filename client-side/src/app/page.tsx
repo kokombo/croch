@@ -27,6 +27,7 @@ const Home = () => {
       setStep((prev) => prev - 1);
     } else {
       dispatch(setOpenSignupModal(false));
+      setStep(1);
       document.body.style.overflow = "auto";
     }
   };
@@ -49,7 +50,10 @@ const Home = () => {
 
       {openSignupModal && (
         <Modal
-          closeModal={() => dispatch(setOpenSignupModal(false))}
+          closeModal={() => {
+            dispatch(setOpenSignupModal(false));
+            setStep(1);
+          }}
           onClickModalButton={onClickModalButton}
           icon={step > 1 ? icons.arrowleft : icons.close}
           label={

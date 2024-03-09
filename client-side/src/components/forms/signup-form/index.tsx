@@ -31,7 +31,7 @@ const SignupForm = (props: Props) => {
     <div className="flex flex-col gap-10 ">
       <h2 className="text-3xl font-bold">
         {props.step === 1
-          ? "Welcome to Croch"
+          ? "Create an Account"
           : props.step === 2
             ? "Welcome to Croch"
             : props.step === 3
@@ -45,106 +45,121 @@ const SignupForm = (props: Props) => {
         initialValues={initialValues}
         onSubmit={createAccount}
         validationSchema={signupFormValidationSchema}
+        validateOnChange
+        validateOnBlur
       >
-        <Form>
-          {props.step === 1 ? (
-            <span>
-              <SelectAccountType
-                name="role"
-                label="Select account type"
-                data={[
-                  {
-                    img: icons.customer,
-                    value: "Customer",
-                    iconHeight: `${177}`,
-                    iconWidth: `${172}`,
-                  },
+        {(formik) => {
+          return (
+            <Form>
+              {props.step === 1 ? (
+                <span>
+                  <SelectAccountType
+                    name="role"
+                    label="Select account type"
+                    data={[
+                      {
+                        img: icons.customer,
+                        value: "Customer",
+                        iconHeight: `${177}`,
+                        iconWidth: `${172}`,
+                      },
 
-                  {
-                    img: icons.creative,
-                    value: "Creative",
-                    iconHeight: `${166}`,
-                    iconWidth: `${294}`,
-                  },
-                ]}
-              />
+                      {
+                        img: icons.creative,
+                        value: "Creative",
+                        iconHeight: `${166}`,
+                        iconWidth: `${294}`,
+                      },
+                    ]}
+                  />
 
-              <FlatGreenButton
-                label="Continue"
-                onClick={() => props.setStep(2)}
-                extraClasses="mt-10"
-                type="button"
-              />
-            </span>
-          ) : props.step === 2 ? (
-            <span className="flex flex-col gap-8">
-              <TextField
-                type="text"
-                name="email"
-                id="email"
-                placeholder="Enter your email address"
-              />
+                  <FlatGreenButton
+                    label="Continue"
+                    onClick={() => props.setStep(2)}
+                    extraClasses="mt-10"
+                    type="button"
+                    disabled={!formik.values.role}
+                  />
+                </span>
+              ) : props.step === 2 ? (
+                <span className="flex flex-col gap-8">
+                  <TextField
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter your email address"
+                  />
 
-              <FlatGreenButton
-                label="Continue"
-                onClick={() => props.setStep(3)}
-                type="button"
-              />
-            </span>
-          ) : props.step === 3 ? (
-            <span className="flex flex-col gap-8">
-              <TextField
-                name="firstName"
-                id="firstName"
-                type="text"
-                placeholder="Enter your first name"
-              />
+                  <FlatGreenButton
+                    label="Continue"
+                    onClick={() => props.setStep(3)}
+                    type="button"
+                    disabled={
+                      !formik.values.email || Boolean(formik.errors.email)
+                    }
+                  />
+                </span>
+              ) : props.step === 3 ? (
+                <span className="flex flex-col gap-8">
+                  <TextField
+                    name="firstName"
+                    id="firstName"
+                    type="text"
+                    placeholder="Enter your first name"
+                  />
 
-              <TextField
-                name="lastName"
-                id="lastName"
-                type="text"
-                placeholder="Enter your last name"
-              />
+                  <TextField
+                    name="lastName"
+                    id="lastName"
+                    type="text"
+                    placeholder="Enter your last name"
+                  />
 
-              <FlatGreenButton
-                label="Continue"
-                onClick={() => props.setStep(4)}
-                type="button"
-              />
-            </span>
-          ) : props.step === 4 ? (
-            <span className="flex flex-col gap-8">
-              <TextField
-                name="password"
-                id="password"
-                placeholder="Enter your password"
-                passwordField={true}
-                type={showPassword ? "text" : "password"}
-                togglePasswordVisibilityIcon={() =>
-                  setShowPassword((prev) => !prev)
-                }
-              />
+                  <FlatGreenButton
+                    label="Continue"
+                    onClick={() => props.setStep(4)}
+                    type="button"
+                    disabled={
+                      !formik.values.firstName ||
+                      Boolean(formik.errors.firstName) ||
+                      Boolean(formik.errors.lastName)
+                    }
+                  />
+                </span>
+              ) : props.step === 4 ? (
+                <span className="flex flex-col gap-8">
+                  <TextField
+                    name="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    passwordField={true}
+                    type={showPassword ? "text" : "password"}
+                    togglePasswordVisibilityIcon={() =>
+                      setShowPassword((prev) => !prev)
+                    }
+                  />
 
-              <TextField
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Re-enter password"
-                passwordField={true}
-                type={showPassword ? "text" : "password"}
-                togglePasswordVisibilityIcon={() =>
-                  setShowPassword((prev) => !prev)
-                }
-              />
+                  <TextField
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    placeholder="Re-enter password"
+                    passwordField={true}
+                    type={showPassword ? "text" : "password"}
+                    togglePasswordVisibilityIcon={() =>
+                      setShowPassword((prev) => !prev)
+                    }
+                  />
 
-              <FlatGreenButton label="Continue" type="submit" />
+                  <FlatGreenButton label="Continue" type="submit" />
 
-              {isPending && <p>{isPending}</p>}
+                  {isPending && <p>{isPending}</p>}
 
-              {isError && <p>{error?.message} </p>}
-            </span>
-          ) : null}
-        </Form>
+                  {isError && <p>{error?.message} </p>}
+                </span>
+              ) : null}
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

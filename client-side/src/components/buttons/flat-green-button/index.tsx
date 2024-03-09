@@ -3,6 +3,7 @@ type Props = {
   onClick?: any;
   extraClasses?: string;
   type: "submit" | "reset" | "button" | undefined;
+  disabled?: boolean;
 };
 
 const FlatGreenButton = (props: Props) => {
@@ -10,7 +11,8 @@ const FlatGreenButton = (props: Props) => {
     <button
       type={props.type}
       onClick={props.onClick}
-      className={`${props.extraClasses} w-full p-4 rounded-lg bg-green text-white`}
+      disabled={props.disabled}
+      className={`${props.extraClasses} w-full p-4 rounded-lg ${props.disabled ? "bg-grey" : "bg-green"} text-white`}
     >
       {props.label}
     </button>

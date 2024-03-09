@@ -47,7 +47,11 @@ const SelectAccountType = (props: Props) => {
         }}
       </Field>
 
-      <ErrorMessage name={props.name} component="p" className="" />
+      <ErrorMessage
+        name={props.name}
+        component="p"
+        className="text-red-700 absolute mt-1 text-sm"
+      />
     </div>
   );
 };
