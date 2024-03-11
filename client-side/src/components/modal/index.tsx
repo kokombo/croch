@@ -39,15 +39,15 @@ const Modal = (props: Props) => {
             />
           </button>
 
-          <p className=" text-xl font-bold">{props.label} </p>
+          <p className=" text-xl font-bold">{props.label}</p>
 
           <div className="w-8"></div>
         </div>
 
-        <div className="border-b-[1px] border-grey w-full mt-6"></div>
+        <div className="border-b-[1px] border-grey w-full mt-4"></div>
 
         <div
-          className="max-w-full overflow-y-scroll h-[70vh] p-10"
+          className="max-w-full overflow-y-scroll h-[70vh] py-5 px-10"
           style={{ scrollbarWidth: "thin" }}
         >
           {props.children}

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -14,7 +14,12 @@ export const useSignup = () => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation({
+  const { mutateAsync, data, isError, isPending, error } = useMutation<
+    any,
+    AxiosError<CusError>,
+    SignupDataType,
+    unknown
+  >({
     mutationKey: ["signup"],
     mutationFn: signupRequest,
   });

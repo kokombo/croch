@@ -48,7 +48,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 ">
+    <div className="flex flex-col gap-8 ">
       <h2 className="text-3xl font-bold">Welcome back</h2>
 
       <Formik

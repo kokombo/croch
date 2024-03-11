@@ -1,9 +1,13 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import { FlatGreenButton, SelectAccountType, TextField } from "@/components";
 import { icons } from "@/constants";
 import { SetStateAction, Dispatch, useState } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";
 import { useSignup } from "@/utilities/api-interactions/user";
+import { signIn } from "next-auth/react";
+import { setOpenSignupModal } from "@/redux/slices/modal";
+import { useDispatch } from "react-redux";
+import { DispatchType } from "@/redux/store";
 
 type Props = {
   step: number;
@@ -21,15 +25,31 @@ const initialValues = {
 const SignupForm = (props: Props) => {
   const [showPassword, setShowPassword] = useState(false);
 
+  const dispatch: DispatchType = useDispatch();
+
   const { mutateAsync, data, isError, isPending, error } = useSignup();
 
-  const createAccount = async (values: SignupDataType) => {
-    console.log(values);
-    // await mutateAsync({ ...values });
+  const createAccount = async (
+    values: SignupDataType,
+    onsubmitProps: FormikHelpers<SignupDataType>
+  ) => {
+    await mutateAsync({ ...values }).then(async () => {
+      await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        callbackUrl: "",
+        redirect: false,
+      }).then((res) => {
+        if (res?.ok) {
+          dispatch(setOpenSignupModal(false));
+          onsubmitProps.resetForm();
+        }
+      });
+    });
   };
 
   return (
-    <div className="flex flex-col gap-10 ">
+    <div className="flex flex-col gap-8 ">
       <h2 className="text-3xl font-bold">
         {props.step === 1
           ? "Create an Account"
@@ -53,8 +73,8 @@ const SignupForm = (props: Props) => {
         {(formik) => {
           return (
             <Form>
-              {props.step === 1 ? (
-                <div>
+              {props.step === 1 && (
+                <div className="flex flex-col gap-8">
                   <SelectAccountType
                     name="role"
                     label="Select account type"
@@ -78,19 +98,19 @@ const SignupForm = (props: Props) => {
                   <FlatGreenButton
                     label="Continue"
                     onClick={() => props.setStep(2)}
-                    extraClasses="mt-10"
                     type="button"
                     disabled={!formik.values.role}
                   />
                 </div>
-              ) : props.step === 2 ? (
+              )}
+
+              {props.step === 2 && (
                 <div className="flex flex-col gap-8">
                   <TextField
                     type="email"
                     name="email"
                     id="email"
                     placeholder="Enter your email address"
-                    renderError={props.step === 2}
                   />
 
                   <FlatGreenButton
@@ -102,14 +122,15 @@ const SignupForm = (props: Props) => {
                     }
                   />
                 </div>
-              ) : props.step === 3 ? (
+              )}
+
+              {props.step === 3 && (
                 <div className="flex flex-col gap-8">
                   <TextField
                     name="firstName"
                     id="firstName"
                     type="text"
                     placeholder="Enter your first name"
-                    renderError={props.step === 3}
                   />
 
                   <TextField
@@ -117,7 +138,6 @@ const SignupForm = (props: Props) => {
                     id="lastName"
                     type="text"
                     placeholder="Enter your last name"
-                    renderError={props.step === 3}
                   />
 
                   <FlatGreenButton
@@ -131,7 +151,9 @@ const SignupForm = (props: Props) => {
                     }
                   />
                 </div>
-              ) : props.step === 4 ? (
+              )}
+
+              {props.step === 4 && (
                 <div className="flex flex-col gap-8">
                   <TextField
                     name="password"
@@ -142,7 +164,6 @@ const SignupForm = (props: Props) => {
                     togglePasswordVisibilityIcon={() =>
                       setShowPassword((prev) => !prev)
                     }
-                    renderError={props.step === 4}
                   />
 
                   <TextField
@@ -154,16 +175,15 @@ const SignupForm = (props: Props) => {
                     togglePasswordVisibilityIcon={() =>
                       setShowPassword((prev) => !prev)
                     }
-                    renderError={props.step === 4}
                   />
 
-                  <FlatGreenButton label="Continue" type="submit" />
+                  <FlatGreenButton label="Create Account" type="submit" />
 
-                  {isPending && <p>{isPending}</p>}
+                  {isPending && <p>loading...</p>}
 
-                  {isError && <p>{error?.message} </p>}
+                  {isError && <p>{error?.response?.data.message} </p>}
                 </div>
-              ) : null}
+              )}
             </Form>
           );
         }}

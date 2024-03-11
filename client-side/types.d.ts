@@ -118,3 +118,7 @@ type AccountType = {
   iconWidth: any;
   iconHeight: any;
 };
+
+type CusError = {
+  message: string;
+};
