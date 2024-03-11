@@ -24,7 +24,8 @@ const SignupForm = (props: Props) => {
   const { mutateAsync, data, isError, isPending, error } = useSignup();
 
   const createAccount = async (values: SignupDataType) => {
-    await mutateAsync({ ...values });
+    console.log(values);
+    // await mutateAsync({ ...values });
   };
 
   return (
@@ -47,12 +48,13 @@ const SignupForm = (props: Props) => {
         validationSchema={signupFormValidationSchema}
         validateOnChange
         validateOnBlur
+        enableReinitialize
       >
         {(formik) => {
           return (
             <Form>
               {props.step === 1 ? (
-                <span>
+                <div>
                   <SelectAccountType
                     name="role"
                     label="Select account type"
@@ -80,14 +82,15 @@ const SignupForm = (props: Props) => {
                     type="button"
                     disabled={!formik.values.role}
                   />
-                </span>
+                </div>
               ) : props.step === 2 ? (
-                <span className="flex flex-col gap-8">
+                <div className="flex flex-col gap-8">
                   <TextField
                     type="email"
                     name="email"
                     id="email"
                     placeholder="Enter your email address"
+                    renderError={props.step === 2}
                   />
 
                   <FlatGreenButton
@@ -98,14 +101,15 @@ const SignupForm = (props: Props) => {
                       !formik.values.email || Boolean(formik.errors.email)
                     }
                   />
-                </span>
+                </div>
               ) : props.step === 3 ? (
-                <span className="flex flex-col gap-8">
+                <div className="flex flex-col gap-8">
                   <TextField
                     name="firstName"
                     id="firstName"
                     type="text"
                     placeholder="Enter your first name"
+                    renderError={props.step === 3}
                   />
 
                   <TextField
@@ -113,6 +117,7 @@ const SignupForm = (props: Props) => {
                     id="lastName"
                     type="text"
                     placeholder="Enter your last name"
+                    renderError={props.step === 3}
                   />
 
                   <FlatGreenButton
@@ -125,9 +130,9 @@ const SignupForm = (props: Props) => {
                       Boolean(formik.errors.lastName)
                     }
                   />
-                </span>
+                </div>
               ) : props.step === 4 ? (
-                <span className="flex flex-col gap-8">
+                <div className="flex flex-col gap-8">
                   <TextField
                     name="password"
                     id="password"
@@ -137,6 +142,7 @@ const SignupForm = (props: Props) => {
                     togglePasswordVisibilityIcon={() =>
                       setShowPassword((prev) => !prev)
                     }
+                    renderError={props.step === 4}
                   />
 
                   <TextField
@@ -148,6 +154,7 @@ const SignupForm = (props: Props) => {
                     togglePasswordVisibilityIcon={() =>
                       setShowPassword((prev) => !prev)
                     }
+                    renderError={props.step === 4}
                   />
 
                   <FlatGreenButton label="Continue" type="submit" />
@@ -155,7 +162,7 @@ const SignupForm = (props: Props) => {
                   {isPending && <p>{isPending}</p>}
 
                   {isError && <p>{error?.message} </p>}
-                </span>
+                </div>
               ) : null}
             </Form>
           );
