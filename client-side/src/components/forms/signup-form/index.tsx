@@ -3,7 +3,10 @@ import { FlatGreenButton, SelectAccountType, TextField } from "@/components";
 import { icons } from "@/constants";
 import { SetStateAction, Dispatch, useState } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";
-import { useSignup } from "@/utilities/api-interactions/user";
+import {
+  useSignup,
+  useUpdatePassword,
+} from "@/utilities/api-interactions/user";
 import { signIn } from "next-auth/react";
 import { setOpenSignupModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";

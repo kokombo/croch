@@ -16,9 +16,8 @@ export const useSignup = () => {
 
   const { mutateAsync, data, isError, isPending, error } = useMutation<
     any,
-    AxiosError<CusError>,
-    SignupDataType,
-    unknown
+    AxiosError<ErrorResponse>,
+    SignupDataType
   >({
     mutationKey: ["signup"],
     mutationFn: signupRequest,
@@ -49,9 +48,7 @@ export const useRefreshAccessToken = () => {
 };
 
 export const useSendEmailVerificationToken = (email: string) => {
-  const sendEmailVerificationTokenRequest = async (
-    email: string
-  ): Promise<{ message: string } | undefined> => {
+  const sendEmailVerificationTokenRequest = async (email: string) => {
     const res = await axios.post(
       `${api_base_url}/auth/sendEmailVerificationToken`,
 
@@ -61,7 +58,11 @@ export const useSendEmailVerificationToken = (email: string) => {
     return res.data;
   };
 
-  const { mutateAsync, isPending, isError, error, data } = useMutation({
+  const { mutateAsync, isPending, isError, error, data } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["sendEmailVerificationToken"],
     mutationFn: sendEmailVerificationTokenRequest,
   });
@@ -74,9 +75,7 @@ export const useSendEmailVerificationToken = (email: string) => {
 };
 
 export const useVerifyEmail = (token: string) => {
-  const verifyEmailRequest = async (): Promise<
-    { message: string } | undefined
-  > => {
+  const verifyEmailRequest = async () => {
     const res = await axios.post(
       `${api_base_url}/auth/verifyEmail?token=${token}`
     );
@@ -84,7 +83,11 @@ export const useVerifyEmail = (token: string) => {
     return res.data;
   };
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isPending, isError, error } = useQuery<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     queryKey: ["verifyEmail"],
     queryFn: verifyEmailRequest,
   });
@@ -95,9 +98,7 @@ export const useVerifyEmail = (token: string) => {
 export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
   const { accessToken } = useCurrentUser();
 
-  const updatePasswordRequest = async (
-    passwordInfo: UpdatePassword
-  ): Promise<{ message: string } | undefined> => {
+  const updatePasswordRequest = async (passwordInfo: UpdatePassword) => {
     const res = await axios.patch(
       `${api_base_url}/auth/updatePassword`,
 
@@ -113,7 +114,11 @@ export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation({
+  const { mutateAsync, data, isError, isPending, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    UpdatePassword
+  >({
     mutationKey: ["updatePassword"],
     mutationFn: updatePasswordRequest,
   });
@@ -126,9 +131,7 @@ export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
 };
 
 export const useSendForgotPasswordToken = (email: string) => {
-  const sendForgotPasswordTokenRequest = async (
-    email: string
-  ): Promise<{ message: string } | undefined> => {
+  const sendForgotPasswordTokenRequest = async (email: string) => {
     const res = await axios.post(
       `${api_base_url}/auth/sendForgotPasswordToken`,
 
@@ -138,7 +141,11 @@ export const useSendForgotPasswordToken = (email: string) => {
     return res.data;
   };
 
-  const { mutateAsync, isPending, isError, error, data } = useMutation({
+  const { mutateAsync, isPending, isError, error, data } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["sendForgotPasswordToken"],
     mutationFn: sendForgotPasswordTokenRequest,
   });
@@ -151,9 +158,7 @@ export const useSendForgotPasswordToken = (email: string) => {
 };
 
 export const useResetPassword = (token: string) => {
-  const resetPasswordRequest = async (
-    token: string
-  ): Promise<{ message: string } | undefined> => {
+  const resetPasswordRequest = async (token: string) => {
     const res = await axios.patch(
       `${api_base_url}/auth/resetPassword?token=${token}`
     );
@@ -161,7 +166,11 @@ export const useResetPassword = (token: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, isError, error } = useMutation({
+  const { mutateAsync, data, isPending, isError, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["resetPassword"],
     mutationFn: resetPasswordRequest,
   });
@@ -186,7 +195,10 @@ export const useDeleteMyAccount = () => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation({
+  const { mutateAsync, data, isPending, error, isError } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>
+  >({
     mutationKey: ["deleteMyAccount"],
     mutationFn: deleteMyAccountRequest,
   });

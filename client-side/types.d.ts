@@ -119,6 +119,10 @@ type AccountType = {
   iconHeight: any;
 };
 
-type CusError = {
+type ErrorResponse = {
+  message: string;
+};
+
+type MessageResponse = {
   message: string;
 };
