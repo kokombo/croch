@@ -1,5 +1,10 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import { FlatGreenButton, SelectAccountType, TextField } from "@/components";
+import {
+  CustomError,
+  FlatGreenButton,
+  SelectAccountType,
+  TextField,
+} from "@/components";
 import { icons } from "@/constants";
 import { SetStateAction, Dispatch, useState } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";
@@ -180,11 +185,18 @@ const SignupForm = (props: Props) => {
                     }
                   />
 
-                  <FlatGreenButton label="Create Account" type="submit" />
+                  <FlatGreenButton
+                    label="Create Account"
+                    type="submit"
+                    disabled={isPending}
+                  />
 
-                  {isPending && <p>loading...</p>}
-
-                  {isError && <p>{error?.response?.data.message} </p>}
+                  {isError && (
+                    <CustomError
+                      message={error?.response?.data.message}
+                      extraClasses="self-center"
+                    />
+                  )}
                 </div>
               )}
             </Form>

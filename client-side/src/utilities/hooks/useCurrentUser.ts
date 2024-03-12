@@ -31,5 +31,6 @@ export const useCurrentUser = () => {
     firstName,
     role,
     sessionExpireTime,
+    session,
   };
 };

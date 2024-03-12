@@ -1,27 +1,38 @@
 "use client";
+
 import {
-  ProductsList,
-  TagsList,
-  FilterButton,
+  Logo,
+  FlatBlackLink,
   Modal,
   LoginForm,
   SignupForm,
-  NavigationBar,
 } from "@/components";
-import { icons } from "@/constants";
+import { useCurrentUser } from "@/utilities";
+import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
-import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
+import { icons } from "@/constants";
 
-const Home = () => {
+const CreativeLanding = () => {
   const [step, setStep] = useState(1);
+  const { session } = useCurrentUser();
+
+  const dispatch: DispatchType = useDispatch();
 
   const { openLoginModal, openSignupModal } = useSelector(
     (state: StateType) => state.modal
   );
 
-  const dispatch: DispatchType = useDispatch();
+  const initiateAccountSetup = (
+    e: MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (!session) {
+      e.preventDefault();
+      dispatch(setOpenLoginModal(true));
+    } else {
+    }
+  };
 
   const onClickSignupModalButton = () => {
     if (step > 1) {
@@ -32,10 +43,18 @@ const Home = () => {
       document.body.style.overflow = "auto";
     }
   };
-
   return (
-    <div className="flex flex-col">
-      <NavigationBar />
+    <div>
+      <nav className="flex items-center justify-between py-[18px] px-[4.6%]">
+        <Logo />
+
+        <FlatBlackLink
+          label="Set up your account"
+          href=""
+          extraClasses="bg-black text-white px-10 py-4"
+          onClick={initiateAccountSetup}
+        />
+      </nav>
 
       {openLoginModal && (
         <Modal
@@ -74,18 +93,8 @@ const Home = () => {
           <SignupForm step={step} setStep={setStep} />
         </Modal>
       )}
-
-      <div className="px-[4.6%] flex items-center gap-4 border-b-[1px] border-grey w-full">
-        <TagsList />
-
-        <FilterButton />
-      </div>
-
-      <div className="px-[4.6%] py-10">
-        <ProductsList />
-      </div>
     </div>
   );
 };
 
-export default Home;
+export default CreativeLanding;

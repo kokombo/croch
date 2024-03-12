@@ -36,7 +36,7 @@ const NavigationBar = () => {
       <SearchBox onChange={() => {}} />
 
       <span className="flex items-center gap-6">
-        <Link href={"/"} className="text-base font-bold">
+        <Link href={"/creative/home"} className="text-base font-bold">
           Sell Your Creative
         </Link>
 

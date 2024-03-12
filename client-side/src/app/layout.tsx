@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ReactQueryProvider,
-  NextAuthProvider,
-  NavigationBar,
-} from "@/components";
+import { ReactQueryProvider, NextAuthProvider } from "@/components";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "react-redux";
@@ -20,11 +16,7 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <NextAuthProvider>
-            <ReactQueryProvider>
-              <NavigationBar />
-
-              {children}
-            </ReactQueryProvider>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
           </NextAuthProvider>
         </Provider>
       </body>

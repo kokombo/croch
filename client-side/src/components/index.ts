@@ -22,6 +22,8 @@ import LoginForm from "./forms/login-form";
 import SignupForm from "./forms/signup-form";
 import FlatGreenButton from "./buttons/flat-green-button";
 import SelectAccountType from "./select-account-type";
+import CustomError from "./custom-error";
+import FlatBlackLink from "./styled-links/flat-black-link";
 
 export {
   ReactQueryProvider,
@@ -48,4 +50,6 @@ export {
   SignupForm,
   FlatGreenButton,
   SelectAccountType,
+  CustomError,
+  FlatBlackLink,
 };
