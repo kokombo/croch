@@ -126,3 +126,12 @@ type ErrorResponse = {
 type MessageResponse = {
   message: string;
 };
+
+type WishlistItem = {
+  _id: string;
+  owner: string;
+  photos: strig[];
+  title: string;
+  availability: string;
+  price: number;
+};

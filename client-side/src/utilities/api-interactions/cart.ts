@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -6,9 +6,7 @@ import { useCurrentUser } from "..";
 export const useAddToCart = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const addToCartRequest = async (
-    productId: string
-  ): Promise<{ message: string } | undefined> => {
+  const addToCartRequest = async (productId: string) => {
     const res = await axios.put(
       `${api_base_url}/customer/addToCart`,
 
@@ -26,7 +24,11 @@ export const useAddToCart = (productId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation({
+  const { mutateAsync, data, isError, isPending, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["addToCart", productId],
     mutationFn: addToCartRequest,
   });
@@ -41,9 +43,7 @@ export const useAddToCart = (productId: string) => {
 export const useRemoveFromCart = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const removeFromCartRequest = async (
-    productId: string
-  ): Promise<{ message: string } | undefined> => {
+  const removeFromCartRequest = async (productId: string) => {
     const res = await axios.put(
       `${api_base_url}/customer/removeFromCart`,
 
@@ -61,7 +61,11 @@ export const useRemoveFromCart = (productId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation({
+  const { mutateAsync, data, isError, isPending, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["removeFromCart", productId],
     mutationFn: removeFromCartRequest,
   });
@@ -108,7 +112,11 @@ export const useUpdateCartItemCount = (
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation({
+  const { mutateAsync, data, isError, isPending, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    { productId: string; count: number; creativeId: string }
+  >({
     mutationKey: ["updateCartItemCount", productId],
     mutationFn: updateCartItemCountRequest,
   });
@@ -123,9 +131,7 @@ export const useUpdateCartItemCount = (
 export const useAddAndRemoveWishlist = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const addAndRemoveWishlistRequest = async (
-    productId: string
-  ): Promise<{ message: string } | undefined> => {
+  const addAndRemoveWishlistRequest = async (productId: string) => {
     const res = await axios.put(
       `${api_base_url}/customer/addAndRemoveWishlist`,
 
@@ -143,7 +149,11 @@ export const useAddAndRemoveWishlist = (productId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation({
+  const { mutateAsync, data, isError, isPending, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["addAndRemoveWishlist"],
     mutationFn: addAndRemoveWishlistRequest,
   });
@@ -158,9 +168,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
 export const useDeleteCart = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const deleteCartRequest = async (
-    creativeId: string
-  ): Promise<{ message: string } | undefined> => {
+  const deleteCartRequest = async (creativeId: string) => {
     const res = await axios.delete(
       `${api_base_url}/customer/deleteCart?cart=${creativeId}`,
 
@@ -174,7 +182,11 @@ export const useDeleteCart = (creativeId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, isError, error } = useMutation({
+  const { mutateAsync, data, isPending, isError, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["deleteCart", creativeId],
     mutationFn: deleteCartRequest,
   });

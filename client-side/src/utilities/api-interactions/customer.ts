@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -6,7 +6,7 @@ import { useCurrentUser } from "..";
 export const useGetCartItems = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const getCartItemsRequest = async (): Promise<Cart | undefined> => {
+  const getCartItemsRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/customer/getCartItems?creativeId=${creativeId}`,
 
@@ -20,7 +20,10 @@ export const useGetCartItems = (creativeId: string) => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery<
+    Cart,
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getCartItems"],
     queryFn: getCartItemsRequest,
     enabled: !!accessToken,
@@ -32,7 +35,7 @@ export const useGetCartItems = (creativeId: string) => {
 export const useGetCarts = () => {
   const { accessToken } = useCurrentUser();
 
-  const getCartsRequest = async (): Promise<Carts | undefined> => {
+  const getCartsRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/customer/getCarts`,
 
@@ -46,7 +49,10 @@ export const useGetCarts = () => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery<
+    Carts,
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getCarts"],
     queryFn: getCartsRequest,
     enabled: !!accessToken,
@@ -72,7 +78,10 @@ export const useGetWishlists = () => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery<
+    Partial<Product>[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getWishlists"],
     queryFn: getWishlistsRequest,
     enabled: !!accessToken,
@@ -82,9 +91,7 @@ export const useGetWishlists = () => {
 };
 
 export const useGetCreativeAllProducts = (creativeId: string) => {
-  const getCreativeAllProductsRequest = async (): Promise<
-    Product[] | undefined
-  > => {
+  const getCreativeAllProductsRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/customer/getCreativeAllProducts?creativeId=${creativeId}`
     );
@@ -92,7 +99,10 @@ export const useGetCreativeAllProducts = (creativeId: string) => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery<
+    Product[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getCreativeAllProducts"],
     queryFn: getCreativeAllProductsRequest,
   });

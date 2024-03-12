@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -6,7 +6,7 @@ import { useCurrentUser } from "..";
 export const useGetCreativeOrders = (status: string) => {
   const { accessToken } = useCurrentUser();
 
-  const getCreativeOrdersRequest = async (): Promise<Order[] | undefined> => {
+  const getCreativeOrdersRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/creative/getOrders?status=${status}`,
       {
@@ -19,7 +19,10 @@ export const useGetCreativeOrders = (status: string) => {
     return res.data;
   };
 
-  const { data, isError, isLoading, error } = useQuery({
+  const { data, isError, isLoading, error } = useQuery<
+    Order[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getCreativeOrders"],
     queryFn: getCreativeOrdersRequest,
     enabled: !!accessToken,
@@ -31,7 +34,7 @@ export const useGetCreativeOrders = (status: string) => {
 export const useGetCustomerOrders = (status: string) => {
   const { accessToken } = useCurrentUser();
 
-  const getCustomerOrdersRequest = async (): Promise<Order[] | undefined> => {
+  const getCustomerOrdersRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/customer/getOrders?status=${status}`,
       {
@@ -44,7 +47,10 @@ export const useGetCustomerOrders = (status: string) => {
     return res.data;
   };
 
-  const { data, isError, isLoading, error } = useQuery({
+  const { data, isError, isLoading, error } = useQuery<
+    Order[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getCustomerOrders"],
     queryFn: getCustomerOrdersRequest,
     enabled: !!accessToken,
@@ -56,9 +62,7 @@ export const useGetCustomerOrders = (status: string) => {
 export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
   const { accessToken } = useCurrentUser();
 
-  const updateYearsOfExperienceRequest = async (
-    years: number
-  ): Promise<number | undefined> => {
+  const updateYearsOfExperienceRequest = async () => {
     const res = await axios.patch(
       `${api_base_url}/creative/updateYearsOfExperience`,
 
@@ -75,7 +79,11 @@ export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
     return res.data;
   };
 
-  const { data, isPending, isError, error, mutateAsync } = useMutation({
+  const { data, isPending, isError, error, mutateAsync } = useMutation<
+    number,
+    AxiosError<ErrorResponse>,
+    number
+  >({
     mutationKey: ["updateYearsOfExperience"],
     mutationFn: updateYearsOfExperienceRequest,
   });
@@ -90,9 +98,7 @@ export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
 export const useUpdateFunFacts = (funFacts: string[]) => {
   const { accessToken } = useCurrentUser();
 
-  const updateFunFactsRequest = async (
-    funFacts: string[]
-  ): Promise<string[] | undefined> => {
+  const updateFunFactsRequest = async (funFacts: string[]) => {
     const res = await axios.patch(
       `${api_base_url}/creative/updateFunFacts`,
 
@@ -109,7 +115,11 @@ export const useUpdateFunFacts = (funFacts: string[]) => {
     return res.data;
   };
 
-  const { data, isPending, isError, error, mutateAsync } = useMutation({
+  const { data, isPending, isError, error, mutateAsync } = useMutation<
+    string[],
+    AxiosError<ErrorResponse>,
+    string[]
+  >({
     mutationKey: ["updateFunFacts"],
     mutationFn: updateFunFactsRequest,
   });
@@ -126,7 +136,7 @@ export const useUpdatePersonalDescription = (personalDescription: string) => {
 
   const updatePersonalDescriptionRequest = async (
     personalDescription: string
-  ): Promise<string | undefined> => {
+  ) => {
     const res = await axios.patch(
       `${api_base_url}/creative/updatePersonalDescription`,
 
@@ -143,7 +153,11 @@ export const useUpdatePersonalDescription = (personalDescription: string) => {
     return res.data;
   };
 
-  const { data, isPending, isError, error, mutateAsync } = useMutation({
+  const { data, isPending, isError, error, mutateAsync } = useMutation<
+    string,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["updatePersonalDescription"],
     mutationFn: updatePersonalDescriptionRequest,
   });
@@ -158,9 +172,7 @@ export const useUpdatePersonalDescription = (personalDescription: string) => {
 export const useSetBrandName = (brandName: string) => {
   const { accessToken } = useCurrentUser();
 
-  const setBrandNameRequest = async (
-    brandName: string
-  ): Promise<string | undefined> => {
+  const setBrandNameRequest = async (brandName: string) => {
     const res = await axios.patch(
       `${api_base_url}/creative/setBrandName`,
 
@@ -177,7 +189,11 @@ export const useSetBrandName = (brandName: string) => {
     return res.data;
   };
 
-  const { data, isError, isPending, error, mutateAsync } = useMutation({
+  const { data, isError, isPending, error, mutateAsync } = useMutation<
+    string,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["setBrandName"],
     mutationFn: setBrandNameRequest,
   });
@@ -192,9 +208,7 @@ export const useSetBrandName = (brandName: string) => {
 export const useSetBrandLogo = (brandLogo: FormData) => {
   const { accessToken } = useCurrentUser();
 
-  const setBrandLogoRequest = async (
-    brandLogo: FormData
-  ): Promise<string | undefined> => {
+  const setBrandLogoRequest = async (brandLogo: FormData) => {
     const res = await axios.patch(
       `${api_base_url}/creative/setBrandLogo`,
 
@@ -211,7 +225,11 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
     return res.data;
   };
 
-  const { data, isError, isPending, error, mutateAsync } = useMutation({
+  const { data, isError, isPending, error, mutateAsync } = useMutation<
+    string,
+    AxiosError<ErrorResponse>,
+    FormData
+  >({
     mutationKey: ["setBrandLogo"],
     mutationFn: setBrandLogoRequest,
   });
@@ -224,7 +242,7 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
 };
 
 export const useGetCreativeById = (creativeId: string) => {
-  const getCreativeByIdRequest = async (): Promise<Creative | undefined> => {
+  const getCreativeByIdRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
     );
@@ -232,7 +250,10 @@ export const useGetCreativeById = (creativeId: string) => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery<
+    Creative,
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getCreativeById"],
     queryFn: getCreativeByIdRequest,
   });
