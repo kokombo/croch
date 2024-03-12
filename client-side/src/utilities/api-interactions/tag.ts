@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -6,9 +6,7 @@ import { useCurrentUser } from "..";
 export const useAddNewTag = (tagData: FormData) => {
   const { accessToken } = useCurrentUser();
 
-  const addNewTagRequest = async (
-    tagData: FormData
-  ): Promise<Tag | undefined> => {
+  const addNewTagRequest = async (tagData: FormData) => {
     const res = await axios.post(
       `${api_base_url}/tag/addNewTag`,
 
@@ -26,7 +24,11 @@ export const useAddNewTag = (tagData: FormData) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, error, isPending } = useMutation({
+  const { mutateAsync, data, isError, error, isPending } = useMutation<
+    Tag,
+    AxiosError<ErrorResponse>,
+    FormData
+  >({
     mutationKey: ["addNewTag"],
     mutationFn: addNewTagRequest,
   });
@@ -41,9 +43,7 @@ export const useAddNewTag = (tagData: FormData) => {
 export const useUpdateTag = (tagId: string, tagData: FormData) => {
   const { accessToken } = useCurrentUser();
 
-  const updateTagRequest = async (
-    tagData: FormData
-  ): Promise<Tag | undefined> => {
+  const updateTagRequest = async (tagData: FormData) => {
     const res = await axios.put(
       `${api_base_url}/tag/updateTag?tagId=${tagId}`,
 
@@ -61,7 +61,11 @@ export const useUpdateTag = (tagId: string, tagData: FormData) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, error, isPending } = useMutation({
+  const { mutateAsync, data, isError, error, isPending } = useMutation<
+    Tag,
+    AxiosError<ErrorResponse>,
+    FormData
+  >({
     mutationKey: ["updateTag", tagId],
     mutationFn: updateTagRequest,
   });
@@ -74,13 +78,16 @@ export const useUpdateTag = (tagId: string, tagData: FormData) => {
 };
 
 export const useGetAllTags = () => {
-  const getAllTagsRequest = async (): Promise<Tag[] | undefined> => {
+  const getAllTagsRequest = async () => {
     const res = await axios.get(`${api_base_url}/tag/getAllTags`);
 
     return res.data;
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery<
+    Tag[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getAllTags"],
     queryFn: getAllTagsRequest,
   });

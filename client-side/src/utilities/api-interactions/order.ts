@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -6,9 +6,7 @@ import { useCurrentUser } from "..";
 export const usePlaceAnOrder = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const placeAnOrderRequest = async (
-    creativeId: string
-  ): Promise<{ message: string; order: Order } | undefined> => {
+  const placeAnOrderRequest = async (creativeId: string) => {
     const res = await axios.post(
       `${api_base_url}/customer/placeAnOrder`,
 
@@ -26,7 +24,11 @@ export const usePlaceAnOrder = (creativeId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation({
+  const { mutateAsync, data, isPending, error, isError } = useMutation<
+    { message: string; order: Order },
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["placeAnOrder"],
     mutationFn: placeAnOrderRequest,
   });
@@ -41,9 +43,7 @@ export const usePlaceAnOrder = (creativeId: string) => {
 export const useCancelAnOrder = (orderId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const cancelAnOrderRequest = async (
-    orderId: string
-  ): Promise<{ message: string } | undefined> => {
+  const cancelAnOrderRequest = async (orderId: string) => {
     const res = await axios.patch(
       `${api_base_url}/customer/cancelAnOrder`,
 
@@ -61,7 +61,11 @@ export const useCancelAnOrder = (orderId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation({
+  const { mutateAsync, data, isPending, error, isError } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["cancelAnOrder"],
     mutationFn: cancelAnOrderRequest,
   });
@@ -76,9 +80,7 @@ export const useCancelAnOrder = (orderId: string) => {
 export const useConfirmAnOrder = (orderId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const confirmAnOrderRequest = async (
-    orderId: string
-  ): Promise<{ message: string } | undefined> => {
+  const confirmAnOrderRequest = async (orderId: string) => {
     const res = await axios.patch(
       `${api_base_url}/customer/confirmAnOrder`,
 
@@ -96,7 +98,11 @@ export const useConfirmAnOrder = (orderId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation({
+  const { mutateAsync, data, isPending, error, isError } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["confirmAnOrder"],
     mutationFn: confirmAnOrderRequest,
   });
@@ -109,7 +115,7 @@ export const useConfirmAnOrder = (orderId: string) => {
 };
 
 export const useGetOrder = (orderId: string) => {
-  const getOrderRequest = async (): Promise<Order | undefined> => {
+  const getOrderRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/order/getOrder?orderId=${orderId}`
     );
@@ -117,7 +123,10 @@ export const useGetOrder = (orderId: string) => {
     return res.data;
   };
 
-  const { data, error, isError, isLoading } = useQuery({
+  const { data, error, isError, isLoading } = useQuery<
+    Order,
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getOrder"],
     queryFn: getOrderRequest,
   });

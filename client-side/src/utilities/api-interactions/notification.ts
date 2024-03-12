@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -8,7 +8,7 @@ export const useCreateNotification = (notificationData: NotificationData) => {
 
   const createNotificationRequest = async (
     notificationData: NotificationData
-  ): Promise<{ message: string } | undefined> => {
+  ) => {
     const res = await axios.post(
       `${api_base_url}/notification/createNotification`,
 
@@ -24,7 +24,11 @@ export const useCreateNotification = (notificationData: NotificationData) => {
     return res.data;
   };
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    NotificationData
+  >({
     mutationKey: ["createNotification"],
     mutationFn: createNotificationRequest,
   });
@@ -39,9 +43,7 @@ export const useCreateNotification = (notificationData: NotificationData) => {
 export const useGetNotifications = () => {
   const { accessToken } = useCurrentUser();
 
-  const getNotificationsRequest = async (): Promise<
-    NotificationRes[] | undefined
-  > => {
+  const getNotificationsRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/notification/getNotifications`,
 
@@ -55,7 +57,10 @@ export const useGetNotifications = () => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery<
+    NotificationRes[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getNotifications"],
     queryFn: getNotificationsRequest,
     enabled: !!accessToken,
@@ -67,9 +72,7 @@ export const useGetNotifications = () => {
 export const useDeleteNotification = (notificationId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const deleteNotificationRequest = async (
-    notificationId: string
-  ): Promise<{ message: string } | undefined> => {
+  const deleteNotificationRequest = async (notificationId: string) => {
     const res = await axios.delete(
       `${api_base_url}/notification/deleteNotification?notificationId=${notificationId}`,
 
@@ -83,7 +86,11 @@ export const useDeleteNotification = (notificationId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, isError, error } = useMutation({
+  const { mutateAsync, data, isPending, isError, error } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>,
+    string
+  >({
     mutationKey: ["deleteNotification"],
     mutationFn: deleteNotificationRequest,
   });

@@ -3,10 +3,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
-type OnSuccess =
-  | ((data: any, variables: SignupDataType, context: unknown) => unknown)
-  | undefined;
-
 export const useSignup = () => {
   const signupRequest = async (signupData: SignupDataType) => {
     const res = await axios.post(`${api_base_url}/auth/signup`, signupData);

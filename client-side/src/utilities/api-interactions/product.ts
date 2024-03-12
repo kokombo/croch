@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
@@ -12,9 +12,7 @@ import { useCurrentUser } from "..";
 export const useCreateProduct = (productData: FormData) => {
   const { accessToken } = useCurrentUser();
 
-  const createProductRequest = async (
-    productData: FormData
-  ): Promise<Product | undefined> => {
+  const createProductRequest = async (productData: FormData) => {
     const res = await axios.post(
       `${api_base_url}/creative/createProduct`,
 
@@ -33,7 +31,7 @@ export const useCreateProduct = (productData: FormData) => {
   };
 
   const { mutateAsync, isPending, isError, isSuccess, data, error } =
-    useMutation({
+    useMutation<Product, AxiosError<ErrorResponse>, FormData>({
       mutationKey: ["createProduct"],
       mutationFn: createProductRequest,
     });
@@ -48,9 +46,7 @@ export const useCreateProduct = (productData: FormData) => {
 export const useUpdateProduct = (productData: FormData, productId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const updateProductRequest = async (
-    productData: FormData
-  ): Promise<Product | undefined> => {
+  const updateProductRequest = async (productData: FormData) => {
     const res = await axios.put(
       `${api_base_url}/creative/updateProduct?productId=${productId}`,
 
@@ -69,7 +65,7 @@ export const useUpdateProduct = (productData: FormData, productId: string) => {
   };
 
   const { mutateAsync, isPending, isError, isSuccess, data, error } =
-    useMutation({
+    useMutation<Product, AxiosError<ErrorResponse>, FormData>({
       mutationKey: ["updateProduct"],
       mutationFn: updateProductRequest,
     });
@@ -84,9 +80,7 @@ export const useUpdateProduct = (productData: FormData, productId: string) => {
 export const useDeleteProduct = (productId: string) => {
   const { accessToken } = useCurrentUser();
 
-  const deleteProductRequest = async (
-    productId: string
-  ): Promise<{ message: string }> => {
+  const deleteProductRequest = async (productId: string) => {
     const res = await axios.delete(
       `${api_base_url}/creative/deleteProduct?productId=${productId}`,
 
@@ -101,7 +95,7 @@ export const useDeleteProduct = (productId: string) => {
   };
 
   const { mutateAsync, isPending, isError, isSuccess, data, error } =
-    useMutation({
+    useMutation<MessageResponse, AxiosError<ErrorResponse>, string>({
       mutationKey: ["deleteProduct"],
       mutationFn: deleteProductRequest,
     });
@@ -114,13 +108,16 @@ export const useDeleteProduct = (productId: string) => {
 };
 
 export const useGetAllProducts = () => {
-  const getAllProductsRequest = async (): Promise<Product[] | undefined> => {
+  const getAllProductsRequest = async () => {
     const res = await axios.get(`${api_base_url}/product/getAllProducts`);
 
     return res.data;
   };
 
-  const { data, isLoading, isError, error, isSuccess } = useQuery({
+  const { data, isLoading, isError, error, isSuccess } = useQuery<
+    Product[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getAllProducts"],
     queryFn: getAllProductsRequest,
   });
@@ -129,7 +126,7 @@ export const useGetAllProducts = () => {
 };
 
 export const useGetProductById = (productId: string) => {
-  const getProductByIdRequest = async (): Promise<Product | undefined> => {
+  const getProductByIdRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/product/getProduct?productId=${productId}`
     );
@@ -137,7 +134,10 @@ export const useGetProductById = (productId: string) => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery<
+    Product,
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getProductById", productId],
     queryFn: getProductByIdRequest,
   });
@@ -148,7 +148,7 @@ export const useGetProductById = (productId: string) => {
 export const useGetMyProducts = () => {
   const { accessToken } = useCurrentUser();
 
-  const getMyProductsRequest = async (): Promise<Product[] | undefined> => {
+  const getMyProductsRequest = async () => {
     const res = await axios.get(`${api_base_url}/creative/getProducts`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -158,7 +158,10 @@ export const useGetMyProducts = () => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery<
+    Product[],
+    AxiosError<ErrorResponse>
+  >({
     queryKey: ["getMyProducts"],
     queryFn: getMyProductsRequest,
     enabled: !!accessToken,
