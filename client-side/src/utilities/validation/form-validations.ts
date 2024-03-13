@@ -47,3 +47,15 @@ export const validationSchemas = [
       .required("Confirm your password"),
   }),
 ];
+
+export const creativeAccountSetupValidationSchema = Yup.object({
+  brandName: Yup.string().required("Brand name is required."),
+  personalDescription: Yup.string().required(
+    "Tell us about you and your brand."
+  ),
+  yearsOfExperience: Yup.number().required(
+    "Help us understand how long you've been doing this."
+  ),
+  funFacts: Yup.array().of(Yup.string().required("Fun fact(s) is required")),
+  logo: Yup.mixed().required("Brand logo is required."),
+});

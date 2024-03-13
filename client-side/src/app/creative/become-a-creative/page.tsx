@@ -10,19 +10,49 @@ import {
   TextField,
   UploadLogo,
 } from "@/components";
-import { Formik, Form } from "formik";
+import { useSetupCreativeAccount } from "@/utilities/api-interactions/creative";
+import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { creativeAccountSetupValidationSchema } from "@/utilities/validation/form-validations";
 
-const initialFormValues = {
+const initialFormValues: CreativeAccountSetupData = {
   brandName: "",
-  brandLogo: undefined,
+  logo: "",
   personalDescription: "",
   funFacts: [],
-  yearsOfExperience: undefined,
+  yearsOfExperience: "",
 };
 
 const CreativeAccountSetup = () => {
   const [step, setStep] = useState(1);
+
+  const router = useRouter();
+
+  const { mutateAsync, isError, isPending, isSuccess, error } =
+    useSetupCreativeAccount();
+
+  const finishAccountSetup = async (
+    values: CreativeAccountSetupData,
+    onsubmitProps: FormikHelpers<CreativeAccountSetupData>
+  ) => {
+    const formData = new FormData();
+
+    formData.append("logo", values.logo);
+    formData.append("brandName", values.brandName);
+    values.funFacts.forEach((funFact) => {
+      formData.append("funFacts", funFact);
+    });
+    formData.append("personalDescription", values.personalDescription);
+    formData.append("yearsOfExperience", values.yearsOfExperience);
+
+    await mutateAsync(formData, {
+      onSuccess: () => {
+        onsubmitProps.resetForm();
+        router.push("/dashboard");
+      },
+    });
+  };
 
   return (
     <div>
@@ -75,12 +105,18 @@ const CreativeAccountSetup = () => {
           )}
         </div>
 
-        <Formik initialValues={initialFormValues} onSubmit={() => {}}>
+        <Formik
+          initialValues={initialFormValues}
+          onSubmit={finishAccountSetup}
+          validationSchema={creativeAccountSetupValidationSchema}
+          validateOnBlur
+          validateOnChange
+        >
           {(formik) => {
             return (
               <Form>
                 {step === 1 && (
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-8">
                     <TextField
                       type="text"
                       id="brandName"
@@ -101,6 +137,12 @@ const CreativeAccountSetup = () => {
                         type="button"
                         onClick={() => setStep(2)}
                         extraClasses="bg-black text-white "
+                        disabled={
+                          !formik.values.brandName ||
+                          !formik.values.personalDescription ||
+                          Boolean(formik.errors.brandName) ||
+                          Boolean(formik.errors.personalDescription)
+                        }
                       />
                     </span>
                   </div>
@@ -159,7 +201,7 @@ const CreativeAccountSetup = () => {
                 )}
 
                 {step === 3 && (
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-6 items-start">
                     <UploadLogo />
 
                     <TextArea
@@ -180,7 +222,6 @@ const CreativeAccountSetup = () => {
                       <CustomButton
                         label="Finish"
                         type="submit"
-                        onClick={() => {}}
                         extraClasses="bg-black text-white"
                       />
                     </span>

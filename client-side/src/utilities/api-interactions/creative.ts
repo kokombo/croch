@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
-export const useSetupAccount = (creativeAccountData: FormData) => {
+export const useSetupCreativeAccount = () => {
   const { accessToken } = useCurrentUser();
 
   const setupCreativeAccountRequest = async (creativeAccountData: FormData) => {
@@ -30,11 +30,7 @@ export const useSetupAccount = (creativeAccountData: FormData) => {
       mutationFn: setupCreativeAccountRequest,
     });
 
-  const setupCreativeAccount = async () => {
-    await mutateAsync(creativeAccountData);
-  };
-
-  return { isPending, isError, isSuccess, data, setupCreativeAccount, error };
+  return { isPending, isError, isSuccess, data, mutateAsync, error };
 };
 
 export const useGetCreativeOrders = (status: string) => {

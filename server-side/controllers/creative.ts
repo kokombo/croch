@@ -22,7 +22,7 @@ const setupAccount = async (req: Request, res: Response) => {
 
     creative.brandName = brandName;
     creative.personalDescription = personalDescription;
-    creative.yearsOfExperience = yearsOfExperience;
+    creative.yearsOfExperience = parseInt(yearsOfExperience);
     creative.funFacts = funFacts;
 
     const file = files[0];

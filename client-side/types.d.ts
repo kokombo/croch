@@ -135,3 +135,11 @@ type WishlistItem = {
   availability: string;
   price: number;
 };
+
+type CreativeAccountSetupData = {
+  brandName: string;
+  logo: string;
+  personalDescription: string;
+  funFacts: string[];
+  yearsOfExperience: string;
+};

@@ -11,6 +11,7 @@ const CustomButton = (props: Props) => {
     <button
       type={props.type}
       onClick={props.onClick}
+      disabled={props.disabled}
       className={`${props.extraClasses} py-4 px-10 rounded-lg `}
     >
       {props.label}
