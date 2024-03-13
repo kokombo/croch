@@ -1,10 +1,10 @@
-import { FlatGreenButton, TextField } from "@/components";
+import { CustomError, FlatGreenButton, TextField } from "@/components";
 import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { loginFormValidationSchema } from "@/utilities";
 import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { setOpenLoginModal } from "@/redux/slices/modal";
+import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { DispatchType } from "@/redux/store";
 
 const initialValues = {
@@ -26,7 +26,7 @@ const LoginForm = () => {
     try {
       const res = await signIn("credentials", {
         ...values,
-        callbackUrl: "",
+        callbackUrl: window.location.href,
         redirect: false,
       });
 
@@ -49,7 +49,22 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col gap-8 ">
-      <h2 className="text-3xl font-bold">Welcome back</h2>
+      <div>
+        <h2 className="text-3xl font-bold">Welcome back</h2>
+        <span className="flex items-center gap-1">
+          <h4>Don{"'"}t have an account?</h4>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(setOpenLoginModal(false));
+              dispatch(setOpenSignupModal(true));
+            }}
+            className="font-bold"
+          >
+            Sign up
+          </button>
+        </span>
+      </div>
 
       <Formik
         initialValues={initialValues}
@@ -77,11 +92,11 @@ const LoginForm = () => {
           />
 
           <span className="flex flex-col gap-5">
-            <FlatGreenButton label="Sign in" type="submit" />
+            <FlatGreenButton label="Sign in" type="submit" disabled={loading} />
 
-            {loading && <p>Loading...</p>}
-
-            {error && <p>{error}</p>}
+            {error && (
+              <CustomError message={error} extraClasses="self-center" />
+            )}
 
             <p className="text-base font-medium text-neutral">
               By creating account, you acknowledge and accept our Terms of

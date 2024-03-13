@@ -45,7 +45,7 @@ const SignupForm = (props: Props) => {
       await signIn("credentials", {
         email: values.email,
         password: values.password,
-        callbackUrl: "",
+        callbackUrl: window.location.href,
         redirect: false,
       }).then((res) => {
         if (res?.ok) {

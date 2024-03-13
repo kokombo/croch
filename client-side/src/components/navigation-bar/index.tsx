@@ -4,16 +4,19 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "@/redux/store";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
+import { useCurrentUser } from "@/utilities";
 
 const unauthenticatedLinks = [
   { label: "Log in", href: "/login" },
   { label: "Sign up", href: "/signup" },
-  { label: "Sell Your Creative", href: "/sell-your-creative" },
+  { label: "Sell Your Creative", href: "/creative/home" },
   { label: "Help center", href: "/help-center" },
 ];
 
 const NavigationBar = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
+
+  const { session } = useCurrentUser();
 
   const dispatch: DispatchType = useDispatch();
 
@@ -36,9 +39,11 @@ const NavigationBar = () => {
       <SearchBox onChange={() => {}} />
 
       <span className="flex items-center gap-6">
-        <Link href={"/creative/home"} className="text-base font-bold">
-          Sell Your Creative
-        </Link>
+        {!session && (
+          <Link href={"/creative/home"} className="text-base font-bold">
+            Sell Your Creative
+          </Link>
+        )}
 
         <span className="relative">
           <NavAccount

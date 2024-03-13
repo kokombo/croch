@@ -13,10 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
 import { MouseEvent, useState } from "react";
 import { icons } from "@/constants";
+import { useRouter } from "next/navigation";
 
 const CreativeLanding = () => {
   const [step, setStep] = useState(1);
-  const { session } = useCurrentUser();
+
+  const { session, id } = useCurrentUser();
+
+  console.log(id);
+
+  const router = useRouter();
 
   const dispatch: DispatchType = useDispatch();
 
@@ -30,7 +36,6 @@ const CreativeLanding = () => {
     if (!session) {
       e.preventDefault();
       dispatch(setOpenLoginModal(true));
-    } else {
     }
   };
 
@@ -49,8 +54,8 @@ const CreativeLanding = () => {
         <Logo />
 
         <FlatBlackLink
-          label="Set up your account"
-          href=""
+          label="Croch store setup"
+          href={session ? "/creative/become-a-creative" : "/login"}
           extraClasses="bg-black text-white px-10 py-4"
           onClick={initiateAccountSetup}
         />
