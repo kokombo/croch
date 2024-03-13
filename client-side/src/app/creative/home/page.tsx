@@ -14,13 +14,12 @@ import { DispatchType, StateType } from "@/redux/store";
 import { MouseEvent, useState } from "react";
 import { icons } from "@/constants";
 import { useRouter } from "next/navigation";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const CreativeLanding = () => {
   const [step, setStep] = useState(1);
 
   const { session, id } = useCurrentUser();
-
-  console.log(id);
 
   const router = useRouter();
 
@@ -30,12 +29,18 @@ const CreativeLanding = () => {
     (state: StateType) => state.modal
   );
 
+  const { data: creative } = useGetCreativeById(id);
+
   const initiateAccountSetup = (
     e: MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     if (!session) {
       e.preventDefault();
       dispatch(setOpenLoginModal(true));
+    } else if (!creative?.accountSetupDone) {
+      router.push("/creative/become-a-creative");
+    } else {
+      router.push("/creative/dashboard");
     }
   };
 
@@ -48,6 +53,7 @@ const CreativeLanding = () => {
       document.body.style.overflow = "auto";
     }
   };
+
   return (
     <div>
       <nav className="flex items-center justify-between py-[18px] px-[4.6%]">

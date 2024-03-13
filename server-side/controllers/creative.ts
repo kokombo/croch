@@ -416,6 +416,20 @@ const getCreativeById = async (req: Request, res: Response) => {
   }
 };
 
+const accountSetupDone = async (req: Request, res: Response) => {
+  const { _id: creativeId } = req.user;
+
+  validateId(creativeId);
+
+  const creative = await Creative.findById(creativeId);
+
+  creative.accountSetupDone = true;
+
+  await creative.save();
+
+  return res.json({ message: "success" });
+};
+
 export = {
   createProduct,
   updateProduct,
@@ -430,4 +444,5 @@ export = {
   setBrandLogo,
   getCreativeById,
   setupAccount,
+  accountSetupDone,
 };

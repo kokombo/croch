@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { DispatchType } from "@/redux/store";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const unauthenticatedLinks = [
   { label: "Log in", href: "/login" },
@@ -16,7 +17,9 @@ const unauthenticatedLinks = [
 const NavigationBar = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
 
-  const { session } = useCurrentUser();
+  const { session, id } = useCurrentUser();
+
+  const { data: creative } = useGetCreativeById(id);
 
   const dispatch: DispatchType = useDispatch();
 
@@ -39,7 +42,7 @@ const NavigationBar = () => {
       <SearchBox onChange={() => {}} />
 
       <span className="flex items-center gap-6">
-        {!session && (
+        {(!session || !creative?.accountSetupDone) && (
           <Link href={"/creative/home"} className="text-base font-bold">
             Sell Your Creative
           </Link>

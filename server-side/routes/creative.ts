@@ -21,6 +21,7 @@ const {
   setBrandLogo,
   getCreativeById,
   setupAccount,
+  accountSetupDone,
 } = creativeController;
 
 router.post(
@@ -52,6 +53,8 @@ router.patch(
   uploadPhoto.array("logo", 1),
   setupAccount
 );
+
+router.patch("/accountSetupDone", authorizeUser, isCreative, accountSetupDone);
 
 router.patch(
   "/updateYearsOfExperience",

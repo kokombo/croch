@@ -21,12 +21,7 @@ const SearchBox = (props: Props) => {
       />
 
       <button className="absolute top-3 right-6 h-10 w-10 bg-green rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-300 ease-in-out">
-        <Image
-          src={icons.search}
-          alt="search icon"
-          className="w-4 h-4"
-          style={{ width: "auto", height: "auto" }}
-        />
+        <Image src={icons.search} alt="search icon" className="w-4 h-4" />
       </button>
     </div>
   );

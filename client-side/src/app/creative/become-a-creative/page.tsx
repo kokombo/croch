@@ -10,11 +10,15 @@ import {
   TextField,
   UploadLogo,
 } from "@/components";
-import { useSetupCreativeAccount } from "@/utilities/api-interactions/creative";
+import {
+  useAccountSetupDone,
+  useSetupCreativeAccount,
+} from "@/utilities/api-interactions/creative";
 import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { creativeAccountSetupValidationSchema } from "@/utilities/validation/form-validations";
+useAccountSetupDone;
 
 const initialFormValues: CreativeAccountSetupData = {
   brandName: "",
@@ -32,6 +36,8 @@ const CreativeAccountSetup = () => {
   const { mutateAsync, isError, isPending, isSuccess, error } =
     useSetupCreativeAccount();
 
+  const { confirmAccountSetup } = useAccountSetupDone();
+
   const finishAccountSetup = async (
     values: CreativeAccountSetupData,
     onsubmitProps: FormikHelpers<CreativeAccountSetupData>
@@ -48,6 +54,7 @@ const CreativeAccountSetup = () => {
 
     await mutateAsync(formData, {
       onSuccess: () => {
+        confirmAccountSetup();
         onsubmitProps.resetForm();
         router.push("/dashboard");
       },
@@ -113,6 +120,8 @@ const CreativeAccountSetup = () => {
           validateOnChange
         >
           {(formik) => {
+            console.log(formik.values);
+
             return (
               <Form>
                 {step === 1 && (
@@ -149,7 +158,7 @@ const CreativeAccountSetup = () => {
                 )}
 
                 {step === 2 && (
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-8">
                     <TextField
                       type="number"
                       name="yearsOfExperience"
@@ -160,7 +169,7 @@ const CreativeAccountSetup = () => {
                     <TextArea
                       id="funFacts"
                       name="funFacts[0]"
-                      placeholder="Tell us a fun fact about how you make your products."
+                      placeholder="Tell us a fun fact about how you make your products. e.g. I draw inspiration from listening to afrobeat while crocheting."
                       extraClasses=""
                     />
 
@@ -195,21 +204,20 @@ const CreativeAccountSetup = () => {
                         type="button"
                         onClick={() => setStep(3)}
                         extraClasses="bg-black text-white"
+                        disabled={
+                          !formik.values.yearsOfExperience ||
+                          !formik.values.funFacts ||
+                          Boolean(formik.errors.funFacts) ||
+                          Boolean(formik.errors.yearsOfExperience)
+                        }
                       />
                     </span>
                   </div>
                 )}
 
                 {step === 3 && (
-                  <div className="flex flex-col gap-6 items-start">
+                  <div className="flex flex-col gap-8 items-start">
                     <UploadLogo />
-
-                    <TextArea
-                      name="personalDescription"
-                      id="personalDescription"
-                      placeholder="Tell us about you and your brand"
-                      extraClasses=" h-[296px]"
-                    />
 
                     <span className="flex gap-10 self-end">
                       <CustomButton

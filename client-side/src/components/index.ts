@@ -29,6 +29,7 @@ import AccountSetupStepInfo from "./account-setup-step-info";
 import TextArea from "./text-area/input";
 import CustomButton from "./buttons/custom-button";
 import UploadLogo from "./upload-logo/input";
+import Footer from "./footer";
 
 export {
   ReactQueryProvider,
@@ -62,4 +63,5 @@ export {
   TextArea,
   CustomButton,
   UploadLogo,
+  Footer,
 };

@@ -271,7 +271,7 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
   return { setBrandLogo, data, isError, isPending, error };
 };
 
-export const useGetCreativeById = (creativeId: string) => {
+export const useGetCreativeById = (creativeId: string | undefined) => {
   const getCreativeByIdRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
@@ -289,4 +289,29 @@ export const useGetCreativeById = (creativeId: string) => {
   });
 
   return { data, isLoading, isError, error };
+};
+
+export const useAccountSetupDone = () => {
+  const { accessToken } = useCurrentUser();
+
+  const accountSetupDoneRequest = async () => {
+    const res = await axios.patch(`${api_base_url}/creative/accountSetupDone`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return res.data;
+  };
+
+  const { mutateAsync } = useMutation({
+    mutationKey: ["accountSetupDone"],
+    mutationFn: accountSetupDoneRequest,
+  });
+
+  const confirmAccountSetup = async () => {
+    await mutateAsync();
+  };
+
+  return { confirmAccountSetup };
 };

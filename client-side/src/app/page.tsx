@@ -7,6 +7,7 @@ import {
   LoginForm,
   SignupForm,
   NavigationBar,
+  Footer,
 } from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,6 +85,8 @@ const Home = () => {
       <div className="px-[4.6%] py-10">
         <ProductsList />
       </div>
+
+      <Footer />
     </div>
   );
 };

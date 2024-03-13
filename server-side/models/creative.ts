@@ -41,6 +41,11 @@ const CreativeSchema = new Schema(
     funFacts: {
       type: Array(String),
     },
+
+    accountSetupDone: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   { timestamps: true }

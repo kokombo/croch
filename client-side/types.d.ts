@@ -50,6 +50,7 @@ type Creative = {
   personalDescription: string;
   yearsOfExperience: number;
   _id: string;
+  accountSetupDone: boolean;
 };
 
 type CartItem = {
