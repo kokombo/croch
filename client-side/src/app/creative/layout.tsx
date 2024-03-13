@@ -15,5 +15,5 @@ export default function RootLayout({
     redirect("/");
   }
 
-  return <main>{children}</main>;
+  return <>{children}</>;
 }

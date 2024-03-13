@@ -2,7 +2,7 @@
 
 import {
   Logo,
-  FlatBlackLink,
+  FlatBlackButton,
   Modal,
   LoginForm,
   SignupForm,
@@ -14,15 +14,12 @@ import { DispatchType, StateType } from "@/redux/store";
 import { MouseEvent, useState } from "react";
 import { icons } from "@/constants";
 import { useRouter } from "next/navigation";
-import {
-  useAccountSetupDone,
-  useGetCreativeById,
-} from "@/utilities/api-interactions/creative";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const CreativeLanding = () => {
   const [step, setStep] = useState(1);
 
-  const { session, id, role } = useCurrentUser();
+  const { session, id } = useCurrentUser();
 
   const router = useRouter();
 
@@ -57,17 +54,14 @@ const CreativeLanding = () => {
     }
   };
 
-  const { confirmAccountSetup } = useAccountSetupDone();
-
   return (
     <div>
       <nav className="flex items-center justify-between py-[18px] px-[4.6%]">
         <Logo />
 
-        <FlatBlackLink
-          label="Croch store setup"
-          href={session ? "/creative/become-a-creative" : "/login"}
-          extraClasses="bg-black text-white px-10 py-4"
+        <FlatBlackButton
+          label="Croch Store Setup"
+          extraClasses="bg-green text-white px-10 py-4"
           onClick={initiateAccountSetup}
         />
       </nav>

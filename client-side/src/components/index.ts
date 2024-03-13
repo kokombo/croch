@@ -23,13 +23,14 @@ import SignupForm from "./forms/signup-form";
 import FlatGreenButton from "./buttons/flat-green-button";
 import SelectAccountType from "./select-account-type";
 import CustomError from "./custom-error";
-import FlatBlackLink from "./styled-links/flat-black-link";
+import FlatBlackButton from "./buttons/flat-black-button";
 import AccountSetupStep from "./account-setup-step";
 import AccountSetupStepInfo from "./account-setup-step-info";
 import TextArea from "./text-area/input";
 import CustomButton from "./buttons/custom-button";
 import UploadLogo from "./upload-logo/input";
 import Footer from "./footer";
+import RedirectCreative from "./redirect-creative";
 
 export {
   ReactQueryProvider,
@@ -57,11 +58,12 @@ export {
   FlatGreenButton,
   SelectAccountType,
   CustomError,
-  FlatBlackLink,
+  FlatBlackButton,
   AccountSetupStep,
   AccountSetupStepInfo,
   TextArea,
   CustomButton,
   UploadLogo,
   Footer,
+  RedirectCreative,
 };

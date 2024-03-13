@@ -15,7 +15,10 @@ const SelectAccountType = (props: Props) => {
       <Field>
         {({ field, meta, form }: FieldProps) => {
           return (
-            <div {...field} className="flex items-center justify-between">
+            <div
+              {...field}
+              className="grid grid-cols-2 gap-2 place-items-center"
+            >
               {props.data.map((option, index) => {
                 return (
                   <label key={index}>
@@ -28,7 +31,7 @@ const SelectAccountType = (props: Props) => {
                     />
 
                     <div
-                      className={`${field.value.role === option.value ? "border-black border-[2px]" : ""} flex flex-col justify-end h-[238px] w-[238px] bg-ash rounded-lg p-6`}
+                      className={`${field.value.role === option.value ? "border-black border-[2px]" : ""} flex flex-col justify-end h-[238px] bg-ash rounded-lg p-6`}
                     >
                       <Image
                         src={option.img}

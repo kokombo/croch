@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { useState } from "react";
+import { useCurrentUser } from "@/utilities";
 
 const Home = () => {
   const [step, setStep] = useState(1);

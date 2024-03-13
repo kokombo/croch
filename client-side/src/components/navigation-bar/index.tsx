@@ -17,7 +17,7 @@ const unauthenticatedLinks = [
 const NavigationBar = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
 
-  const { session, id } = useCurrentUser();
+  const { session, id, role } = useCurrentUser();
 
   const { data: creative } = useGetCreativeById(id);
 
@@ -42,7 +42,7 @@ const NavigationBar = () => {
       <SearchBox onChange={() => {}} />
 
       <span className="flex items-center gap-6">
-        {(!session || !creative?.accountSetupDone) && (
+        {(!session || role !== "customer") && (
           <Link href={"/creative/home"} className="text-base font-bold">
             Sell Your Creative
           </Link>
