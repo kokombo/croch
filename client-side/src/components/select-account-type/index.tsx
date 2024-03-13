@@ -37,7 +37,7 @@ const SelectAccountType = (props: Props) => {
                         height={option.iconHeight}
                       />
 
-                      <p>{option.value} </p>
+                      <p className="capitalize">{option.value} </p>
                     </div>
                   </label>
                 );

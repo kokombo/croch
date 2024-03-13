@@ -295,11 +295,18 @@ export const useAccountSetupDone = () => {
   const { accessToken } = useCurrentUser();
 
   const accountSetupDoneRequest = async () => {
-    const res = await axios.patch(`${api_base_url}/creative/accountSetupDone`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const res = await axios.patch(
+      `${api_base_url}/creative/accountSetupDone`,
+
+      {},
+
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     return res.data;
   };

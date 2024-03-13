@@ -42,7 +42,8 @@ const setupAccount = async (req: Request, res: Response) => {
     await creative.save();
 
     return res.json({ message: "Account successfully setup" });
-  } catch {
+  } catch (error) {
+    console.log(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });

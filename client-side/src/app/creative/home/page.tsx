@@ -14,12 +14,15 @@ import { DispatchType, StateType } from "@/redux/store";
 import { MouseEvent, useState } from "react";
 import { icons } from "@/constants";
 import { useRouter } from "next/navigation";
-import { useGetCreativeById } from "@/utilities/api-interactions/creative";
+import {
+  useAccountSetupDone,
+  useGetCreativeById,
+} from "@/utilities/api-interactions/creative";
 
 const CreativeLanding = () => {
   const [step, setStep] = useState(1);
 
-  const { session, id } = useCurrentUser();
+  const { session, id, role } = useCurrentUser();
 
   const router = useRouter();
 
@@ -53,6 +56,8 @@ const CreativeLanding = () => {
       document.body.style.overflow = "auto";
     }
   };
+
+  const { confirmAccountSetup } = useAccountSetupDone();
 
   return (
     <div>

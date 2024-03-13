@@ -89,14 +89,14 @@ const SignupForm = (props: Props) => {
                     data={[
                       {
                         img: icons.customer,
-                        value: "Customer",
+                        value: "customer",
                         iconHeight: `${177}`,
                         iconWidth: `${172}`,
                       },
 
                       {
                         img: icons.creative,
-                        value: "Creative",
+                        value: "creative",
                         iconHeight: `${166}`,
                         iconWidth: `${294}`,
                       },

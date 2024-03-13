@@ -56,7 +56,7 @@ const CreativeAccountSetup = () => {
       onSuccess: () => {
         confirmAccountSetup();
         onsubmitProps.resetForm();
-        router.push("/dashboard");
+        router.push("/creative/dashboard");
       },
     });
   };
@@ -120,8 +120,6 @@ const CreativeAccountSetup = () => {
           validateOnChange
         >
           {(formik) => {
-            console.log(formik.values);
-
             return (
               <Form>
                 {step === 1 && (
@@ -232,6 +230,14 @@ const CreativeAccountSetup = () => {
                         type="submit"
                         extraClasses="bg-black text-white"
                       />
+                    </span>
+
+                    <span>
+                      {isPending && <p>Loading...</p>}
+
+                      {isSuccess && <p>Success</p>}
+
+                      {isError && <p>{error?.response?.data.message} </p>}
                     </span>
                   </div>
                 )}
