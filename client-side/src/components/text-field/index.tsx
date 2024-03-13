@@ -5,7 +5,7 @@ import Image from "next/image";
 type Props = {
   name: string;
   id: string;
-  type: "email" | "password" | "text";
+  type: "email" | "password" | "text" | "number";
   placeholder?: string;
   disabled?: boolean;
   autoComplete?: string;
@@ -24,7 +24,7 @@ const TextField = (props: Props) => {
           return (
             <input
               {...field}
-              className="border-grey border-[1px] rounded-lg w-full p-4"
+              className="border-grey border-[1px] rounded-lg w-full p-4 "
               type={props.type}
               placeholder={props.placeholder}
               autoComplete={props.autoComplete}

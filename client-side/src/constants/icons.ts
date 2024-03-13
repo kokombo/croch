@@ -12,6 +12,7 @@ import visibility from "../../public/icons/visibility.png";
 import close from "../../public/icons/close.png";
 import customer from "../../public/icons/customer.png";
 import creative from "../../public/icons/creative.png";
+import uploadphoto from "../../public/icons/uploadphoto.png";
 
 const icons = {
   chevronleft,
@@ -28,6 +29,7 @@ const icons = {
   close,
   customer,
   creative,
+  uploadphoto,
 };
 
 export default icons;

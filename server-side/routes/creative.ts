@@ -20,6 +20,7 @@ const {
   setBrandName,
   setBrandLogo,
   getCreativeById,
+  setupAccount,
 } = creativeController;
 
 router.post(
@@ -42,6 +43,14 @@ router.put(
   isProductOwner,
   uploadPhoto.array("product-photos", 10),
   updateProduct
+);
+
+router.patch(
+  "/setupAccount",
+  authorizeUser,
+  isCreative,
+  uploadPhoto.array("logo", 1),
+  setupAccount
 );
 
 router.patch(

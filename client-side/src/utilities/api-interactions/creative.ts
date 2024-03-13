@@ -3,6 +3,40 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
+export const useSetupAccount = (creativeAccountData: FormData) => {
+  const { accessToken } = useCurrentUser();
+
+  const setupCreativeAccountRequest = async (creativeAccountData: FormData) => {
+    const res = await axios.patch(
+      `${api_base_url}/creative/setupAccount`,
+
+      creativeAccountData,
+
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { mutateAsync, isPending, isError, isSuccess, data, error } =
+    useMutation<MessageResponse, AxiosError<ErrorResponse>, FormData>({
+      mutationKey: ["setupCreativeAccount"],
+      mutationFn: setupCreativeAccountRequest,
+    });
+
+  const setupCreativeAccount = async () => {
+    await mutateAsync(creativeAccountData);
+  };
+
+  return { isPending, isError, isSuccess, data, setupCreativeAccount, error };
+};
+
 export const useGetCreativeOrders = (status: string) => {
   const { accessToken } = useCurrentUser();
 

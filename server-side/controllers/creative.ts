@@ -7,6 +7,48 @@ import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
 import fs = require("fs");
 
+const setupAccount = async (req: Request, res: Response) => {
+  const { brandName, personalDescription, yearsOfExperience, funFacts } =
+    req.body;
+
+  const files = req.files;
+
+  const { _id: creativeId } = req.user;
+
+  validateId(creativeId);
+
+  try {
+    const creative = await Creative.findById(creativeId);
+
+    creative.brandName = brandName;
+    creative.personalDescription = personalDescription;
+    creative.yearsOfExperience = yearsOfExperience;
+    creative.funFacts = funFacts;
+
+    const file = files[0];
+
+    if (!file) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Invalid input." });
+    }
+
+    const { path } = file;
+
+    const imageUrl = await uploadImageToCloudinary(path, "brand-logos");
+
+    creative.brandLogo = imageUrl;
+
+    await creative.save();
+
+    return res.json({ message: "Account successfully setup" });
+  } catch {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
+  }
+};
+
 const createProduct = async (req: Request, res: Response) => {
   const { title, availability, price, description, gender, tag }: ProductBody =
     req.body;
@@ -387,4 +429,5 @@ export = {
   setBrandName,
   setBrandLogo,
   getCreativeById,
+  setupAccount,
 };
