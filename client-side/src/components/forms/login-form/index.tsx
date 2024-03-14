@@ -25,6 +25,7 @@ const LoginForm = () => {
   ) => {
     try {
       setLoading(true);
+
       const res = await signIn("credentials", {
         ...values,
         callbackUrl: window.location.href,
@@ -71,7 +72,6 @@ const LoginForm = () => {
         initialValues={initialValues}
         onSubmit={login}
         validationSchema={loginFormValidationSchema}
-        validateOnBlur={false}
       >
         <Form className="flex flex-col gap-8">
           <TextField
@@ -92,21 +92,14 @@ const LoginForm = () => {
             }
           />
 
-          <span className="flex flex-col gap-5">
+          <span className="flex flex-col items-center gap-1">
             <FlatGreenButton
               label={loading ? "Signing in..." : "Sign in"}
               type="submit"
               disabled={loading}
             />
 
-            {error && (
-              <CustomError message={error} extraClasses="self-center" />
-            )}
-
-            <p className="text-base font-medium text-neutral">
-              By creating account, you acknowledge and accept our Terms of
-              Service and Privacy Policy.
-            </p>
+            {error && <CustomError message={error} />}
           </span>
         </Form>
       </Formik>

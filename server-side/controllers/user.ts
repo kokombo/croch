@@ -66,7 +66,7 @@ const signIn = async (req: Request, res: Response) => {
     if (!user) {
       return res
         .status(StatusCodes.NOT_FOUND)
-        .json({ message: "User does not exist." });
+        .json({ message: "Invalid credentials. User does not exist." });
     }
 
     const passwordIsCorrect = await user.checkPassword(password);
@@ -74,7 +74,7 @@ const signIn = async (req: Request, res: Response) => {
     if (!passwordIsCorrect) {
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "Incorrect password." });
+        .json({ message: "Invalid password. Please check and try again." });
     }
 
     const refreshToken = generateRefreshToken(user?._id);

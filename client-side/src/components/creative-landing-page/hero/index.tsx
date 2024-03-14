@@ -4,23 +4,24 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <header className="px-[4.6%] py-16 grid grid-cols-2">
-      <div className="flex flex-col gap-[25px]">
-        <span className="flex flex-col gap-4">
-          <h3 className="font-bold tracking-[16%] text-grey2">
+    <header className="px-[8%] py-16 flex items-center justify-between">
+      <div className="flex flex-col gap-[25px] w-[49.5%]">
+        <article className="flex flex-col gap-4">
+          <h3 className=" tracking-[16%] font-bold text-grey2">
             Welcome to Croch
           </h3>
 
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-5xl leading-[64px] font-bold">
             Where Your Crochet Creations and products Shine!
           </h2>
 
-          <h4 className="text-xl leading-[34px] font-bold text-grey3">
+          <h4 className="text-xl leading-9 font-semibold text-grey3">
             Are you a crochet enthusiast with a knack for turning yarn into
             masterpieces? Look no further – croch is the perfect canvas for your
             creative endeavors!
           </h4>
-        </span>
+        </article>
+
         <span className=" flex items-center gap-6">
           <CustomButton
             type="button"
@@ -36,18 +37,16 @@ const Hero = () => {
         </span>
       </div>
 
-      <div>
-        <div className="relative h-[698px] w-full rounded-b-3xl">
-          <Image
-            src={images.hero}
-            alt="creative landing page hero image"
-            fill
-            quality={100}
-            priority
-            className="rounded-b-3xl"
-            sizes="any"
-          />
-        </div>
+      <div className="relative h-[598px] w-[43.5%]">
+        <Image
+          src={images.hero}
+          alt="creative landing page hero image"
+          fill
+          quality={100}
+          priority
+          className="rounded-3xl"
+          sizes="any"
+        />
       </div>
     </header>
   );

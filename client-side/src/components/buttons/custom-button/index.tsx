@@ -1,6 +1,6 @@
 type Props = {
   label: string;
-  onClick?: (e: any) => void;
+  onClick?: () => void;
   extraClasses?: string;
   type: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;

@@ -36,12 +36,10 @@ const CreativeLanding = () => {
 
   const { data: creative } = useGetCreativeById(id);
 
-  const initiateAccountSetup = (
-    e: MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const initiateAccountSetup = () => {
     if (!session) {
-      e.preventDefault();
       dispatch(setOpenLoginModal(true));
+      document.body.style.overflow = "hidden";
     } else if (!creative?.accountSetupDone) {
       router.push("/creative/become-a-creative");
     } else {
@@ -61,12 +59,12 @@ const CreativeLanding = () => {
 
   return (
     <main>
-      <nav className="flex items-center justify-between py-[18px] px-[4.6%]">
+      <nav className="flex items-center justify-between py-[18px] px-[8%]">
         <Logo />
 
         <CustomButton
           label="Croch Store Setup"
-          extraClasses="bg-green text-white px-10 py-4"
+          extraClasses="bg-black text-white px-10 py-4"
           onClick={initiateAccountSetup}
           type="button"
         />
