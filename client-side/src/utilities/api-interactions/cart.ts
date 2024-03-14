@@ -128,43 +128,6 @@ export const useUpdateCartItemCount = (
   return { updateCartItemCount, data, isError, isPending, error };
 };
 
-export const useAddAndRemoveWishlist = (productId: string) => {
-  const { accessToken } = useCurrentUser();
-
-  const addAndRemoveWishlistRequest = async (productId: string) => {
-    const res = await axios.put(
-      `${api_base_url}/customer/addAndRemoveWishlist`,
-
-      {
-        productId,
-      },
-
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
-    return res.data;
-  };
-
-  const { mutateAsync, data, isError, isPending, error } = useMutation<
-    MessageResponse,
-    AxiosError<ErrorResponse>,
-    string
-  >({
-    mutationKey: ["addAndRemoveWishlist"],
-    mutationFn: addAndRemoveWishlistRequest,
-  });
-
-  const addAndRemoveWishlist = async () => {
-    await mutateAsync(productId);
-  };
-
-  return { addAndRemoveWishlist, data, isError, isPending, error };
-};
-
 export const useDeleteCart = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 

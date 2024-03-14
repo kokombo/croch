@@ -24,6 +24,7 @@ const LoginForm = () => {
     onsubmitProps: FormikHelpers<LoginData>
   ) => {
     try {
+      setLoading(true);
       const res = await signIn("credentials", {
         ...values,
         callbackUrl: window.location.href,
@@ -92,7 +93,11 @@ const LoginForm = () => {
           />
 
           <span className="flex flex-col gap-5">
-            <FlatGreenButton label="Sign in" type="submit" disabled={loading} />
+            <FlatGreenButton
+              label={loading ? "Signing in..." : "Sign in"}
+              type="submit"
+              disabled={loading}
+            />
 
             {error && (
               <CustomError message={error} extraClasses="self-center" />

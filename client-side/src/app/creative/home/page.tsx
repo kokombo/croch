@@ -2,10 +2,15 @@
 
 import {
   Logo,
-  FlatBlackButton,
   Modal,
   LoginForm,
   SignupForm,
+  Hero,
+  About,
+  CreativesTestimonial,
+  HowItWorks,
+  WhyUs,
+  CustomButton,
 } from "@/components";
 import { useCurrentUser } from "@/utilities";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
@@ -55,16 +60,27 @@ const CreativeLanding = () => {
   };
 
   return (
-    <div>
+    <main>
       <nav className="flex items-center justify-between py-[18px] px-[4.6%]">
         <Logo />
 
-        <FlatBlackButton
+        <CustomButton
           label="Croch Store Setup"
           extraClasses="bg-green text-white px-10 py-4"
           onClick={initiateAccountSetup}
+          type="button"
         />
       </nav>
+
+      <Hero />
+
+      <About />
+
+      <HowItWorks />
+
+      <WhyUs />
+
+      <CreativesTestimonial />
 
       {openLoginModal && (
         <Modal
@@ -103,7 +119,7 @@ const CreativeLanding = () => {
           <SignupForm step={step} setStep={setStep} />
         </Modal>
       )}
-    </div>
+    </main>
   );
 };
 

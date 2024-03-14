@@ -23,6 +23,8 @@ const config: Config = {
         inputborder: "#B8C5CA",
         neutral: "#717171",
         ash: "#F4F4F4",
+        grey2: "#383838",
+        grey3: "#4B4B4B",
       },
     },
   },

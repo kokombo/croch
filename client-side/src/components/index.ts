@@ -23,7 +23,6 @@ import SignupForm from "./forms/signup-form";
 import FlatGreenButton from "./buttons/flat-green-button";
 import SelectAccountType from "./select-account-type";
 import CustomError from "./custom-error";
-import FlatBlackButton from "./buttons/flat-black-button";
 import AccountSetupStep from "./account-setup-step";
 import AccountSetupStepInfo from "./account-setup-step-info";
 import TextArea from "./text-area/input";
@@ -31,6 +30,11 @@ import CustomButton from "./buttons/custom-button";
 import UploadLogo from "./upload-logo/input";
 import Footer from "./footer";
 import RedirectCreative from "./redirect-creative";
+import About from "./creative-landing-page/about";
+import CreativesTestimonial from "./creative-landing-page/creatives-testimonial";
+import Hero from "./creative-landing-page/hero";
+import HowItWorks from "./creative-landing-page/how-it-works";
+import WhyUs from "./creative-landing-page/why-us";
 
 export {
   ReactQueryProvider,
@@ -58,7 +62,6 @@ export {
   FlatGreenButton,
   SelectAccountType,
   CustomError,
-  FlatBlackButton,
   AccountSetupStep,
   AccountSetupStepInfo,
   TextArea,
@@ -66,4 +69,9 @@ export {
   UploadLogo,
   Footer,
   RedirectCreative,
+  About,
+  CreativesTestimonial,
+  Hero,
+  HowItWorks,
+  WhyUs,
 };
