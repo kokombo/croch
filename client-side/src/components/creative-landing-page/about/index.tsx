@@ -60,31 +60,23 @@ const About = () => {
 
       <div className="flex flex-col gap-8 w-[43.5%]">
         <article className="flex flex-col gap-4">
-          <h3 className="font-bold tracking-[16%] text-grey2">
-            More than just a marketplace
-          </h3>
+          <h3 className="font-bold tracking-[16%] text-grey2">{text.text1}</h3>
 
-          <h2 className="text-5xl leading-[64px] font-bold">
-            We believe in the power of handmade wonders
-          </h2>
+          <h2 className="text-5xl leading-[64px] font-bold">{text.text2}</h2>
 
           <h4 className="text-xl leading-9 font-semibold text-grey3">
-            We believe in fair compensation for your talent. Our transparent
-            commission structure ensures that you reap the rewards of your hard
-            work, allowing you to focus on what you do best—creating.
+            {text.text3}
           </h4>
 
           <h4 className="text-xl leading-9 font-semibold text-grey3">
-            Beyond a marketplace, we're a community. Connect with like-minded
-            individuals, exchange ideas, and be inspired by the diverse tapestry
-            of creativity within our community.
+            {text.text4}
           </h4>
         </article>
 
         <span>
           <CustomButton
             type="button"
-            label="Start selling"
+            label="Start Selling"
             extraClasses="py-[10px] px-10 bg-black text-white"
           />
         </span>
@@ -94,3 +86,12 @@ const About = () => {
 };
 
 export default About;
+
+const text = {
+  text1: "More than just a marketplace",
+  text2: "We believe in the power of handmade wonders",
+  text3:
+    "We believe in fair compensation for your talent. Our transparent commission structure ensures that you reap the rewards of your hard work, allowing you to focus on what you do best—creating",
+  text4:
+    "Beyond a marketplace, we're a community. Connect with like-minded individuals, exchange ideas, and be inspired by the diverse tapestry of creativity within our community.",
+};

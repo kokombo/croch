@@ -287,6 +287,7 @@ export const useGetCreativeById = (creativeId: string | undefined) => {
     queryKey: ["getCreativeById"],
     queryFn: getCreativeByIdRequest,
     enabled: !!creativeId,
+    retry: 2,
   });
 
   return { data, isLoading, isError, error };

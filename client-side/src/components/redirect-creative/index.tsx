@@ -10,15 +10,15 @@ const RedirectCreative = ({ children }: { children: React.ReactNode }) => {
 
   const { data: creative } = useGetCreativeById(id);
 
-  //   useEffect(() => {
-  //     if (session && role === "creative" && creative?.accountSetupDone) {
-  //       router.push("/creative/dashboard");
-  //     }
+  useEffect(() => {
+    if (session && role === "creative" && creative?.accountSetupDone) {
+      router.push("/creative/dashboard");
+    }
 
-  //     if (session && role === "creative" && !creative?.accountSetupDone) {
-  //       router.push("/creative/become-a-creative");
-  //     }
-  //   }, [session, role]);
+    if (session && role === "creative" && !creative?.accountSetupDone) {
+      router.push("/creative/become-a-creative");
+    }
+  }, [session, role]);
 
   return <>{children}</>;
 };

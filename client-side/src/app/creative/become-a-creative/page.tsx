@@ -143,7 +143,7 @@ const CreativeAccountSetup = () => {
                         label="Next"
                         type="button"
                         onClick={() => setStep(2)}
-                        extraClasses="bg-black text-white "
+                        extraClasses="bg-black text-white px-10 py-4 "
                         disabled={
                           !formik.values.brandName ||
                           !formik.values.personalDescription ||
@@ -194,14 +194,14 @@ const CreativeAccountSetup = () => {
                         label="Previous"
                         type="button"
                         onClick={() => setStep((prev) => prev - 1)}
-                        extraClasses="text-black border-black border-[2px] "
+                        extraClasses="text-black border-black border-[2px] px-10 py-4"
                       />
 
                       <CustomButton
                         label="Next"
                         type="button"
                         onClick={() => setStep(3)}
-                        extraClasses="bg-black text-white"
+                        extraClasses="bg-black text-white  px-10 py-4"
                         disabled={
                           !formik.values.yearsOfExperience ||
                           !formik.values.funFacts ||
@@ -222,13 +222,13 @@ const CreativeAccountSetup = () => {
                         label="Previous"
                         type="button"
                         onClick={() => setStep((prev) => prev - 1)}
-                        extraClasses="text-black border-black border-[2px] "
+                        extraClasses="text-black border-black border-[2px]  px-10 py-4"
                       />
 
                       <CustomButton
                         label="Finish"
                         type="submit"
-                        extraClasses="bg-black text-white"
+                        extraClasses="bg-black text-white  px-10 py-4"
                       />
                     </span>
 

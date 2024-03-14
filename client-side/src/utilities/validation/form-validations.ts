@@ -12,8 +12,8 @@ export const signupFormValidationSchema = Yup.object({
   email: Yup.string()
     .required("Enter your email address")
     .email("Invalid email format"),
-  firstName: Yup.string().required("first name is required "),
-  lastName: Yup.string().required("last name is required"),
+  firstName: Yup.string().required("First name is required "),
+  lastName: Yup.string().required("Last name is required"),
   password: Yup.string()
     .required("Enter your password")
     .min(6, "Password must be at least 6 characters"),
@@ -49,7 +49,7 @@ export const validationSchemas = [
 ];
 
 export const creativeAccountSetupValidationSchema = Yup.object({
-  brandName: Yup.string().required("Brand name is required."),
+  brandName: Yup.string().required("Enter your brand name."),
   personalDescription: Yup.string().required(
     "Tell us about you and your brand."
   ),

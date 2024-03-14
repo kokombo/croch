@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Logo, SearchBox, NavAccount } from "..";
+import { Logo, SearchBox, NavAccount, DropDown } from "..";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "@/redux/store";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
-import { useGetCreativeById } from "@/utilities/api-interactions/creative";
+import { signOut } from "next-auth/react";
 
 const unauthenticatedLinks = [
   { label: "Log in", href: "/login" },
@@ -14,24 +14,25 @@ const unauthenticatedLinks = [
   { label: "Help center", href: "/help-center" },
 ];
 
+const authenticatedLinks = [
+  { label: "Profile", href: "/Profile" },
+  { label: "Sign out", href: "/signout" },
+];
+
 const NavigationBar = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
 
-  const { session, id, role } = useCurrentUser();
-
-  const { data: creative } = useGetCreativeById(id);
+  const { session, role } = useCurrentUser();
 
   const dispatch: DispatchType = useDispatch();
 
   const openLoginModal = () => {
     dispatch(setOpenLoginModal(true));
-
     document.body.style.overflow = "hidden";
   };
 
   const openSignupModal = () => {
     dispatch(setOpenSignupModal(true));
-
     document.body.style.overflow = "hidden";
   };
 
@@ -41,9 +42,12 @@ const NavigationBar = () => {
 
       <SearchBox onChange={() => {}} />
 
-      <span className="flex items-center gap-6">
+      <span className="flex items-center gap-2">
         {(!session || role !== "customer") && (
-          <Link href={"/creative/home"} className="text-base font-bold">
+          <Link
+            href={"/creative/home"}
+            className="text-base font-semibold hover:bg-gray rounded-3xl py-3 px-4"
+          >
             Sell Your Creative
           </Link>
         )}
@@ -55,34 +59,53 @@ const NavigationBar = () => {
           />
 
           {openDropDown && (
-            <div className="absolute right-0 bg-white p-5 rounded-lg flex flex-col gap-5 w-[185px] h-fit shadow-lg mt-2 z-10">
-              {unauthenticatedLinks.map((item, index) => {
-                return (
-                  <Link
-                    href={item.href}
-                    key={index}
-                    className="text-sm font-semibold"
-                    onClick={(e) => {
-                      item.href === "/login"
-                        ? e.preventDefault()
-                        : item.href === "/signup"
+            <DropDown>
+              {!session &&
+                unauthenticatedLinks.map((item, index) => {
+                  return (
+                    <Link
+                      href={item.href}
+                      key={index}
+                      className="text-sm font-semibold hover:bg-gray px-5 py-3"
+                      onClick={(e) => {
+                        item.href === "/login"
                           ? e.preventDefault()
-                          : null;
+                          : item.href === "/signup"
+                            ? e.preventDefault()
+                            : null;
 
-                      item.href === "/login"
-                        ? openLoginModal()
-                        : item.href === "/signup"
-                          ? openSignupModal()
-                          : null;
+                        item.href === "/login"
+                          ? openLoginModal()
+                          : item.href === "/signup"
+                            ? openSignupModal()
+                            : null;
 
-                      setOpenDropDown(false);
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
+                        setOpenDropDown(false);
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+
+              {session &&
+                authenticatedLinks.map((item, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={item.href}
+                      className="text-sm font-semibold hover:bg-gray px-5 py-3"
+                      onClick={(e) => {
+                        item.href === "/signout" ? e.preventDefault() : null;
+
+                        item.href === "/signout" ? signOut() : null;
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+            </DropDown>
           )}
         </span>
       </span>
