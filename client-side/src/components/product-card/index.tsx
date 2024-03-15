@@ -1,40 +1,34 @@
 import { useState } from "react";
 import { Slider, UnclickableRating } from "..";
+import Link from "next/link";
 
-const ProductCard = (props: Partial<Product>) => {
+type Props = {
+  product: Product;
+};
+
+const ProductCard = (props: Props) => {
   const [hideButton, setHideButton] = useState(true);
 
   return (
-    <div
-      onPointerEnter={() => setHideButton(false)}
-      onPointerLeave={() => setHideButton(true)}
-      className="w-full flex flex-col gap-3"
-    >
-      <Slider
-        hideButton={hideButton}
-        sliderData={[
-          "/product1.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-          "/sp.png",
-          "/cp.png",
-        ]}
-      />
+    <Link href={`/crafts/${props.product._id}`}>
+      <div
+        onPointerEnter={() => setHideButton(false)}
+        onPointerLeave={() => setHideButton(true)}
+        className="w-full flex flex-col gap-3"
+      >
+        <Slider hideButton={hideButton} product={props.product} />
 
-      <div className="flex flex-col gap-2">
-        <UnclickableRating />
+        <div className="flex flex-col gap-2">
+          <UnclickableRating />
 
-        <h1>{props.title}</h1>
+          <h1 className="text-base font-semibold text-neutral">
+            {props.product.title}
+          </h1>
 
-        <h2 className="text-lg font-[900]">#{props.price}</h2>
+          <h2 className="text-lg font-bold">#{props.product.price}</h2>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

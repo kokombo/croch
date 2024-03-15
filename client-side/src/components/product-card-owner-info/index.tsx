@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 type Props = {
-  product?: Partial<Product>; //change //temporary
-  extraClasses: string;
+  product: Product;
+  extraClasses?: string;
 };
 
 const ProductCardOwnerInfo = (props: Props) => {
@@ -11,14 +11,14 @@ const ProductCardOwnerInfo = (props: Props) => {
       className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex items-center justify-start gap-2 px-[17px] py-3`}
     >
       <Image
-        src={props.product?.owner?.picture!}
-        alt={`product-${props.product?.owner?._id} owner image`}
+        src={props.product.owner.picture}
+        alt={`product-${props.product.owner._id} owner image`}
         height={40}
         width={40}
         className="rounded-[100%] h-10 w-10"
       />
 
-      <p>{props.product?.owner?.firstName}</p>
+      <p>{props.product.owner.firstName}</p>
     </div>
   );
 };

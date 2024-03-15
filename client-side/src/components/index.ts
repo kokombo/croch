@@ -4,7 +4,7 @@ import Slider from "./slider";
 import DropDown from "./drop-down";
 import Modal from "./modal";
 import RoutesProtector from "./routes-protector";
-import RoundIconButton from "./round-icon-button";
+import RoundIconButton from "./buttons/round-icon-button";
 import UnclickableRating from "./unclickable-rating";
 import ProductCard from "./product-card";
 import AddToWishlist from "./add-to-wishlist";

@@ -4,8 +4,8 @@ import { AddToWishlist, ProductCardOwnerInfo, RoundIconButton } from "..";
 import { icons } from "@/constants";
 
 type Props = {
-  sliderData: string[];
   hideButton: boolean;
+  product: Product;
 };
 
 const Slider = (props: Props) => {
@@ -18,12 +18,10 @@ const Slider = (props: Props) => {
     const delta = e.touches[0].clientX - touchStart;
 
     if (delta > 50) {
-      setIndex(index === props.sliderData.length - 1 ? 0 : index - 1);
+      setIndex(index === sliderData.length - 1 ? 0 : index - 1);
     } else if (delta < -50) {
       setIndex(
-        index === props.sliderData.length - 1
-          ? props.sliderData.length - 1
-          : index + 1
+        index === sliderData.length - 1 ? sliderData.length - 1 : index + 1
       );
     }
   };
@@ -36,13 +34,13 @@ const Slider = (props: Props) => {
       onTouchEnd={() => setTouchStart(null)}
     >
       <div className="flex">
-        {props.sliderData?.map((data, sliderIndex) => {
+        {sliderData?.map((data, sliderIndex) => {
           const opacity = index === sliderIndex ? "opacity-[1]" : "";
 
           return (
             <div
               key={sliderIndex}
-              className={`relative h-[300px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out ${opacity}`}
+              className={`relative h-[300px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out bg-grey ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               <Image
@@ -59,11 +57,17 @@ const Slider = (props: Props) => {
           );
         })}
 
-        <AddToWishlist extraClasses="absolute right-[5%] top-4" />
+        <AddToWishlist
+          extraClasses="absolute right-[5%] top-4"
+          productId={props.product._id}
+        />
 
         {!props.hideButton && index > 0 && (
           <RoundIconButton
-            onClick={() => setIndex(index - 1)}
+            onClick={(e) => {
+              e.preventDefault();
+              setIndex(index - 1);
+            }}
             label={
               <Image
                 src={icons.chevronleft}
@@ -77,9 +81,12 @@ const Slider = (props: Props) => {
           />
         )}
 
-        {!props.hideButton && index < props.sliderData.length - 1 && (
+        {!props.hideButton && index < sliderData.length - 1 && (
           <RoundIconButton
-            onClick={() => setIndex(index + 1)}
+            onClick={(e) => {
+              e.preventDefault();
+              setIndex(index + 1);
+            }}
             label={
               <Image
                 src={icons.chevronright}
@@ -95,9 +102,7 @@ const Slider = (props: Props) => {
 
         {!props.hideButton && (
           <ProductCardOwnerInfo
-            product={{
-              owner: { firstName: "Nifemi", picture: "/cp.png", _id: "123" },
-            }}
+            product={props.product}
             extraClasses="absolute bottom-6 right-[5%] left-[5%] "
           />
         )}
@@ -107,3 +112,17 @@ const Slider = (props: Props) => {
 };
 
 export default Slider;
+
+const sliderData = [
+  "/product1.png",
+  "/sp.png",
+  "/cp.png",
+  "/sp.png",
+  "/cp.png",
+  "/sp.png",
+  "/cp.png",
+  "/sp.png",
+  "/cp.png",
+  "/sp.png",
+  "/cp.png",
+];

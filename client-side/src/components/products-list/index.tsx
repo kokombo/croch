@@ -1,17 +1,44 @@
 import { ProductCard } from "..";
 
 type Props = {
-  products: Partial<Product[]>;
+  products: Product[] | undefined;
 };
 
-const ProductsList = () => {
+const ProductsList = (props: Props) => {
   return (
     <div className="grid grid-cols-4 gap-x-4 gap-y-10">
       {[...Array(24)].map((_, index) => {
-        return <ProductCard key={index} title="Hand Woven Top" price={4000} />;
+        return <ProductCard key={index} product={dummyProduct} />;
       })}
     </div>
   );
 };
 
 export default ProductsList;
+
+const dummyProduct = {
+  _id: "2343434",
+  title: "Product A",
+  availability: "Available",
+  price: 4000,
+  description: "This is an amazing product",
+  gender: "male",
+  tag: "beenie",
+  colors: ["green", "red", "yellow"],
+  nationwideDelivery: true,
+  owner: {
+    _id: "ABABAB23",
+    firstName: "Samuel",
+    picture: "/cp.png",
+  },
+  photos: ["", "", ""],
+  sizes: ["", "", ""],
+  primaryLocation: {
+    minDeliveryDays: 2,
+    maxDeliveryDays: 5,
+  },
+  otherLocations: {
+    minDeliveryDays: 5,
+    maxDeliveryDays: 7,
+  },
+};

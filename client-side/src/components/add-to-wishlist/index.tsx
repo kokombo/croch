@@ -1,13 +1,14 @@
 import { icons } from "@/constants";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { setOpenSignupModal, setOpenLoginModal } from "@/redux/slices/modal";
+import { setOpenLoginModal } from "@/redux/slices/modal";
 import { DispatchType } from "@/redux/store";
 import { useCurrentUser } from "@/utilities";
 import {
   useAddAndRemoveWishlist,
   useGetWishlists,
 } from "@/utilities/api-interactions/customer";
+import { MouseEvent } from "react";
 
 type Props = {
   extraClasses?: string;
@@ -23,7 +24,11 @@ const AddToWishlist = (props: Props) => {
 
   const { data: wishlists } = useGetWishlists();
 
-  const addToWishlist = () => {
+  const addToWishlist = (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    e.preventDefault();
+
     if (!session) {
       dispatch(setOpenLoginModal(true));
       document.body.style.overflow = "hidden";

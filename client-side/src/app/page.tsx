@@ -15,6 +15,7 @@ import { DispatchType, StateType } from "@/redux/store";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { useState } from "react";
 import { useCurrentUser } from "@/utilities";
+import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
 const Home = () => {
   const [step, setStep] = useState(1);
@@ -24,6 +25,8 @@ const Home = () => {
   );
 
   const dispatch: DispatchType = useDispatch();
+
+  const { data: products } = useGetAllProducts();
 
   const onClickSignupModalButton = () => {
     if (step > 1) {
@@ -84,7 +87,7 @@ const Home = () => {
       </div>
 
       <div className="px-[4.6%] py-10">
-        <ProductsList />
+        <ProductsList products={products} />
       </div>
 
       <Footer />
