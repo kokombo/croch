@@ -1,7 +1,7 @@
 "use client";
 
 import { useCurrentUser } from "@/utilities";
-import "../globals.css";
+import "../../globals.css";
 import { redirect } from "next/navigation";
 
 export default function RootLayout({

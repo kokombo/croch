@@ -13,6 +13,9 @@ import close from "../../public/icons/close.png";
 import customer from "../../public/icons/customer.png";
 import creative from "../../public/icons/creative.png";
 import uploadphoto from "../../public/icons/uploadphoto.png";
+import morephoto from "../../public/icons/morephoto.png";
+import identityverified from "../../public/icons/identityverified.png";
+import creativeisavailable from "../../public/icons/creativeisavailable.png";
 
 const icons = {
   chevronleft,
@@ -30,6 +33,9 @@ const icons = {
   customer,
   creative,
   uploadphoto,
+  morephoto,
+  identityverified,
+  creativeisavailable,
 };
 
 export default icons;

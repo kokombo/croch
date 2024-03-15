@@ -25,6 +25,8 @@ const config: Config = {
         ash: "#F4F4F4",
         grey2: "#383838",
         grey3: "#4B4B4B",
+        customblack: "#242424",
+        lightgreen: "#2DB224",
       },
     },
   },

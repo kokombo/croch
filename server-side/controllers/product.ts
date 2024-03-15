@@ -22,7 +22,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   try {
     let result = Product.find(JSON.parse(numericQuery)).populate({
       path: "owner",
-      select: "_id firstName",
+      select: "_id firstName lastName",
     });
 
     //An algorithm to display products based on product performance or creative's overall performance and/or product performance.

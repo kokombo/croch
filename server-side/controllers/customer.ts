@@ -7,7 +7,7 @@ import Product = require("../models/product");
 import Order = require("../models/order");
 
 const addToCart = async (req: Request, res: Response) => {
-  const { productId } = req.body;
+  const { productId, count } = req.body;
 
   const { _id: customerId } = req.user;
 
@@ -29,13 +29,13 @@ const addToCart = async (req: Request, res: Response) => {
             info: productId,
             title: newlyAddedProduct.title,
             thumbNail: newlyAddedProduct.photos[0],
-            count: 1,
-            cummulativePrice: newlyAddedProduct.price,
+            count: count,
+            cummulativePrice: newlyAddedProduct.price * count,
           },
         },
 
         $set: {
-          [`carts.${creativeId}.totalPrice`]: newlyAddedProduct.price,
+          [`carts.${creativeId}.totalPrice`]: newlyAddedProduct.price * count,
         },
       },
 

@@ -1,51 +1,25 @@
 "use client";
 
-import {
-  Logo,
-  Modal,
-  LoginForm,
-  SignupForm,
-  Hero,
-  About,
-  CreativesTestimonial,
-  HowItWorks,
-  WhyUs,
-  CustomButton,
-} from "@/components";
-import { useCurrentUser } from "@/utilities";
-import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
+import "../globals.css";
+import { Modal, LoginForm, SignupForm } from "@/components";
+import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
+import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { useState } from "react";
-import { icons } from "@/constants";
-import { useRouter } from "next/navigation";
-import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
-const CreativeLanding = () => {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const [step, setStep] = useState(1);
-
-  const { session, id, role } = useCurrentUser();
-
-  const router = useRouter();
-
-  const dispatch: DispatchType = useDispatch();
 
   const { openLoginModal, openSignupModal } = useSelector(
     (state: StateType) => state.modal
   );
 
-  const { data: creative } = useGetCreativeById(id);
-
-  const initiateAccountSetup = () => {
-    if (!session) {
-      dispatch(setOpenLoginModal(true));
-      document.body.style.overflow = "hidden";
-    } else if (!creative?.accountSetupDone) {
-      router.push("/creative/become-a-creative");
-    } else {
-      router.push("/creative/dashboard");
-    }
-  };
+  const dispatch: DispatchType = useDispatch();
 
   const onClickSignupModalButton = () => {
     if (step > 1) {
@@ -58,27 +32,8 @@ const CreativeLanding = () => {
   };
 
   return (
-    <main>
-      <nav className="flex items-center justify-between py-[18px] px-[8%]">
-        <Logo />
-
-        <CustomButton
-          label="Croch Store Setup"
-          extraClasses="bg-black text-white px-10 py-4"
-          onClick={initiateAccountSetup}
-          type="button"
-        />
-      </nav>
-
-      <Hero />
-
-      <About />
-
-      <HowItWorks />
-
-      <WhyUs />
-
-      <CreativesTestimonial />
+    <>
+      {children}
 
       {openLoginModal && (
         <Modal
@@ -117,8 +72,6 @@ const CreativeLanding = () => {
           <SignupForm step={step} setStep={setStep} />
         </Modal>
       )}
-    </main>
+    </>
   );
-};
-
-export default CreativeLanding;
+}

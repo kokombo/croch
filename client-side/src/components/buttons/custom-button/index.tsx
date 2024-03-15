@@ -12,7 +12,7 @@ const CustomButton = (props: Props) => {
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
-      className={`${props.extraClasses} rounded-lg text-base font-bold `}
+      className={`${props.extraClasses} rounded-lg text-base font-semibold `}
     >
       {props.label}
     </button>

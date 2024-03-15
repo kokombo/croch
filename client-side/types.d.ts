@@ -7,10 +7,13 @@ type Product = {
   gender: string;
   tag: string;
   colors: string[];
+  rating: number;
+  numberOfReviews: number;
   nationwideDelivery: boolean;
   owner: {
     _id: string;
     firstName: string;
+    lastName: string;
     picture: string;
   };
   photos: string[];
@@ -51,6 +54,7 @@ type Creative = {
   yearsOfExperience: number;
   _id: string;
   accountSetupDone: boolean;
+  identityVerified: boolean;
 };
 
 type CartItem = {

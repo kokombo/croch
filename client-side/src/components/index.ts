@@ -42,6 +42,9 @@ import ProductDescription from "./product-details-page/product-description";
 import CreativePersonalDescription from "./product-details-page/creative-personal-description";
 import CreativeInfo from "./product-details-page/creative-info";
 import AddToCartCard from "./product-details-page/add-to-cart-card";
+import FullImagesList from "./product-details-page/full-images-list";
+import IconAndTextWrapper from "./icon-and-text-wrapper";
+import Counter from "./counter";
 
 export {
   ProductDescription,
@@ -88,4 +91,7 @@ export {
   Hero,
   HowItWorks,
   WhyUs,
+  FullImagesList,
+  IconAndTextWrapper,
+  Counter,
 };

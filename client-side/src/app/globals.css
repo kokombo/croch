@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 @keyframes modalKey {

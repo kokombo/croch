@@ -46,6 +46,11 @@ const CreativeSchema = new Schema(
       type: Boolean,
       default: false,
     },
+
+    identityVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   { timestamps: true }

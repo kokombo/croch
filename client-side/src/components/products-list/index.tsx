@@ -29,8 +29,11 @@ const dummyProduct = {
   owner: {
     _id: "ABABAB23",
     firstName: "Samuel",
+    lastName: "Oluwanbowa",
     picture: "/cp.png",
   },
+  rating: 4.5,
+  numberOfReviews: 30,
   photos: [
     "/product1.png",
     "/sp.png",

@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
-export const useAddToCart = (productId: string) => {
+export const useAddToCart = (productId: string, count: number) => {
   const { accessToken } = useCurrentUser();
 
   const addToCartRequest = async (productId: string) => {
@@ -12,6 +12,7 @@ export const useAddToCart = (productId: string) => {
 
       {
         productId,
+        count,
       },
 
       {
