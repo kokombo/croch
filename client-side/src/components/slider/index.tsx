@@ -18,10 +18,12 @@ const Slider = (props: Props) => {
     const delta = e.touches[0].clientX - touchStart;
 
     if (delta > 50) {
-      setIndex(index === sliderData.length - 1 ? 0 : index - 1);
+      setIndex(index === props.product.photos.length - 1 ? 0 : index - 1);
     } else if (delta < -50) {
       setIndex(
-        index === sliderData.length - 1 ? sliderData.length - 1 : index + 1
+        index === props.product.photos.length - 1
+          ? props.product.photos.length - 1
+          : index + 1
       );
     }
   };
@@ -34,7 +36,7 @@ const Slider = (props: Props) => {
       onTouchEnd={() => setTouchStart(null)}
     >
       <div className="flex">
-        {sliderData?.map((data, sliderIndex) => {
+        {props.product.photos?.map((data, sliderIndex) => {
           const opacity = index === sliderIndex ? "opacity-[1]" : "";
 
           return (
@@ -81,7 +83,7 @@ const Slider = (props: Props) => {
           />
         )}
 
-        {!props.hideButton && index < sliderData.length - 1 && (
+        {!props.hideButton && index < props.product.photos.length - 1 && (
           <RoundIconButton
             onClick={(e) => {
               e.preventDefault();
@@ -112,17 +114,3 @@ const Slider = (props: Props) => {
 };
 
 export default Slider;
-
-const sliderData = [
-  "/product1.png",
-  "/sp.png",
-  "/cp.png",
-  "/sp.png",
-  "/cp.png",
-  "/sp.png",
-  "/cp.png",
-  "/sp.png",
-  "/cp.png",
-  "/sp.png",
-  "/cp.png",
-];

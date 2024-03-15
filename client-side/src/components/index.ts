@@ -35,8 +35,22 @@ import CreativesTestimonial from "./creative-landing-page/creatives-testimonial"
 import Hero from "./creative-landing-page/hero";
 import HowItWorks from "./creative-landing-page/how-it-works";
 import WhyUs from "./creative-landing-page/why-us";
+import ProductOwnerCard from "./product-details-page/product-owner-card";
+import ProductInfo from "./product-details-page/product-info";
+import ProductImagesGrid from "./product-details-page/product-images-grid";
+import ProductDescription from "./product-details-page/product-description";
+import CreativePersonalDescription from "./product-details-page/creative-personal-description";
+import CreativeInfo from "./product-details-page/creative-info";
+import AddToCartCard from "./product-details-page/add-to-cart-card";
 
 export {
+  ProductDescription,
+  ProductImagesGrid,
+  ProductOwnerCard,
+  ProductInfo,
+  CreativePersonalDescription,
+  CreativeInfo,
+  AddToCartCard,
   ReactQueryProvider,
   NextAuthProvider,
   Slider,
