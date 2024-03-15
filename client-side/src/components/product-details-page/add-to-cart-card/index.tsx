@@ -1,6 +1,11 @@
 import { Counter, CustomButton } from "@/components";
 import ProductInfo from "../product-info";
 import { useState } from "react";
+import { useCurrentUser } from "@/utilities";
+import { useDispatch } from "react-redux";
+import { DispatchType } from "@/redux/store";
+import { setOpenLoginModal } from "@/redux/slices/modal";
+import { useAddToCart } from "@/utilities/api-interactions/cart";
 
 type Props = {
   product: Product;
@@ -8,6 +13,21 @@ type Props = {
 
 const AddToCartCard = (props: Props) => {
   const [count, setCount] = useState(1);
+
+  const { session } = useCurrentUser();
+
+  const dispatch: DispatchType = useDispatch();
+
+  const { addToCart } = useAddToCart(props.product._id, count);
+
+  const addProductToCart = () => {
+    if (!session) {
+      dispatch(setOpenLoginModal(true));
+      document.body.style.overflow = "hidden";
+    } else {
+      addToCart();
+    }
+  };
 
   return (
     <div className="py-6 px-5 flex flex-col gap-6 bg-white shadow-xl rounded-xl">
@@ -39,8 +59,8 @@ const AddToCartCard = (props: Props) => {
         <CustomButton
           type="button"
           label="Add to cart"
-          onClick={() => {}}
-          extraClasses="bg-black text-white w-full py-4"
+          onClick={addProductToCart}
+          extraClasses="bg-green text-white w-full py-4"
         />
       </span>
 
@@ -75,4 +95,4 @@ const AddToCartCard = (props: Props) => {
 
 export default AddToCartCard;
 
-const commonClasses = "flex items-center justify-between text-sm font-medium";
+const commonClasses = "flex items-center justify-between text-sm";

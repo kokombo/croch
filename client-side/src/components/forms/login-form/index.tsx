@@ -52,7 +52,7 @@ const LoginForm = () => {
   return (
     <div className="flex flex-col gap-8 ">
       <div>
-        <h2 className="text-3xl font-bold">Welcome back</h2>
+        <h2 className="text-3xl font-bold">Welcome!</h2>
         <span className="flex items-center gap-1">
           <h4>Don{"'"}t have an account?</h4>
           <button

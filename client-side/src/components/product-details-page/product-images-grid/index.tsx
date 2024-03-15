@@ -89,11 +89,13 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
         </div>
       </div>
 
-      <FullImagesList
-        photos={photos}
-        showMorePhotos={showMorePhotos}
-        setShowMorePhotos={setShowMorePhotos}
-      />
+      {photos.length > 5 && (
+        <FullImagesList
+          photos={photos}
+          showMorePhotos={showMorePhotos}
+          setShowMorePhotos={setShowMorePhotos}
+        />
+      )}
     </>
   );
 };
