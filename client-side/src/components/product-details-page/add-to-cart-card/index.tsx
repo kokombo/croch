@@ -30,7 +30,7 @@ const AddToCartCard = (props: Props) => {
   };
 
   return (
-    <div className="py-6 px-5 flex flex-col gap-6 bg-white shadow-xl rounded-xl">
+    <div className="py-6 px-5 flex flex-col gap-6 bg-white shadow-lg rounded-xl border-[1px] border-grey">
       <span className="flex flex-col gap-2 p-4 rounded-lg border-[1px] border-grey">
         <ProductInfo product={props.product} />
 

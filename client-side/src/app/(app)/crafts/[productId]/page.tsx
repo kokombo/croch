@@ -6,12 +6,13 @@ import {
   ProductImagesGrid,
   ProductInfo,
   ProductOwnerCard,
+  ReviewsList,
 } from "@/components";
 
 const ProductInfoPage = () => {
   return (
     <div className="px-[4.6%]">
-      <section className="flex flex-col gap-6 py-10 border-grey border-b-[1px]">
+      <section className="flex flex-col gap-6 py-10 ">
         <h1 className="text-[28px] leading-[22px] font-bold text-customblack">
           {dummyProduct.title}
         </h1>
@@ -21,7 +22,7 @@ const ProductInfoPage = () => {
         <ProductInfo product={dummyProduct} />
       </section>
 
-      <section className="py-10 flex justify-between items-start w-full">
+      <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
         <div className="flex flex-col gap-[60px] w-[58%] ">
           <ProductDescription description={dummyProduct.description} />
 
@@ -32,6 +33,8 @@ const ProductInfoPage = () => {
           <AddToCartCard product={dummyProduct} />
         </div>
       </section>
+
+      <ReviewsList />
     </div>
   );
 };

@@ -45,6 +45,8 @@ import AddToCartCard from "./product-details-page/add-to-cart-card";
 import FullImagesList from "./product-details-page/full-images-list";
 import IconAndTextWrapper from "./icon-and-text-wrapper";
 import Counter from "./counter";
+import Review from "./product-details-page/review";
+import ReviewsList from "./product-details-page/reviews-list";
 
 export {
   ProductDescription,
@@ -94,4 +96,6 @@ export {
   FullImagesList,
   IconAndTextWrapper,
   Counter,
+  Review,
+  ReviewsList,
 };
