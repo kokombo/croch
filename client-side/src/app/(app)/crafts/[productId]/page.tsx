@@ -8,34 +8,60 @@ import {
   ProductOwnerCard,
   ReviewsList,
 } from "@/components";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
+import { useGetProductById } from "@/utilities/api-interactions/product";
+import { useParams } from "next/navigation";
 
 const ProductInfoPage = () => {
+  const { productId } = useParams();
+
+  const {
+    data: product,
+    isLoading,
+    isError,
+    error,
+  } = useGetProductById(productId as string);
+
+  const { data: creative } = useGetCreativeById(product?.owner._id);
+
   return (
-    <div className="px-[4.6%]">
-      <section className="flex flex-col gap-6 py-10 ">
-        <h1 className="text-[28px] leading-[22px] font-bold text-customblack">
-          {dummyProduct.title}
-        </h1>
+    <>
+      {isLoading ? (
+        <span>Loading.... </span>
+      ) : isError ? (
+        <span>{error?.response?.data.message} </span>
+      ) : (
+        <>
+          {product && creative && (
+            <div className="px-[4.6%]">
+              <section className="flex flex-col gap-6 py-10 ">
+                <h1 className="text-[28px] leading-[22px] font-bold text-customblack">
+                  {product?.title}
+                </h1>
 
-        <ProductImagesGrid photos={dummyProduct.photos} />
+                <ProductImagesGrid photos={product.photos} />
 
-        <ProductInfo product={dummyProduct} />
-      </section>
+                <ProductInfo product={product} />
+              </section>
 
-      <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
-        <div className="flex flex-col gap-[60px] w-[58%] ">
-          <ProductDescription description={dummyProduct.description} />
+              <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
+                <div className="flex flex-col gap-[60px] w-[58%] ">
+                  <ProductDescription description={product.description} />
 
-          <ProductOwnerCard creative={dummyCreative} product={dummyProduct} />
-        </div>
+                  <ProductOwnerCard creative={creative} product={product} />
+                </div>
 
-        <div className="w-[34%]">
-          <AddToCartCard product={dummyProduct} />
-        </div>
-      </section>
+                <div className="w-[34%]">
+                  <AddToCartCard product={product} />
+                </div>
+              </section>
 
-      <ReviewsList />
-    </div>
+              <ReviewsList />
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 };
 

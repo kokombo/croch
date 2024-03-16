@@ -11,11 +11,15 @@ const ProductInfo = (props: Props) => {
 
       <span className="flex items-center gap-6">
         <span>
-          <p className="text-sm font-semibold">{props.product.rating}</p>
+          <p className="text-sm font-semibold">
+            {props.product.rating ? props.product.rating : "No rating"}
+          </p>
         </span>
 
         <p className="text-sm font-semibold underline">
-          {props.product.numberOfReviews} Reviews
+          {props.product.numberOfReviews
+            ? `${props.product.numberOfReviews} Reviews`
+            : "No reviews yet"}
         </p>
       </span>
     </div>

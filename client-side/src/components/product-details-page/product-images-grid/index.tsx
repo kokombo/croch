@@ -35,7 +35,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
               />
             </div>
 
-            <div className="relative w-full bg-grey rounded-r-[20px]">
+            <div className="relative w-full bg-grey rounded-tr-[20px]">
               <Image
                 src={photos[2]}
                 alt=""
@@ -61,7 +61,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
               />
             </div>
 
-            <div className="relative w-full bg-grey rounded-r-[20px]">
+            <div className="relative w-full bg-grey rounded-br-[20px]">
               <Image
                 src={photos[4]}
                 alt=""

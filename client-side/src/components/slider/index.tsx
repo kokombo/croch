@@ -48,12 +48,13 @@ const Slider = (props: Props) => {
               <Image
                 key={sliderIndex}
                 src={data}
-                alt="slider-image"
+                alt=""
                 fill
                 quality={100}
                 loading="lazy"
                 sizes="any"
                 className="object-cover"
+                decoding="async"
               />
             </div>
           );

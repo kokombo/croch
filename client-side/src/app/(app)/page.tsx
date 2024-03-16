@@ -7,11 +7,8 @@ import {
   NavigationBar,
   Footer,
 } from "@/components";
-import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
 const Home = () => {
-  const { data: products } = useGetAllProducts();
-
   return (
     <div className="flex flex-col">
       <NavigationBar />
@@ -23,7 +20,7 @@ const Home = () => {
       </div>
 
       <div className="px-[4.6%] py-10">
-        <ProductsList products={products} />
+        <ProductsList />
       </div>
 
       <Footer />

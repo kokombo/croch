@@ -34,6 +34,7 @@ const LoginForm = () => {
 
       if (res?.ok) {
         dispatch(setOpenLoginModal(false));
+        document.body.style.overflow = "hidden";
         onsubmitProps.resetForm();
       }
 

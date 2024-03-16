@@ -120,6 +120,7 @@ export const useGetAllProducts = () => {
   >({
     queryKey: ["getAllProducts"],
     queryFn: getAllProductsRequest,
+    refetchOnWindowFocus: false,
   });
 
   return { data, isLoading, isError, error, isSuccess };

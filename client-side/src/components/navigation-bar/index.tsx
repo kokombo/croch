@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Logo, SearchBox, NavAccount, DropDown } from "..";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
 import {

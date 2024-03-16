@@ -1,16 +1,36 @@
 import { ProductCard } from "..";
+import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
-type Props = {
-  products: Product[] | undefined;
-};
+const ProductsList = () => {
+  const {
+    data: products,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+  } = useGetAllProducts();
 
-const ProductsList = (props: Props) => {
   return (
-    <div className="grid grid-cols-4 gap-x-4 gap-y-10">
-      {[...Array(24)].map((_, index) => {
-        return <ProductCard key={index} product={dummyProduct} />;
-      })}
-    </div>
+    <>
+      {isLoading ? (
+        <span>Loading... </span>
+      ) : isError ? (
+        <span>{error?.response?.data.message || error?.message} </span>
+      ) : (
+        <div className="grid grid-cols-4 gap-x-4 gap-y-10">
+          {products?.map((product) => {
+            return <ProductCard key={product._id} product={product} />;
+          })}
+        </div>
+      )}
+    </>
+
+    // <div className="grid grid-cols-4 gap-x-4 gap-y-10">
+    //         {/* {[...Array(24)].map((_, index) => {
+    //       return <ProductCard key={index} product={dummyProduct} />;
+    //     })} */}
+
+    //       </div>
   );
 };
 

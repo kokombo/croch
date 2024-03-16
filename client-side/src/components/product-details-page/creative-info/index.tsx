@@ -13,7 +13,7 @@ const CreativeInfo = (props: Props) => {
     <div className="flex items-center gap-3">
       <div className="relative h-[100px] w-[100px] rounded-full bg-grey">
         <Image
-          src={props.product.owner.picture}
+          src={props.creative.brandLogo}
           alt={`${props.creative.brandName} logo`}
           fill
           quality={100}

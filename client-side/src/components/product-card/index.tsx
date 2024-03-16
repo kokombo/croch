@@ -10,7 +10,7 @@ const ProductCard = (props: Props) => {
   const [hideButton, setHideButton] = useState(true);
 
   return (
-    <Link href={`/crafts/${props.product._id}`}>
+    <Link href={`/crafts/${props.product?._id}`} target="_blank">
       <div
         onPointerEnter={() => setHideButton(false)}
         onPointerLeave={() => setHideButton(true)}
@@ -22,10 +22,10 @@ const ProductCard = (props: Props) => {
           <UnclickableRating />
 
           <h1 className="text-base font-semibold text-neutral">
-            {props.product.title}
+            {props.product?.title}
           </h1>
 
-          <h2 className="text-lg font-bold">#{props.product.price}</h2>
+          <h2 className="text-lg font-bold">#{props.product?.price}</h2>
         </div>
       </div>
     </Link>

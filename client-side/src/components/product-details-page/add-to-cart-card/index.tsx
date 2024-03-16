@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { DispatchType } from "@/redux/store";
 import { setOpenLoginModal } from "@/redux/slices/modal";
 import { useAddToCart } from "@/utilities/api-interactions/cart";
+import { useGetCarts } from "@/utilities/api-interactions/customer";
 
 type Props = {
   product: Product;
@@ -18,7 +19,11 @@ const AddToCartCard = (props: Props) => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { addToCart } = useAddToCart(props.product._id, count);
+  const { addToCart, data, error } = useAddToCart(props.product._id, count);
+
+  const { data: carts } = useGetCarts();
+
+  // console.log(carts);
 
   const addProductToCart = () => {
     if (!session) {
