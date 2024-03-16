@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { Logo, SearchBox, NavAccount, DropDown } from "..";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { DispatchType } from "@/redux/store";
-import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
+import { useDispatch, useSelector } from "react-redux";
+import { DispatchType, StateType } from "@/redux/store";
+import {
+  setOpenLoginModal,
+  setOpenSignupModal,
+  setOpenDropDown,
+} from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
 import { signOut } from "next-auth/react";
 
@@ -20,7 +24,7 @@ const authenticatedLinks = [
 ];
 
 const NavigationBar = () => {
-  const [openDropDown, setOpenDropDown] = useState(false);
+  const { openDropDown } = useSelector((state: StateType) => state.modal);
 
   const { session, role } = useCurrentUser();
 
@@ -54,7 +58,12 @@ const NavigationBar = () => {
 
         <span className="relative">
           <NavAccount
-            onClick={() => setOpenDropDown((prev) => !prev)}
+            onClick={(e) => {
+              e.stopPropagation();
+              openDropDown
+                ? dispatch(setOpenDropDown(false))
+                : dispatch(setOpenDropDown(true));
+            }}
             opened={openDropDown}
           />
 

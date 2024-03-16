@@ -1,8 +1,9 @@
 import { icons } from "@/constants";
 import Image from "next/image";
+import { MouseEvent } from "react";
 
 type Props = {
-  onClick: () => void;
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   opened: boolean;
 };
 

@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 type InitialState = {
   openLoginModal: boolean;
   openSignupModal: boolean;
+  openDropDown: boolean;
 };
 
 const initialState: InitialState = {
   openLoginModal: false,
   openSignupModal: false,
+  openDropDown: false,
 };
 
 const modalSlice = createSlice({
@@ -21,9 +23,14 @@ const modalSlice = createSlice({
     setOpenSignupModal: (state, action) => {
       state.openSignupModal = action.payload;
     },
+
+    setOpenDropDown: (state, action) => {
+      state.openDropDown = action.payload;
+    },
   },
 });
 
-export const { setOpenLoginModal, setOpenSignupModal } = modalSlice.actions;
+export const { setOpenLoginModal, setOpenSignupModal, setOpenDropDown } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

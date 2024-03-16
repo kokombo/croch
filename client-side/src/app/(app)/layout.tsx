@@ -5,7 +5,11 @@ import { Modal, LoginForm, SignupForm } from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
-import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
+import {
+  setOpenLoginModal,
+  setOpenSignupModal,
+  setOpenDropDown,
+} from "@/redux/slices/modal";
 import { useState } from "react";
 
 export default function RootLayout({
@@ -33,7 +37,7 @@ export default function RootLayout({
 
   return (
     <>
-      {children}
+      <main onClick={() => dispatch(setOpenDropDown(false))}>{children}</main>
 
       {openLoginModal && (
         <Modal
