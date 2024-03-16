@@ -1,10 +1,70 @@
 import axios, { AxiosError } from "axios";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
+export const useGetCartItems = (creativeId: string) => {
+  const { accessToken } = useCurrentUser();
+
+  const getCartItemsRequest = async () => {
+    const res = await axios.get(
+      `${api_base_url}/customer/getCartItems?creativeId=${creativeId}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, error, isLoading } = useQuery<
+    Cart,
+    AxiosError<ErrorResponse>
+  >({
+    queryKey: ["getCartItems"],
+    queryFn: getCartItemsRequest,
+    enabled: !!accessToken && !!creativeId,
+  });
+
+  return { data, isError, error, isLoading };
+};
+
+export const useGetCarts = () => {
+  const { accessToken } = useCurrentUser();
+
+  const getCartsRequest = async () => {
+    const res = await axios.get(
+      `${api_base_url}/customer/getCarts`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, error, isLoading } = useQuery<
+    Carts,
+    AxiosError<ErrorResponse>
+  >({
+    queryKey: ["getCarts"],
+    queryFn: getCartsRequest,
+    enabled: !!accessToken,
+  });
+
+  return { data, isError, error, isLoading };
+};
+
 export const useAddToCart = (productId: string, count: number) => {
   const { accessToken } = useCurrentUser();
+
+  const queryClient = useQueryClient();
 
   const addToCartRequest = async (productId: string) => {
     const res = await axios.put(
@@ -32,6 +92,9 @@ export const useAddToCart = (productId: string, count: number) => {
   >({
     mutationKey: ["addToCart", productId],
     mutationFn: addToCartRequest,
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["getCartItems"] });
+    },
   });
 
   const addToCart = async () => {
@@ -43,6 +106,8 @@ export const useAddToCart = (productId: string, count: number) => {
 
 export const useRemoveFromCart = (productId: string) => {
   const { accessToken } = useCurrentUser();
+
+  const queryClient = useQueryClient();
 
   const removeFromCartRequest = async (productId: string) => {
     const res = await axios.put(
@@ -69,6 +134,9 @@ export const useRemoveFromCart = (productId: string) => {
   >({
     mutationKey: ["removeFromCart", productId],
     mutationFn: removeFromCartRequest,
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["getCartItems"] });
+    },
   });
 
   const removeFromCart = async () => {

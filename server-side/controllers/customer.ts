@@ -169,13 +169,16 @@ const getCartItems = async (req: Request, res: Response) => {
   validateId(creativeIdFromClient as string);
 
   try {
-    const customer = await Customer.findById(customerId);
+    const customer = await Customer.findById(customerId).populate({
+      path: `carts.${creativeIdFromClient}.cartItems.info`,
+      select: "_id price owner",
+    });
 
     const carts: Carts = customer.carts;
 
     let totalPrice = 0;
 
-    let vendorCart; //vendor here is used as substitute for creative.
+    let vendorCart; //vendor here is used as a substitute word for creative.
 
     for (const [creativeId, cart] of carts.entries()) {
       if (Boolean(creativeId === creativeIdFromClient)) {

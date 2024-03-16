@@ -22,7 +22,9 @@ const ProductInfoPage = () => {
     error,
   } = useGetProductById(productId as string);
 
-  const { data: creative } = useGetCreativeById(product?.owner._id);
+  const { data: creative, error: cError } = useGetCreativeById(
+    product?.owner._id!
+  );
 
   return (
     <>

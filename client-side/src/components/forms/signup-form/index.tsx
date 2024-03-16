@@ -50,7 +50,7 @@ const SignupForm = (props: Props) => {
       }).then((res) => {
         if (res?.ok) {
           dispatch(setOpenSignupModal(false));
-          document.body.style.overflow = "hidden";
+          document.body.style.overflow = "auto";
           onsubmitProps.resetForm();
         }
       });

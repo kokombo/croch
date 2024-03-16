@@ -5,8 +5,14 @@ import { useCurrentUser } from "@/utilities";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "@/redux/store";
 import { setOpenLoginModal } from "@/redux/slices/modal";
-import { useAddToCart } from "@/utilities/api-interactions/cart";
-import { useGetCarts } from "@/utilities/api-interactions/customer";
+import {
+  useAddToCart,
+  useRemoveFromCart,
+} from "@/utilities/api-interactions/cart";
+import {
+  useGetCartItems,
+  useGetCarts,
+} from "@/utilities/api-interactions/cart";
 
 type Props = {
   product: Product;
@@ -19,11 +25,17 @@ const AddToCartCard = (props: Props) => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { addToCart, data, error } = useAddToCart(props.product._id, count);
+  const { addToCart } = useAddToCart(props.product._id, count);
+
+  const { removeFromCart } = useRemoveFromCart(props.product._id);
+
+  const { data: items } = useGetCartItems(props.product.owner._id);
 
   const { data: carts } = useGetCarts();
 
-  // console.log(carts);
+  const idsOfProductsInCart = items?.cartItems.map((cartItem) =>
+    cartItem.info._id.toString()
+  );
 
   const addProductToCart = () => {
     if (!session) {
@@ -61,12 +73,21 @@ const AddToCartCard = (props: Props) => {
       </div>
 
       <span>
-        <CustomButton
-          type="button"
-          label="Add to cart"
-          onClick={addProductToCart}
-          extraClasses="bg-green text-white w-full py-4"
-        />
+        {!session || !idsOfProductsInCart?.includes(props.product._id) ? (
+          <CustomButton
+            type="button"
+            label="Add to cart"
+            onClick={addProductToCart}
+            extraClasses="bg-green text-white w-full py-4"
+          />
+        ) : (
+          <CustomButton
+            type="button"
+            label="Remove from cart"
+            onClick={removeFromCart}
+            extraClasses="bg-black text-white w-full py-4"
+          />
+        )}
       </span>
 
       <p className="text-sm text-customblack self-center">
