@@ -25,13 +25,18 @@ const AddToCartCard = (props: Props) => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { addToCart } = useAddToCart(props.product._id, count);
+  const { addToCart, data: addToCartData } = useAddToCart(
+    props.product._id,
+    count
+  );
 
-  const { removeFromCart } = useRemoveFromCart(props.product._id);
+  const { removeFromCart, data: removeFromCartData } = useRemoveFromCart(
+    props.product._id
+  );
 
   const { data: items } = useGetCartItems(props.product.owner._id);
 
-  const idsOfProductsInCart = items?.cartItems.map((cartItem) =>
+  const idsOfProductsInCart = items?.cartItems?.map((cartItem) =>
     cartItem.info._id.toString()
   );
 

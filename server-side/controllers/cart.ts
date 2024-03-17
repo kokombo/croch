@@ -17,14 +17,14 @@ const addToCart = async (req: Request, res: Response) => {
   try {
     const newlyAddedProduct = await Product.findById(productId);
 
-    const creativeId = newlyAddedProduct.owner;
+    const productOwnerId = newlyAddedProduct.owner; //or creativeId
 
     await Customer.findByIdAndUpdate(
       customerId,
 
       {
         $push: {
-          [`carts.${creativeId}.cartItems`]: {
+          [`carts.${productOwnerId}.cartItems`]: {
             info: productId,
             title: newlyAddedProduct.title,
             thumbNail: newlyAddedProduct.photos[0],
@@ -34,7 +34,8 @@ const addToCart = async (req: Request, res: Response) => {
         },
 
         $set: {
-          [`carts.${creativeId}.totalPrice`]: newlyAddedProduct.price * count,
+          [`carts.${productOwnerId}.totalPrice`]:
+            newlyAddedProduct.price * count,
         },
       },
 
@@ -102,16 +103,16 @@ const removeFromCart = async (req: Request, res: Response) => {
   validateId(customerId);
 
   try {
-    const newlyAddedProduct = await Product.findById(productId);
+    const product = await Product.findById(productId);
 
-    const creativeId = newlyAddedProduct.owner;
+    const productOwnerId = product.owner;
 
-    await Customer.findByIdAndUpdate(
+    const customer = await Customer.findByIdAndUpdate(
       customerId,
 
       {
         $pull: {
-          [`carts.${creativeId}.cartItems`]: {
+          [`carts.${productOwnerId}.cartItems`]: {
             info: productId,
           },
         },
@@ -119,6 +120,20 @@ const removeFromCart = async (req: Request, res: Response) => {
 
       { new: true }
     );
+
+    const carts: Carts = customer.carts;
+
+    for (const [creativeId, cart] of carts.entries()) {
+      if (Boolean(creativeId === productOwnerId.toString())) {
+        const vendorCartItems: CartItem[] = cart.cartItems;
+
+        if (vendorCartItems.length < 1) {
+          carts.delete(productOwnerId);
+        }
+      }
+    }
+
+    await customer.save();
 
     return res.json({ message: "Product removed from cart." });
   } catch (error) {
