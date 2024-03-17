@@ -8,10 +8,6 @@ const { authorizeUser, isCreative, isProductOwner } = authorization;
 const { resizePhoto, uploadPhoto } = imageOptimization;
 
 const {
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  getProducts,
   updateYearsOfExperience,
   updateFunFacts,
   updateIsAvailable,
@@ -26,25 +22,7 @@ const {
 
 router.get("/getCreativeById", getCreativeById);
 
-router.post(
-  "/createProduct",
-  authorizeUser,
-  isCreative,
-  uploadPhoto.array("product-photos", 10),
-  createProduct
-);
-
-router.get("/getProducts", authorizeUser, getProducts);
-
 router.get("/getOrders", authorizeUser, isCreative, getOrders);
-
-router.put(
-  "/updateProduct",
-  authorizeUser,
-  isProductOwner,
-  uploadPhoto.array("product-photos", 10),
-  updateProduct
-);
 
 router.patch(
   "/setupAccount",
@@ -88,7 +66,5 @@ router.patch(
   uploadPhoto.array("logo", 1),
   setBrandLogo
 );
-
-router.delete("/deleteProduct", authorizeUser, isProductOwner, deleteProduct);
 
 export = router;

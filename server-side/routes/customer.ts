@@ -4,46 +4,13 @@ import customerController = require("../controllers/customer");
 import authorization = require("../middlewares/authorization");
 
 const { authorizeUser } = authorization;
-const {
-  addToCart,
-  removeFromCart,
-  getCartItems,
-  updateCartItemCount,
-  deleteCart,
-  placeAnOrder,
-  cancelAnOrder,
-  confirmAnOrder,
-  getOrders,
-  getCarts,
-  addAndRemoveWishlist,
-  getWishlists,
-  getCreativeAllProducts,
-} = customerController;
-
-router.get("/getCartItems", authorizeUser, getCartItems);
-
-router.get("/getOrders", authorizeUser, getOrders);
-
-router.get("/getCarts", authorizeUser, getCarts);
+const { addAndRemoveWishlist, getWishlists, getCreativeAllProducts } =
+  customerController;
 
 router.get("/getWishlists", authorizeUser, getWishlists);
 
 router.get("/getCreativeAllProducts", getCreativeAllProducts);
 
-router.post("/placeAnOrder", authorizeUser, placeAnOrder);
-
-router.patch("/cancelAnOrder", authorizeUser, cancelAnOrder);
-
-router.patch("/confirmAnOrder", authorizeUser, confirmAnOrder);
-
-router.put("/addToCart", authorizeUser, addToCart);
-
-router.put("/removeFromCart", authorizeUser, removeFromCart);
-
-router.put("/updateCartItemCount", authorizeUser, updateCartItemCount);
-
 router.put("/addAndRemoveWishlist", authorizeUser, addAndRemoveWishlist);
-
-router.delete("/deleteCart", authorizeUser, deleteCart);
 
 export = router;

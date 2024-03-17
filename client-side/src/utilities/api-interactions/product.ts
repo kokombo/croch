@@ -14,7 +14,7 @@ export const useCreateProduct = (productData: FormData) => {
 
   const createProductRequest = async (productData: FormData) => {
     const res = await axios.post(
-      `${api_base_url}/creative/createProduct`,
+      `${api_base_url}/product/createProduct`,
 
       productData,
 
@@ -48,7 +48,7 @@ export const useUpdateProduct = (productData: FormData, productId: string) => {
 
   const updateProductRequest = async (productData: FormData) => {
     const res = await axios.put(
-      `${api_base_url}/creative/updateProduct?productId=${productId}`,
+      `${api_base_url}/product/updateProduct?productId=${productId}`,
 
       productData,
 
@@ -82,7 +82,7 @@ export const useDeleteProduct = (productId: string) => {
 
   const deleteProductRequest = async (productId: string) => {
     const res = await axios.delete(
-      `${api_base_url}/creative/deleteProduct?productId=${productId}`,
+      `${api_base_url}/product/deleteProduct?productId=${productId}`,
 
       {
         headers: {
@@ -151,7 +151,7 @@ export const useGetMyProducts = () => {
   const { accessToken } = useCurrentUser();
 
   const getMyProductsRequest = async () => {
-    const res = await axios.get(`${api_base_url}/creative/getProducts`, {
+    const res = await axios.get(`${api_base_url}/product/getCreativeProducts`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

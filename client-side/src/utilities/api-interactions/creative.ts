@@ -61,34 +61,6 @@ export const useGetCreativeOrders = (status: string) => {
   return { data, isError, isLoading, error };
 };
 
-export const useGetCustomerOrders = (status: string) => {
-  const { accessToken } = useCurrentUser();
-
-  const getCustomerOrdersRequest = async () => {
-    const res = await axios.get(
-      `${api_base_url}/customer/getOrders?status=${status}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
-    return res.data;
-  };
-
-  const { data, isError, isLoading, error } = useQuery<
-    Order[],
-    AxiosError<ErrorResponse>
-  >({
-    queryKey: ["getCustomerOrders"],
-    queryFn: getCustomerOrdersRequest,
-    enabled: !!accessToken,
-  });
-
-  return { data, isError, isLoading, error };
-};
-
 export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
   const { accessToken } = useCurrentUser();
 

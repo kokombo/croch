@@ -8,7 +8,7 @@ export const usePlaceAnOrder = (creativeId: string) => {
 
   const placeAnOrderRequest = async (creativeId: string) => {
     const res = await axios.post(
-      `${api_base_url}/customer/placeAnOrder`,
+      `${api_base_url}/order/placeAnOrder`,
 
       {
         creativeId,
@@ -45,7 +45,7 @@ export const useCancelAnOrder = (orderId: string) => {
 
   const cancelAnOrderRequest = async (orderId: string) => {
     const res = await axios.patch(
-      `${api_base_url}/customer/cancelAnOrder`,
+      `${api_base_url}/order/cancelAnOrder`,
 
       {
         orderId,
@@ -82,7 +82,7 @@ export const useConfirmAnOrder = (orderId: string) => {
 
   const confirmAnOrderRequest = async (orderId: string) => {
     const res = await axios.patch(
-      `${api_base_url}/customer/confirmAnOrder`,
+      `${api_base_url}/order/confirmAnOrder`,
 
       {
         orderId,
@@ -132,4 +132,32 @@ export const useGetOrder = (orderId: string) => {
   });
 
   return { data, error, isError, isLoading };
+};
+
+export const useGetCustomerOrders = (status: string) => {
+  const { accessToken } = useCurrentUser();
+
+  const getCustomerOrdersRequest = async () => {
+    const res = await axios.get(
+      `${api_base_url}/order/getCustomerOrders?status=${status}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return res.data;
+  };
+
+  const { data, isError, isLoading, error } = useQuery<
+    Order[],
+    AxiosError<ErrorResponse>
+  >({
+    queryKey: ["getCustomerOrders"],
+    queryFn: getCustomerOrdersRequest,
+    enabled: !!accessToken,
+  });
+
+  return { data, isError, isLoading, error };
 };

@@ -5,7 +5,7 @@ import { useCurrentUser } from "..";
 
 export const useSignup = () => {
   const signupRequest = async (signupData: SignupDataType) => {
-    const res = await axios.post(`${api_base_url}/auth/signup`, signupData);
+    const res = await axios.post(`${api_base_url}/user/signup`, signupData);
 
     return res.data;
   };
@@ -46,7 +46,7 @@ export const useRefreshAccessToken = () => {
 export const useSendEmailVerificationToken = (email: string) => {
   const sendEmailVerificationTokenRequest = async (email: string) => {
     const res = await axios.post(
-      `${api_base_url}/auth/sendEmailVerificationToken`,
+      `${api_base_url}/user/sendEmailVerificationToken`,
 
       { email }
     );
@@ -73,7 +73,7 @@ export const useSendEmailVerificationToken = (email: string) => {
 export const useVerifyEmail = (token: string) => {
   const verifyEmailRequest = async () => {
     const res = await axios.post(
-      `${api_base_url}/auth/verifyEmail?token=${token}`
+      `${api_base_url}/user/verifyEmail?token=${token}`
     );
 
     return res.data;
@@ -96,7 +96,7 @@ export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
 
   const updatePasswordRequest = async (passwordInfo: UpdatePassword) => {
     const res = await axios.patch(
-      `${api_base_url}/auth/updatePassword`,
+      `${api_base_url}/user/updatePassword`,
 
       passwordInfo,
 
@@ -129,7 +129,7 @@ export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
 export const useSendForgotPasswordToken = (email: string) => {
   const sendForgotPasswordTokenRequest = async (email: string) => {
     const res = await axios.post(
-      `${api_base_url}/auth/sendForgotPasswordToken`,
+      `${api_base_url}/user/sendForgotPasswordToken`,
 
       { email }
     );
@@ -156,7 +156,7 @@ export const useSendForgotPasswordToken = (email: string) => {
 export const useResetPassword = (token: string) => {
   const resetPasswordRequest = async (token: string) => {
     const res = await axios.patch(
-      `${api_base_url}/auth/resetPassword?token=${token}`
+      `${api_base_url}/user/resetPassword?token=${token}`
     );
 
     return res.data;
@@ -182,7 +182,7 @@ export const useDeleteMyAccount = () => {
   const { accessToken } = useCurrentUser();
 
   const deleteMyAccountRequest = async () => {
-    const res = await axios.delete(`${api_base_url}/auth/deleteMyAccount`, {
+    const res = await axios.delete(`${api_base_url}/user/deleteMyAccount`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

@@ -8,7 +8,7 @@ export const useGetCartItems = (creativeId: string) => {
 
   const getCartItemsRequest = async () => {
     const res = await axios.get(
-      `${api_base_url}/customer/getCartItems?creativeId=${creativeId}`,
+      `${api_base_url}/cart/getCartItems?creativeId=${creativeId}`,
 
       {
         headers: {
@@ -37,7 +37,7 @@ export const useGetCarts = () => {
 
   const getCartsRequest = async () => {
     const res = await axios.get(
-      `${api_base_url}/customer/getCarts`,
+      `${api_base_url}/cart/getCarts`,
 
       {
         headers: {
@@ -68,7 +68,7 @@ export const useAddToCart = (productId: string, count: number) => {
 
   const addToCartRequest = async (productId: string) => {
     const res = await axios.put(
-      `${api_base_url}/customer/addToCart`,
+      `${api_base_url}/cart/addToCart`,
 
       {
         productId,
@@ -111,7 +111,7 @@ export const useRemoveFromCart = (productId: string) => {
 
   const removeFromCartRequest = async (productId: string) => {
     const res = await axios.put(
-      `${api_base_url}/customer/removeFromCart`,
+      `${api_base_url}/cart/removeFromCart`,
 
       {
         productId,
@@ -163,7 +163,7 @@ export const useUpdateCartItemCount = (
     creativeId: string;
   }) => {
     const res = await axios.put(
-      `${api_base_url}/customer/updateCartItemCount`,
+      `${api_base_url}/cart/updateCartItemCount`,
 
       {
         productId,
@@ -202,7 +202,7 @@ export const useDeleteCart = (creativeId: string) => {
 
   const deleteCartRequest = async (creativeId: string) => {
     const res = await axios.delete(
-      `${api_base_url}/customer/deleteCart?cart=${creativeId}`,
+      `${api_base_url}/cart/deleteCart?cart=${creativeId}`,
 
       {
         headers: {
