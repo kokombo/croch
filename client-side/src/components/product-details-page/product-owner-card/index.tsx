@@ -16,7 +16,7 @@ const ProductOwnerCard = (props: Props) => {
   return (
     <div className="flex flex-col gap-8 border-[1px] border-grey rounded-xl p-7">
       {creativeIsLoading || creativeLoadingError || !creative ? (
-        <div>Loading... </div>
+        <div className="h-[200px]">Loading... </div>
       ) : (
         <>
           <div className="flex justify-between items-center">

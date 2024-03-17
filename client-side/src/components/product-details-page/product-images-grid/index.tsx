@@ -72,18 +72,20 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
                 className="rounded-br-[20px] object-cover hover:brightness-75 "
               />
 
-              <button
-                onClick={() => {
-                  document.body.style.overflow = "hidden";
-                  setShowMorePhotos(true);
-                }}
-                className="text-black bg-white border-black border-[1px] rounded-[8px] py-[9px] px-4 absolute right-6 bottom-6"
-              >
-                <span className="flex items-center gap-2">
-                  <Image src={icons.morephoto} alt="" className="h-4 w-4" />
-                  <p className="text-sm font-medium"> Show more photos</p>
-                </span>
-              </button>
+              {photos.length > 5 && (
+                <button
+                  onClick={() => {
+                    document.body.style.overflow = "hidden";
+                    setShowMorePhotos(true);
+                  }}
+                  className="text-black bg-white border-black border-[1px] rounded-[8px] py-[9px] px-4 absolute right-6 bottom-6"
+                >
+                  <span className="flex items-center gap-2">
+                    <Image src={icons.morephoto} alt="" className="h-4 w-4" />
+                    <p className="text-sm font-medium"> Show more photos</p>
+                  </span>
+                </button>
+              )}
             </div>
           </div>
         </div>

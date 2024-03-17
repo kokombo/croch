@@ -60,8 +60,6 @@ const getAllProducts = async (req: Request, res: Response) => {
 const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.query;
 
-  console.log(productId);
-
   validateId(productId as string);
 
   try {

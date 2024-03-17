@@ -400,12 +400,8 @@ const getCreativeById = async (req: Request, res: Response) => {
 
   validateId(creativeId as string);
 
-  console.log("creativeId", req.query);
-
   try {
     const creative = await Creative.findById(creativeId);
-
-    // console.log(creative);
 
     if (!creative) {
       return res
