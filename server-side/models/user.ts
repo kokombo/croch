@@ -1,5 +1,5 @@
 import mongoose = require("mongoose");
-const { Schema, model, Types, models } = mongoose;
+const { Schema, model, models } = mongoose;
 import bcrypt = require("bcrypt");
 import crypto = require("crypto");
 
@@ -46,7 +46,7 @@ const UserSchema = new Schema(
       default: false,
     },
 
-    notifications: [{ type: Types.ObjectId, ref: "Notification" }],
+    notifications: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
 
     accessToken: String,
 

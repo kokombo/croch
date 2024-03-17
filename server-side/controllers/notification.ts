@@ -54,7 +54,7 @@ const getNotifications = async (req: Request, res: Response) => {
 };
 
 const deleteNotification = async (req: Request, res: Response) => {
-  const { notificationId } = req.query;
+  const { notificationId } = req.body;
 
   const { _id: userId } = req.user;
 

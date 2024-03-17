@@ -1,11 +1,11 @@
 import mongoose = require("mongoose");
-const { Schema, model, models, Types } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const NotificationSchema = new Schema(
   {
     message: String,
 
-    receiver: [{ type: Types.ObjectId, ref: "User" }],
+    receiver: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
 
   { timestamps: true }

@@ -1,11 +1,11 @@
 import mongoose = require("mongoose");
-const { Schema, model, Types, models } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const OrderSchema = new Schema(
   {
     items: [
       {
-        info: { type: Types.ObjectId, ref: "Product" },
+        info: { type: Schema.Types.ObjectId, ref: "Product" },
 
         title: String,
 
@@ -16,12 +16,12 @@ const OrderSchema = new Schema(
     ],
 
     customerId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Customer",
     },
 
     creativeId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Creative",
     },
 

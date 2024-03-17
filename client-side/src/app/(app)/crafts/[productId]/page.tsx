@@ -20,11 +20,14 @@ const ProductInfoPage = () => {
     isLoading,
     isError,
     error,
+    isSuccess,
   } = useGetProductById(productId as string);
 
   const { data: creative, error: cError } = useGetCreativeById(
-    product?.owner._id!
+    product?.owner._id
   );
+
+  console.log(product?.owner._id, creative?._id);
 
   return (
     <>
@@ -34,7 +37,7 @@ const ProductInfoPage = () => {
         <span>{error?.response?.data.message} </span>
       ) : (
         <>
-          {product && creative && (
+          {product && (
             <div className="px-[4.6%]">
               <section className="flex flex-col gap-6 py-10 ">
                 <h1 className="text-[28px] leading-[22px] font-bold text-customblack">
@@ -46,17 +49,19 @@ const ProductInfoPage = () => {
                 <ProductInfo product={product} />
               </section>
 
-              <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
-                <div className="flex flex-col gap-[60px] w-[58%] ">
-                  <ProductDescription description={product.description} />
+              {creative && (
+                <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
+                  <div className="flex flex-col gap-[60px] w-[58%] ">
+                    <ProductDescription description={product.description} />
 
-                  <ProductOwnerCard creative={creative} product={product} />
-                </div>
+                    <ProductOwnerCard creative={creative} product={product} />
+                  </div>
 
-                <div className="w-[34%]">
-                  <AddToCartCard product={product} />
-                </div>
-              </section>
+                  <div className="w-[34%]">
+                    <AddToCartCard product={product} />
+                  </div>
+                </section>
+              )}
 
               <ReviewsList />
             </div>

@@ -1,5 +1,5 @@
 import mongoose = require("mongoose");
-const { Schema, model, Types, models } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const AdminSchema = new Schema(
   {
@@ -18,7 +18,7 @@ const AdminSchema = new Schema(
       required: true,
     },
 
-    notifications: [{ type: Types.ObjectId, ref: "Notification" }],
+    notifications: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
 
     accessToken: {
       type: String,

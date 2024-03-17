@@ -1,5 +1,5 @@
 import mongoose = require("mongoose");
-const { Schema, model, models, Types } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const ProductSchema = new Schema(
   {
@@ -60,7 +60,7 @@ const ProductSchema = new Schema(
     },
 
     owner: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
 

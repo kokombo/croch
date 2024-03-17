@@ -271,23 +271,25 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
   return { setBrandLogo, data, isError, isPending, error };
 };
 
-export const useGetCreativeById = (creativeId: string) => {
+export const useGetCreativeById = (creativeId: string | undefined) => {
   const getCreativeByIdRequest = async () => {
-    const res = await axios.get(
-      `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
-    );
+    if (creativeId) {
+      const res = await axios.get(
+        `${api_base_url}/creative/getCreativeById?creativeId=${encodeURIComponent(creativeId)}`
+      );
 
-    return res.data;
+      return res.data;
+    }
   };
 
   const { data, isLoading, isError, error } = useQuery<
     Creative,
     AxiosError<ErrorResponse>
   >({
-    queryKey: ["getCreativeById"],
+    queryKey: ["getCreativeById", creativeId],
     queryFn: getCreativeByIdRequest,
     enabled: !!creativeId,
-    retry: 2,
+    refetchOnWindowFocus: false,
   });
 
   return { data, isLoading, isError, error };

@@ -1,10 +1,11 @@
 import mongoose = require("mongoose");
-const { Schema, model, Types, models } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const CustomerSchema = new Schema({
   _id: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
+    auto: true,
   },
 
   carts: {
@@ -12,7 +13,7 @@ const CustomerSchema = new Schema({
     of: {
       cartItems: [
         {
-          info: { type: Types.ObjectId, ref: "Product" },
+          info: { type: Schema.Types.ObjectId, ref: "Product" },
 
           title: String,
 
@@ -34,7 +35,7 @@ const CustomerSchema = new Schema({
     },
   },
 
-  wishLists: [{ type: Types.ObjectId, ref: "Product" }],
+  wishLists: [{ type: Schema.Types.ObjectId, ref: "Product" }],
 });
 
 export = models.Customer || model("Customer", CustomerSchema);

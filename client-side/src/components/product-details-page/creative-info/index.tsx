@@ -76,7 +76,7 @@ const CreativeInfo = (props: Props) => {
 
                 <Tooltip
                   anchorSelect="#custom-order-available-anchor-element"
-                  content="This creative is currently available to take custom orders."
+                  content="This creative is currently available to take custom pre-orders."
                 />
               </>
             ) : (

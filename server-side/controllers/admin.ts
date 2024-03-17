@@ -181,7 +181,7 @@ const getAllCreatives = async (req: Request, res: Response) => {
 };
 
 const getCreative = async (req: Request, res: Response) => {
-  const { creativeId } = req.body;
+  const { creativeId } = req.query;
 
   try {
     const creative = await Creative.findById(creativeId);
@@ -201,7 +201,7 @@ const getCreative = async (req: Request, res: Response) => {
 };
 
 const getCustomer = async (req: Request, res: Response) => {
-  const { customerId } = req.body;
+  const { customerId } = req.query;
 
   try {
     const customer = await Customer.findById(customerId);

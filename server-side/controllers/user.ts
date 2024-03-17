@@ -372,10 +372,20 @@ const logOut = async (req: Request, res: Response) => {
 const deleteMyAccount = async (req: Request, res: Response) => {
   const { _id: userId } = req.user;
 
+  const { password } = req.body;
+
   validateId(userId);
 
   try {
     const user = await User.findById(userId);
+
+    const passwordIsCorrect = await user.checkPassword(password);
+
+    if (!passwordIsCorrect) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Invalid password. You cannot perform action." });
+    }
 
     if (user.role === "customer") {
       await Customer.findByIdAndDelete(userId);

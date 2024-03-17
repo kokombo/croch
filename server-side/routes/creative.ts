@@ -24,6 +24,8 @@ const {
   accountSetupDone,
 } = creativeController;
 
+router.get("/getCreativeById", getCreativeById);
+
 router.post(
   "/createProduct",
   authorizeUser,
@@ -35,8 +37,6 @@ router.post(
 router.get("/getProducts", authorizeUser, getProducts);
 
 router.get("/getOrders", authorizeUser, isCreative, getOrders);
-
-router.get("/getCreativeById", getCreativeById);
 
 router.put(
   "/updateProduct",

@@ -1,11 +1,12 @@
 import mongoose = require("mongoose");
-const { Schema, model, Types, models } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const CreativeSchema = new Schema(
   {
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
+      auto: true,
     },
 
     brandName: {

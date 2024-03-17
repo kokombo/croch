@@ -135,15 +135,16 @@ export const useGetProductById = (productId: string) => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error } = useQuery<
+  const { data, isLoading, isError, error, isSuccess } = useQuery<
     Product,
     AxiosError<ErrorResponse>
   >({
     queryKey: ["getProductById", productId],
     queryFn: getProductByIdRequest,
+    refetchOnWindowFocus: false,
   });
 
-  return { data, isLoading, isError, error };
+  return { data, isLoading, isError, error, isSuccess };
 };
 
 export const useGetMyProducts = () => {
