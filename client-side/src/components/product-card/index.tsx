@@ -10,7 +10,7 @@ const ProductCard = (props: Props) => {
   const [hideButton, setHideButton] = useState(true);
 
   return (
-    <Link href={`/crafts/${props.product?._id}`} target="_blank">
+    <Link href={`/crafts?craftId=${props.product._id}`} target="_blank">
       <div
         onPointerEnter={() => setHideButton(false)}
         onPointerLeave={() => setHideButton(true)}

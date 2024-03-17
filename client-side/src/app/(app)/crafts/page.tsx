@@ -8,26 +8,20 @@ import {
   ProductOwnerCard,
   ReviewsList,
 } from "@/components";
-import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useGetProductById } from "@/utilities/api-interactions/product";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const ProductInfoPage = () => {
-  const { productId } = useParams();
+  const params = useSearchParams();
+
+  const craftId = params.get("craftId");
 
   const {
     data: product,
     isLoading,
     isError,
     error,
-    isSuccess,
-  } = useGetProductById(productId as string);
-
-  const { data: creative, error: cError } = useGetCreativeById(
-    product?.owner._id
-  );
-
-  console.log(product?.owner._id, creative?._id);
+  } = useGetProductById(craftId as string);
 
   return (
     <>
@@ -49,19 +43,17 @@ const ProductInfoPage = () => {
                 <ProductInfo product={product} />
               </section>
 
-              {creative && (
-                <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
-                  <div className="flex flex-col gap-[60px] w-[58%] ">
-                    <ProductDescription description={product.description} />
+              <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
+                <div className="flex flex-col gap-[60px] w-[58%] ">
+                  <ProductDescription description={product.description} />
 
-                    <ProductOwnerCard creative={creative} product={product} />
-                  </div>
+                  <ProductOwnerCard product={product} />
+                </div>
 
-                  <div className="w-[34%]">
-                    <AddToCartCard product={product} />
-                  </div>
-                </section>
-              )}
+                <div className="w-[34%]">
+                  <AddToCartCard product={product} />
+                </div>
+              </section>
 
               <ReviewsList />
             </div>
