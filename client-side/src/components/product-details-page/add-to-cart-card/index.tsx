@@ -31,8 +31,6 @@ const AddToCartCard = (props: Props) => {
 
   const { data: items } = useGetCartItems(props.product.owner._id);
 
-  const { data: carts } = useGetCarts();
-
   const idsOfProductsInCart = items?.cartItems.map((cartItem) =>
     cartItem.info._id.toString()
   );
