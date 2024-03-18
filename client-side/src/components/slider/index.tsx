@@ -62,6 +62,7 @@ const Slider = (props: Props) => {
 
         <AddToWishlist
           extraClasses="absolute right-[5%] top-4"
+          icon={icons.bookmark}
           productId={props.product._id}
         />
 

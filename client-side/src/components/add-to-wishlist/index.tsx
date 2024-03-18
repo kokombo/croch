@@ -1,4 +1,3 @@
-import { icons } from "@/constants";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setOpenLoginModal } from "@/redux/slices/modal";
@@ -9,10 +8,12 @@ import {
   useGetWishlists,
 } from "@/utilities/api-interactions/customer";
 import { MouseEvent } from "react";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 type Props = {
   extraClasses?: string;
   productId: string;
+  icon: string | StaticImport;
 };
 
 const AddToWishlist = (props: Props) => {
@@ -44,7 +45,7 @@ const AddToWishlist = (props: Props) => {
       className={`${props.extraClasses} hover:scale-110 transition-transform duration-300 ease-in-out`}
     >
       <Image
-        src={icons.bookmark}
+        src={props.icon}
         alt="add to wishlist icon"
         height={24}
         width={24}

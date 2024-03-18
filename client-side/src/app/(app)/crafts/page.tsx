@@ -2,12 +2,14 @@
 
 import {
   AddToCartCard,
+  AddToWishlist,
   ProductDescription,
   ProductImagesGrid,
   ProductInfo,
   ProductOwnerCard,
   ReviewsList,
 } from "@/components";
+import { icons } from "@/constants";
 import { useGetProductById } from "@/utilities/api-interactions/product";
 import { useSearchParams } from "next/navigation";
 
@@ -34,9 +36,22 @@ const ProductInfoPage = () => {
           {product && (
             <div className="px-[4.6%]">
               <section className="flex flex-col gap-6 py-10 ">
-                <h1 className="text-[28px] leading-[22px] font-bold text-customblack">
-                  {product?.title}
-                </h1>
+                <div className="flex items-center justify-between">
+                  <h1 className="text-xl font-bold text-customblack">
+                    {product?.title}
+                  </h1>
+
+                  <span className="flex items-center gap-2">
+                    <h6 className="text-sm text-customblack ">
+                      Add to wishlist
+                    </h6>
+
+                    <AddToWishlist
+                      productId={product._id}
+                      icon={icons.bookmark2}
+                    />
+                  </span>
+                </div>
 
                 <ProductImagesGrid photos={product.photos} />
 

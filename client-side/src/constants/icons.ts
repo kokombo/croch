@@ -1,6 +1,7 @@
 import chevronright from "../../public/icons/chevronright.png";
 import chevronleft from "../../public/icons/chevronleft.png";
 import bookmark from "../../public/icons/bookmark.png";
+import bookmark2 from "../../public/icons/bookmark2.png";
 import logo from "../../public/icons/logo.png";
 import search from "../../public/icons/search.png";
 import user from "../../public/icons/user.png";
@@ -36,6 +37,7 @@ const icons = {
   morephoto,
   identityverified,
   creativeisavailable,
+  bookmark2,
 };
 
 export default icons;

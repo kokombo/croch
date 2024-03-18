@@ -27,6 +27,7 @@ const config: Config = {
         grey3: "#4B4B4B",
         customblack: "#242424",
         lightgreen: "#2DB224",
+        skyblue: "#2DA5F3",
       },
     },
   },

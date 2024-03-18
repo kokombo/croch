@@ -47,6 +47,7 @@ import IconAndTextWrapper from "./icon-and-text-wrapper";
 import Counter from "./counter";
 import Review from "./product-details-page/review";
 import ReviewsList from "./product-details-page/reviews-list";
+import SelectProductSize from "./product-details-page/select-product-size";
 
 export {
   ProductDescription,
@@ -98,4 +99,5 @@ export {
   Counter,
   Review,
   ReviewsList,
+  SelectProductSize,
 };

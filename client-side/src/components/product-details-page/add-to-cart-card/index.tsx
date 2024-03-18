@@ -1,4 +1,4 @@
-import { Counter, CustomButton } from "@/components";
+import { Counter, CustomButton, SelectProductSize } from "@/components";
 import ProductInfo from "../product-info";
 import { useState } from "react";
 import { useCurrentUser } from "@/utilities";
@@ -8,10 +8,7 @@ import { setOpenLoginModal } from "@/redux/slices/modal";
 import {
   useAddToCart,
   useRemoveFromCart,
-} from "@/utilities/api-interactions/cart";
-import {
   useGetCartItems,
-  useGetCarts,
 } from "@/utilities/api-interactions/cart";
 
 type Props = {
@@ -25,14 +22,9 @@ const AddToCartCard = (props: Props) => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { addToCart, data: addToCartData } = useAddToCart(
-    props.product._id,
-    count
-  );
+  const { addToCart } = useAddToCart(props.product._id, count);
 
-  const { removeFromCart, data: removeFromCartData } = useRemoveFromCart(
-    props.product._id
-  );
+  const { removeFromCart } = useRemoveFromCart(props.product._id);
 
   const { data: items } = useGetCartItems(props.product.owner._id);
 
@@ -54,18 +46,25 @@ const AddToCartCard = (props: Props) => {
       <span className="flex flex-col gap-2 p-4 rounded-lg border-[1px] border-grey">
         <ProductInfo product={props.product} />
 
-        <h6>
-          Availability:{" "}
-          <span className="text-lightgreen text-sm font-semibold">
-            {props.product.availability}
-          </span>
-        </h6>
+        <span className="flex gap-3">
+          <h6 className="text-sm">
+            Availability:{" "}
+            <span className="text-lightgreen font-semibold capitalize">
+              {props.product.availability}
+            </span>
+          </h6>
+
+          <h6 className="text-sm">
+            Gender:{" "}
+            <span className="text-skyblue font-semibold capitalize">
+              {props.product.gender}
+            </span>
+          </h6>
+        </span>
       </span>
 
-      <div className="flex items-center justify-between">
-        <span>
-          <h6>Size</h6>
-        </span>
+      <div className="flex items-end justify-between">
+        <SelectProductSize data={props.product.sizes} />
 
         <Counter
           count={count}
@@ -92,10 +91,6 @@ const AddToCartCard = (props: Props) => {
           />
         )}
       </span>
-
-      <p className="text-sm text-customblack self-center">
-        You won{"'"}t be charged yet
-      </p>
 
       <div className="border-b-[1px] border-grey"></div>
 
