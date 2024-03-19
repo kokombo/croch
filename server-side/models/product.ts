@@ -70,17 +70,27 @@ const ProductSchema = new Schema(
     },
 
     primaryLocation: {
-      name: String,
+      name: {
+        type: String,
+      },
 
-      minDeliveryDays: Number,
+      minDeliveryDays: {
+        type: Number,
+      },
 
-      maxDeliveryDays: Number,
+      maxDeliveryDays: {
+        type: Number,
+      },
     },
 
     otherLocations: {
-      minDeliveryDays: Number,
+      minDeliveryDays: {
+        type: Number,
+      },
 
-      maxDeliveryDays: Number,
+      maxDeliveryDays: {
+        type: Number,
+      },
     },
   },
 

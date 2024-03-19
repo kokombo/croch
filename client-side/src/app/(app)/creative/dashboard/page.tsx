@@ -47,8 +47,6 @@ const Dashboard = () => {
   const { isError, isPending, isSuccess, createProduct, data, error } =
     useCreateProduct(formData);
 
-  console.log(photos);
-
   console.log(data);
 
   return (

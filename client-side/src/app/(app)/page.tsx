@@ -10,21 +10,21 @@ import {
 
 const Home = () => {
   return (
-    <div className="flex flex-col">
+    <main className="flex flex-col">
       <NavigationBar />
 
-      <div className="px-[4.6%] flex items-center gap-4 border-b-[1px] border-grey w-full">
+      <section className="px-[4.6%] flex items-center gap-4 border-b-[1px] border-grey w-full">
         <TagsList />
 
         <FilterButton />
-      </div>
+      </section>
 
-      <div className="px-[4.6%] py-10">
+      <section className="px-[4.6%] py-10">
         <ProductsList />
-      </div>
+      </section>
 
       <Footer />
-    </div>
+    </main>
   );
 };
 

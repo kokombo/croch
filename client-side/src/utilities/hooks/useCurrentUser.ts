@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 
 export const useCurrentUser = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const sessionExpireTime = session?.expires;
 
@@ -32,5 +32,6 @@ export const useCurrentUser = () => {
     role,
     sessionExpireTime,
     session,
+    status,
   };
 };

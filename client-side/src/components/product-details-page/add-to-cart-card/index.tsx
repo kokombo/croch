@@ -113,6 +113,33 @@ const AddToCartCard = (props: Props) => {
           <h6>&#8358; {props.product.price * count}</h6>
         </span>
       </div>
+
+      <div className="border-b-[1px] border-grey"></div>
+
+      <div>
+        <span className="text-sm">
+          <span className="font-semibold">Note:</span> Delivery within the same
+          location usually take{" "}
+          <span className="font-bold">
+            {props.product.primaryLocation?.minDeliveryDays}-
+            {props.product.primaryLocation?.maxDeliveryDays}days
+          </span>{" "}
+          after purchase{" "}
+          <span>
+            {props.product.nationwideDelivery && (
+              <span>
+                while delivery outside primary location will take
+                <span className="font-bold">
+                  {" "}
+                  {props.product.otherLocations?.minDeliveryDays}-
+                  {props.product.otherLocations?.maxDeliveryDays}days{" "}
+                </span>
+                after purchase
+              </span>
+            )}{" "}
+          </span>
+        </span>
+      </div>
     </div>
   );
 };

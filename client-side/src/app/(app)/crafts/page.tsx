@@ -11,6 +11,7 @@ import {
 } from "@/components";
 import { icons } from "@/constants";
 import { useGetProductById } from "@/utilities/api-interactions/product";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
 const ProductInfoPage = () => {
@@ -55,7 +56,14 @@ const ProductInfoPage = () => {
 
                 <ProductImagesGrid photos={product.photos} />
 
-                <ProductInfo product={product} />
+                <span className="flex flex-col gap-2">
+                  <ProductInfo product={product} />
+
+                  <span className="flex gap-1">
+                    <Image src={icons.location} alt="" height={16} width={16} />
+                    <h6>{product?.primaryLocation?.name}</h6>
+                  </span>
+                </span>
               </section>
 
               <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
@@ -80,63 +88,3 @@ const ProductInfoPage = () => {
 };
 
 export default ProductInfoPage;
-
-const dummyProduct = {
-  _id: "2343434",
-  title: "Product A",
-  availability: "Available",
-  price: 4000,
-  description: "This is an amazing product",
-  gender: "male",
-  tag: "beenie",
-  colors: ["green", "red", "yellow"],
-  nationwideDelivery: true,
-  rating: 4.5,
-  numberOfReviews: 30,
-  owner: {
-    _id: "ABABAB23",
-    firstName: "Samuel",
-    lastName: "Oluwanbowa",
-    picture: "/cp.png",
-  },
-  photos: [
-    "/product1.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-  ],
-  sizes: ["", "", ""],
-  primaryLocation: {
-    minDeliveryDays: 2,
-    maxDeliveryDays: 5,
-  },
-  otherLocations: {
-    minDeliveryDays: 5,
-    maxDeliveryDays: 7,
-  },
-};
-
-const dummyCreative = {
-  brandName: "Nicole Crochet Store",
-  brandLogo: "/cp.png",
-  funFacts: [
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ",
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ",
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ",
-  ],
-  isAvailable: true,
-  superCreative: false,
-  personalDescription:
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa",
-  yearsOfExperience: 3,
-  _id: "23DEDF44F44",
-  accountSetupDone: true,
-  identityVerified: false,
-};

@@ -13,10 +13,12 @@ import visibility from "../../public/icons/visibility.png";
 import close from "../../public/icons/close.png";
 import customer from "../../public/icons/customer.png";
 import creative from "../../public/icons/creative.png";
+import location from "../../public/icons/location.png";
 import uploadphoto from "../../public/icons/uploadphoto.png";
 import morephoto from "../../public/icons/morephoto.png";
 import identityverified from "../../public/icons/identityverified.png";
 import creativeisavailable from "../../public/icons/creativeisavailable.png";
+import deleteicon from "../../public/icons/delete.png";
 
 const icons = {
   chevronleft,
@@ -38,6 +40,8 @@ const icons = {
   identityverified,
   creativeisavailable,
   bookmark2,
+  location,
+  deleteicon,
 };
 
 export default icons;

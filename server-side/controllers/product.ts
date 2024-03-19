@@ -124,6 +124,10 @@ const createProduct = async (req: Request, res: Response) => {
 
       nationwideDelivery: req.body.nationwideDelivery === "true" ? true : false,
 
+      primaryLocation: JSON.parse(req.body.primaryLocation),
+
+      otherLocations: JSON.parse(req.body.otherLocations),
+
       price: parseInt(req.body.price),
 
       photos: urls.map((url) => {
@@ -188,6 +192,10 @@ const updateProduct = async (req: Request, res: Response) => {
 
         nationwideDelivery:
           req.body.nationwideDelivery === "true" ? true : false,
+
+        primaryLocation: JSON.parse(req.body.primaryLocation),
+
+        otherLocations: JSON.parse(req.body.otherLocations),
 
         price: parseInt(req.body.price),
 

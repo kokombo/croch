@@ -20,6 +20,7 @@ type Product = {
   price: number;
   sizes: string[];
   primaryLocation: {
+    name: string;
     minDeliveryDays: number;
     maxDeliveryDays: number;
   };
