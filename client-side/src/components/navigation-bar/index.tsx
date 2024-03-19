@@ -67,7 +67,7 @@ const NavigationBar = () => {
           />
 
           {openDropDown && (
-            <DropDown>
+            <DropDown extraClasses="right-0 mt-2">
               {!session &&
                 unauthenticatedLinks.map((item, index) => {
                   return (

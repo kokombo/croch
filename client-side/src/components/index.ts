@@ -48,6 +48,8 @@ import Counter from "./counter";
 import Review from "./product-details-page/review";
 import ReviewsList from "./product-details-page/reviews-list";
 import SelectProductSize from "./product-details-page/select-product-size";
+import CartCard from "./cart-card";
+import PromptCard from "./prompt-card";
 
 export {
   ProductDescription,
@@ -100,4 +102,6 @@ export {
   Review,
   ReviewsList,
   SelectProductSize,
+  CartCard,
+  PromptCard,
 };
