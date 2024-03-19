@@ -18,7 +18,7 @@ const CartCard = (props: Props) => {
   const { deleteCart } = useDeleteCart(props.cart.creativeId);
 
   return (
-    <div className="relative flex items-center justify-between border-[1px] border-grey rounded-xl py-6 px-5">
+    <div className=" flex items-center justify-between border-[1px] border-grey rounded-xl py-6 px-5">
       <div className="flex items-center gap-6">
         <div className="relative h-[72px] w-[72px] rounded-full bg-grey">
           <Image
@@ -45,11 +45,8 @@ const CartCard = (props: Props) => {
           extraClasses="border-[1px] border-grey p-4 text-grey3 text-sm"
         />
 
-        <div>
-          <button
-            type="button"
-            onClick={() => setOpenDeleteBoard((prev) => !prev)}
-          >
+        <div className="relative">
+          <button type="button" onClick={() => setOpenDeleteBoard(true)}>
             <Image src={icons.deleteicon} alt="" height={21} width={19.5} />
           </button>
 
@@ -61,7 +58,7 @@ const CartCard = (props: Props) => {
                 deleteCart();
                 setOpenDeleteBoard(false);
               }}
-              extraClasses=""
+              extraClasses="top-0"
             />
           )}
         </div>

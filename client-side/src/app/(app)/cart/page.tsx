@@ -15,9 +15,9 @@ const Cart = () => {
   const dispatch: DispatchType = useDispatch();
 
   return (
-    <main className="grid place-items-center h-screen ">
+    <main className="grid place-items-center my-20 ">
       <div className={`${cartContainer}`}>
-        <h3>Cart</h3>
+        <h3 className="text-xl font-bold text-customblack">Cart</h3>
 
         <div className="border-b-[1px] border-grey"></div>
 
@@ -47,7 +47,10 @@ const Cart = () => {
               <h6>Browse amazing crafts by talented creators.</h6>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6">
+            <div
+              className="grid grid-cols-1 gap-6 "
+              style={{ scrollbarWidth: "thin" }}
+            >
               {carts?.map((cart) => {
                 return <CartCard key={cart.creativeId} cart={cart} />;
               })}
@@ -60,7 +63,7 @@ const Cart = () => {
 };
 
 const cartContainer =
-  "flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-[70vh] w-[60vw]";
+  "flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full w-[60vw]";
 const innerBox = "flex flex-col items-center justify-center h-full";
 
 export default Cart;
