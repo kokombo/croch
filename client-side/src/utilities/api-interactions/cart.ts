@@ -200,6 +200,8 @@ export const useUpdateCartItemCount = (
 export const useDeleteCart = (creativeId: string) => {
   const { accessToken } = useCurrentUser();
 
+  const queryClient = useQueryClient();
+
   const deleteCartRequest = async (creativeId: string) => {
     const res = await axios.delete(
       `${api_base_url}/cart/deleteCart?cart=${creativeId}`,
@@ -221,6 +223,9 @@ export const useDeleteCart = (creativeId: string) => {
   >({
     mutationKey: ["deleteCart", creativeId],
     mutationFn: deleteCartRequest,
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["getCarts"] });
+    },
   });
 
   const deleteCart = async () => {

@@ -219,7 +219,7 @@ const getCartItems = async (req: Request, res: Response) => {
 };
 
 const deleteCart = async (req: Request, res: Response) => {
-  const { cart: creativeIdFromClient } = req.body;
+  const { cart: creativeIdFromClient } = req.query;
 
   const { _id: customerId } = req.user;
 

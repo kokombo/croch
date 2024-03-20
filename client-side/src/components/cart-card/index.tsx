@@ -15,7 +15,9 @@ type Props = {
 const CartCard = (props: Props) => {
   const [openDeleteBoard, setOpenDeleteBoard] = useState(false);
 
-  const { deleteCart } = useDeleteCart(props.cart.creativeId);
+  const { deleteCart, data, isPending, error } = useDeleteCart(
+    props.cart.creativeId
+  );
 
   return (
     <div className=" flex items-center justify-between border-[1px] border-grey rounded-xl py-6 px-5">
@@ -41,8 +43,8 @@ const CartCard = (props: Props) => {
       <div className="flex items-center gap-6">
         <CustomButton
           type="button"
-          label="View cart"
-          extraClasses="border-[1px] border-grey p-4 text-grey3 text-sm"
+          label="Open cart"
+          extraClasses="border-[1px] border-grey p-4 text-grey3 text-sm hover:bg-gray"
         />
 
         <div className="relative">
@@ -52,7 +54,7 @@ const CartCard = (props: Props) => {
 
           {openDeleteBoard && (
             <PromptCard
-              prompt="Confirm delete cart?"
+              prompt="Confirm delete this cart?"
               closeCard={() => setOpenDeleteBoard(false)}
               confirm={() => {
                 deleteCart();
