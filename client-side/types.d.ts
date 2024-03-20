@@ -65,9 +65,9 @@ type CartItem = {
     owner: mongoose.Types.ObjectId;
   };
 
-  title: String;
+  title: string;
 
-  thumbNail: String;
+  thumbNail: string;
 
   count: number;
 

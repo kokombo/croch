@@ -50,6 +50,7 @@ import ReviewsList from "./product-details-page/reviews-list";
 import SelectProductSize from "./product-details-page/select-product-size";
 import CartCard from "./cart-card";
 import PromptCard from "./prompt-card";
+import ShoppingCardListItem from "./shopping-card-page/shopping-card-list-item";
 
 export {
   ProductDescription,
@@ -104,4 +105,5 @@ export {
   SelectProductSize,
   CartCard,
   PromptCard,
+  ShoppingCardListItem,
 };

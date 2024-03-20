@@ -27,6 +27,7 @@ export const useGetCartItems = (creativeId: string) => {
     queryKey: ["getCartItems"],
     queryFn: getCartItemsRequest,
     enabled: !!accessToken && !!creativeId,
+    refetchOnWindowFocus: false,
   });
 
   return { data, isError, error, isLoading };

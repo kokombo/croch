@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CustomButton, PromptCard } from "..";
 import { icons } from "@/constants";
 import { useDeleteCart } from "@/utilities/api-interactions/cart";
+import { useRouter } from "next/navigation";
 
 type Props = {
   cart: {
@@ -14,6 +15,8 @@ type Props = {
 
 const CartCard = (props: Props) => {
   const [openDeleteBoard, setOpenDeleteBoard] = useState(false);
+
+  const router = useRouter();
 
   const { deleteCart, data, isPending, error } = useDeleteCart(
     props.cart.creativeId
@@ -45,6 +48,9 @@ const CartCard = (props: Props) => {
           type="button"
           label="Open cart"
           extraClasses="border-[1px] border-grey p-4 text-grey3 text-sm hover:bg-gray"
+          onClick={() =>
+            router.push(`/shopping_card?id=${props.cart.creativeId}`)
+          }
         />
 
         <div className="relative">

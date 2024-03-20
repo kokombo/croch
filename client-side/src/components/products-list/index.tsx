@@ -24,13 +24,6 @@ const ProductsList = () => {
         </div>
       )}
     </>
-
-    // <div className="grid grid-cols-4 gap-x-4 gap-y-10">
-    //         {/* {[...Array(24)].map((_, index) => {
-    //       return <ProductCard key={index} product={dummyProduct} />;
-    //     })} */}
-
-    //       </div>
   );
 };
 

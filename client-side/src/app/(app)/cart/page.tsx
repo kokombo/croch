@@ -13,7 +13,7 @@ import Link from "next/link";
 const Cart = () => {
   const { data: carts, isLoading: cartsLoading, isError } = useGetCarts();
 
-  const { session, status } = useCurrentUser();
+  const { session } = useCurrentUser();
 
   const dispatch: DispatchType = useDispatch();
 
