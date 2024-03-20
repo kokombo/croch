@@ -19,6 +19,7 @@ import morephoto from "../../public/icons/morephoto.png";
 import identityverified from "../../public/icons/identityverified.png";
 import creativeisavailable from "../../public/icons/creativeisavailable.png";
 import deleteicon from "../../public/icons/delete.png";
+import emptycart from "../../public/icons/emptycart.png";
 
 const icons = {
   chevronleft,
@@ -42,6 +43,7 @@ const icons = {
   bookmark2,
   location,
   deleteicon,
+  emptycart,
 };
 
 export default icons;

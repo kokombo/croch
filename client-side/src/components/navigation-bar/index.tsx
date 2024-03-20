@@ -19,7 +19,8 @@ const unauthenticatedLinks = [
 ];
 
 const authenticatedLinks = [
-  { label: "Profile", href: "/Profile" },
+  { label: "Cart", href: "/cart" },
+  { label: "Profile", href: "/profile" },
   { label: "Sign out", href: "/signout" },
 ];
 
@@ -41,7 +42,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="w-full flex items-center justify-between py-[18px] px-[4.6%] border-b-[1px] border-grey">
+    <nav className="w-full flex items-center justify-between h-[100px] px-[4.6%] border-b-[1px] border-grey">
       <Logo />
 
       <SearchBox onChange={() => {}} />

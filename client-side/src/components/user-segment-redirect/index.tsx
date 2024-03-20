@@ -9,10 +9,6 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkSession = () => {
-      if (status === "unauthenticated") {
-        router.push("/");
-      }
-
       if (status === "authenticated" && role === "creative")
         router.push("/creative/dashboard");
     };

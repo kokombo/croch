@@ -8,7 +8,7 @@ type Props = {
 const ProductCardOwnerInfo = (props: Props) => {
   return (
     <div
-      className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex items-center justify-start gap-2 px-[17px] py-3`}
+      className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex items-center justify-start gap-2 px-4 py-3`}
     >
       <Image
         src={props.product.owner.picture || "/cp.png"}

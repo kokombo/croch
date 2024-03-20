@@ -12,7 +12,7 @@ const SearchBox = (props: Props) => {
       <input
         type="search"
         autoFocus={false}
-        className="h-full w-full border-[1px] border-grey rounded-[32px] outline-none pl-6 text-base font-medium"
+        className="h-full w-full border-[1px] border-grey rounded-md outline-none pl-6 text-base font-medium"
         value=""
         name=""
         id=""

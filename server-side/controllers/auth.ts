@@ -22,7 +22,7 @@ const signIn = async (req: Request, res: Response) => {
     if (!user) {
       return res
         .status(StatusCodes.NOT_FOUND)
-        .json({ message: "Invalid credentials. User does not exist." });
+        .json({ message: "Incorrect email or password." });
     }
 
     const passwordIsCorrect = await user.checkPassword(password);

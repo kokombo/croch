@@ -6,9 +6,12 @@ import { useGetCarts } from "@/utilities/api-interactions/cart";
 import { useDispatch } from "react-redux";
 import { setOpenLoginModal } from "@/redux/slices/modal";
 import { DispatchType } from "@/redux/store";
+import Image from "next/image";
+import { icons } from "@/constants";
+import Link from "next/link";
 
 const Cart = () => {
-  const { data: carts, isLoading, isError } = useGetCarts();
+  const { data: carts, isLoading: cartsLoading, isError } = useGetCarts();
 
   const { session, status } = useCurrentUser();
 
@@ -21,42 +24,72 @@ const Cart = () => {
 
         <div className="border-b-[1px] border-grey"></div>
 
-        <>
-          {status === "loading" ? (
-            <div className={`${innerBox}`}> Loading...</div>
-          ) : !session ? (
-            <div className={`${innerBox} gap-2`}>
-              <h3>Your Carts will go here.</h3>
-
-              <h6>Sign in to see your carts.</h6>
-
-              <CustomButton
-                type="button"
-                label="Sign in"
-                extraClasses="px-6 py-3 bg-black text-white"
-                onClick={() => {
-                  dispatch(setOpenLoginModal(true));
-                  document.body.style.overflow = "hidden";
-                }}
+        {!session ? (
+          <div className={`${innerBox} gap-10`}>
+            <div className="h-[319px] w-[319px] rounded-full bg-grey flex items-center justify-center">
+              <Image
+                src={icons.emptycart}
+                alt=""
+                priority
+                width={237}
+                height={162}
+                quality={100}
               />
             </div>
-          ) : carts && carts?.length < 1 ? (
-            <div className={`${innerBox} gap-2`}>
-              <h3>You currently do not have any cart.</h3>
+
+            <span className="flex flex-col items-center gap-2">
+              <h3 className="text-xl font-bold">Your Carts will go here.</h3>
+
+              <h6>Sign in now to see the products you{"'"}ve added.</h6>
+            </span>
+
+            <CustomButton
+              type="button"
+              label="Sign in"
+              extraClasses="px-7 py-4 bg-white text-customblack border-[1px] border-grey hover:bg-gray"
+              onClick={() => {
+                dispatch(setOpenLoginModal(true));
+                document.body.style.overflow = "hidden";
+              }}
+            />
+          </div>
+        ) : cartsLoading ? (
+          <div>Loading...</div>
+        ) : carts && carts?.length < 1 ? (
+          <div className={`${innerBox} gap-10`}>
+            <div className="h-[319px] w-[319px] rounded-full bg-grey flex items-center justify-center">
+              <Image
+                src={icons.emptycart}
+                alt=""
+                priority
+                width={237}
+                height={162}
+                quality={100}
+              />
+            </div>
+
+            <span className="flex flex-col items-center gap-2">
+              <h3 className="text-xl font-bold">
+                You currently do not have any cart.
+              </h3>
 
               <h6>Browse amazing crafts by talented creators.</h6>
-            </div>
-          ) : (
-            <div
-              className="grid grid-cols-1 gap-6 "
-              style={{ scrollbarWidth: "thin" }}
-            >
-              {carts?.map((cart) => {
-                return <CartCard key={cart.creativeId} cart={cart} />;
-              })}
-            </div>
-          )}
-        </>
+            </span>
+
+            <Link href="/" className="px-7 py-4 bg-black rounded-xl text-white">
+              Go shopping
+            </Link>
+          </div>
+        ) : (
+          <div
+            className="grid grid-cols-1 gap-6 "
+            style={{ scrollbarWidth: "thin" }}
+          >
+            {carts?.map((cart) => {
+              return <CartCard key={cart.creativeId} cart={cart} />;
+            })}
+          </div>
+        )}
       </div>
     </main>
   );
