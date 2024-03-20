@@ -1,10 +1,15 @@
 import { icons } from "@/constants";
+import { useCurrentUser } from "@/utilities";
 import Image from "next/image";
 import Link from "next/link";
 
 const Logo = () => {
+  const { role, session } = useCurrentUser();
+
   return (
-    <Link href="/">
+    <Link
+      href={`${!session || role === "customer" ? "/" : "/creative/dashboard"}`}
+    >
       <Image
         src={icons.logo}
         priority

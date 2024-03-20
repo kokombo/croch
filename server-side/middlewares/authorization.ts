@@ -44,9 +44,9 @@ const authorizeUser = async (
 };
 
 const isCreative = async (req: Request, res: Response, next: NextFunction) => {
-  const { email } = req.user;
+  const { _id: creativeId } = req.user;
 
-  const user = await User.findOne({ email });
+  const user = await User.findById(creativeId);
 
   if (user.role !== "creative") {
     return res

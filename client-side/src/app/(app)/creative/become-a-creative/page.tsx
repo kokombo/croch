@@ -62,7 +62,7 @@ const CreativeAccountSetup = () => {
   };
 
   return (
-    <div>
+    <main>
       <nav className="flex items-center justify-between py-[18px] px-[4.6%] border-b-[1px] border-grey">
         <Logo />
 
@@ -246,7 +246,7 @@ const CreativeAccountSetup = () => {
           }}
         </Formik>
       </section>
-    </div>
+    </main>
   );
 };
 

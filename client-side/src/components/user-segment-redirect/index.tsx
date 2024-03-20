@@ -1,16 +1,26 @@
 import { useCurrentUser } from "@/utilities";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-const UserSegmentRedirect = () => {
-  const { role } = useCurrentUser();
+const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
+  const { role, status } = useCurrentUser();
 
-  if (role === "customer") {
-    return redirect("/");
-  }
+  const router = useRouter();
 
-  if (role === "creative") {
-    return redirect("/creative/dashboard");
-  }
+  useEffect(() => {
+    const checkSession = () => {
+      if (status === "unauthenticated") {
+        router.push("/");
+      }
+
+      if (status === "authenticated" && role === "creative")
+        router.push("/creative/dashboard");
+    };
+
+    checkSession();
+  }, [role, router, status]);
+
+  return status === "loading" ? <div>Loading...</div> : children;
 };
 
 export default UserSegmentRedirect;

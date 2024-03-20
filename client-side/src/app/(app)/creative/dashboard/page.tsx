@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useCreateProduct } from "@/utilities/api-interactions/product";
+import { useAccountSetupDone } from "@/utilities/api-interactions/creative";
 
 const Dashboard = () => {
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);
@@ -46,8 +47,6 @@ const Dashboard = () => {
 
   const { isError, isPending, isSuccess, createProduct, data, error } =
     useCreateProduct(formData);
-
-  console.log(data);
 
   return (
     <div>

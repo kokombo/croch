@@ -9,6 +9,7 @@ import {
 } from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
 import { signOut } from "next-auth/react";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const unauthenticatedLinks = [
   { label: "Log in", href: "/login" },
@@ -45,7 +46,7 @@ const NavigationBar = () => {
 
       <SearchBox onChange={() => {}} />
 
-      <span className="flex items-center gap-2">
+      <div className="flex items-center">
         {(!session || role !== "customer") && (
           <Link
             href={"/creative/home"}
@@ -55,7 +56,7 @@ const NavigationBar = () => {
           </Link>
         )}
 
-        <span className="relative">
+        <span className=" relative">
           <NavAccount
             onClick={(e) => {
               e.stopPropagation();
@@ -116,7 +117,7 @@ const NavigationBar = () => {
             </DropDown>
           )}
         </span>
-      </span>
+      </div>
     </nav>
   );
 };

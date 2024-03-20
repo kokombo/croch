@@ -279,7 +279,6 @@ export const useAccountSetupDone = () => {
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
         },
       }
     );
@@ -287,7 +286,10 @@ export const useAccountSetupDone = () => {
     return res.data;
   };
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, error, data } = useMutation<
+    MessageResponse,
+    AxiosError<ErrorResponse>
+  >({
     mutationKey: ["accountSetupDone"],
     mutationFn: accountSetupDoneRequest,
   });
@@ -296,5 +298,5 @@ export const useAccountSetupDone = () => {
     await mutateAsync();
   };
 
-  return { confirmAccountSetup };
+  return { confirmAccountSetup, error, data };
 };

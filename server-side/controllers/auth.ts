@@ -45,14 +45,14 @@ const signIn = async (req: Request, res: Response) => {
       }
     );
 
-    res.cookie("refreshToken", refreshToken, {
+    res.cookie("crochRefreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     const accessToken = generateAccessToken(user?._id);
 
-    return res.status(StatusCodes.OK).json({
+    return res.json({
       id: user?._id,
       firstName: user?.firstName,
       lastName: user?.lastName,
@@ -72,7 +72,7 @@ const signIn = async (req: Request, res: Response) => {
 const handleRefreshToken = async (req: Request, res: Response) => {
   const cookies = req.cookies;
 
-  if (!cookies.refreshToken) {
+  if (!cookies.crochRefreshToken) {
     return res
       .status(StatusCodes.FORBIDDEN)
       .json({ message: "No refreshToken found." });

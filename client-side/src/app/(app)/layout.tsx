@@ -11,6 +11,7 @@ import {
   setOpenDropDown,
 } from "@/redux/slices/modal";
 import { useState } from "react";
+import UserSegmentRedirect from "@/components/user-segment-redirect";
 
 export default function RootLayout({
   children,
@@ -36,7 +37,7 @@ export default function RootLayout({
   };
 
   return (
-    <>
+    <UserSegmentRedirect>
       <main onClick={() => dispatch(setOpenDropDown(false))}>{children}</main>
 
       {openLoginModal && (
@@ -76,6 +77,6 @@ export default function RootLayout({
           <SignupForm step={step} setStep={setStep} />
         </Modal>
       )}
-    </>
+    </UserSegmentRedirect>
   );
 }
