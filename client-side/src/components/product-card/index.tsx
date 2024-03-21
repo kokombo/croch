@@ -9,11 +9,12 @@ type Props = {
 const ProductCard = (props: Props) => {
   const [hideButton, setHideButton] = useState(true);
 
+  const productUrl = decodeURIComponent(
+    `/crafts?title=${props.product.title}&store=${props.product.owner.firstName}&craftId=${props.product._id}`
+  ).replaceAll(" ", "-");
+
   return (
-    <Link
-      href={`/crafts?title=${props.product.title}&store=${props.product.owner.firstName}&craftId=${props.product._id}`}
-      target="_blank"
-    >
+    <Link href={productUrl} target="_blank">
       <div
         onPointerEnter={() => setHideButton(false)}
         onPointerLeave={() => setHideButton(true)}
