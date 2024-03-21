@@ -12,6 +12,7 @@ type Props = {
   passwordField?: boolean;
   passwordVisible?: boolean;
   togglePasswordVisibilityIcon?: () => void;
+  maxLength?: number;
 };
 
 const TextField = (props: Props) => {
@@ -29,6 +30,7 @@ const TextField = (props: Props) => {
               placeholder={props.placeholder}
               autoComplete={props.autoComplete}
               disabled={props.disabled}
+              maxLength={props.maxLength}
             />
           );
         }}
@@ -65,7 +67,7 @@ const TextField = (props: Props) => {
         name={props.name}
         component="div"
         id={props.id}
-        className="text-red-700 text-sm mt-1 absolute"
+        className="text-red-700 font-medium text-sm mt-1 absolute"
       />
     </div>
   );

@@ -123,12 +123,13 @@ const CreativeAccountSetup = () => {
             return (
               <Form>
                 {step === 1 && (
-                  <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-10">
                     <TextField
                       type="text"
                       id="brandName"
                       name="brandName"
                       placeholder="Brand name"
+                      maxLength={51}
                     />
 
                     <TextArea
@@ -136,6 +137,7 @@ const CreativeAccountSetup = () => {
                       id="personalDescription"
                       placeholder="Tell us about you and your brand"
                       extraClasses=" h-[296px]"
+                      maxLength={501}
                     />
 
                     <span className="flex self-end">
@@ -156,19 +158,21 @@ const CreativeAccountSetup = () => {
                 )}
 
                 {step === 2 && (
-                  <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-10">
                     <TextField
                       type="number"
                       name="yearsOfExperience"
                       id="yearsOfExperience"
                       placeholder="How long have you been doing this in years? e.g. 2."
+                      maxLength={2}
                     />
 
                     <TextArea
                       id="funFacts"
                       name="funFacts[0]"
-                      placeholder="Tell us a fun fact about how you make your products. e.g. I draw inspiration from listening to afrobeat while crocheting."
-                      extraClasses=""
+                      placeholder="Tell us a fun fact about how you make your products. e.g. I am more inspired when listening to afrobeat while crocheting."
+                      extraClasses="h-[100px]"
+                      maxLength={151}
                     />
 
                     {formik.values.funFacts.length > 0 && (
@@ -176,7 +180,8 @@ const CreativeAccountSetup = () => {
                         id="funFacts"
                         name="funFacts[1]"
                         placeholder="Another fun fact."
-                        extraClasses=""
+                        extraClasses="h-[100px]"
+                        maxLength={151}
                       />
                     )}
 
@@ -185,7 +190,8 @@ const CreativeAccountSetup = () => {
                         id="funFacts"
                         name="funFacts[2]"
                         placeholder="And the last fun fact."
-                        extraClasses=""
+                        extraClasses="h-[100px]"
+                        maxLength={151}
                       />
                     )}
 
@@ -194,14 +200,14 @@ const CreativeAccountSetup = () => {
                         label="Previous"
                         type="button"
                         onClick={() => setStep((prev) => prev - 1)}
-                        extraClasses="text-black border-black border-[2px] px-10 py-4"
+                        extraClasses="text-customblack border-grey border-[1px] px-10 py-4"
                       />
 
                       <CustomButton
                         label="Next"
                         type="button"
                         onClick={() => setStep(3)}
-                        extraClasses="bg-black text-white  px-10 py-4"
+                        extraClasses="bg-customblack text-white px-10 py-4"
                         disabled={
                           !formik.values.yearsOfExperience ||
                           !formik.values.funFacts ||
@@ -214,7 +220,7 @@ const CreativeAccountSetup = () => {
                 )}
 
                 {step === 3 && (
-                  <div className="flex flex-col gap-8 items-start">
+                  <div className="flex flex-col gap-10 items-start">
                     <UploadLogo />
 
                     <span className="flex gap-10 self-end">

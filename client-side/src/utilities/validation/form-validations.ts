@@ -49,13 +49,22 @@ export const validationSchemas = [
 ];
 
 export const creativeAccountSetupValidationSchema = Yup.object({
-  brandName: Yup.string().required("Enter your brand name."),
-  personalDescription: Yup.string().required(
-    "Tell us about you and your brand."
+  brandName: Yup.string()
+    .required("Enter your brand name.")
+    .min(10, "Enter at least 10 characters.")
+    .max(50, "Max 50 characters."),
+  personalDescription: Yup.string()
+    .required("Tell us about you and your brand.")
+    .min(200, "Enter at least 200 characters.")
+    .max(500, "Max 500 characters."),
+  yearsOfExperience: Yup.number()
+    .required("Help customers understand how long you've been doing this.")
+    .max(2, "Invalid input"),
+  funFacts: Yup.array().of(
+    Yup.string()
+      .required("Fun fact is required")
+      .min(50, "Enter at least 50 characters")
+      .max(150, "Max 150 characters")
   ),
-  yearsOfExperience: Yup.number().required(
-    "Help customers understand how long you've been doing this."
-  ),
-  funFacts: Yup.array().of(Yup.string().required("Fun fact is required")),
   logo: Yup.mixed().required("Brand logo is required."),
 });

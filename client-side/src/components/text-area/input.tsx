@@ -32,7 +32,7 @@ const TextArea = (props: Props) => {
         name={props.name}
         component="div"
         id={props.id}
-        className="text-red-700 text-sm mt-1 absolute"
+        className="text-red-700 text-sm font-medium mt-1 absolute"
       />
     </div>
   );
