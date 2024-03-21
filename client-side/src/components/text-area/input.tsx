@@ -23,6 +23,7 @@ const TextArea = (props: Props) => {
               placeholder={props.placeholder}
               disabled={props.disabled}
               maxLength={props.maxLength}
+              autoCorrect="off"
             />
           );
         }}
@@ -32,7 +33,7 @@ const TextArea = (props: Props) => {
         name={props.name}
         component="div"
         id={props.id}
-        className="text-red-700 text-sm font-medium mt-1 absolute"
+        className="text-red-700 text-sm font-medium mt-[2px] absolute"
       />
     </div>
   );

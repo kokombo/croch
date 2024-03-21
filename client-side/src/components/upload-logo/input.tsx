@@ -59,8 +59,8 @@ const UploadLogo = () => {
           }}
         </Field>
 
-        <label htmlFor="logo" className="text-neutral">
-          Brand Logo
+        <label htmlFor="logo" className="text-neutral text-sm">
+          Upload your brand logo (max 3mb)
         </label>
       </div>
 
@@ -68,7 +68,7 @@ const UploadLogo = () => {
         name="logo"
         component="div"
         id="logo"
-        className="text-red-700 text-sm mt-1 absolute"
+        className="text-red-700 text-sm mt-[2px] absolute"
       />
     </div>
   );

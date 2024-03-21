@@ -9,11 +9,5 @@ export default function CreativeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { session, role } = useCurrentUser();
-
-  if (session && role === "customer") {
-    redirect("/");
-  }
-
   return <>{children}</>;
 }

@@ -59,7 +59,7 @@ export const creativeAccountSetupValidationSchema = Yup.object({
     .max(500, "Max 500 characters."),
   yearsOfExperience: Yup.number()
     .required("Help customers understand how long you've been doing this.")
-    .max(2, "Invalid input"),
+    .test("len", "Invalid input", (val) => val.toString().length < 3),
   funFacts: Yup.array().of(
     Yup.string()
       .required("Fun fact is required")

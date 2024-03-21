@@ -67,7 +67,7 @@ const TextField = (props: Props) => {
         name={props.name}
         component="div"
         id={props.id}
-        className="text-red-700 font-medium text-sm mt-1 absolute"
+        className="text-red-700 font-medium text-sm mt-[2px] absolute"
       />
     </div>
   );

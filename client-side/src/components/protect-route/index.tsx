@@ -11,7 +11,7 @@ const ProtectRoute = ({ children }: { children: React.ReactNode }) => {
     },
   });
 
-  return <>{children}</>;
+  return status === "loading" ? <div>Loading...</div> : children;
 };
 
 export default ProtectRoute;

@@ -1,16 +1,18 @@
 import { icons } from "@/constants";
 import Image from "next/image";
-import { MouseEvent } from "react";
 
 type Props = {
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick: () => void;
   opened: boolean;
 };
 
 const NavAccount = (props: Props) => {
   return (
     <button
-      onClick={props.onClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        props.onClick();
+      }}
       className={`w-[101px] h-[56px] p-2 flex items-center justify-center gap-2 border-[1px] border-grey rounded-[100px] hover:shadow-lg ${props.opened ? "shadow-lg" : ""}`}
       aria-label="account dropdown button"
     >

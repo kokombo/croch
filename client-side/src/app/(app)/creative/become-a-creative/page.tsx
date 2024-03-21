@@ -4,7 +4,7 @@ import {
   AccountSetupStep,
   AccountSetupStepInfo,
   CustomButton,
-  Logo,
+  DropDown,
   NavAccount,
   TextArea,
   TextField,
@@ -17,8 +17,9 @@ import {
 import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { creativeAccountSetupValidationSchema } from "@/utilities/validation/form-validations";
-useAccountSetupDone;
+import { signOut } from "next-auth/react";
 
 const initialFormValues: CreativeAccountSetupData = {
   brandName: "",
@@ -30,6 +31,7 @@ const initialFormValues: CreativeAccountSetupData = {
 
 const CreativeAccountSetup = () => {
   const [step, setStep] = useState(1);
+  const [showDropDown, setShowDropDown] = useState(false);
 
   const router = useRouter();
 
@@ -62,11 +64,33 @@ const CreativeAccountSetup = () => {
   };
 
   return (
-    <main>
+    <main onClick={() => setShowDropDown(false)}>
       <nav className="flex items-center justify-between py-[18px] px-[4.6%] border-b-[1px] border-grey">
-        <Logo />
+        <div></div>
 
-        <NavAccount onClick={() => {}} opened={false} />
+        <div className="relative">
+          <NavAccount
+            onClick={() => {
+              setShowDropDown((prev) => !prev);
+            }}
+            opened={showDropDown}
+          />
+
+          {showDropDown && (
+            <DropDown extraClasses="right-0 mt-2">
+              <Link
+                href={"/signout"}
+                className="text-sm font-semibold hover:bg-gray px-5 py-3"
+                onClick={(e) => {
+                  e.preventDefault();
+                  signOut();
+                }}
+              >
+                Sign Out
+              </Link>
+            </DropDown>
+          )}
+        </div>
       </nav>
 
       <section className="flex items-center justify-between px-[4.6%] border-b-[1px] border-grey h-40">
@@ -135,7 +159,7 @@ const CreativeAccountSetup = () => {
                     <TextArea
                       name="personalDescription"
                       id="personalDescription"
-                      placeholder="Tell us about you and your brand"
+                      placeholder="Tell us about you and your brand. Feel free to sell yourself."
                       extraClasses=" h-[296px]"
                       maxLength={501}
                     />
@@ -145,7 +169,7 @@ const CreativeAccountSetup = () => {
                         label="Next"
                         type="button"
                         onClick={() => setStep(2)}
-                        extraClasses="bg-black text-white px-10 py-4 "
+                        extraClasses="bg-customblack text-white px-10 py-4 "
                         disabled={
                           !formik.values.brandName ||
                           !formik.values.personalDescription ||
@@ -228,13 +252,13 @@ const CreativeAccountSetup = () => {
                         label="Previous"
                         type="button"
                         onClick={() => setStep((prev) => prev - 1)}
-                        extraClasses="text-black border-black border-[2px]  px-10 py-4"
+                        extraClasses="text-customblack border-black border-[2px]  px-10 py-4"
                       />
 
                       <CustomButton
                         label="Finish"
                         type="submit"
-                        extraClasses="bg-black text-white  px-10 py-4"
+                        extraClasses="bg-customblack text-white  px-10 py-4"
                       />
                     </span>
 

@@ -59,8 +59,7 @@ const NavigationBar = () => {
 
         <span className=" relative">
           <NavAccount
-            onClick={(e) => {
-              e.stopPropagation();
+            onClick={() => {
               openDropDown
                 ? dispatch(setOpenDropDown(false))
                 : dispatch(setOpenDropDown(true));
