@@ -14,11 +14,13 @@ import tagRouter = require("./routes/tag");
 import creativeRouter = require("./routes/creative");
 import customerRouter = require("./routes/customer");
 import cartRouter = require("./routes/cart");
+import limiter = require("./middlewares/rateLimiter");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+app.use(limiter(1000 * 60 * 60, 10));
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
