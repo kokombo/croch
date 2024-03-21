@@ -51,6 +51,12 @@ import CartCard from "./cart-card";
 import PromptCard from "./prompt-card";
 import ShoppingCardListItem from "./shopping-card-page/shopping-card-list-item";
 import ProtectRoute from "./protect-route";
+import Divider from "./divider";
+import DeliveryTime from "./product-details-page/delivery-time";
+import PriceBox from "./product-details-page/price-box";
+import AvailabilityAndGenderBox from "./product-details-page/availability+gender";
+import Location from "./location";
+import { H1, H2, H3, H5, H4, H6, SpanText } from "./texts";
 
 export {
   ProductDescription,
@@ -106,4 +112,16 @@ export {
   PromptCard,
   ShoppingCardListItem,
   ProtectRoute,
+  Divider,
+  DeliveryTime,
+  PriceBox,
+  AvailabilityAndGenderBox,
+  Location,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  SpanText,
 };

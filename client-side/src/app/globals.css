@@ -38,3 +38,32 @@ html {
 .blink {
   animation: modalBackground 1s ease 0s 1 normal forwards;
 }
+
+/* Tailwind styles */
+.flex_center {
+  @apply flex items-center;
+}
+
+.flex_item_justify_center {
+  @apply flex items-center justify-center;
+}
+
+.border1 {
+  @apply border-b-[1px] border-grey;
+}
+
+.flex_col_center {
+  @apply flex flex-col items-center;
+}
+
+.grid_center {
+  @apply grid place-items-center;
+}
+
+.border_grey_1 {
+  @apply border-[1px] border-grey;
+}
+
+.cart_container {
+  @apply flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full w-[60vw];
+}

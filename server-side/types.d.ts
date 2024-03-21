@@ -62,6 +62,8 @@ type CartItem = {
 
   title: String;
 
+  size: String;
+
   thumbNail: String;
 
   count: number;

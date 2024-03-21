@@ -17,6 +17,8 @@ const CustomerSchema = new Schema({
 
           title: String,
 
+          size: String,
+
           thumbNail: String,
 
           cummulativePrice: Number,

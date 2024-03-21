@@ -62,7 +62,11 @@ export const useGetCarts = () => {
   return { data, isError, error, isLoading };
 };
 
-export const useAddToCart = (productId: string, count: number) => {
+export const useAddToCart = (
+  productId: string,
+  size: string,
+  count: number
+) => {
   const { accessToken } = useCurrentUser();
 
   const queryClient = useQueryClient();
@@ -74,6 +78,7 @@ export const useAddToCart = (productId: string, count: number) => {
       {
         productId,
         count,
+        size,
       },
 
       {

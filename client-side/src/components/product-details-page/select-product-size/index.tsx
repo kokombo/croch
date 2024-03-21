@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type Props = {
   data: string[];
+  size: string;
+  setSize: Dispatch<SetStateAction<string>>;
 };
 
 const SelectProductSize = (props: Props) => {
-  const [size, setSize] = useState("");
-
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="size">Available Sizes</label>
@@ -21,11 +21,11 @@ const SelectProductSize = (props: Props) => {
                 name="size"
                 value={option}
                 className="hidden"
-                onChange={(e) => setSize(e.target.value)}
+                onChange={(e) => props.setSize(e.target.value)}
               />
 
               <div
-                className={`${size === option ? "border-black border-[2px]" : "border-grey border-[1px]"} flex flex-col items-center justify-center h-10 w-10 rounded-md`}
+                className={`${props.size === option ? "border-black border-[2px]" : "border-grey border-[1px]"} flex flex-col items-center justify-center h-10 w-10 rounded-md`}
               >
                 <p>
                   {option === "small"

@@ -10,7 +10,7 @@ const ProductCard = (props: Props) => {
   const [hideButton, setHideButton] = useState(true);
 
   const productUrl = decodeURIComponent(
-    `/crafts?title=${props.product.title}&store=${props.product.owner.firstName}&craftId=${props.product._id}`
+    `/crafts?title=${props.product.title}&craftId=${props.product._id}`
   ).replaceAll(" ", "-");
 
   return (

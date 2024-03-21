@@ -67,6 +67,8 @@ type CartItem = {
 
   title: string;
 
+  size: string;
+
   thumbNail: string;
 
   count: number;

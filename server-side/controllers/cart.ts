@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 import Product = require("../models/product");
 
 const addToCart = async (req: Request, res: Response) => {
-  const { productId, count } = req.body;
+  const { productId, count, size } = req.body;
 
   const { _id: customerId } = req.user;
 
@@ -26,6 +26,7 @@ const addToCart = async (req: Request, res: Response) => {
         $push: {
           [`carts.${productOwnerId}.cartItems`]: {
             info: productId,
+            size,
             title: newlyAddedProduct.title,
             thumbNail: newlyAddedProduct.photos[0],
             count: count,

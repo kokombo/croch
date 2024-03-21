@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingCardListItem } from "@/components";
+import { H3, ShoppingCardListItem } from "@/components";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useSearchParams } from "next/navigation";
 
@@ -11,11 +11,15 @@ const ShoppingCard = () => {
 
   const { data: cart, isLoading, isError, error } = useGetCartItems(creativeId);
 
+  const Heading = ({ text }: { text: string }) => {
+    return <h6 className="font-semibold text-customblack text-sm">{text}</h6>;
+  };
+
   return (
     <main className="flex px-[4.6%] py-10 gap-6">
       <div className="w-[70%] flex flex-col gap-1 py-8 border-[1px] border-grey rounded-xl">
-        <span className="px-8 text-xl font-bold text-customblack">
-          Shopping Card
+        <span className="px-8 ">
+          <H3>Shopping Card</H3>
         </span>
 
         <>
@@ -25,27 +29,17 @@ const ShoppingCard = () => {
             <div>
               <div className="flex items-center my-4 gap-6 bg-gray px-8 h-16">
                 <div className="w-1/3">
-                  <h6 className="font-semibold text-customblack text-sm">
-                    PRODUCT
-                  </h6>
+                  <Heading text="PRODUCT" />
                 </div>
 
                 <div className="w-2/3 grid grid-cols-4 place-items-center">
-                  <h6 className="font-semibold text-customblack text-sm">
-                    PRICE
-                  </h6>
+                  <Heading text="PRICE" />
 
-                  <h6 className="font-semibold text-customblack text-sm">
-                    QUANTITY
-                  </h6>
+                  <Heading text="QUANTITY" />
 
-                  <h6 className="font-semibold text-customblack text-sm">
-                    SIZE
-                  </h6>
+                  <Heading text="SIZE" />
 
-                  <h6 className="font-semibold text-customblack text-sm">
-                    SUB-TOTAL
-                  </h6>
+                  <Heading text="SUB-TOTAL" />
                 </div>
               </div>
 

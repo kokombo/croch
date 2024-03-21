@@ -1,6 +1,5 @@
 "use client";
-
-import { CartCard, CustomButton } from "@/components";
+import { CartCard, CustomButton, Divider, H3 } from "@/components";
 import { useCurrentUser } from "@/utilities";
 import { useGetCarts } from "@/utilities/api-interactions/cart";
 import { useDispatch } from "react-redux";
@@ -18,15 +17,15 @@ const Cart = () => {
   const dispatch: DispatchType = useDispatch();
 
   return (
-    <main className="grid place-items-center my-20 ">
-      <div className={`${cartContainer}`}>
-        <h3 className="text-xl font-bold text-customblack">Cart</h3>
+    <main className="grid_center my-20">
+      <div className="cart_container">
+        <H3>Cart</H3>
 
-        <div className="border-b-[1px] border-grey"></div>
+        <Divider />
 
         {!session ? (
-          <div className={`${innerBox} gap-10`}>
-            <div className="h-[319px] w-[319px] rounded-full bg-grey flex items-center justify-center">
+          <div className="flex_item_justify_center flex-col h-full gap-10">
+            <div className="h-[319px] w-[319px] rounded-full bg-grey flex_item_justify_center">
               <Image
                 src={icons.emptycart}
                 alt=""
@@ -37,7 +36,7 @@ const Cart = () => {
               />
             </div>
 
-            <span className="flex flex-col items-center gap-2">
+            <span className="flex_col_center gap-2">
               <h3 className="text-xl font-bold">Your Carts will go here.</h3>
 
               <h6>Sign in now to see the products you{"'"}ve added.</h6>
@@ -46,7 +45,7 @@ const Cart = () => {
             <CustomButton
               type="button"
               label="Sign in"
-              extraClasses="px-7 py-4 bg-white text-customblack border-[1px] border-grey hover:bg-gray"
+              extraClasses="px-7 py-4 bg-white text-customblack border_grey_1 hover:bg-gray"
               onClick={() => {
                 dispatch(setOpenLoginModal(true));
                 document.body.style.overflow = "hidden";
@@ -56,8 +55,8 @@ const Cart = () => {
         ) : cartsLoading ? (
           <div>Loading...</div>
         ) : carts && carts?.length < 1 ? (
-          <div className={`${innerBox} gap-10`}>
-            <div className="h-[319px] w-[319px] rounded-full bg-grey flex items-center justify-center">
+          <div className="flex_item_justify_center flex-col h-full gap-10">
+            <div className="h-[319px] w-[319px] rounded-full bg-grey flex_item_justify_center">
               <Image
                 src={icons.emptycart}
                 alt=""
@@ -68,7 +67,7 @@ const Cart = () => {
               />
             </div>
 
-            <span className="flex flex-col items-center gap-2">
+            <span className="flex_col_center gap-2">
               <h3 className="text-xl font-bold">
                 You currently do not have any cart.
               </h3>
@@ -82,7 +81,7 @@ const Cart = () => {
           </div>
         ) : (
           <div
-            className="grid grid-cols-1 gap-6 "
+            className="grid grid-cols-1 gap-6"
             style={{ scrollbarWidth: "thin" }}
           >
             {carts?.map((cart) => {
@@ -94,9 +93,5 @@ const Cart = () => {
     </main>
   );
 };
-
-const cartContainer =
-  "flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full w-[60vw]";
-const innerBox = "flex flex-col items-center justify-center h-full";
 
 export default Cart;
