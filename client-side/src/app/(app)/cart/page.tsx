@@ -1,5 +1,11 @@
 "use client";
-import { CartCard, CustomButton, Divider, H3 } from "@/components";
+import {
+  CartCard,
+  CustomButton,
+  Divider,
+  H3,
+  ThreeDotsLoader,
+} from "@/components";
 import { useCurrentUser } from "@/utilities";
 import { useGetCarts } from "@/utilities/api-interactions/cart";
 import { useDispatch } from "react-redux";
@@ -53,7 +59,9 @@ const Cart = () => {
             />
           </div>
         ) : cartsLoading ? (
-          <div>Loading...</div>
+          <div>
+            <ThreeDotsLoader />
+          </div>
         ) : carts && carts?.length < 1 ? (
           <div className="flex_item_justify_center flex-col h-full gap-10">
             <div className="h-[319px] w-[319px] rounded-full bg-grey flex_item_justify_center">

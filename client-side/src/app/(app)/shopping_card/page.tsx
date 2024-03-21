@@ -1,6 +1,6 @@
 "use client";
 
-import { H3, ShoppingCardListItem } from "@/components";
+import { H3, ShoppingCardListItem, ThreeDotsLoader } from "@/components";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useSearchParams } from "next/navigation";
 
@@ -24,7 +24,9 @@ const ShoppingCard = () => {
 
         <>
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="flex_item_justify_center">
+              <ThreeDotsLoader />
+            </div>
           ) : (
             <div>
               <div className="flex items-center my-4 gap-6 bg-gray px-8 h-16">

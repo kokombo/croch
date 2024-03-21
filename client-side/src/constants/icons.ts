@@ -20,6 +20,7 @@ import identityverified from "../../public/icons/identityverified.png";
 import creativeisavailable from "../../public/icons/creativeisavailable.png";
 import deleteicon from "../../public/icons/delete.png";
 import emptycart from "../../public/icons/emptycart.png";
+import closered from "../../public/icons/closered.png";
 
 const icons = {
   chevronleft,
@@ -44,6 +45,7 @@ const icons = {
   location,
   deleteicon,
   emptycart,
+  closered,
 };
 
 export default icons;
