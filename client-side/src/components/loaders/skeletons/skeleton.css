@@ -1,0 +1,36 @@
+.skeleton {
+  background-color: #dddddd;
+  margin: 0.75rem 0;
+  border-radius: 0.25rem;
+}
+
+.skeleton.width-100 {
+  width: 100%;
+}
+
+.skeleton.width-75 {
+  width: 75%;
+}
+
+.skeleton.width-50 {
+  width: 50%;
+}
+
+.skeleton.product {
+  height: 250px;
+}
+
+/* animate-pulse */
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 10s infinite;
+}

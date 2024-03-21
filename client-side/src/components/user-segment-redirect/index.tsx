@@ -2,6 +2,7 @@ import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { ThreeDotsLoader } from "..";
 
 const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
   const { role, status, id } = useCurrentUser();
@@ -23,7 +24,13 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
     checkCurrentUser();
   }, [role, router, status, creative?.accountSetupDone]);
 
-  return status === "loading" ? <div>Loading...</div> : children;
+  return status === "loading" ? (
+    <main className="h-screen grid place-items-center">
+      <ThreeDotsLoader />
+    </main>
+  ) : (
+    children
+  );
 };
 
 export default UserSegmentRedirect;

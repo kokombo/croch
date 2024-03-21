@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { ThreeDotsLoader } from "..";
 
 const ProtectRoute = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -11,7 +12,13 @@ const ProtectRoute = ({ children }: { children: React.ReactNode }) => {
     },
   });
 
-  return status === "loading" ? <div>Loading...</div> : children;
+  return status === "loading" ? (
+    <main className="h-screen grid place-items-center">
+      <ThreeDotsLoader />
+    </main>
+  ) : (
+    children
+  );
 };
 
 export default ProtectRoute;

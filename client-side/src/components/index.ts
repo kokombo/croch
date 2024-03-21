@@ -57,6 +57,9 @@ import PriceBox from "./product-details-page/price-box";
 import AvailabilityAndGenderBox from "./product-details-page/availability+gender";
 import Location from "./location";
 import { H1, H2, H3, H5, H4, H6, SpanText } from "./texts";
+import RingsLoader from "./loaders/rings";
+import ThreeDotsLoader from "./loaders/three-dots";
+import ProductSkeleton from "./loaders/skeletons/product-skeleton";
 
 export {
   ProductDescription,
@@ -124,4 +127,7 @@ export {
   H5,
   H6,
   SpanText,
+  RingsLoader,
+  ThreeDotsLoader,
+  ProductSkeleton,
 };

@@ -1,5 +1,4 @@
 "use client";
-
 import { NavigationBar, ProtectRoute } from "@/components";
 import "../../../globals.css";
 
@@ -11,7 +10,6 @@ export default function DashboardLayout({
   return (
     <ProtectRoute>
       <NavigationBar />
-
       {children}
     </ProtectRoute>
   );

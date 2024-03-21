@@ -1,4 +1,4 @@
-import { ProductCard } from "..";
+import { ProductCard, ProductSkeleton } from "..";
 import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
 const ProductsList = () => {
@@ -10,18 +10,26 @@ const ProductsList = () => {
     error,
   } = useGetAllProducts();
 
+  console.log(error);
+
   return (
     <>
       {isLoading ? (
-        <span>Loading... </span>
+        <section className="h-screen grid grid-cols-4 gap-x-4">
+          {[...Array(8)].map((_, index) => {
+            return <ProductSkeleton key={index.toString()} />;
+          })}
+        </section>
       ) : isError ? (
-        <span>{error?.response?.data.message || error?.message} </span>
+        <section className="h-screen">
+          {error?.response?.data.message || error?.message}{" "}
+        </section>
       ) : (
-        <div className="grid grid-cols-4 gap-x-4 gap-y-10">
+        <section className="grid grid-cols-4 gap-x-4 gap-y-10">
           {products?.map((product) => {
             return <ProductCard key={product._id} product={product} />;
           })}
-        </div>
+        </section>
       )}
     </>
   );
