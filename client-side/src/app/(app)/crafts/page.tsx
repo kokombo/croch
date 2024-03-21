@@ -9,6 +9,7 @@ import {
   ReviewsList,
   Location,
   H3,
+  ProductInfoPageSkeleton,
 } from "@/components";
 import { icons } from "@/constants";
 import { useGetProductById } from "@/utilities/api-interactions/product";
@@ -27,11 +28,11 @@ const ProductInfoPage = () => {
   } = useGetProductById(craftId);
 
   return isLoading ? (
-    <span>Loading.... </span>
+    <ProductInfoPageSkeleton />
   ) : isError ? (
-    <span>{error?.response?.data.message} </span>
+    <div>{error?.response?.data.message} </div>
   ) : (
-    <>
+    <div>
       {product && (
         <div className="px-[4.6%]">
           <section className="flex flex-col gap-6 py-10 ">
@@ -69,7 +70,7 @@ const ProductInfoPage = () => {
           <ReviewsList />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

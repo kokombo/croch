@@ -18,7 +18,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
             quality={100}
             sizes="any"
             decoding="async"
-            className="rounded-l-[20px] object-cover hover:brightness-75"
+            className="rounded-l-[20px] object-cover hover:brightness-90"
           />
         </div>
 
@@ -33,7 +33,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
                 quality={100}
                 sizes="any"
                 decoding="async"
-                className="object-cover hover:brightness-75"
+                className="object-cover hover:brightness-90"
               />
             </div>
 
@@ -46,7 +46,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
                 quality={100}
                 decoding="async"
                 sizes="any"
-                className="rounded-tr-[20px] object-cover hover:brightness-75"
+                className="rounded-tr-[20px] object-cover hover:brightness-90"
               />
             </div>
           </div>
@@ -61,7 +61,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
                 quality={100}
                 decoding="async"
                 sizes="any"
-                className="object-cover hover:brightness-75"
+                className="object-cover hover:brightness-90"
               />
             </div>
 
@@ -73,7 +73,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
                 loading="lazy"
                 quality={100}
                 sizes="any"
-                className="rounded-br-[20px] object-cover hover:brightness-75 "
+                className="rounded-br-[20px] object-cover hover:brightness-90 "
               />
 
               {photos.length > 5 && (

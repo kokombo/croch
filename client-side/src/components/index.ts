@@ -60,6 +60,7 @@ import { H1, H2, H3, H5, H4, H6, SpanText } from "./texts";
 import RingsLoader from "./loaders/rings";
 import ThreeDotsLoader from "./loaders/three-dots";
 import ProductSkeleton from "./loaders/skeletons/product-skeleton";
+import ProductInfoPageSkeleton from "./loaders/skeletons/product-info-page-skeleton";
 
 export {
   ProductDescription,
@@ -130,4 +131,5 @@ export {
   RingsLoader,
   ThreeDotsLoader,
   ProductSkeleton,
+  ProductInfoPageSkeleton,
 };
