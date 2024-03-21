@@ -3,7 +3,6 @@ import NextAuthProvider from "./next-auth-provider";
 import Slider from "./slider";
 import DropDown from "./drop-down";
 import Modal from "./modal";
-import RoutesProtector from "./routes-protector";
 import RoundIconButton from "./buttons/round-icon-button";
 import UnclickableRating from "./unclickable-rating";
 import ProductCard from "./product-card";
@@ -51,6 +50,7 @@ import SelectProductSize from "./product-details-page/select-product-size";
 import CartCard from "./cart-card";
 import PromptCard from "./prompt-card";
 import ShoppingCardListItem from "./shopping-card-page/shopping-card-list-item";
+import ProtectRoute from "./protect-route";
 
 export {
   ProductDescription,
@@ -65,7 +65,6 @@ export {
   Slider,
   DropDown,
   Modal,
-  RoutesProtector,
   RoundIconButton,
   UnclickableRating,
   ProductCard,
@@ -106,4 +105,5 @@ export {
   CartCard,
   PromptCard,
   ShoppingCardListItem,
+  ProtectRoute,
 };

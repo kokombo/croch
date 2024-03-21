@@ -18,7 +18,7 @@ const ShoppingCardListItem = (props: Props) => {
   };
 
   return (
-    <div className="flex items-center my-4 gap-6">
+    <div className="flex items-center my-4 gap-6 px-8">
       <div className="w-1/3 flex items-center gap-6">
         <button>R</button>
 
@@ -44,6 +44,7 @@ const ShoppingCardListItem = (props: Props) => {
           count={count}
           decreaseCount={decreaseCount}
           increaseCount={increaseCount}
+          decreaseCountButtonDisabled={Boolean(count < 2)}
         />
 
         <h6>XL</h6>

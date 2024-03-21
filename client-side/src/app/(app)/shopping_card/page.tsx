@@ -13,15 +13,17 @@ const ShoppingCard = () => {
 
   return (
     <main className="flex px-[4.6%] py-10 gap-6">
-      <div className="w-[70%] flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full">
-        <h3>Shopping card</h3>
+      <div className="w-[70%] flex flex-col gap-1 py-8 border-[1px] border-grey rounded-xl">
+        <span className="px-8 text-xl font-bold text-customblack">
+          Shopping Card
+        </span>
 
         <>
           {isLoading ? (
             <div>Loading...</div>
           ) : (
             <div>
-              <div className="flex items-center my-4 gap-6">
+              <div className="flex items-center my-4 gap-6 bg-gray px-8 h-16">
                 <div className="w-1/3">
                   <h6 className="font-semibold text-customblack text-sm">
                     PRODUCT

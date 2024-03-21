@@ -8,12 +8,12 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const checkSession = () => {
+    const checkCurrentUser = () => {
       if (status === "authenticated" && role === "creative")
         router.push("/creative/dashboard");
     };
 
-    checkSession();
+    checkCurrentUser();
   }, [role, router, status]);
 
   return status === "loading" ? <div>Loading...</div> : children;

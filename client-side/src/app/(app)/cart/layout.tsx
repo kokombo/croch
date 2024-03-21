@@ -1,7 +1,7 @@
 "use client";
 
 import "../../globals.css";
-import { NavigationBar } from "@/components";
+import { NavigationBar, ProtectRoute } from "@/components";
 
 export default function CartLayout({
   children,
@@ -9,10 +9,10 @@ export default function CartLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <ProtectRoute>
       <NavigationBar />
 
       {children}
-    </>
+    </ProtectRoute>
   );
 }
