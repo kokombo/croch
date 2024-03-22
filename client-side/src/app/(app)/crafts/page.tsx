@@ -10,6 +10,7 @@ import {
   Location,
   H3,
   ProductInfoPageSkeleton,
+  H6,
 } from "@/components";
 import { icons } from "@/constants";
 import { useGetProductById } from "@/utilities/api-interactions/product";
@@ -38,7 +39,7 @@ const ProductInfoPage = () => {
               <H3>{product?.title}</H3>
 
               <span className="flex items-center gap-2">
-                <h6 className="text-sm text-customblack ">Add to wishlist</h6>
+                <H6>Save</H6>
 
                 <AddToWishlist productId={product._id} icon={icons.bookmark2} />
               </span>

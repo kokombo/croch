@@ -2,7 +2,7 @@ import { H6 } from "@/components";
 
 const CartItemsTableHead = () => {
   return (
-    <div className="flex items-center my-4 gap-6 bg-gray px-8 h-16">
+    <div className="flex items-center my-4 gap-6 bg-gray px-8 h-16 border-y-[1px] border-grey">
       <div className="w-1/3">
         <H6>PRODUCT</H6>
       </div>

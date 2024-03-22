@@ -68,6 +68,10 @@ html {
   @apply border-[1px] border-grey;
 }
 
+.border_black_1 {
+  @apply border-[1px] border-black;
+}
+
 .cart_container {
   @apply flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full w-[60vw];
 }

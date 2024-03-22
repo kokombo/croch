@@ -79,7 +79,7 @@ const ShoppingCardListItem = (props: Props) => {
                 ? "L"
                 : props.cartItem.size === "extraLarge"
                   ? "XL"
-                  : ""}
+                  : "Nil"}
         </h6>
 
         <h6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </h6>
