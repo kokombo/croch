@@ -18,8 +18,8 @@ export const H5 = () => {
   return <h5></h5>;
 };
 
-export const H6 = ({ text }: { text: string }) => {
-  <h6 className="font-semibold text-customblack text-sm">{text}</h6>;
+export const H6 = ({ children }: { children: React.ReactNode }) => {
+  return <h6 className="font-semibold text-customblack text-sm">{children}</h6>;
 };
 
 export const P = () => {

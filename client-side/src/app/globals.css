@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #ffffff;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
@@ -66,4 +70,12 @@ html {
 
 .cart_container {
   @apply flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full w-[60vw];
+}
+
+.white_card {
+  @apply py-6 px-5 bg-white shadow-lg rounded-xl border-[1px] border-grey;
+}
+
+.paddingX {
+  @apply px-[4.6%];
 }

@@ -6,6 +6,7 @@ import {
   useRemoveFromCart,
   useUpdateCartItemCount,
 } from "@/utilities/api-interactions/cart";
+import commaNumber from "comma-number";
 
 type Props = {
   cartItem: CartItem;
@@ -60,7 +61,7 @@ const ShoppingCardListItem = (props: Props) => {
       </div>
 
       <div className="w-2/3 grid grid-cols-4 place-items-center">
-        <h6>{props.cartItem.info.price} </h6>
+        <h6> &#8358;{commaNumber(props.cartItem.info.price)} </h6>
 
         <Counter
           count={count}
@@ -69,9 +70,19 @@ const ShoppingCardListItem = (props: Props) => {
           decreaseCountButtonDisabled={Boolean(count < 2)}
         />
 
-        <h6>XL</h6>
+        <h6>
+          {props.cartItem.size === "small"
+            ? "S"
+            : props.cartItem.size === "medium"
+              ? "M"
+              : props.cartItem.size === "large"
+                ? "L"
+                : props.cartItem.size === "extraLarge"
+                  ? "XL"
+                  : ""}
+        </h6>
 
-        <h6>{props.cartItem.cummulativePrice} </h6>
+        <h6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </h6>
       </div>
     </div>
   );

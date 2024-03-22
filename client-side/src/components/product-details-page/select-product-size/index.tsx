@@ -4,6 +4,7 @@ type Props = {
   data: string[];
   size: string;
   setSize: Dispatch<SetStateAction<string>>;
+  defaultChecked?: boolean;
 };
 
 const SelectProductSize = (props: Props) => {
@@ -20,6 +21,7 @@ const SelectProductSize = (props: Props) => {
                 id={option}
                 name="size"
                 value={option}
+                defaultChecked={props.defaultChecked}
                 className="hidden"
                 onChange={(e) => props.setSize(e.target.value)}
               />

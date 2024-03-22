@@ -15,7 +15,7 @@ const ProductsList = () => {
   return (
     <>
       {isLoading ? (
-        <section className="h-screen grid grid-cols-4 gap-x-4">
+        <section className="h-screen grid grid-cols-4 gap-x-4 gap-y-10">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
           })}

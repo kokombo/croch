@@ -27,14 +27,12 @@ const ProductInfoPage = () => {
     error,
   } = useGetProductById(craftId);
 
-  return isLoading ? (
+  return isLoading || isError ? (
     <ProductInfoPageSkeleton />
-  ) : isError ? (
-    <div>{error?.response?.data.message} </div>
   ) : (
     <div>
       {product && (
-        <div className="px-[4.6%]">
+        <div className="paddingX">
           <section className="flex flex-col gap-6 py-10 ">
             <div className="flex items-center justify-between">
               <H3>{product?.title}</H3>

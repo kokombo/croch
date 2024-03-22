@@ -61,6 +61,9 @@ import RingsLoader from "./loaders/rings";
 import ThreeDotsLoader from "./loaders/three-dots";
 import ProductSkeleton from "./loaders/skeletons/product-skeleton";
 import ProductInfoPageSkeleton from "./loaders/skeletons/product-info-page-skeleton";
+import CheckOutCard from "./shopping-card-page/check-out-card";
+import CouponCard from "./shopping-card-page/coupon-card";
+import CartItemsTableHead from "./shopping-card-page/cart-items-table-head";
 
 export {
   ProductDescription,
@@ -132,4 +135,7 @@ export {
   ThreeDotsLoader,
   ProductSkeleton,
   ProductInfoPageSkeleton,
+  CheckOutCard,
+  CouponCard,
+  CartItemsTableHead,
 };

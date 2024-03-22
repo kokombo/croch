@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Slider, UnclickableRating } from "..";
 import Link from "next/link";
+import commaNumber from "comma-number";
 
 type Props = {
   product: Product;
@@ -29,7 +30,9 @@ const ProductCard = (props: Props) => {
             {props.product?.title}
           </h1>
 
-          <h2 className="text-lg font-bold">#{props.product?.price}</h2>
+          <h2 className="text-lg font-bold">
+            &#8358;{commaNumber(props.product?.price)}
+          </h2>
         </div>
       </div>
     </Link>

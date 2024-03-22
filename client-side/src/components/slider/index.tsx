@@ -113,7 +113,7 @@ const Slider = (props: Props) => {
         {!props.hideButton && (
           <ProductCardOwnerInfo
             product={props.product}
-            extraClasses="absolute bottom-6 right-[5%] left-[5%] "
+            extraClasses="absolute bottom-4 right-[5%] left-[5%] "
           />
         )}
       </div>
