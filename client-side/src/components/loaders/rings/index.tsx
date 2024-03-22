@@ -6,7 +6,7 @@ const RingsLoader = () => {
       visible={true}
       height="80"
       width="80"
-      color="#2DA5F3"
+      color="#2DB224"
       ariaLabel="rings-loading"
       wrapperStyle={{}}
       wrapperClass=""

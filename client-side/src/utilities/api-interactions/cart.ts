@@ -20,7 +20,7 @@ export const useGetCartItems = (creativeId: string) => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery<
+  const { data, isError, error, isLoading, isSuccess } = useQuery<
     Cart,
     AxiosError<ErrorResponse>
   >({
@@ -30,7 +30,7 @@ export const useGetCartItems = (creativeId: string) => {
     refetchOnWindowFocus: false,
   });
 
-  return { data, isError, error, isLoading };
+  return { data, isError, error, isLoading, isSuccess };
 };
 
 export const useGetCarts = () => {

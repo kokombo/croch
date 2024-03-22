@@ -20,7 +20,7 @@ const ProductOwnerCard = (props: Props) => {
       ) : (
         <>
           <div className="flex justify-between items-center">
-            <CreativeInfo creative={creative} product={props.product} />
+            <CreativeInfo creative={creative} />
 
             <CustomButton
               label="Contact Creative"

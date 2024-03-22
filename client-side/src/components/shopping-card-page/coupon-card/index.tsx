@@ -1,26 +1,36 @@
 import { Formik, Form } from "formik";
-import { CustomButton, TextField } from "../..";
+import { CustomButton, RingsLoader, TextField } from "../..";
 
-const CouponCard = () => {
+type Props = {
+  pageIsLoading?: boolean;
+};
+
+const CouponCard = (props: Props) => {
   return (
-    <div className="mt-2 white_card">
-      <Formik initialValues={{ coupon: "" }} onSubmit={() => {}}>
-        <Form className="flex flex-col items-center gap-6">
-          <TextField
-            name="coupon"
-            type="text"
-            id="coupon"
-            placeholder="Enter a valid coupon code"
-          />
+    <div className="white_card">
+      {props.pageIsLoading ? (
+        <div className="flex_item_justify_center">
+          <RingsLoader />
+        </div>
+      ) : (
+        <Formik initialValues={{ coupon: "" }} onSubmit={() => {}}>
+          <Form className="flex_col_center gap-6">
+            <TextField
+              name="coupon"
+              type="text"
+              id="coupon"
+              placeholder="Enter a valid coupon code"
+            />
 
-          <CustomButton
-            type="submit"
-            onClick={() => {}}
-            label="Apply coupon"
-            extraClasses="text-white bg-customblack px-6 py-4"
-          />
-        </Form>
-      </Formik>
+            <CustomButton
+              type="submit"
+              onClick={() => {}}
+              label="Apply coupon"
+              extraClasses="text-white bg-customblack px-6 py-4"
+            />
+          </Form>
+        </Formik>
+      )}
     </div>
   );
 };

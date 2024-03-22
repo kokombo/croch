@@ -73,7 +73,7 @@ html {
 }
 
 .white_card {
-  @apply py-6 px-5 bg-white shadow-lg rounded-xl border-[1px] border-grey;
+  @apply py-6 px-5 bg-white shadow-md rounded-xl border-[1px] border-grey;
 }
 
 .paddingX {

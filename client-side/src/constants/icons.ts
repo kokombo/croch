@@ -21,6 +21,7 @@ import creativeisavailable from "../../public/icons/creativeisavailable.png";
 import deleteicon from "../../public/icons/delete.png";
 import emptycart from "../../public/icons/emptycart.png";
 import closered from "../../public/icons/closered.png";
+import arrowright from "../../public/icons/arrowright.png";
 
 const icons = {
   chevronleft,
@@ -46,6 +47,7 @@ const icons = {
   deleteicon,
   emptycart,
   closered,
+  arrowright,
 };
 
 export default icons;

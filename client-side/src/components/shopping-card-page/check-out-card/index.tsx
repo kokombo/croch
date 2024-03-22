@@ -1,4 +1,4 @@
-import { H3, Divider, CustomButton, H6 } from "../..";
+import { H3, Divider, CustomButton, H6, CheckOutLabel } from "../..";
 import commaNumber from "comma-number";
 
 type Props = {
@@ -35,6 +35,8 @@ const CheckOutCard = (props: Props) => {
         label="Proceed to check out"
         extraClasses="text-white bg-customblack p-4 w-full"
       />
+
+      <CheckOutLabel />
     </div>
   );
 };

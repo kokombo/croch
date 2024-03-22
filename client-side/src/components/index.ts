@@ -64,6 +64,7 @@ import ProductInfoPageSkeleton from "./loaders/skeletons/product-info-page-skele
 import CheckOutCard from "./shopping-card-page/check-out-card";
 import CouponCard from "./shopping-card-page/coupon-card";
 import CartItemsTableHead from "./shopping-card-page/cart-items-table-head";
+import CheckOutLabel from "./shopping-card-page/check-out-label";
 
 export {
   ProductDescription,
@@ -138,4 +139,5 @@ export {
   CheckOutCard,
   CouponCard,
   CartItemsTableHead,
+  CheckOutLabel,
 };

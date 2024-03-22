@@ -5,7 +5,6 @@ import { Tooltip } from "react-tooltip";
 
 type Props = {
   creative: Creative;
-  product: Product;
 };
 
 const CreativeInfo = (props: Props) => {
@@ -23,9 +22,9 @@ const CreativeInfo = (props: Props) => {
       </div>
 
       <article className="flex flex-col gap-2">
-        <h5 className="text-base font-semibold">
+        {/* <h5 className="text-base font-semibold">
           {props.product.owner.firstName} {props.product.owner.lastName}
-        </h5>
+        </h5> */}
 
         <h6 className="text-[#424242] text-sm font-medium opacity-50">
           {props.creative.brandName}

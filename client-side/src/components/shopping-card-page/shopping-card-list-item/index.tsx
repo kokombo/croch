@@ -34,7 +34,7 @@ const ShoppingCardListItem = (props: Props) => {
   };
 
   return (
-    <div className="flex items-center my-4 gap-6 px-8">
+    <div className="flex items-center my-4 gap-6 mx-8">
       <div className="w-1/3 flex items-center gap-6">
         <button type="button" onClick={removeFromCart}>
           <Image
