@@ -34,7 +34,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
     mutationKey: ["addAndRemoveWishlist"],
     mutationFn: addAndRemoveWishlistRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getWishlists"] });
+      queryClient.refetchQueries({ queryKey: ["getWishlists"] });
     },
   });
 

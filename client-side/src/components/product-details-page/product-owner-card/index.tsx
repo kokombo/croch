@@ -1,4 +1,4 @@
-import { CustomButton } from "@/components";
+import { CustomButton, ThreeDotsLoader } from "@/components";
 import CreativeInfo from "../creative-info";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
@@ -9,14 +9,17 @@ type Props = {
 const ProductOwnerCard = (props: Props) => {
   const {
     data: creative,
-    isLoading: creativeIsLoading,
-    isError: creativeLoadingError,
+    isLoading,
+    isError,
+    error,
   } = useGetCreativeById(props.product.owner._id);
 
   return (
     <div className="flex flex-col gap-8 border-[1px] border-grey rounded-xl p-7">
-      {creativeIsLoading || creativeLoadingError || !creative ? (
-        <div className="h-[200px]">Loading... </div>
+      {isLoading || isError || !creative ? (
+        <div className="h-[200px]">
+          <ThreeDotsLoader />
+        </div>
       ) : (
         <>
           <div className="flex justify-between items-center">

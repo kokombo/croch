@@ -101,7 +101,7 @@ const Slider = (props: Props) => {
             label={
               <Image
                 src={icons.chevronright}
-                alt="chevron next button icon"
+                alt="chevron-next-button-icon"
                 height={10}
                 width={6}
               />

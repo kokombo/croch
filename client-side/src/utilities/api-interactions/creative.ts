@@ -247,7 +247,7 @@ export const useGetCreativeById = (creativeId: string | undefined) => {
   const getCreativeByIdRequest = async () => {
     if (creativeId) {
       const res = await axios.get(
-        `${api_base_url}/creative/getCreativeById?creativeId=${encodeURIComponent(creativeId)}`
+        `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
       );
 
       return res.data;
