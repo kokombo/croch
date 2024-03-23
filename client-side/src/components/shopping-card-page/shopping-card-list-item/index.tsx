@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Counter } from "@/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { icons } from "@/constants";
 import {
   useRemoveFromCart,
@@ -15,22 +15,26 @@ type Props = {
 const ShoppingCardListItem = (props: Props) => {
   const [count, setCount] = useState<number>(props.cartItem?.count);
 
-  const { updateCartItemCount } = useUpdateCartItemCount(
+  const { updateCartItemCount, data, error } = useUpdateCartItemCount(
     props.cartItem.info._id,
     count,
     props.cartItem.info.owner
   );
 
+  console.log(data, error);
+
   const { removeFromCart } = useRemoveFromCart(props.cartItem.info._id);
+
+  useEffect(() => {
+    updateCartItemCount();
+  }, [count]);
 
   const decreaseCount = () => {
     setCount((prev) => prev - 1);
-    updateCartItemCount();
   };
 
   const increaseCount = () => {
     setCount((prev) => prev + 1);
-    updateCartItemCount();
   };
 
   return (

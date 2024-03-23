@@ -84,6 +84,7 @@ export const useAddToCart = (
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
         },
       }
     );
@@ -159,6 +160,8 @@ export const useUpdateCartItemCount = (
 ) => {
   const { accessToken } = useCurrentUser();
 
+  const queryClient = useQueryClient();
+
   const updateCartItemCountRequest = async ({
     productId,
     count,
@@ -180,6 +183,7 @@ export const useUpdateCartItemCount = (
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
         },
       }
     );
@@ -194,6 +198,9 @@ export const useUpdateCartItemCount = (
   >({
     mutationKey: ["updateCartItemCount", productId],
     mutationFn: updateCartItemCountRequest,
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["getCartItems"] });
+    },
   });
 
   const updateCartItemCount = async () => {

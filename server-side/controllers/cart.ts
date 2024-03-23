@@ -66,13 +66,18 @@ const updateCartItemCount = async (req: Request, res: Response) => {
       select: "price",
     });
 
+    let vendorCart;
+    let totalPrice = 0;
+
     const carts: Carts = customer.carts;
 
     for (const [creativeId, cart] of carts.entries()) {
       if (Boolean(creativeId === creativeIdFromClient)) {
-        const vendorCart: CartItem[] = cart.cartItems;
+        vendorCart = cart;
 
-        const product = vendorCart.find(
+        const vendorCartItems: CartItem[] = vendorCart.cartItems;
+
+        const product = vendorCartItems.find(
           (cartItem) => cartItem.info._id.toString() === productId
         );
 
@@ -81,6 +86,12 @@ const updateCartItemCount = async (req: Request, res: Response) => {
 
           product.cummulativePrice = product.info.price * count;
         }
+
+        for (let i = 0; i < vendorCartItems.length; i++) {
+          totalPrice += vendorCartItems[i].cummulativePrice;
+        }
+
+        vendorCart.totalPrice = totalPrice;
       }
     }
 
