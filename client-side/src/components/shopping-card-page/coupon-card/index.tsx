@@ -9,7 +9,7 @@ const CouponCard = (props: Props) => {
   return (
     <div className="white_card">
       {props.pageIsLoading ? (
-        <div className="flex_item_justify_center">
+        <div className="flex_item_justify_center h-36">
           <RingsLoader />
         </div>
       ) : (

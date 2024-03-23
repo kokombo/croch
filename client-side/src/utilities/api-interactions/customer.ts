@@ -62,8 +62,8 @@ export const useGetWishlists = () => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery<
-    Partial<Product>[],
+  const { data, isError, error, isLoading, isSuccess } = useQuery<
+    Product[],
     AxiosError<ErrorResponse>
   >({
     queryKey: ["getWishlists"],
@@ -71,7 +71,7 @@ export const useGetWishlists = () => {
     enabled: !!accessToken,
   });
 
-  return { data, isError, error, isLoading };
+  return { data, isError, error, isLoading, isSuccess };
 };
 
 export const useGetCreativeAllProducts = (creativeId: string) => {

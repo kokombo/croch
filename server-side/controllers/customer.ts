@@ -50,7 +50,6 @@ const getWishlists = async (req: Request, res: Response) => {
   try {
     const customer = await Customer.findById(customerId).populate({
       path: "wishLists",
-      select: "_id owner photos title availability price",
     });
 
     const wishlists = customer.wishLists;

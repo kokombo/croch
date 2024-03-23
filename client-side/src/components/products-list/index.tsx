@@ -1,32 +1,30 @@
+import { AxiosError } from "axios";
 import { ProductCard, ProductSkeleton } from "..";
-import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
-const ProductsList = () => {
-  const {
-    data: products,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-  } = useGetAllProducts();
+type Props = {
+  products: Product[] | undefined;
+  isLoading: boolean;
+  error: AxiosError<ErrorResponse> | null;
+  isError: boolean;
+  isSuccess: boolean;
+};
 
-  console.log(error);
-
+const ProductsList = (props: Props) => {
   return (
     <>
-      {isLoading ? (
+      {props.isLoading ? (
         <section className="h-screen grid grid-cols-4 gap-x-4 gap-y-10">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
           })}
         </section>
-      ) : isError ? (
+      ) : props.isError ? (
         <section className="h-screen">
-          {error?.response?.data.message || error?.message}{" "}
+          {props.error?.response?.data.message || props.error?.message}{" "}
         </section>
       ) : (
         <section className="grid grid-cols-4 gap-x-4 gap-y-10">
-          {products?.map((product) => {
+          {props.products?.map((product) => {
             return <ProductCard key={product._id} product={product} />;
           })}
         </section>

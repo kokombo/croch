@@ -95,7 +95,7 @@ const ShoppingCard = () => {
       <div className="w-[30%] flex flex-col gap-6">
         <div className="white_card ">
           {isLoading || isError ? (
-            <div className="h-20">
+            <div className="h-40">
               <ThreeDotsLoader />
             </div>
           ) : (

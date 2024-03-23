@@ -15,18 +15,18 @@ type Props = {
 const ShoppingCardListItem = (props: Props) => {
   const [count, setCount] = useState<number>(props.cartItem?.count);
 
-  const { updateCartItemCount, data, error } = useUpdateCartItemCount(
+  const { updateCartItemCount, error } = useUpdateCartItemCount(
     props.cartItem.info._id,
     count,
     props.cartItem.info.owner
   );
 
-  console.log(data, error);
-
   const { removeFromCart } = useRemoveFromCart(props.cartItem.info._id);
 
   useEffect(() => {
     updateCartItemCount();
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   const decreaseCount = () => {

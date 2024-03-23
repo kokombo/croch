@@ -41,7 +41,11 @@ const ProductInfoPage = () => {
               <span className="flex items-center gap-2">
                 <H6>Save</H6>
 
-                <AddToWishlist productId={product._id} icon={icons.bookmark2} />
+                <AddToWishlist
+                  productId={product._id}
+                  alreadyInWishlistIcon={icons.redheart}
+                  notInWishlistIcon={icons.bookmark2}
+                />
               </span>
             </div>
 

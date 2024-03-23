@@ -13,7 +13,8 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 type Props = {
   extraClasses?: string;
   productId: string;
-  icon: string | StaticImport;
+  notInWishlistIcon: string | StaticImport;
+  alreadyInWishlistIcon: string | StaticImport;
 };
 
 const AddToWishlist = (props: Props) => {
@@ -23,9 +24,11 @@ const AddToWishlist = (props: Props) => {
 
   const { addAndRemoveWishlist } = useAddAndRemoveWishlist(props.productId);
 
-  const { data: wishlists } = useGetWishlists();
+  const { data: wishlist } = useGetWishlists();
 
-  const addToWishlist = (
+  const idsInWishlist = wishlist?.map((product) => product._id);
+
+  const addOrRemoveItemFromWishlist = (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
@@ -41,12 +44,16 @@ const AddToWishlist = (props: Props) => {
   return (
     <button
       type="button"
-      onClick={addToWishlist}
+      onClick={addOrRemoveItemFromWishlist}
       className={`${props.extraClasses} hover:scale-110 transition-transform duration-300 ease-in-out`}
     >
       <Image
-        src={props.icon}
-        alt="add to wishlist icon"
+        src={
+          !session || !idsInWishlist?.includes(props.productId)
+            ? props.notInWishlistIcon
+            : props.alreadyInWishlistIcon
+        }
+        alt="add-remove-from-wishlist-icon"
         height={24}
         width={24}
       />
