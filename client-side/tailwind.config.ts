@@ -29,6 +29,11 @@ const config: Config = {
         lightgreen: "#2DB224",
         skyblue: "#2DA5F3",
       },
+
+      width: {
+        30: "30%",
+        70: "70%",
+      },
     },
   },
   plugins: [],

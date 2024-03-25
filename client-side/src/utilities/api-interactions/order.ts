@@ -24,20 +24,21 @@ export const usePlaceAnOrder = (creativeId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation<
-    { message: string; order: Order },
-    AxiosError<ErrorResponse>,
-    string
-  >({
-    mutationKey: ["placeAnOrder"],
-    mutationFn: placeAnOrderRequest,
-  });
+  const { mutateAsync, data, isPending, error, isError, isSuccess } =
+    useMutation<
+      { message: string; order: Order },
+      AxiosError<ErrorResponse>,
+      string
+    >({
+      mutationKey: ["placeAnOrder"],
+      mutationFn: placeAnOrderRequest,
+    });
 
   const placeAnOrder = async () => {
     await mutateAsync(creativeId);
   };
 
-  return { placeAnOrder, data, isPending, error, isError };
+  return { placeAnOrder, data, isPending, error, isError, isSuccess };
 };
 
 export const useCancelAnOrder = (orderId: string) => {
@@ -61,20 +62,17 @@ export const useCancelAnOrder = (orderId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation<
-    MessageResponse,
-    AxiosError<ErrorResponse>,
-    string
-  >({
-    mutationKey: ["cancelAnOrder"],
-    mutationFn: cancelAnOrderRequest,
-  });
+  const { mutateAsync, data, isPending, error, isError, isSuccess } =
+    useMutation<MessageResponse, AxiosError<ErrorResponse>, string>({
+      mutationKey: ["cancelAnOrder"],
+      mutationFn: cancelAnOrderRequest,
+    });
 
   const cancelOrder = async () => {
     await mutateAsync(orderId);
   };
 
-  return { cancelOrder, data, isPending, error, isError };
+  return { cancelOrder, data, isPending, error, isError, isSuccess };
 };
 
 export const useConfirmAnOrder = (orderId: string) => {
@@ -98,20 +96,17 @@ export const useConfirmAnOrder = (orderId: string) => {
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError } = useMutation<
-    MessageResponse,
-    AxiosError<ErrorResponse>,
-    string
-  >({
-    mutationKey: ["confirmAnOrder"],
-    mutationFn: confirmAnOrderRequest,
-  });
+  const { mutateAsync, data, isPending, error, isError, isSuccess } =
+    useMutation<MessageResponse, AxiosError<ErrorResponse>, string>({
+      mutationKey: ["confirmAnOrder"],
+      mutationFn: confirmAnOrderRequest,
+    });
 
   const confirmOrder = async () => {
     await mutateAsync(orderId);
   };
 
-  return { confirmOrder, data, isPending, error, isError };
+  return { confirmOrder, data, isPending, error, isError, isSuccess };
 };
 
 export const useGetOrder = (orderId: string) => {
@@ -123,7 +118,7 @@ export const useGetOrder = (orderId: string) => {
     return res.data;
   };
 
-  const { data, error, isError, isLoading } = useQuery<
+  const { data, error, isError, isLoading, isSuccess } = useQuery<
     Order,
     AxiosError<ErrorResponse>
   >({
@@ -131,7 +126,7 @@ export const useGetOrder = (orderId: string) => {
     queryFn: getOrderRequest,
   });
 
-  return { data, error, isError, isLoading };
+  return { data, error, isError, isLoading, isSuccess };
 };
 
 export const useGetCustomerOrders = (status: string) => {
@@ -150,7 +145,7 @@ export const useGetCustomerOrders = (status: string) => {
     return res.data;
   };
 
-  const { data, isError, isLoading, error } = useQuery<
+  const { data, isError, isLoading, error, isSuccess } = useQuery<
     Order[],
     AxiosError<ErrorResponse>
   >({
@@ -159,5 +154,5 @@ export const useGetCustomerOrders = (status: string) => {
     enabled: !!accessToken,
   });
 
-  return { data, isError, isLoading, error };
+  return { data, isError, isLoading, error, isSuccess };
 };

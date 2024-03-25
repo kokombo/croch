@@ -41,7 +41,7 @@ const ShoppingCard = () => {
 
   return (
     <main className="flex paddingX py-10 gap-6">
-      <div className="w-[70%]">
+      <div className="w-70">
         <div className=" flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit">
           <span className="mx-8 block">
             <H3>Shopping Card</H3>
@@ -92,7 +92,7 @@ const ShoppingCard = () => {
         )}
       </div>
 
-      <div className="w-[30%] flex flex-col gap-6">
+      <div className="w-30 flex flex-col gap-6">
         <div className="white_card ">
           {isLoading || isError ? (
             <div className="h-40">

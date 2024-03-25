@@ -21,6 +21,7 @@ const unauthenticatedLinks = [
 const authenticatedLinks = [
   { label: "Cart", href: "/cart" },
   { label: "Wishlist", href: "/wishlist" },
+  { label: "Order", href: "/order" },
   { label: "Profile", href: "/profile" },
   { label: "Sign out", href: "/signout" },
 ];

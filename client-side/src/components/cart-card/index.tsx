@@ -49,7 +49,7 @@ const CartCard = (props: Props) => {
           label="Open cart"
           extraClasses="border-[1px] border-grey p-4 text-grey3 text-sm hover:bg-gray"
           onClick={() =>
-            router.push(`/shopping_card?id=${props.cart.creativeId}`)
+            router.push(`/cart/shopping_card?id=${props.cart.creativeId}`)
           }
         />
 
