@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { api_base_url } from "../../../testing";
+import { api_base_url } from "../constant";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,

@@ -16,9 +16,9 @@ const ReviewSchema = new Schema(
       required: true,
     },
 
-    forProduct: {
+    forOrder: {
       type: Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "Order",
       required: true,
     },
 

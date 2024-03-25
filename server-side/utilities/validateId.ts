@@ -3,7 +3,7 @@ import mongoose = require("mongoose");
 /**
  *
  * @param {string} id
- * @returns true or false after checking mongo id validity
+ * @returns invalid id if mongo id is not valid.
  */
 
 const validateId = (id: string) => {

@@ -151,3 +151,15 @@ type CreativeAccountSetupData = {
   funFacts: string[];
   yearsOfExperience: string;
 };
+
+type ReviewData = {
+  to: string;
+  from: string;
+  forOrder: string;
+  message: string;
+  rating: number;
+};
+
+interface Review extends ReviewData {
+  createdAt: string;
+}

@@ -1,6 +1,6 @@
 import express = require("express");
 const router = express.Router();
-import product = require("../controllers/product");
+import productController = require("../controllers/product");
 import authorization = require("../middlewares/authorization");
 import imageOptimization = require("../middlewares/imageOptimization");
 
@@ -14,7 +14,7 @@ const {
   updateProduct,
   deleteProduct,
   getCreativeProducts,
-} = product;
+} = productController;
 
 router.get("/getAllProducts", getAllProducts);
 
