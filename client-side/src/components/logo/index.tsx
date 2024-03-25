@@ -3,12 +3,17 @@ import { useCurrentUser } from "@/utilities";
 import Image from "next/image";
 import Link from "next/link";
 
-const Logo = () => {
+type Props = {
+  diabled?: boolean;
+};
+
+const Logo = (props: Props) => {
   const { role, session } = useCurrentUser();
 
   return (
     <Link
       href={`${!session || role === "customer" ? "/" : "/creative/dashboard"}`}
+      aria-disabled={props.diabled}
     >
       <Image
         src={icons.logo}

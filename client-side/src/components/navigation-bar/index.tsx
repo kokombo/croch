@@ -43,7 +43,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="w-full flex items-center justify-between h-[100px] px-[4.6%] border-b-[1px] border-grey">
+    <nav className="nav_container">
       <Logo />
 
       <SearchBox onChange={() => {}} />

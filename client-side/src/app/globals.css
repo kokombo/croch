@@ -83,3 +83,7 @@ html {
 .paddingX {
   @apply px-[4.6%];
 }
+
+.nav_container {
+  @apply w-full flex items-center justify-between h-[100px] paddingX border-b-[1px] border-grey;
+}

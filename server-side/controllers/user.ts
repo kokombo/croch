@@ -28,7 +28,9 @@ const signUp = async (req: Request, res: Response) => {
     if (userExists) {
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "User already exists." });
+        .json({
+          message: "User with this email already exists. Please sign in.",
+        });
     }
 
     const user = await User.create({ ...req.body, email: refinedEmail });

@@ -65,6 +65,7 @@ import CheckOutCard from "./shopping-card-page/check-out-card";
 import CouponCard from "./shopping-card-page/coupon-card";
 import CartItemsTableHead from "./shopping-card-page/cart-items-table-head";
 import CheckOutLabel from "./shopping-card-page/check-out-label";
+import FullScreenLoader from "./loaders/full-screen-loader";
 
 export {
   ProductDescription,
@@ -140,4 +141,5 @@ export {
   CouponCard,
   CartItemsTableHead,
   CheckOutLabel,
+  FullScreenLoader,
 };

@@ -115,7 +115,7 @@ export const useGetAllProducts = () => {
   };
 
   const { data, isLoading, isError, error, isSuccess } = useQuery<
-    Partial<Product>[],
+    Product[],
     AxiosError<ErrorResponse>
   >({
     queryKey: ["getAllProducts"],

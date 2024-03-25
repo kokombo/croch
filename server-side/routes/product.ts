@@ -1,7 +1,6 @@
 import express = require("express");
 const router = express.Router();
 import product = require("../controllers/product");
-import creativeController = require("../controllers/creative");
 import authorization = require("../middlewares/authorization");
 import imageOptimization = require("../middlewares/imageOptimization");
 

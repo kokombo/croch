@@ -14,6 +14,7 @@ import tagRouter = require("./routes/tag");
 import creativeRouter = require("./routes/creative");
 import customerRouter = require("./routes/customer");
 import cartRouter = require("./routes/cart");
+import reviewRouter = require("./routes/review");
 import limiter = require("./middlewares/rateLimiter");
 import helmet from "helmet";
 
@@ -34,6 +35,7 @@ app.use("/api/v1/product", productRouter);
 app.use("/api/v1/tag", tagRouter);
 app.use("/api/v1/customer", customerRouter);
 app.use("/api/v1/cart", cartRouter);
+app.use("/api/v1/review", reviewRouter);
 
 const port = 5000;
 
