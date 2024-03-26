@@ -11,6 +11,12 @@ const placeAnOrder = async (req: Request, res: Response) => {
 
   validateId(customerId);
 
+  const valid = validateId(creativeIdFromClient);
+
+  if (!valid) {
+    return res.status(400);
+  }
+
   try {
     const customer = await Customer.findById(customerId).populate({
       path: `carts.${creativeIdFromClient}.cartItems.info`,

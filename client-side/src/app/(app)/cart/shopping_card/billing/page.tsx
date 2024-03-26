@@ -6,13 +6,18 @@ import {
   CustomButton,
   H3,
   OrderSummaryProductList,
+  OverlayLoader,
   PricingBox,
   RingsLoader,
 } from "@/components";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Billing = () => {
   const params = useSearchParams();
+
+  const router = useRouter();
 
   const creativeId = params.get("for") as string;
 
@@ -22,11 +27,29 @@ const Billing = () => {
     isError: orderSummaryLoadingError,
   } = useGetCartItems(creativeId);
 
-  const { placeAnOrder, isPending, isError, error, isSuccess } =
-    usePlaceAnOrder(creativeId);
+  const {
+    placeAnOrder,
+    isPending: placingOrderIsPending,
+    isError,
+    error,
+    isSuccess,
+    data,
+  } = usePlaceAnOrder(creativeId, {
+    onSuccess: () => {
+      router.push(`/cart/shopping_card/billing/status?=success`);
+    },
+  });
+
+  useEffect(() => {
+    if (!cart || cart?.cartItems.length === 0) {
+      router.push("/");
+    }
+  }, [cart, router]);
 
   return (
-    <main className="flex gap-6 paddingX py-10">
+    <main className="flex gap-6 paddingX py-16">
+      {placingOrderIsPending && <OverlayLoader />}
+
       <div className="w-70">
         <div>
           <H3>Billing Information</H3>
@@ -39,7 +62,9 @@ const Billing = () => {
 
       <div className="w-30 white_card">
         {orderSummaryLoading ? (
-          <RingsLoader />
+          <div className="h-[200px] flex items-center justify-center">
+            <RingsLoader />
+          </div>
         ) : orderSummaryLoadingError ? (
           <span>Try again</span>
         ) : (
@@ -54,7 +79,7 @@ const Billing = () => {
               <CustomButton
                 type="button"
                 label="Place order"
-                onClick={() => {}}
+                onClick={placeAnOrder}
                 disabled={false}
                 extraClasses="text-white bg-customblack p-4 w-full"
               />

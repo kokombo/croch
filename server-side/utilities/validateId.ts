@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import mongoose = require("mongoose");
 
 /**
@@ -10,8 +11,10 @@ const validateId = (id: string) => {
   const IdIsValid = mongoose.Types.ObjectId.isValid(id);
 
   if (!IdIsValid) {
-    return "Invalid id";
+    return false;
   }
+
+  return true;
 };
 
 export = validateId;

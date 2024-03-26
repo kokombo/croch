@@ -3,7 +3,18 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
-export const usePlaceAnOrder = (creativeId: string) => {
+type PlaceOrderOnSuccess = {
+  onSuccess: (
+    data: { message: string; order: Order },
+    variables: string,
+    context: unknown
+  ) => unknown;
+};
+
+export const usePlaceAnOrder = (
+  creativeId: string,
+  props: PlaceOrderOnSuccess
+) => {
   const { accessToken } = useCurrentUser();
 
   const placeAnOrderRequest = async (creativeId: string) => {
@@ -32,6 +43,7 @@ export const usePlaceAnOrder = (creativeId: string) => {
     >({
       mutationKey: ["placeAnOrder"],
       mutationFn: placeAnOrderRequest,
+      onSuccess: props.onSuccess,
     });
 
   const placeAnOrder = async () => {

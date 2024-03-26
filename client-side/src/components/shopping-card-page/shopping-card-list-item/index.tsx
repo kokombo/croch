@@ -61,7 +61,10 @@ const ShoppingCardListItem = (props: Props) => {
           />
         </div>
 
-        <h6 className="text-sm flex-wrap"> {props.cartItem.title}</h6>
+        <h6 className="text-sm flex-wrap">
+          {" "}
+          {props.cartItem.title.slice(0, 25)}
+        </h6>
       </div>
 
       <div className="w-2/3 grid grid-cols-4 place-items-center">

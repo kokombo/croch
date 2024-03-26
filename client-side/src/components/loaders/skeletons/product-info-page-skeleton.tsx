@@ -4,7 +4,7 @@ const ProductInfoPageSkeleton = () => {
   return (
     <section className="flex flex-col gap-4 py-10 px-[4.6%] ">
       <span className="h-8 block">
-        <Skeleton classes="full width-50" />
+        <Skeleton classes="full width-45" />
       </span>
 
       <div className="grid grid-cols-2 h-[428px] gap-3">

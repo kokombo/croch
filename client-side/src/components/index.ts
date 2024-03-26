@@ -69,6 +69,7 @@ import FullScreenLoader from "./loaders/full-screen-loader";
 import StyledLink from "./styled-link";
 import PricingBox from "./shopping-card-page/pricing-box";
 import OrderSummaryProductList from "./billing/order-summary-product-list";
+import OverlayLoader from "./loaders/overlay-loader";
 
 export {
   ProductDescription,
@@ -148,4 +149,5 @@ export {
   StyledLink,
   PricingBox,
   OrderSummaryProductList,
+  OverlayLoader,
 };

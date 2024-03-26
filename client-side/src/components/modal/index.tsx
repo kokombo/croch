@@ -18,7 +18,7 @@ const Modal = (props: Props) => {
   return (
     <div
       onClick={closeModal}
-      className="fixed top-0 left-0 flex items-start md:justify-center w-full h-full bg-black md:px-0 px-5 z-[9999] bg-modalblack"
+      className="fixed top-0 left-0 flex items-start md:justify-center w-full h-full md:px-0 px-5 z-[9999] bg-modalblack"
     >
       <div
         onClick={(e) => e.stopPropagation()}

@@ -2,7 +2,7 @@ import { Logo, NavAccount, ThreeDotsLoader } from "@/components";
 
 const FullScreenLoader = () => {
   return (
-    <main className="h-screen">
+    <main className="h-screen w-full">
       <nav className="nav_container">
         <Logo diabled={true} />
 

@@ -40,7 +40,7 @@ const ShoppingCard = () => {
   }, [cart, router, isLoading]);
 
   return (
-    <main className="flex paddingX py-10 gap-6">
+    <main className="flex paddingX py-16 gap-6">
       <div className="w-70">
         <div className=" flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit">
           <span className="mx-8 block">
