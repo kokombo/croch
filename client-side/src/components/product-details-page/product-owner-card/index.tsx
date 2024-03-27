@@ -22,16 +22,16 @@ const ProductOwnerCard = (props: Props) => {
         </div>
       ) : (
         <>
-          <div className="flex justify-between items-center">
+          <span className="flex justify-between items-center">
             <CreativeInfo creative={creative} />
 
             <CustomButton
               label="Contact Creative"
               onClick={() => {}}
               type="button"
-              extraClasses="text-black border_black_1 px-4 py-4"
+              extraClasses="text-black border_black_1 px-4 py-4 text-sm"
             />
-          </div>
+          </span>
 
           <span>
             <p>{creative?.personalDescription}</p>
@@ -45,7 +45,7 @@ const ProductOwnerCard = (props: Props) => {
                 return (
                   <article
                     key={index}
-                    className="py-3 px-4 border-[1px] border-grey rounded-xl text-sm h-[200px]"
+                    className="py-3 px-4 border-[1px] border-grey rounded-xl text-sm h-[210px]"
                   >
                     {funFact}
                   </article>

@@ -24,7 +24,7 @@ const ProductCard = (props: Props) => {
         <Slider hideButton={hideButton} product={props.product} />
 
         <div className="flex flex-col gap-2">
-          <UnclickableRating />
+          <UnclickableRating rating={props.product.rating} />
 
           <h1 className="text-sm font-semibold text-neutral">
             {props.product?.title}

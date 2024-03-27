@@ -4,6 +4,7 @@ import { CustomButton, PromptCard } from "..";
 import { icons } from "@/constants";
 import { useDeleteCart } from "@/utilities/api-interactions/cart";
 import { useRouter } from "next/navigation";
+import { Tooltip } from "react-tooltip";
 
 type Props = {
   cart: {
@@ -51,12 +52,22 @@ const CartCard = (props: Props) => {
           onClick={() =>
             router.push(`/cart/shopping_card?id=${props.cart.creativeId}`)
           }
+          rightIcon={icons.arrowright}
         />
 
         <div className="relative">
-          <button type="button" onClick={() => setOpenDeleteBoard(true)}>
-            <Image src={icons.deleteicon} alt="" height={21} width={19.5} />
-          </button>
+          <>
+            <a id="delete-cart-anchor-element">
+              <button type="button" onClick={() => setOpenDeleteBoard(true)}>
+                <Image src={icons.deleteicon} alt="" height={21} width={19.5} />
+              </button>
+            </a>
+
+            <Tooltip
+              anchorSelect="#delete-cart-anchor-element"
+              content="Delete cart"
+            />
+          </>
 
           {openDeleteBoard && (
             <PromptCard

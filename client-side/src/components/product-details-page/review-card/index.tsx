@@ -26,7 +26,7 @@ const ReviewCard = (props: Props) => {
           </H6>
 
           <span className="flex gap-2 text-sm text-customblack">
-            <UnclickableRating />
+            <UnclickableRating rating={props.review.rating} />
 
             <h6>{props.review.createdAt}</h6>
           </span>

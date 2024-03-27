@@ -7,6 +7,7 @@ import {
   useUpdateCartItemCount,
 } from "@/utilities/api-interactions/cart";
 import commaNumber from "comma-number";
+import { Tooltip } from "react-tooltip";
 
 type Props = {
   cartItem: CartItem;
@@ -40,14 +41,23 @@ const ShoppingCardListItem = (props: Props) => {
   return (
     <div className="flex items-center gap-3 h-[72px]">
       <div className="w-1/3 flex items-center gap-4">
-        <button type="button" onClick={removeFromCart}>
-          <Image
-            src={icons.closered}
-            alt="delete-cart-item-icon"
-            height={24}
-            width={24}
+        <>
+          <a id="delete-cart-item-anchor-element">
+            <button type="button" onClick={removeFromCart}>
+              <Image
+                src={icons.closered}
+                alt="delete-cart-item-icon"
+                height={24}
+                width={24}
+              />
+            </button>
+          </a>
+
+          <Tooltip
+            anchorSelect="#delete-cart-item-anchor-element"
+            content="Remove product"
           />
-        </button>
+        </>
 
         <div className="relative h-[72px] w-[72px] rounded-[2px]">
           <Image

@@ -1,9 +1,34 @@
+import { icons } from "@/constants";
+import Image from "next/image";
+import { H6 } from "..";
 
-
-const UnclickableRating = () => {
+const UnclickableRating = ({ rating }: { rating: number }) => {
   return (
-    <div>Rating</div>
-  )
-}
+    <>
+      {rating && rating > 1 && (
+        <span className="flex gap-[2px]">
+          <H6>{rating}</H6>
 
-export default UnclickableRating
+          <span className="flex">
+            {[...Array(parseInt(rating?.toString().substring(0, 1)))].map(
+              (_, index) => {
+                return (
+                  <Image
+                    key={index}
+                    src={icons.star}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                  />
+                );
+              }
+            )}
+          </span>
+        </span>
+      )}
+    </>
+  );
+};
+
+export default UnclickableRating;

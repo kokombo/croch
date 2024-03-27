@@ -1,3 +1,5 @@
+import { H6, UnclickableRating } from "@/components";
+
 type Props = {
   product: Product;
 };
@@ -12,7 +14,7 @@ const ProductInfo = (props: Props) => {
       <span className="flex items-center gap-6">
         <span className="text-sm font-semibold ">
           {props.product.rating ? (
-            <h6>{props.product.rating}</h6>
+            <UnclickableRating rating={props.product.rating} />
           ) : (
             <h6 className="underline">No rating yet</h6>
           )}

@@ -26,6 +26,7 @@ import arrowrightwhite from "../../public/icons/arrowrightwhite.png";
 import redheart from "../../public/icons/redheart.png";
 import paymentmethod from "../../public/icons/paymentmethod.png";
 import successgreen from "../../public/icons/successgreen.png";
+import star from "../../public/icons/star.png";
 
 const icons = {
   chevronleft,
@@ -56,6 +57,7 @@ const icons = {
   paymentmethod,
   arrowrightwhite,
   successgreen,
+  star
 };
 
 export default icons;

@@ -8,12 +8,12 @@ type Props = {
 
 const Counter = (props: Props) => {
   return (
-    <div className="py-4 px-5 flex items-center gap-8 rounded-lg border-[0.5px] border-grey">
+    <div className="py-4 px-5 flex items-center gap-4 rounded-lg border-[0.5px] border-grey">
       <button
         type="button"
         onClick={props.decreaseCount}
         disabled={props.decreaseCountButtonDisabled}
-        className="font-bold"
+        className="font-bold rounded-full h-6 w-6 hover:bg-gray"
       >
         -
       </button>
@@ -24,7 +24,7 @@ const Counter = (props: Props) => {
         type="button"
         onClick={props.increaseCount}
         disabled={props.increaseCountButtonDisabled}
-        className="font-bold"
+        className="font-bold rounded-full h-6 w-6 hover:bg-gray"
       >
         +
       </button>
