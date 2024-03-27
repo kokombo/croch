@@ -37,8 +37,6 @@ const Home = () => {
           isSuccess={isSuccess}
         />
       </section>
-
-      <Footer />
     </main>
   );
 };

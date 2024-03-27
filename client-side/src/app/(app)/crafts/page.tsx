@@ -58,7 +58,7 @@ const ProductInfoPage = () => {
             </span>
           </section>
 
-          <section className="py-10 flex justify-between items-start w-full border-grey border-y-[1px]">
+          <section className="py-10 flex justify-between items-start w-full border-grey border-t-[1px]">
             <div className="flex flex-col gap-[60px] w-[58%] ">
               <ProductDescription description={product.description} />
 
@@ -70,7 +70,7 @@ const ProductInfoPage = () => {
             </div>
           </section>
 
-          <ReviewsList />
+          <ReviewsList creativeId={product.owner._id} />
         </div>
       )}
     </div>

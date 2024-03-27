@@ -6,13 +6,12 @@ import {
   CreativeInfo,
   H3,
   ShoppingCardListItem,
+  StyledLink,
   ThreeDotsLoader,
 } from "@/components";
 import { icons } from "@/constants";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
-import Image from "next/image";
-import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -49,39 +48,34 @@ const ShoppingCard = () => {
 
           <>
             {isLoading ? (
-              <div className="flex_item_justify_center h-40">
+              <div className="flex_item_justify_center h-200">
                 <ThreeDotsLoader />
               </div>
             ) : (
               <div>
                 <CartItemsTableHead />
 
-                {cart?.cartItems?.map((cartItem) => {
-                  return (
-                    <ShoppingCardListItem
-                      key={cartItem.info._id}
-                      cartItem={cartItem}
-                    />
-                  );
-                })}
+                <div className="flex flex-col gap-8 p-6">
+                  {cart?.cartItems?.map((cartItem) => {
+                    return (
+                      <ShoppingCardListItem
+                        key={cartItem.info._id}
+                        cartItem={cartItem}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             )}
           </>
 
           {isSuccess && (
-            <Link
-              href={`/cart`}
-              className="flex items-center gap-2 py-4 px-6 border_grey_1 rounded-xl w-fit ml-8 hover:bg-gray"
-            >
-              <Image
-                src={icons.arrowleft}
-                alt="arrow-left-icon"
-                height={20}
-                width={20}
-              />
-
-              <span>Return to cart</span>
-            </Link>
+            <StyledLink
+              href="/cart"
+              label="Return to cart"
+              leftIcon={icons.arrowleft}
+              extraClasses="border_grey_1 w-fit ml-8 mt-12 hover:bg-gray"
+            />
           )}
         </div>
 
@@ -94,7 +88,7 @@ const ShoppingCard = () => {
 
       <div className="w-30 flex flex-col gap-6">
         <div className="white_card ">
-          {isLoading || isError ? (
+          {isLoading ? (
             <div className="h-40">
               <ThreeDotsLoader />
             </div>

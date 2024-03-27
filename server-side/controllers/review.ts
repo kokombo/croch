@@ -51,12 +51,17 @@ const giveReview = async (req: Request, res: Response) => {
 };
 
 const getCreativeReviews = async (req: Request, res: Response) => {
-  const { _id: creativeId } = req.user;
+  const creativeId = req.query.creativeId as string;
 
   validateId(creativeId);
 
   try {
-    const reviews = await Review.find({ to: creativeId });
+    const reviews = await Review.find({ to: creativeId })
+      .populate({
+        path: "from",
+        select: "firstName, lastName, profileImage",
+      })
+      .populate({ path: "to", select: "brandName" });
 
     return res.json(reviews);
   } catch (error) {

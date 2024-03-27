@@ -6,7 +6,7 @@ const ReviewSchema = new Schema(
   {
     from: {
       type: Schema.Types.ObjectId,
-      ref: "Customer",
+      ref: "User",
       required: true,
     },
 

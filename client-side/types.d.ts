@@ -160,6 +160,18 @@ type ReviewData = {
   rating: number;
 };
 
-interface Review extends ReviewData {
+type Review = {
+  _id: string;
   createdAt: string;
-}
+  to: {
+    brandName: string;
+  };
+  from: {
+    firstName: string;
+    lastName: string;
+    profileImage: string;
+  };
+  forOrder: string;
+  message: string;
+  rating: number;
+};

@@ -44,7 +44,7 @@ import AddToCartCard from "./product-details-page/add-to-cart-card";
 import FullImagesList from "./product-details-page/full-images-list";
 import IconAndTextWrapper from "./icon-and-text-wrapper";
 import Counter from "./counter";
-import Review from "./product-details-page/review";
+import ReviewCard from "./product-details-page/review-card";
 import ReviewsList from "./product-details-page/reviews-list";
 import SelectProductSize from "./product-details-page/select-product-size";
 import CartCard from "./cart-card";
@@ -120,7 +120,7 @@ export {
   FullImagesList,
   IconAndTextWrapper,
   Counter,
-  Review,
+  ReviewCard,
   ReviewsList,
   SelectProductSize,
   CartCard,

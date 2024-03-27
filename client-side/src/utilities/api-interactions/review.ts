@@ -38,20 +38,11 @@ export const useGiveReview = (reviewData: ReviewData) => {
   return { postReview, isPending, isError, error, isSuccess, data };
 };
 
-export const useGetCreativeReviews = () => {
-  const { accessToken } = useCurrentUser();
-
+export const useGetCreativeReviews = (creativeId: string) => {
   const getCreativeReviewsFunction = async () => {
     const res = await axios.get(
-      `${api_base_url}/review/getCreativeReviews
-    `,
-
-      {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
+      `${api_base_url}/review/getCreativeReviews?creativeId=${creativeId}
+    `
     );
 
     return res.data;

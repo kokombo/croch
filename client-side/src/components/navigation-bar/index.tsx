@@ -9,8 +9,6 @@ import {
 } from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
 import { signOut } from "next-auth/react";
-import { useGetCreativeById } from "@/utilities/api-interactions/creative";
-
 const unauthenticatedLinks = [
   { label: "Log in", href: "/login" },
   { label: "Sign up", href: "/signup" },
