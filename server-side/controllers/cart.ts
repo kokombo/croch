@@ -88,7 +88,7 @@ const updateCartItemCount = async (req: Request, res: Response) => {
         }
 
         for (let i = 0; i < vendorCartItems.length; i++) {
-          totalPrice += vendorCartItems[i].cummulativePrice;
+          totalPrice += vendorCartItems[i].cummulativePrice; //cummulativePrice is price of each item * count
         }
 
         vendorCart.totalPrice = totalPrice;
@@ -132,6 +132,8 @@ const removeFromCart = async (req: Request, res: Response) => {
 
       { new: true }
     );
+
+    //Delete the cart if there are no more items in it.
 
     const carts: Carts = customer.carts;
 
@@ -204,7 +206,7 @@ const getCartItems = async (req: Request, res: Response) => {
 
     let totalPrice = 0;
 
-    let vendorCart; //vendor here is used as a substitute word for creative.
+    let vendorCart;
 
     for (const [creativeId, cart] of carts.entries()) {
       if (Boolean(creativeId === creativeIdFromClient)) {

@@ -13,6 +13,7 @@ export const useAddNewTag = (tagData: FormData) => {
       tagData,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
@@ -50,6 +51,7 @@ export const useUpdateTag = (tagId: string, tagData: FormData) => {
       tagData,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",

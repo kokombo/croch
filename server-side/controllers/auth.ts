@@ -147,7 +147,7 @@ const logOut = async (req: Request, res: Response) => {
       { new: true }
     );
 
-    res.clearCookie("refreshToken", {
+    res.clearCookie("crochRefreshToken", {
       httpOnly: true,
       secure: true,
     });

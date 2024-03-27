@@ -14,6 +14,7 @@ export const useGiveReview = (reviewData: ReviewData) => {
       reviewData,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
@@ -46,6 +47,7 @@ export const useGetCreativeReviews = () => {
     `,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -75,6 +77,7 @@ export const useGetCustomerPostedReviews = () => {
     `,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

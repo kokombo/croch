@@ -15,6 +15,7 @@ export const useCreateNotification = (notificationData: NotificationData) => {
       { notificationData },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -48,6 +49,7 @@ export const useGetNotifications = () => {
       `${api_base_url}/notification/getNotifications`,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -77,6 +79,7 @@ export const useDeleteNotification = (notificationId: string) => {
       `${api_base_url}/notification/deleteNotification?notificationId=${notificationId}`,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

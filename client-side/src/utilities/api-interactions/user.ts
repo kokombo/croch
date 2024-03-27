@@ -24,9 +24,7 @@ export const useSignup = () => {
 
 export const useRefreshAccessToken = () => {
   const refreshAccessTokenRequest = async () => {
-    const res = await axios.post(`${api_base_url}/auth/refreshToken`, {
-      credentials: "include",
-    });
+    const res = await axios.post(`${api_base_url}/auth/refreshToken`, {});
 
     return res.data;
   };
@@ -101,6 +99,7 @@ export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
       passwordInfo,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -183,6 +182,7 @@ export const useDeleteMyAccount = () => {
 
   const deleteMyAccountRequest = async () => {
     const res = await axios.delete(`${api_base_url}/user/deleteMyAccount`, {
+      withCredentials: true,
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

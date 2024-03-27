@@ -19,6 +19,7 @@ export const useCreateProduct = (productData: FormData) => {
       productData,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
@@ -53,6 +54,7 @@ export const useUpdateProduct = (productData: FormData, productId: string) => {
       productData,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
@@ -85,6 +87,7 @@ export const useDeleteProduct = (productId: string) => {
       `${api_base_url}/product/deleteProduct?productId=${productId}`,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -152,6 +155,7 @@ export const useGetMyProducts = () => {
 
   const getMyProductsRequest = async () => {
     const res = await axios.get(`${api_base_url}/product/getCreativeProducts`, {
+      withCredentials: true,
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

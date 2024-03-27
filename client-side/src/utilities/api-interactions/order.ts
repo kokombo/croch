@@ -26,6 +26,7 @@ export const usePlaceAnOrder = (
       },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -65,6 +66,7 @@ export const useCancelAnOrder = (orderId: string) => {
       },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -99,6 +101,7 @@ export const useConfirmAnOrder = (orderId: string) => {
       },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -148,6 +151,7 @@ export const useGetCustomerOrders = (status: string) => {
     const res = await axios.get(
       `${api_base_url}/order/getCustomerOrders?status=${status}`,
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

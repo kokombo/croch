@@ -17,6 +17,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
       },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -53,6 +54,7 @@ export const useGetWishlists = () => {
       `${api_base_url}/customer/getWishlists`,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

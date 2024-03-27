@@ -13,6 +13,7 @@ export const useSetupCreativeAccount = () => {
       creativeAccountData,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "multipart/form-data",
@@ -40,6 +41,7 @@ export const useGetCreativeOrders = (status: string) => {
     const res = await axios.get(
       `${api_base_url}/creative/getOrders?status=${status}`,
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -71,6 +73,7 @@ export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
       { yearsOfExperience },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -107,6 +110,7 @@ export const useUpdateFunFacts = (funFacts: string[]) => {
       { funFacts },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -145,6 +149,7 @@ export const useUpdatePersonalDescription = (personalDescription: string) => {
       { personalDescription },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -181,6 +186,7 @@ export const useSetBrandName = (brandName: string) => {
       { brandName },
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -217,6 +223,7 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
       brandLogo,
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "multipart/form-data",
@@ -277,6 +284,7 @@ export const useAccountSetupDone = () => {
       {},
 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
