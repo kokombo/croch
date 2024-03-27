@@ -1,4 +1,4 @@
-import { CustomButton, ThreeDotsLoader } from "@/components";
+import { CustomButton, H3, ThreeDotsLoader } from "@/components";
 import CreativeInfo from "../creative-info";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
@@ -38,14 +38,14 @@ const ProductOwnerCard = (props: Props) => {
           </span>
 
           <div>
-            <h3 className="text-xl font-bold">Fun Facts</h3>
+            <H3>Fun Facts</H3>
 
             <div className="grid grid-cols-3 gap-4 mt-5">
               {creative?.funFacts.map((funFact, index) => {
                 return (
                   <article
                     key={index}
-                    className="py-3 px-4 border-[1px] border-grey rounded-xl text-sm"
+                    className="py-3 px-4 border-[1px] border-grey rounded-xl text-sm h-[200px]"
                   >
                     {funFact}
                   </article>

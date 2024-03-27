@@ -8,7 +8,7 @@ const CrossSellContainer = ({ creativeId }: { creativeId: string }) => {
   const { data: creative } = useGetCreativeById(creativeId);
 
   return (
-    <section className="flex flex-col gap-8 mb-20">
+    <section className="flex flex-col gap-8 py-10 mb-10">
       <H3>Explore other creatives by {creative?.brandName} </H3>
 
       <div className="flex flex-col gap-[60px] ">
@@ -21,7 +21,7 @@ const CrossSellContainer = ({ creativeId }: { creativeId: string }) => {
 
         <StyledLink
           href=""
-          label="Show all creative products"
+          label="Show all products"
           extraClasses="border_black_1 text-customblack self-center"
         />
       </div>

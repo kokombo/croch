@@ -91,7 +91,7 @@ html {
 }
 
 .paddingX {
-  @apply px-[4.6%];
+  @apply px-[5%];
 }
 
 .nav_container {

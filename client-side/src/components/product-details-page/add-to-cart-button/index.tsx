@@ -52,7 +52,7 @@ const AddToCartButton = (props: Props) => {
       ) : (
         <CustomButton
           type="button"
-          label="Remove from cart"
+          label="Remove"
           onClick={removeFromCart}
           extraClasses="bg-black text-white w-full py-4 px-5"
         />
