@@ -6,6 +6,7 @@ import { useAddToCart } from "@/utilities/api-interactions/cart";
 import { useRemoveFromCart } from "@/utilities/api-interactions/cart";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { setOpenLoginModal } from "@/redux/slices/modal";
+import { MouseEvent } from "react";
 
 type Props = {
   product: Product;
@@ -32,7 +33,11 @@ const AddToCartButton = (props: Props) => {
     cartItem.info._id.toString()
   );
 
-  const addProductToCart = () => {
+  const addProductToCart = (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    e.preventDefault();
+
     if (!session) {
       dispatch(setOpenLoginModal(true));
       document.body.style.overflow = "hidden";

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { MouseEvent } from "react";
 
 type Props = {
   label: string;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
   extraClasses?: string;
   type: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;
