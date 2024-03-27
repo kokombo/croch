@@ -22,8 +22,10 @@ import deleteicon from "../../public/icons/delete.png";
 import emptycart from "../../public/icons/emptycart.png";
 import closered from "../../public/icons/closered.png";
 import arrowright from "../../public/icons/arrowright.png";
+import arrowrightwhite from "../../public/icons/arrowrightwhite.png";
 import redheart from "../../public/icons/redheart.png";
 import paymentmethod from "../../public/icons/paymentmethod.png";
+import successgreen from "../../public/icons/successgreen.png";
 
 const icons = {
   chevronleft,
@@ -52,6 +54,8 @@ const icons = {
   arrowright,
   redheart,
   paymentmethod,
+  arrowrightwhite,
+  successgreen,
 };
 
 export default icons;

@@ -38,25 +38,25 @@ const ShoppingCardListItem = (props: Props) => {
   };
 
   return (
-    <div className="flex items-center my-4 gap-6 mx-8">
-      <div className="w-1/3 flex items-center gap-6">
+    <div className="flex items-center my-4 gap-3 mx-8 ">
+      <div className="w-1/3 flex items-center gap-4">
         <button type="button" onClick={removeFromCart}>
           <Image
             src={icons.closered}
             alt="delete-cart-item-icon"
-            height={40}
-            width={40}
+            height={24}
+            width={24}
           />
         </button>
 
-        <div className="relative h-[72px] w-[72px] ">
+        <div className="relative h-[72px] w-[72px] rounded-[2px]">
           <Image
             src={props.cartItem.thumbNail}
             alt=""
             fill
             quality={100}
             loading="lazy"
-            className="object-contain"
+            className="rounded-[2px]"
             sizes="any"
           />
         </div>

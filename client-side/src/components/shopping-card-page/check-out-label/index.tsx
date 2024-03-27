@@ -12,6 +12,7 @@ const CheckOutLabel = () => {
           alt="payment-methods-icons"
           fill
           quality={100}
+          sizes="any"
         />
       </div>
     </div>

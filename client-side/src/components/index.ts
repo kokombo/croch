@@ -70,6 +70,8 @@ import StyledLink from "./styled-link";
 import PricingBox from "./shopping-card-page/pricing-box";
 import OrderSummaryProductList from "./billing/order-summary-product-list";
 import OverlayLoader from "./loaders/overlay-loader";
+import OrderStatusSuccess from "./order/order-status-success";
+import EmptyCart from "./empty-cart";
 
 export {
   ProductDescription,
@@ -150,4 +152,6 @@ export {
   PricingBox,
   OrderSummaryProductList,
   OverlayLoader,
+  OrderStatusSuccess,
+  EmptyCart,
 };

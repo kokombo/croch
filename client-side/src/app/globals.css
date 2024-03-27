@@ -4,6 +4,8 @@
 
 body {
   background-color: #ffffff;
+  height: "100%";
+  box-sizing: border-box;
 }
 
 html {
@@ -69,15 +71,23 @@ html {
 }
 
 .border_black_1 {
-  @apply border-[1px] border-black;
+  @apply border-[1px] border-customblack;
 }
 
 .cart_container {
-  @apply flex flex-col gap-10 p-8 border-[1px] border-grey rounded-xl h-full w-[60vw];
+  @apply p-8 border-[1px] border-grey rounded-xl h-full w-[60vw];
+}
+
+.card {
+  @apply py-6 px-5 bg-white rounded-xl border-[1px] border-grey;
 }
 
 .white_card {
-  @apply py-6 px-5 bg-white shadow-md rounded-xl border-[1px] border-grey;
+  @apply card shadow-md;
+}
+
+.cart_card {
+  @apply card flex_center justify-between;
 }
 
 .paddingX {
@@ -85,5 +95,5 @@ html {
 }
 
 .nav_container {
-  @apply w-full flex items-center justify-between h-[100px] paddingX border-b-[1px] border-grey;
+  @apply w-full flex items-center justify-between xl:h-[80px] h-[100px] paddingX border-b-[1px] border-grey;
 }

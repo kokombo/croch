@@ -1,5 +1,6 @@
 "use client";
 
+import { OrderStatusSuccess } from "@/components";
 import { useSearchParams } from "next/navigation";
 
 const BillingStatus = () => {
@@ -8,9 +9,9 @@ const BillingStatus = () => {
   const status = params.getAll("")[0];
 
   return (
-    <main>
+    <main className="h-[85vh] grid place-items-center">
       {status === "success" ? (
-        <div>Success</div>
+        <OrderStatusSuccess />
       ) : "failed" ? (
         <div>Failed</div>
       ) : (

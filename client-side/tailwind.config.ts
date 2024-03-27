@@ -34,6 +34,10 @@ const config: Config = {
         30: "30%",
         70: "70%",
       },
+
+      height: {
+        200: "200px",
+      },
     },
   },
   plugins: [],
