@@ -6,7 +6,6 @@ import {
   NavigationBar,
   Footer,
 } from "@/components";
-
 import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
 const Home = () => {

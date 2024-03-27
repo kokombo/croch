@@ -72,6 +72,9 @@ import OrderSummaryProductList from "./billing/order-summary-product-list";
 import OverlayLoader from "./loaders/overlay-loader";
 import OrderStatusSuccess from "./order/order-status-success";
 import EmptyCart from "./empty-cart";
+import AddToCartButton from "./product-details-page/add-to-cart-button";
+import CrossSellCard from "./cross-sell/cross-sell-card";
+import CrossSellContainer from "./cross-sell/cross-sell-container";
 
 export {
   ProductDescription,
@@ -154,4 +157,7 @@ export {
   OverlayLoader,
   OrderStatusSuccess,
   EmptyCart,
+  AddToCartButton,
+  CrossSellCard,
+  CrossSellContainer,
 };

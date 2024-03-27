@@ -11,6 +11,7 @@ import {
   H3,
   ProductInfoPageSkeleton,
   H6,
+  CrossSellContainer,
 } from "@/components";
 import { icons } from "@/constants";
 import { useGetProductById } from "@/utilities/api-interactions/product";
@@ -71,6 +72,8 @@ const ProductInfoPage = () => {
           </section>
 
           <ReviewsList creativeId={product.owner._id} />
+
+          <CrossSellContainer creativeId={product.owner._id} />
         </div>
       )}
     </div>

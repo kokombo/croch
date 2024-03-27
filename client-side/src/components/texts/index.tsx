@@ -10,8 +10,8 @@ export const H3 = ({ children }: { children: React.ReactNode }) => {
   return <h3 className="text-xl font-bold text-customblack">{children} </h3>;
 };
 
-export const H4 = () => {
-  return <h4></h4>;
+export const H4 = ({ children }: { children: React.ReactNode }) => {
+  return <h4 className="text-lg font-bold text-customblack">{children}</h4>;
 };
 
 export const H5 = () => {

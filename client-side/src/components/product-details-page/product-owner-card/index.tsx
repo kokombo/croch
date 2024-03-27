@@ -29,7 +29,7 @@ const ProductOwnerCard = (props: Props) => {
               label="Contact Creative"
               onClick={() => {}}
               type="button"
-              extraClasses="text-black border-black border-[2px] px-4 py-4"
+              extraClasses="text-black border_black_1 px-4 py-4"
             />
           </div>
 
