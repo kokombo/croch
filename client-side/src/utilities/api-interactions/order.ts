@@ -36,7 +36,7 @@ export const usePlaceAnOrder = (
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError, isSuccess } =
+  const { mutateAsync, data, isPending, error, isError, isSuccess, } =
     useMutation<
       { message: string; order: Order },
       AxiosError<ErrorResponse>,

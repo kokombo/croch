@@ -13,6 +13,7 @@ import {
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { icons } from "@/constants";
 
 const Billing = () => {
   const params = useSearchParams();
@@ -82,6 +83,7 @@ const Billing = () => {
                 onClick={placeAnOrder}
                 disabled={false}
                 extraClasses="text-white bg-customblack p-4 w-full"
+                rightIcon={icons.arrowrightwhite}
               />
             </div>
           )

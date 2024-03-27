@@ -1,3 +1,4 @@
+import { icons } from "@/constants";
 import { H3, CheckOutLabel, StyledLink, PricingBox } from "../..";
 
 type Props = {
@@ -15,6 +16,7 @@ const CheckOutCard = (props: Props) => {
         href={`/cart/shopping_card/billing?for=${props.cart.cartItems[0]?.info.owner}`}
         label="Proceed to check out"
         extraClasses="text-white bg-customblack p-4 w-full"
+        rightIcon={icons.arrowrightwhite}
       />
 
       <CheckOutLabel />
