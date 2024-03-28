@@ -8,7 +8,7 @@ type Props = {
 
 const SearchBox = (props: Props) => {
   return (
-    <div className="relative w-[40%] max-w-[458px] xl:h-12 h-16">
+    <div className="relative max-w-[458px] xl:h-12 h-16">
       <input
         type="search"
         autoFocus={false}

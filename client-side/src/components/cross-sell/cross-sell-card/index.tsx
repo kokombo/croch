@@ -25,7 +25,7 @@ const CrossSellCard = (props: Props) => {
             loading="lazy"
             sizes="any"
             decoding="async"
-            className="rounded-lg"
+            className="rounded-lg object-cover"
           />
         </div>
 

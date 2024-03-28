@@ -45,13 +45,15 @@ const NavigationBar = () => {
     <nav className="nav_container">
       <Logo />
 
-      <SearchBox onChange={() => {}} />
+      <span className="hidden lg:inline-block w-[40%]">
+        <SearchBox onChange={() => {}} />
+      </span>
 
       <div className="flex items-center">
         {(!session || role !== "customer") && (
           <Link
             href={"/creative/home"}
-            className="text-base font-medium hover:bg-gray rounded-3xl py-3 px-4"
+            className="text-base font-medium hover:bg-gray rounded-3xl py-3 px-4 hidden lg:inline-block"
           >
             Sell Your Creative
           </Link>

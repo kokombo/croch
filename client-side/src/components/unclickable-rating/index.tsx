@@ -17,8 +17,8 @@ const UnclickableRating = ({ rating }: { rating: number }) => {
                     key={index}
                     src={icons.star}
                     alt=""
-                    width={20}
-                    height={20}
+                    width={16}
+                    height={16}
                     className="object-contain"
                   />
                 );

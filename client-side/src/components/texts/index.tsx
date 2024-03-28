@@ -7,7 +7,11 @@ export const H2 = () => {
 };
 
 export const H3 = ({ children }: { children: React.ReactNode }) => {
-  return <h3 className="text-xl font-bold text-customblack">{children} </h3>;
+  return (
+    <h3 className="text-lg lg:text-xl font-bold text-customblack">
+      {children}{" "}
+    </h3>
+  );
 };
 
 export const H4 = ({ children }: { children: React.ReactNode }) => {
@@ -19,7 +23,11 @@ export const H5 = () => {
 };
 
 export const H6 = ({ children }: { children: React.ReactNode }) => {
-  return <h6 className="font-semibold text-customblack text-sm">{children}</h6>;
+  return (
+    <h6 className="font-medium text-customblack text-xs lg:text-sm">
+      {children}
+    </h6>
+  );
 };
 
 export const P = () => {

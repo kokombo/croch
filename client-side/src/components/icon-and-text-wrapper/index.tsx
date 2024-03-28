@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import { H6 } from "..";
 
 type Props = {
   icon: string | StaticImageData; //Remove staticImagedata after connecting to API
@@ -9,7 +10,7 @@ const IconAndTextWrapper = (props: Props) => {
   return (
     <article className="flex items-center gap-1">
       <Image src={props.icon} alt="" width={21} height={21} />
-      <h6 className="text-sm text-black font-medium">{props.text} </h6>
+      <H6>{props.text}</H6>
     </article>
   );
 };

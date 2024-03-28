@@ -1,6 +1,6 @@
 import { icons } from "@/constants";
 import Image from "next/image";
-import { IconAndTextWrapper } from "@/components";
+import { H6, IconAndTextWrapper } from "@/components";
 import { Tooltip } from "react-tooltip";
 
 type Props = {
@@ -9,8 +9,8 @@ type Props = {
 
 const CreativeInfo = (props: Props) => {
   return (
-    <div className="flex items-center gap-3">
-      <div className="relative h-[100px] w-[100px] rounded-full bg-grey">
+    <div className="flex items-center gap-2 lg:gap-3">
+      <div className="relative h-[80px] w-[80px] lg:h-[100px] lg:w-[100px] rounded-full bg-grey">
         <Image
           src={props.creative?.brandLogo}
           alt={`${props.creative?.brandName} logo`}
@@ -26,11 +26,11 @@ const CreativeInfo = (props: Props) => {
           {props.product.owner.firstName} {props.product.owner.lastName}
         </h5> */}
 
-        <h6 className="text-[#424242] text-sm font-medium opacity-50">
-          {props.creative.brandName}
-        </h6>
+        <span className="text-[#424242] opacity-50">
+          <H6> {props.creative.brandName}</H6>
+        </span>
 
-        <span className="flex gap-2">
+        <span className="flex gap-1 lg:gap-2">
           <>
             {props.creative.identityVerified ? (
               <>
@@ -51,7 +51,7 @@ const CreativeInfo = (props: Props) => {
                 <a id="identity-not-verified-anchor-element">
                   <IconAndTextWrapper
                     icon={icons.identityverified}
-                    text="Identity not verified"
+                    text="Not verified"
                   />
                 </a>
 

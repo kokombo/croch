@@ -33,7 +33,7 @@ const ReviewCard = (props: Props) => {
         </span>
       </span>
 
-      <span className="text-base font-normal">{props.review.message}</span>
+      <p className="text-base font-normal">{props.review.message}</p>
     </article>
   );
 };

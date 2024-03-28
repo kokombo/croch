@@ -35,11 +35,11 @@ const ProductInfoPage = () => {
     <div>
       {product && (
         <div className="paddingX">
-          <section className="flex flex-col gap-6 py-10 ">
+          <section className="flex flex-col gap-4 lg:gap-6 py-5 lg:py-10 ">
             <div className="flex items-center justify-between">
               <H3>{product?.title}</H3>
 
-              <span className="flex items-center gap-2">
+              <span className="flex items-center text-wrap gap-1 lg:gap-2">
                 <H6>Save</H6>
 
                 <AddToWishlist
@@ -59,14 +59,14 @@ const ProductInfoPage = () => {
             </span>
           </section>
 
-          <section className="py-10 flex justify-between items-start w-full border-grey border-t-[1px]">
-            <div className="flex flex-col gap-[60px] w-[58%] ">
+          <section className="py-5 lg:py-10 flex flex-col-reverse gap-10 lg:flex-row lg:justify-between lg:items-start w-full border-grey border-t-[1px]">
+            <div className="flex flex-col gap-10 lg:gap-[60px] lg:w-[58%] ">
               <ProductDescription description={product.description} />
 
               <ProductOwnerCard product={product} />
             </div>
 
-            <div className="w-[34%]">
+            <div className="lg:w-[38%]">
               <AddToCartCard product={product} />
             </div>
           </section>

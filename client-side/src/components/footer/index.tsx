@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray">
-      <div className="paddingX flex items-start justify-between py-10 border-grey border-y-[1px]">
+      <div className="paddingX grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 py-10 border-grey border-y-[1px]">
         {links.map((item, index) => {
           const { heading, subLinks } = item;
           return (

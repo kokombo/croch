@@ -1,4 +1,4 @@
-import { CustomButton, ReviewCard } from "@/components";
+import { CustomButton, H3, ReviewCard } from "@/components";
 import { useGetCreativeReviews } from "@/utilities/api-interactions/review";
 
 const ReviewsList = ({ creativeId }: { creativeId: string }) => {
@@ -7,9 +7,9 @@ const ReviewsList = ({ creativeId }: { creativeId: string }) => {
   return (
     <>
       {isSuccess && reviews && reviews?.length > 1 && (
-        <section className="flex flex-col gap-11 py-10">
+        <section className="flex flex-col gap-11 py-5 lg:py-10">
           <span>
-            <h3 className="text-xl font-bold">Reviews</h3>
+            <H3>Reviews</H3>
           </span>
 
           <div className="flex flex-col gap-[60px] w-[58%]">
