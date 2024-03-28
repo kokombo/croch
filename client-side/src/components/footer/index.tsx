@@ -18,7 +18,7 @@ const Footer = () => {
                     <Link
                       key={index.toString()}
                       href={link.href}
-                      className="text-customblack hover:underline"
+                      className="text-customblack text-sm lg:text-base hover:underline"
                     >
                       {link.linkLabel}
                     </Link>

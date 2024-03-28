@@ -1,4 +1,4 @@
-import { H4, H6, AddToCartButton } from "@/components";
+import { H4, AddToCartButton, H5 } from "@/components";
 import Image from "next/image";
 import commaNumber from "comma-number";
 import { icons } from "@/constants";
@@ -15,7 +15,7 @@ const CrossSellCard = (props: Props) => {
 
   return (
     <Link href={productUrl} target="_blank">
-      <article className="p-4 border_grey_1 rounded-2xl flex flex-col gap-6">
+      <article className="p-3 border_grey_1 rounded-2xl flex flex-col gap-6">
         <div className="relative w-full h-[260px] rounded-lg bg-grey">
           <Image
             src={props.product.photos[0]}
@@ -30,7 +30,7 @@ const CrossSellCard = (props: Props) => {
         </div>
 
         <span className="flex items-start justify-between gap-1 h-[30px]">
-          <H6>{props.product.title} </H6>
+          <H5>{props.product.title} </H5>
 
           {props.product.rating && (
             <span className="flex">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { icons } from "@/constants";
 import { Dispatch, SetStateAction } from "react";
+import { H4 } from "@/components";
 
 type Props = {
   photos: string[];
@@ -29,12 +30,12 @@ const FullImagesList = (props: Props) => {
             <Image src={icons.chevronleft} alt="" width={7.7} height={13.3} />
           </button>
 
-          <h4 className="text-xl font-bold text-customblack">All Photos</h4>
+          <H4>All Photos</H4>
 
-          <div></div>
+          <div />
         </div>
 
-        <div className="grid grid-cols-3 gap-5 mb-10 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 lg:gap-5 mb-10 ">
           {props.photos.map((photo, index) => {
             return (
               <div key={index} className="relative w-full h-[204px] bg-grey">

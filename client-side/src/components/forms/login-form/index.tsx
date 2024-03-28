@@ -1,4 +1,11 @@
-import { CustomError, FlatGreenButton, TextField } from "@/components";
+import {
+  CustomError,
+  FlatGreenButton,
+  H2,
+  H4,
+  H6,
+  TextField,
+} from "@/components";
 import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { loginFormValidationSchema } from "@/utilities";
@@ -53,16 +60,18 @@ const LoginForm = () => {
   return (
     <div className="flex flex-col gap-8 ">
       <div>
-        <h2 className="text-3xl font-bold">Welcome!</h2>
+        <H2>Welcome!</H2>
+
         <span className="flex items-center gap-1">
-          <h4>Don{"'"}t have an account?</h4>
+          <H6>Don{"'"}t have an account?</H6>
+
           <button
             type="button"
             onClick={() => {
               dispatch(setOpenLoginModal(false));
               dispatch(setOpenSignupModal(true));
             }}
-            className="font-bold"
+            className="text-sm font-bold underline"
           >
             Sign up
           </button>

@@ -2,6 +2,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import {
   CustomError,
   FlatGreenButton,
+  H2,
   SelectAccountType,
   TextField,
 } from "@/components";
@@ -58,8 +59,8 @@ const SignupForm = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col gap-8 ">
-      <h2 className="text-3xl font-bold">
+    <div className="flex flex-col gap-6 lg:gap-8 ">
+      <H2>
         {props.step === 1
           ? "Create an Account"
           : props.step === 2
@@ -69,7 +70,7 @@ const SignupForm = (props: Props) => {
               : props.step === 4
                 ? "Create Your Password"
                 : ""}
-      </h2>
+      </H2>
 
       <Formik
         initialValues={initialValues}

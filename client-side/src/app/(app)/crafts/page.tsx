@@ -66,7 +66,7 @@ const ProductInfoPage = () => {
               <ProductOwnerCard product={product} />
             </div>
 
-            <div className="lg:w-[38%]">
+            <div className="md:w-[75%] lg:w-[38%]">
               <AddToCartCard product={product} />
             </div>
           </section>
