@@ -29,7 +29,7 @@ const CrossSellCard = (props: Props) => {
           />
         </div>
 
-        <span className="flex items-start justify-between gap-1">
+        <span className="flex items-start justify-between gap-1 h-[30px]">
           <H6>{props.product.title} </H6>
 
           {props.product.rating && (

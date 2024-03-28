@@ -51,7 +51,7 @@ const NavigationBar = () => {
         {(!session || role !== "customer") && (
           <Link
             href={"/creative/home"}
-            className="text-base font-semibold hover:bg-gray rounded-3xl py-3 px-4"
+            className="text-base font-medium hover:bg-gray rounded-3xl py-3 px-4"
           >
             Sell Your Creative
           </Link>

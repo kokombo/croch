@@ -26,7 +26,7 @@ const ProductCard = (props: Props) => {
         <div className="flex flex-col gap-2">
           <UnclickableRating rating={props.product.rating} />
 
-          <h1 className="text-sm font-semibold text-neutral">
+          <h1 className="text-sm font-medium text-neutral">
             {props.product?.title}
           </h1>
 

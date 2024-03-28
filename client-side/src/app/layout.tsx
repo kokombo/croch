@@ -4,6 +4,7 @@ import "./globals.css";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import { Montserrat } from "next/font/google";
+import { MacanRegular } from "./font";
 
 const montserrat = Montserrat({
   subsets: ["latin-ext"],
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={montserrat.className}>
+      <body className={MacanRegular.className}>
         <Provider store={store}>
           <NextAuthProvider>
             <ReactQueryProvider>{children}</ReactQueryProvider>
