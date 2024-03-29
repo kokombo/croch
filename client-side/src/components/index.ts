@@ -75,6 +75,7 @@ import EmptyCart from "./empty-cart";
 import AddToCartButton from "./product-details-page/add-to-cart-button";
 import CrossSellCard from "./cross-sell/cross-sell-card";
 import CrossSellContainer from "./cross-sell/cross-sell-container";
+import NavigationLinksCard from "./navigation-links-card";
 
 export {
   ProductDescription,
@@ -160,4 +161,5 @@ export {
   AddToCartButton,
   CrossSellCard,
   CrossSellContainer,
+  NavigationLinksCard,
 };

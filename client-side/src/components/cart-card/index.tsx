@@ -47,7 +47,7 @@ const CartCard = (props: Props) => {
         <CustomButton
           type="button"
           label="View"
-          extraClasses="border-[1px] border-grey p-3 lg:p-4 text-grey3 text-sm hover:bg-gray"
+          extraClasses="border-[1px] border-grey p-3 text-grey3 text-sm hover:bg-gray"
           onClick={() =>
             router.push(`/cart/shopping_card?id=${props.cart.creativeId}`)
           }
