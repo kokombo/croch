@@ -1,11 +1,4 @@
-import {
-  CustomError,
-  FlatGreenButton,
-  H2,
-  H4,
-  H6,
-  TextField,
-} from "@/components";
+import { CustomError, FlatGreenButton, H2, H6, TextField } from "@/components";
 import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { loginFormValidationSchema } from "@/utilities";
@@ -13,6 +6,7 @@ import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
 import { DispatchType } from "@/redux/store";
+import { useClearErrorMessage } from "@/utilities/hooks/useClearErrorMessage";
 
 const initialValues = {
   email: "",
@@ -56,6 +50,8 @@ const LoginForm = () => {
       setLoading(false);
     }
   };
+
+  useClearErrorMessage(setError);
 
   return (
     <div className="flex flex-col gap-8 ">

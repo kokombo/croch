@@ -8,7 +8,7 @@ type Props = {
 
 const SearchBox = (props: Props) => {
   return (
-    <div className="relative max-w-[458px] xl:h-12 h-16">
+    <div className="relative max-w-[458px] xl:h-14 h-16">
       <input
         type="search"
         autoFocus={false}
@@ -20,7 +20,7 @@ const SearchBox = (props: Props) => {
         placeholder="Search for anything"
       />
 
-      <button className="absolute top-2 right-3 xl:h-8 xl:w-8 h-10 w-10 bg-green rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-300 ease-in-out">
+      <button className="absolute top-3 right-3 xl:h-8 xl:w-8 h-10 w-10 bg-green rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-300 ease-in-out">
         <Image
           src={icons.search}
           alt="search icon"

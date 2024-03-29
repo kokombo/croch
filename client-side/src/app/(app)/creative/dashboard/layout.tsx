@@ -1,5 +1,5 @@
 "use client";
-import { NavigationBar, ProtectRoute } from "@/components";
+import { ProtectRoute } from "@/components";
 import "../../../globals.css";
 
 export default function DashboardLayout({
@@ -7,10 +7,5 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ProtectRoute>
-      <NavigationBar />
-      {children}
-    </ProtectRoute>
-  );
+  return <ProtectRoute>{children}</ProtectRoute>;
 }

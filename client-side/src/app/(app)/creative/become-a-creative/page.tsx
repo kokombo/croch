@@ -4,8 +4,10 @@ import {
   AccountSetupStep,
   AccountSetupStepInfo,
   CustomButton,
+  CustomError,
   DropDown,
   NavAccount,
+  OverlayLoader,
   TextArea,
   TextField,
   UploadLogo,
@@ -65,8 +67,8 @@ const CreativeAccountSetup = () => {
 
   return (
     <main onClick={() => setShowDropDown(false)}>
-      <nav className="flex items-center justify-between py-[18px] px-[4.6%] border-b-[1px] border-grey">
-        <div></div>
+      <nav className="nav_container">
+        <div />
 
         <div className="relative">
           <NavAccount
@@ -80,7 +82,7 @@ const CreativeAccountSetup = () => {
             <DropDown extraClasses="right-0 mt-2">
               <Link
                 href={"/signout"}
-                className="text-sm font-semibold hover:bg-gray px-5 py-3"
+                className="text-sm font-medium hover:bg-gray px-5 py-3"
                 onClick={(e) => {
                   e.preventDefault();
                   signOut();
@@ -93,7 +95,7 @@ const CreativeAccountSetup = () => {
         </div>
       </nav>
 
-      <section className="flex items-center justify-between px-[4.6%] border-b-[1px] border-grey h-40">
+      <section className="flex_center justify-between paddingX border-b-[1px] border-grey h-40">
         <span className="flex flex-col gap-2">
           <p className="text-3xl font-bold">Set Up Your Account</p>
 
@@ -109,7 +111,7 @@ const CreativeAccountSetup = () => {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-[10%] px-[4.6%] py-24 ">
+      <section className="grid grid-cols-2 gap-[10%] paddingX py-24 ">
         <div>
           {step === 1 && (
             <AccountSetupStepInfo
@@ -263,11 +265,11 @@ const CreativeAccountSetup = () => {
                     </span>
 
                     <span>
-                      {isPending && <p>Loading...</p>}
+                      {isError && (
+                        <CustomError message={error?.response?.data.message} />
+                      )}
 
-                      {isSuccess && <p>Success</p>}
-
-                      {isError && <p>{error?.response?.data.message} </p>}
+                      {isPending && <OverlayLoader />}
                     </span>
                   </div>
                 )}

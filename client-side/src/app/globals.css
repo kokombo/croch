@@ -91,13 +91,17 @@ html {
 }
 
 .paddingX {
-  @apply px-[4%] lg:px-[5%];
+  @apply px-[5%];
 }
 
 .nav_container {
-  @apply w-full flex items-center justify-between lg:h-[80px] h-[70px] paddingX border-b-[1px] border-grey;
+  @apply w-full flex_center justify-between lg:h-20 h-[70px] paddingX border-b-[1px] border-grey;
 }
 
 .product_list_container {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10;
+}
+
+.dropdown_list_item {
+  @apply text-sm font-medium hover:bg-gray px-5 py-3;
 }

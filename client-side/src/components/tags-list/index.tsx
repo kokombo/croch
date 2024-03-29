@@ -6,7 +6,7 @@ type Props = {};
 const TagsList = (props: Props) => {
   return (
     <div
-      className="flex items-center overflow-x-auto max-w-full gap-4 h-20 "
+      className="flex items-center overflow-x-auto max-w-full gap-2 lg:gap-4 lg:h-20 h-[70px]"
       style={{ scrollbarWidth: "none" }}
     >
       {[...Array(10)].map((_, index) => {

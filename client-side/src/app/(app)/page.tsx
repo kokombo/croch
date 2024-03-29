@@ -21,13 +21,13 @@ const Home = () => {
     <main className="flex flex-col">
       <NavigationBar />
 
-      <section className="px-[4.6%] flex items-center gap-4 border-b-[1px] border-grey w-full">
+      <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
         <TagsList />
 
         <FilterButton />
       </section>
 
-      <section className="px-[4.6%] py-10">
+      <section className="paddingX py-10">
         <ProductsList
           products={products}
           isLoading={isLoading}
@@ -36,6 +36,8 @@ const Home = () => {
           isSuccess={isSuccess}
         />
       </section>
+
+      <Footer />
     </main>
   );
 };

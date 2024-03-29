@@ -77,7 +77,7 @@ const NavigationBar = () => {
                     <Link
                       href={item.href}
                       key={index}
-                      className="text-sm font-semibold hover:bg-gray px-5 py-3"
+                      className="dropdown_list_item"
                       onClick={(e) => {
                         item.href === "/login"
                           ? e.preventDefault()
@@ -105,7 +105,7 @@ const NavigationBar = () => {
                     <Link
                       key={index}
                       href={item.href}
-                      className="text-sm font-semibold hover:bg-gray px-5 py-3"
+                      className="dropdown_list_item"
                       onClick={(e) => {
                         item.href === "/signout" ? e.preventDefault() : null;
 
