@@ -1,5 +1,6 @@
 import { icons } from "@/constants";
 import { useCurrentUser } from "@/utilities";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,11 +9,13 @@ type Props = {
 };
 
 const Logo = (props: Props) => {
-  const { role, session } = useCurrentUser();
+  const { role, session, id } = useCurrentUser();
+
+  const { data: creative } = useGetCreativeById(id);
 
   return (
     <Link
-      href={`${!session || role === "customer" ? "/" : "/creative/dashboard"}`}
+      href={`${!session || role === "customer" ? "/" : `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`}`}
       aria-disabled={props.diabled}
     >
       <Image

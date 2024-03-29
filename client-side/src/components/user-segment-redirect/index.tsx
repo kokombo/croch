@@ -15,14 +15,16 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
     const checkCurrentUser = () => {
       if (status === "authenticated" && role === "creative")
         if (creative?.accountSetupDone) {
-          router.push("/creative/dashboard");
+          router.push(
+            `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+          );
         } else {
           router.push("/creative/become-a-creative");
         }
     };
 
     checkCurrentUser();
-  }, [role, router, status, creative?.accountSetupDone]);
+  }, [role, router, status, creative]);
 
   return status === "loading" ? <FullScreenLoader /> : children;
 };

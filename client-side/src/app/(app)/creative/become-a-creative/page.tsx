@@ -14,6 +14,7 @@ import {
 } from "@/components";
 import {
   useAccountSetupDone,
+  useGetCreativeById,
   useSetupCreativeAccount,
 } from "@/utilities/api-interactions/creative";
 import { Formik, Form, FormikHelpers } from "formik";
@@ -22,6 +23,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { creativeAccountSetupValidationSchema } from "@/utilities/validation/form-validations";
 import { signOut } from "next-auth/react";
+import { useCurrentUser } from "@/utilities";
 
 const initialFormValues: CreativeAccountSetupData = {
   brandName: "",
@@ -33,7 +35,12 @@ const initialFormValues: CreativeAccountSetupData = {
 
 const CreativeAccountSetup = () => {
   const [step, setStep] = useState(1);
+
   const [showDropDown, setShowDropDown] = useState(false);
+
+  const { id } = useCurrentUser();
+
+  const { data: creative } = useGetCreativeById(id);
 
   const router = useRouter();
 
@@ -60,7 +67,9 @@ const CreativeAccountSetup = () => {
       onSuccess: () => {
         confirmAccountSetup();
         onsubmitProps.resetForm();
-        router.push("/creative/dashboard");
+        router.push(
+          `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+        );
       },
     });
   };
