@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <section className="px-[8%] py-16 flex items-center justify-between">
+    <section className="px-[8%] py-16 flex_item_justify_between">
       <div className="flex gap-3 w-[49.5%]">
         <span className="flex flex-col gap-3 w-[49%]">
           <div className="relative w-full h-[298px]">
@@ -15,7 +15,7 @@ const About = () => {
               quality={100}
               priority
               sizes="any"
-              className="rounded-[30px]"
+              className="rounded-[30px] object-cover"
             />
           </div>
 
@@ -27,7 +27,7 @@ const About = () => {
               quality={100}
               priority
               sizes="any"
-              className="rounded-[30px]"
+              className="rounded-[30px] object-cover"
             />
           </div>
         </span>
@@ -41,7 +41,7 @@ const About = () => {
               quality={100}
               priority
               sizes="any"
-              className="rounded-[30px]"
+              className="rounded-[30px] object-cover"
             />
           </div>
           <div className="relative w-full h-[298px]">
@@ -52,7 +52,7 @@ const About = () => {
               quality={100}
               priority
               sizes="any"
-              className="rounded-[30px]"
+              className="rounded-[30px] object-cover"
             />
           </div>
         </span>
@@ -64,11 +64,11 @@ const About = () => {
 
           <h2 className="text-5xl leading-[64px] font-bold">{text.text2}</h2>
 
-          <h4 className="text-xl leading-9 font-semibold text-grey3">
+          <h4 className="text-xl leading-9 font-medium text-grey3">
             {text.text3}
           </h4>
 
-          <h4 className="text-xl leading-9 font-semibold text-grey3">
+          <h4 className="text-xl leading-9 font-medium text-grey3">
             {text.text4}
           </h4>
         </article>

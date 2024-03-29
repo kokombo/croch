@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useCreateProduct } from "@/utilities/api-interactions/product";
-import { signOut } from "next-auth/react";
 
 const Dashboard = () => {
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);
@@ -68,9 +67,6 @@ const Dashboard = () => {
         {isPending && <p>Loading...</p>}
         <p>{error?.response?.data.message} </p>
       </span>
-      <button type="button" onClick={() => signOut({ callbackUrl: "/" })}>
-        Sign out
-      </button>
     </div>
   );
 };

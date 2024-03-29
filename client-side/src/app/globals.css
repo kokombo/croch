@@ -54,6 +54,10 @@ html {
   @apply flex items-center justify-center;
 }
 
+.flex_item_justify_between {
+  @apply flex items-center justify-between;
+}
+
 .border1 {
   @apply border-b-[1px] border-grey;
 }

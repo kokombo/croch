@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Logo,
   Hero,
@@ -31,7 +32,9 @@ const CreativeLanding = () => {
     } else if (!creative?.accountSetupDone) {
       router.push("/creative/become-a-creative");
     } else {
-      router.push("/creative/dashboard");
+      router.push(
+        `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+      );
     }
   };
 

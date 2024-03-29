@@ -22,6 +22,7 @@ const CreativeNavigationBar = () => {
       href: `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`,
     },
 
+    { label: "Profile", href: "/creative/profile" },
     { label: "Sign out", href: "/signout" },
   ];
 
