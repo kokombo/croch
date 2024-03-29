@@ -2,38 +2,35 @@
 
 import { useState } from "react";
 import { useCreateProduct } from "@/utilities/api-interactions/product";
-import { useAccountSetupDone } from "@/utilities/api-interactions/creative";
+import { signOut } from "next-auth/react";
 
 const Dashboard = () => {
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);
 
-  const price = 12000;
-  const sizes = ["large", "small"];
+  const price = 8000;
+  const sizes = ["large", "extraLarge", "small"];
   const colors = ["green", "red"];
   const nationwideDelivery = true;
 
   const formData = new FormData();
 
-  formData.append(
-    "title",
-    "Boho Bliss Crochet Top: Handcrafted Chic for Every Occasion"
-  );
+  formData.append("title", "Enchanted Garden Crochet Shawl");
   formData.append("availability", "pre-order");
   formData.append("price", price.toString());
   formData.append(
     "description",
-    "Introducing our stunning Crochet Boho Top, a perfect blend of elegance and bohemian flair. Handcrafted with meticulous attention to detail, this top is a true masterpiece of crochet artistry.Made from soft and breathable cotton yarn, this top ensures comfort and style, making it ideal for warm summer days or layering in cooler seasons. The intricate crochet patterns create a beautiful texture that adds depth and dimension to your outfit. The Boho Top features a flattering V-neckline and relaxed fit, offering a breezy and effortless silhouette. Pair it with your favorite jeans or shorts for a casual chic look, or dress it up with a skirt and accessories for a bohemian-inspired ensemble.Available in a range of sizes and versatile colors, our Crochet Boho Top is a must-have addition to your wardrobe. Embrace the beauty of handmade craftsmanship and elevate your style with this timeless and unique piece."
+    "Step into a world of whimsy and elegance with our Enchanted Garden Crochet Shawl. Delicately woven with intricate floral patterns, this shawl captures the essence of a magical garden in full bloom. Made from luxurious yarn, it's lightweight yet warm, perfect for adding a touch of enchantment to any outfit. Whether you're strolling through the park or attending a special event, this shawl will be your stylish companion. Embrace nature's beauty with every wear and let the enchantment of the garden wrap around you in cozy comfort."
   );
-  formData.append("gender", "female");
+  formData.append("gender", "male");
   formData.append("tag", "top");
   formData.append("nationwideDelivery", nationwideDelivery.toString());
   formData.append(
     "primaryLocation",
-    JSON.stringify({ name: "Lagos", minDeliveryDays: 2, maxDeliveryDays: 5 })
+    JSON.stringify({ name: "Ibadan", minDeliveryDays: 1, maxDeliveryDays: 3 })
   );
   formData.append(
     "otherLocations",
-    JSON.stringify({ minDeliveryDays: 3, maxDeliveryDays: 7 })
+    JSON.stringify({ minDeliveryDays: 5, maxDeliveryDays: 7 })
   );
   sizes.forEach((size) => {
     formData.append("sizes", size);
@@ -71,6 +68,9 @@ const Dashboard = () => {
         {isPending && <p>Loading...</p>}
         <p>{error?.response?.data.message} </p>
       </span>
+      <button type="button" onClick={() => signOut({ callbackUrl: "/" })}>
+        Sign out
+      </button>
     </div>
   );
 };

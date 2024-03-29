@@ -14,7 +14,7 @@ type Product = {
     _id: string;
     firstName: string;
     lastName: string;
-    picture: string;
+    profileImage: string;
   };
   photos: string[];
   price: number;

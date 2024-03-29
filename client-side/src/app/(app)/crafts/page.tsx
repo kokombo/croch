@@ -73,7 +73,10 @@ const ProductInfoPage = () => {
 
           <ReviewsList creativeId={product.owner._id} />
 
-          <CrossSellContainer creativeId={product.owner._id} />
+          <CrossSellContainer
+            creativeId={product.owner._id}
+            productId={product._id}
+          />
         </div>
       )}
     </div>

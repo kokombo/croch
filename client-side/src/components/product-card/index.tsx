@@ -26,9 +26,11 @@ const ProductCard = (props: Props) => {
         <div className="flex flex-col gap-2">
           <UnclickableRating rating={props.product.rating} />
 
-          <h1 className="text-sm font-medium text-neutral">
-            {props.product?.title}
-          </h1>
+          <span className="h-8">
+            <h1 className="text-sm font-medium text-neutral">
+              {props.product?.title}
+            </h1>
+          </span>
 
           <H4>&#8358;{commaNumber(props.product?.price)}</H4>
         </div>

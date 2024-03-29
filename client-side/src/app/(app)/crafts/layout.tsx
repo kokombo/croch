@@ -1,7 +1,7 @@
 "use client";
 
 import "../../globals.css";
-import { NavigationBar } from "@/components";
+import { Footer, NavigationBar } from "@/components";
 
 export default function ProductPageLayout({
   children,
@@ -13,6 +13,8 @@ export default function ProductPageLayout({
       <NavigationBar />
 
       {children}
+
+      <Footer />
     </>
   );
 }

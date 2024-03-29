@@ -45,9 +45,15 @@ const createProduct = async (req: Request, res: Response) => {
 
       nationwideDelivery: req.body.nationwideDelivery === "true" ? true : false,
 
-      primaryLocation: JSON.parse(req.body.primaryLocation),
+      primaryLocation:
+        typeof req.body.primaryLocation !== "undefined"
+          ? JSON.parse(req.body.primaryLocation)
+          : null,
 
-      otherLocations: JSON.parse(req.body.otherLocations),
+      otherLocations:
+        typeof req.body.otherLocations !== "undefined"
+          ? JSON.parse(req.body.otherLocations)
+          : null,
 
       price: parseInt(req.body.price),
 
@@ -114,9 +120,15 @@ const updateProduct = async (req: Request, res: Response) => {
         nationwideDelivery:
           req.body.nationwideDelivery === "true" ? true : false,
 
-        primaryLocation: JSON.parse(req.body.primaryLocation),
+        primaryLocation:
+          typeof req.body.primaryLocation !== "undefined"
+            ? JSON.parse(req.body.primaryLocation)
+            : null,
 
-        otherLocations: JSON.parse(req.body.otherLocations),
+        otherLocations:
+          typeof req.body.otherLocations !== "undefined"
+            ? JSON.parse(req.body.otherLocations)
+            : null,
 
         price: parseInt(req.body.price),
 
@@ -199,7 +211,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   try {
     let result = Product.find(JSON.parse(numericQuery)).populate({
       path: "owner",
-      select: "_id firstName lastName",
+      select: "_id firstName lastName profileImage",
     });
 
     //An algorithm to display products based on product performance or creative's overall performance and/or product performance.

@@ -1,4 +1,6 @@
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import Image from "next/image";
+import { H6 } from "..";
 
 type Props = {
   product: Product;
@@ -6,21 +8,24 @@ type Props = {
 };
 
 const ProductCardOwnerInfo = (props: Props) => {
+  const { data: creative } = useGetCreativeById(props.product.owner._id);
+
   return (
     <div
-      className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex items-center justify-start gap-2 px-4 py-3`}
+      className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex_center justify-start gap-2 px-4 py-3`}
     >
-      <Image
-        src={props.product.owner.picture || "/cp.png"}
-        alt={`product-${props.product.owner._id} owner image`}
-        quality={100}
-        height={40}
-        width={40}
-        className="rounded-[100%] w-10 h-10 object-cover"
-        decoding="async"
-      />
+      <div className="relative h-10 w-10 rounded-full bg-grey">
+        <Image
+          src={props.product.owner.profileImage || creative?.brandLogo!}
+          alt=""
+          quality={100}
+          fill
+          className="rounded-full object-cover"
+          loading="eager"
+        />
+      </div>
 
-      <p>{props.product.owner.firstName}</p>
+      <H6> {props.product.owner.firstName} </H6>
     </div>
   );
 };

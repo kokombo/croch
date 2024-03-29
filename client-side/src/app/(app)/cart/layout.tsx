@@ -1,7 +1,7 @@
 "use client";
 
 import "../../globals.css";
-import { NavigationBar, ProtectRoute } from "@/components";
+import { Footer, NavigationBar, ProtectRoute } from "@/components";
 
 export default function CartLayout({
   children,
@@ -13,6 +13,8 @@ export default function CartLayout({
       <NavigationBar />
 
       {children}
+
+      <Footer />
     </ProtectRoute>
   );
 }

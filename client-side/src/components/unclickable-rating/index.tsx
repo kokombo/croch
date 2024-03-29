@@ -20,6 +20,7 @@ const UnclickableRating = ({ rating }: { rating: number }) => {
                     width={16}
                     height={16}
                     className="object-contain"
+                    sizes="any"
                   />
                 );
               }
