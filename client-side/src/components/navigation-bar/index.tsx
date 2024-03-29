@@ -30,7 +30,7 @@ const NavigationBar = () => {
           </Link>
         )}
 
-        <span className=" relative">
+        <span className="relative">
           <NavAccount
             onClick={() => {
               openDropDown

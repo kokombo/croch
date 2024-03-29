@@ -25,11 +25,6 @@ const authenticatedCustomerLinks = [
   { label: "Sign out", href: "/signout" },
 ];
 
-const authenticatedCreativeLinks = [
-  { label: "Dashboard", href: "/creative/dashboard" },
-  { label: "Sign out", href: "/signout" },
-];
-
 const NavigationLinksCard = () => {
   const dispatch: DispatchType = useDispatch();
 
@@ -76,39 +71,22 @@ const NavigationLinksCard = () => {
         })}
 
       {session &&
-        (role === "customer"
-          ? authenticatedCustomerLinks.map((item, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="dropdown_list_item"
-                  onClick={(e) => {
-                    item.href === "/signout" ? e.preventDefault() : null;
+        authenticatedCustomerLinks.map((item, index) => {
+          return (
+            <Link
+              key={index}
+              href={item.href}
+              className="dropdown_list_item"
+              onClick={(e) => {
+                item.href === "/signout" ? e.preventDefault() : null;
 
-                    item.href === "/signout" ? signOut() : null;
-                  }}
-                >
-                  {item.label}
-                </Link>
-              );
-            })
-          : authenticatedCreativeLinks.map((item, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="dropdown_list_item"
-                  onClick={(e) => {
-                    item.href === "/signout" ? e.preventDefault() : null;
-
-                    item.href === "/signout" ? signOut() : null;
-                  }}
-                >
-                  {item.label}
-                </Link>
-              );
-            }))}
+                item.href === "/signout" ? signOut() : null;
+              }}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
     </DropDown>
   );
 };
