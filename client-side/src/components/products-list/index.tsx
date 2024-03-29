@@ -13,7 +13,7 @@ const ProductsList = (props: Props) => {
   return (
     <>
       {props.isLoading ? (
-        <section className="h-screen grid grid-cols-4 gap-x-4 gap-y-10">
+        <section className="h-screen product_list_container">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
           })}
@@ -23,7 +23,7 @@ const ProductsList = (props: Props) => {
           {props.error?.response?.data.message || props.error?.message}{" "}
         </section>
       ) : (
-        <section className="grid grid-cols-4 gap-x-4 gap-y-10">
+        <section className="product_list_container">
           {props.products?.map((product) => {
             return <ProductCard key={product._id} product={product} />;
           })}

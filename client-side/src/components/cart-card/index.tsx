@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import { CustomButton, PromptCard } from "..";
+import { CustomButton, H5, H6, PromptCard } from "..";
 import { icons } from "@/constants";
 import { useDeleteCart } from "@/utilities/api-interactions/cart";
 import { useRouter } from "next/navigation";
@@ -24,9 +24,9 @@ const CartCard = (props: Props) => {
   );
 
   return (
-    <div className="cart_card">
-      <div className="flex items-center gap-6">
-        <div className="relative h-[72px] w-[72px] rounded-full bg-grey">
+    <div className="cart_card ">
+      <div className="flex items-center gap-4 lg:gap-6">
+        <div className="relative h-10 w-10 lg:h-[72px] lg:w-[72px] rounded-full bg-grey">
           <Image
             src={props.cart.brandLogo}
             alt=""
@@ -38,28 +38,26 @@ const CartCard = (props: Props) => {
         </div>
 
         <article className="flex flex-col gap-2">
-          <h5>{props.cart.brandName} </h5>
-
-          <h6>Creator handmade</h6>
+          <H5>{props.cart.brandName}</H5>
+          <H6>Creator handmade</H6>
         </article>
       </div>
 
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 lg:gap-6">
         <CustomButton
           type="button"
-          label="Open cart"
-          extraClasses="border-[1px] border-grey p-4 text-grey3 text-sm hover:bg-gray"
+          label="View"
+          extraClasses="border-[1px] border-grey p-3 lg:p-4 text-grey3 text-sm hover:bg-gray"
           onClick={() =>
             router.push(`/cart/shopping_card?id=${props.cart.creativeId}`)
           }
-          rightIcon={icons.arrowright}
         />
 
         <div className="relative">
           <>
             <a id="delete-cart-anchor-element">
               <button type="button" onClick={() => setOpenDeleteBoard(true)}>
-                <Image src={icons.deleteicon} alt="" height={21} width={19.5} />
+                <Image src={icons.deleteicon} alt="" height={18} width={18} />
               </button>
             </a>
 
@@ -77,7 +75,7 @@ const CartCard = (props: Props) => {
                 deleteCart();
                 setOpenDeleteBoard(false);
               }}
-              extraClasses="top-0"
+              extraClasses="right-0 lg:left-0 top-0"
             />
           )}
         </div>

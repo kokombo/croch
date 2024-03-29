@@ -39,7 +39,7 @@ const ShoppingCardListItem = (props: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-3 h-[72px]">
+    <div className="flex lg:flex-row items-center gap-3 h-[72px]">
       <div className="w-1/3 flex items-center gap-4">
         <>
           <a id="delete-cart-item-anchor-element">

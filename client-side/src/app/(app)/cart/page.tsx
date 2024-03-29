@@ -12,7 +12,7 @@ const Cart = () => {
   const { data: carts, isLoading: cartsLoading, isError } = useGetCarts();
 
   return (
-    <main className="grid_center my-20">
+    <main className="grid_center paddingX my-20">
       <div className="cart_container">
         {cartsLoading ? (
           <div className="h-200">
@@ -29,7 +29,7 @@ const Cart = () => {
             buttonExtraClasses="bg-customblack text-white"
           />
         ) : (
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6 lg:gap-8">
             <H3>Cart</H3>
 
             <Divider />

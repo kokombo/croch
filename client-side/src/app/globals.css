@@ -75,11 +75,11 @@ html {
 }
 
 .cart_container {
-  @apply p-8 border-[1px] border-grey rounded-xl h-full w-[60vw];
+  @apply p-4 lg:p-8 border-[1px] border-grey rounded-xl h-full w-full lg:w-[60vw];
 }
 
 .card {
-  @apply py-6 px-5 bg-white rounded-xl border-[1px] border-grey;
+  @apply px-3 py-6 lg:px-5 bg-white rounded-xl border-[1px] border-grey;
 }
 
 .white_card {
@@ -96,4 +96,8 @@ html {
 
 .nav_container {
   @apply w-full flex items-center justify-between lg:h-[80px] h-[70px] paddingX border-b-[1px] border-grey;
+}
+
+.product_list_container {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10;
 }

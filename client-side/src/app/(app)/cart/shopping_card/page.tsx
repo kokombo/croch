@@ -39,10 +39,10 @@ const ShoppingCard = () => {
   }, [cart, router, isLoading]);
 
   return (
-    <main className="flex paddingX py-16 gap-6">
-      <div className="w-70">
+    <main className="flex flex-col lg:flex-row paddingX py-8 lg:py-16 gap-4 lg:gap-6">
+      <div className="lg:w-[68%]">
         <div className=" flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit">
-          <span className="mx-8 block">
+          <span className="mx-4 lg:mx-8 block">
             <H3>Shopping Card</H3>
           </span>
 
@@ -55,7 +55,7 @@ const ShoppingCard = () => {
               <div>
                 <CartItemsTableHead />
 
-                <div className="flex flex-col gap-8 p-6">
+                <div className="flex flex-col gap-8 p-4 lg:p-6">
                   {cart?.cartItems?.map((cartItem) => {
                     return (
                       <ShoppingCardListItem
@@ -80,13 +80,13 @@ const ShoppingCard = () => {
         </div>
 
         {creative && (
-          <div className="py-6 px-7 border_grey_1 bg-gray rounded-xl w-[500px] mt-[145px] ">
+          <div className="py-6 px-7 border_grey_1 bg-gray rounded-xl sm:w-[500px] mt-4 lg:mt-[145px] ">
             <CreativeInfo creative={creative} />
           </div>
         )}
       </div>
 
-      <div className="w-30 flex flex-col gap-6">
+      <div className="sm:w-[500px] lg:w-[32%] flex flex-col gap-6">
         <div className="white_card ">
           {isLoading ? (
             <div className="h-40">

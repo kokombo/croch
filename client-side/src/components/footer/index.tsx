@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { H3, H6 } from "..";
+import { H4, H6 } from "..";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -11,7 +11,8 @@ const Footer = () => {
           const { heading, subLinks } = item;
           return (
             <div key={index.toString()} className="flex flex-col gap-6">
-              <H3>{heading} </H3>
+              <H4>{heading} </H4>
+
               <div className="flex flex-col gap-4">
                 {subLinks.map((link, index) => {
                   return (
