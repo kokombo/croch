@@ -1,7 +1,12 @@
 "use client";
 
 import "../globals.css";
-import { Modal, LoginForm, SignupForm } from "@/components";
+import {
+  Modal,
+  LoginForm,
+  SignupForm,
+  UserSegmentRedirect,
+} from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
@@ -11,7 +16,6 @@ import {
   setOpenDropDown,
 } from "@/redux/slices/modal";
 import { useState } from "react";
-import UserSegmentRedirect from "@/components/user-segment-redirect";
 
 export default function RootLayout({
   children,

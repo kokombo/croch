@@ -13,7 +13,7 @@ const ProductsList = (props: Props) => {
   return (
     <>
       {props.isLoading ? (
-        <section className="h-screen product_list_container">
+        <section className="product_list_container">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
           })}

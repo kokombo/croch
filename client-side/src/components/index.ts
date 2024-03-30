@@ -78,6 +78,7 @@ import CrossSellContainer from "./cross-sell/cross-sell-container";
 import NavigationLinksCard from "./navigation-links-card";
 import CreativeNavigationBar from "./creative-navigation-bar";
 import SectionHeading from "./creative-landing-page/section-heading";
+import UserSegmentRedirect from "./user-segment-redirect";
 
 export {
   ProductDescription,
@@ -166,4 +167,5 @@ export {
   NavigationLinksCard,
   CreativeNavigationBar,
   SectionHeading,
+  UserSegmentRedirect,
 };

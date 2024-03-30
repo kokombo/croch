@@ -99,7 +99,7 @@ html {
 }
 
 .nav_container {
-  @apply w-full flex_center justify-between lg:h-20 h-[70px] paddingX border-b-[1px] border-grey;
+  @apply w-full flex_center justify-between lg:h-20 h-[70px] px-[2%] border-b-[1px] border-grey;
 }
 
 .product_list_container {

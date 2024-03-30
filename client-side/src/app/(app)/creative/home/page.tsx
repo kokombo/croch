@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const CreativeLanding = () => {
-  const { session, id } = useCurrentUser();
+  const { session, id, role } = useCurrentUser();
 
   const router = useRouter();
 
@@ -30,12 +30,16 @@ const CreativeLanding = () => {
     if (!session) {
       dispatch(setOpenLoginModal(true));
       document.body.style.overflow = "hidden";
-    } else if (!creative?.accountSetupDone) {
-      router.push("/creative/become-a-creative");
+    } else if (role === "creative") {
+      if (creative?.accountSetupDone) {
+        router.push(
+          `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+        );
+      } else {
+        router.push("/creative/become-a-creative");
+      }
     } else {
-      router.push(
-        `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
-      );
+      router.push("/");
     }
   };
 
