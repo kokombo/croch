@@ -8,6 +8,7 @@ import {
   HowItWorks,
   WhyUs,
   CustomButton,
+  Footer,
 } from "@/components";
 import { useCurrentUser } from "@/utilities";
 import { setOpenLoginModal } from "@/redux/slices/modal";
@@ -60,6 +61,8 @@ const CreativeLanding = () => {
       <WhyUs />
 
       <CreativesTestimonial />
+
+      <Footer />
     </main>
   );
 };

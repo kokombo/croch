@@ -28,6 +28,7 @@ const config: Config = {
         customblack: "#242424",
         lightgreen: "#2DB224",
         skyblue: "#2DA5F3",
+        ash2: "#F7F7F7",
       },
 
       width: {

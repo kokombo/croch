@@ -24,6 +24,7 @@ const TextArea = (props: Props) => {
               disabled={props.disabled}
               maxLength={props.maxLength}
               autoCorrect="off"
+              autoComplete="on"
             />
           );
         }}
