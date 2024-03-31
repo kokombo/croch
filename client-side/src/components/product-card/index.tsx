@@ -3,6 +3,7 @@ import { H4, Slider, UnclickableRating } from "..";
 import Link from "next/link";
 import commaNumber from "comma-number";
 
+
 type Props = {
   product: Product;
 };
@@ -14,11 +15,14 @@ const ProductCard = (props: Props) => {
     `/crafts?title=${props.product.title}&craftId=${props.product._id}`
   ).replaceAll(" ", "-");
 
+
+
   return (
     <Link href={productUrl} target="_blank">
       <div
-        onPointerEnter={() => setHideButton(false)}
-        onPointerLeave={() => setHideButton(true)}
+        onMouseEnter={()=> setHideButton(false)}
+        onMouseLeave={()=> setHideButton(true)}
+      
         className="w-full flex flex-col gap-3"
       >
         <Slider hideButton={hideButton} product={props.product} />
