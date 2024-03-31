@@ -59,9 +59,11 @@ const Slider = (props: Props) => {
           return (
             <div
               key={sliderIndex}
-              className={`relative h-[300px] md:h-[270px] w-full flex-shrink-0 transition-transform duration-1000 md:duration-500 ease-in-out bg-grey ${opacity}`}
+              className={`w-full flex-shrink-0 transition-transform duration-500 ease-in-out bg-grey ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
+              
+              <div className = "relative h-[300px] md:h-[270px] " > 
               <Image
                 key={sliderIndex}
                 src={data}
@@ -73,6 +75,9 @@ const Slider = (props: Props) => {
                 className="object-cover"
                 decoding="async"
               />
+
+              </div>
+
             </div>
           );
         })}
