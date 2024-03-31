@@ -1,7 +1,7 @@
-import express from "express";
+import express = require("express");
 const app = express();
 require("dotenv").config();
-import connectToDatabase = require("./configurations/connectToDatabase");
+import connectToDatabase from "./configurations/connectToDatabase";
 import cookieParser = require("cookie-parser");
 import cors = require("cors");
 import authRouter = require("./routes/auth");
