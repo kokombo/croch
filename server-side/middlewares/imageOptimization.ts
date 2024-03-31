@@ -39,7 +39,7 @@ const resizePhoto = async (req: Request, res: Response, next: NextFunction) => {
   await Promise.all(
     req.files.map(async (file) => {
       await sharp(file.path)
-        .resize(400, 400, { fit: "contain" })
+        .resize(500, 500, { fit: "contain" })
         .toFormat("jpeg")
         .jpeg({ quality: 100 })
         .toFile(`public/images/products/${file.filename}`);

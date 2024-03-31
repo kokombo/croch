@@ -1,1 +1,1 @@
-export const api_base_url = `http://localhost:5000/api/v1`;
+export const api_base_url = `${process.env.SERVER_URL}/api/v1`;

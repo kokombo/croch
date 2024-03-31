@@ -47,7 +47,7 @@ app.use("/api/v1/customer", customerRouter);
 app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/review", reviewRouter);
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 const Start = async () => {
   try {
