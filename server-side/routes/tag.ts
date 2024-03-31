@@ -4,7 +4,7 @@ import tagController = require("../controllers/tag");
 import authorization = require("../middlewares/authorization");
 import imageOptimization = require("../middlewares/imageOptimization");
 
-const { resizePhoto, uploadPhoto } = imageOptimization;
+const { uploadPhoto } = imageOptimization;
 const { authorizeUser, isAdmin } = authorization;
 const { addNewTag, getAllTags, updateTag } = tagController;
 

@@ -29,6 +29,7 @@ router.patch(
   authorizeUser,
   isCreative,
   uploadPhoto.array("logo", 1),
+  resizePhoto,
   setupAccount
 );
 
@@ -64,6 +65,7 @@ router.patch(
   authorizeUser,
   isCreative,
   uploadPhoto.array("logo", 1),
+  resizePhoto,
   setBrandLogo
 );
 

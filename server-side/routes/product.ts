@@ -25,6 +25,7 @@ router.post(
   authorizeUser,
   isCreative,
   uploadPhoto.array("product-photos", 10),
+  resizePhoto,
   createProduct
 );
 
@@ -35,6 +36,7 @@ router.put(
   authorizeUser,
   isProductOwner,
   uploadPhoto.array("product-photos", 10),
+  resizePhoto,
   updateProduct
 );
 

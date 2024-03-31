@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 
@@ -17,7 +17,7 @@ export const useGiveReview = (reviewData: ReviewData) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          Accept: "application/json",
+          'Content-Type': "application/json",
         },
       }
     );

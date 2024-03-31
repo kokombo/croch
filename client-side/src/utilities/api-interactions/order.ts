@@ -29,6 +29,7 @@ export const usePlaceAnOrder = (
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          'Content-Length': 'application/json'
         },
       }
     );

@@ -18,6 +18,7 @@ export const useCreateNotification = (notificationData: NotificationData) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          'Content-Type' : 'application/json'
         },
       }
     );

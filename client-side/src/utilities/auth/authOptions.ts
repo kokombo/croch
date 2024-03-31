@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
         return await axios
           .post(`${api_base_url}/auth/signin`, { email, password }, {
             headers: {
-               Accept: "application/json",
+               'Content-Type': "application/json",
             }
           })
           .then((res) => {

@@ -23,7 +23,7 @@ const Logo = (props: Props) => {
         priority
         quality={100}
         alt="croch logo"
-        className="w-[72px] lg:w-[124px] lg:h-[55px]"
+        className="w-[72px] h-12 lg:w-[124px] lg:h-[55px]"
       />
     </Link>
   );
