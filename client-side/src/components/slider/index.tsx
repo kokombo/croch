@@ -10,30 +10,47 @@ type Props = {
 
 const Slider = (props: Props) => {
   const [index, setIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState(0);
+  const [offSet, setOffSet] = useState(0)
 
   const swipeSlider = (e: TouchEvent<HTMLDivElement>) => {
-    if (!touchStart) return;
+    if (touchStart === 0) {
+      return;
+    }
 
     const delta = e.touches[0].clientX - touchStart;
 
-    if (delta > 50) {
-      setIndex(index === props.product.photos.length - 1 ? 0 : index - 1);
-    } else if (delta < -50) {
-      setIndex(
-        index === props.product.photos.length - 1
-          ? props.product.photos.length - 1
-          : index + 1
-      );
-    }
+    setOffSet(delta)
+
+    // if (delta > 50) {
+    //   setIndex(index === props.product.photos.length - 1 ? 0 : index - 1);
+    // } else if (delta < -50) {
+    //   setIndex(
+    //     index === props.product.photos.length - 1
+    //       ? props.product.photos.length - 1
+    //       : index + 1
+    //   );
+    // }
   };
+
+  const handleTouchEnd  = ()=> {
+    if(offSet > 50 && index > 0){
+      setIndex(index - 1)
+    }else if(offSet < -50 && index < props.product.photos.length){
+      setIndex(index + 1)
+    }else{
+      setTouchStart(0)
+      setOffSet(0)
+    }
+  }
 
   return (
     <div
       className="relative overflow-hidden w-full h-[270px] rounded-lg"
-      onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+      onTouchStart={(e) => {setTouchStart(e.touches[0].clientX); setOffSet(0)}}
       onTouchMove={swipeSlider}
-      onTouchEnd={() => setTouchStart(null)}
+      onTouchEnd={handleTouchEnd}
+      
     >
       <div className="flex">
         {props.product.photos?.map((data, sliderIndex) => {
@@ -42,7 +59,7 @@ const Slider = (props: Props) => {
           return (
             <div
               key={sliderIndex}
-              className={`relative h-[300px] md:h-[270px] w-full flex-shrink-0 transition-transform duration-500 ease-in-out bg-grey ${opacity}`}
+              className={`relative h-[300px] md:h-[270px] w-full flex-shrink-0 transition-transform duration-1000 md:duration-500 ease-in-out bg-grey ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               <Image
