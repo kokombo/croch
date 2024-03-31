@@ -1,4 +1,4 @@
-import express = require("express");
+import express from "express";
 const app = express();
 require("dotenv").config();
 import connectToDatabase = require("./configurations/connectToDatabase");
