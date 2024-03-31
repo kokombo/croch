@@ -59,7 +59,6 @@ const Slider = (props: Props) => {
                 loading="lazy"
                 sizes="any"
                 className="object-cover"
-                decoding="async"
               />
 
               </div>

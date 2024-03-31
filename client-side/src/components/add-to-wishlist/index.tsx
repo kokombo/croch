@@ -54,8 +54,8 @@ const AddToWishlist = (props: Props) => {
             : props.alreadyInWishlistIcon
         }
         alt="add-remove-from-wishlist-icon"
-        height={24}
-        width={24}
+        height={28}
+        width={28}
       />
     </button>
   );
