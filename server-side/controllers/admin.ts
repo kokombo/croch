@@ -2,7 +2,7 @@ import Admin = require("../models/admin");
 import User = require("../models/user");
 import Creative = require("../models/creative");
 import Customer = require("../models/customer");
-import { Request, Response } from "express";
+import { Response, Request } from "express";
 import { StatusCodes } from "http-status-codes";
 import validateId = require("../utilities/validateId");
 import generateAccessToken = require("../utilities/generateAccessToken");
