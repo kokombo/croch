@@ -45,7 +45,7 @@ const CreativeLanding = () => {
 
   return (
     <main>
-      <nav className="flex items-center justify-between py-[18px] px-[8%]">
+      <nav className="flex items-center justify-between py-[18px] paddingX">
         <Logo />
 
         <CustomButton
