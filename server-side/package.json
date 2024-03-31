@@ -5,8 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.ts",
-    "build": "tsc",
+    "start": "node ./build/server.js",
+    "build": "npm install && tsc",
     "dev": "nodemon --files server.ts"
   },
   "author": "",
@@ -28,7 +28,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.9",
     "nodemon": "^3.0.3",
-    "sharp": "^0.33.2",
+    "sharp": "^0.33.3",
     "typescript": "^5.4.3"
   },
   "devDependencies": {
