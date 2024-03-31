@@ -14,30 +14,16 @@ const Slider = (props: Props) => {
   const [offSet, setOffSet] = useState(0)
 
   const swipeSlider = (e: TouchEvent<HTMLDivElement>) => {
-    if (touchStart === 0) {
-      return;
-    }
-
+    if (touchStart === 0)  return;
     const delta = e.touches[0].clientX - touchStart;
-
     setOffSet(delta)
-
-    // if (delta > 50) {
-    //   setIndex(index === props.product.photos.length - 1 ? 0 : index - 1);
-    // } else if (delta < -50) {
-    //   setIndex(
-    //     index === props.product.photos.length - 1
-    //       ? props.product.photos.length - 1
-    //       : index + 1
-    //   );
-    // }
   };
 
   const handleTouchEnd  = ()=> {
     if(offSet > 50 && index > 0){
-      setIndex(index - 1)
+      setIndex(index === props.product.photos.length - 1? 0: index - 1)
     }else if(offSet < -50 && index < props.product.photos.length){
-      setIndex(index + 1)
+      setIndex(index === props.product.photos.length -1 ? props.product.photos.length -1 : index + 1)
     }else{
       setTouchStart(0)
       setOffSet(0)
