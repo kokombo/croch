@@ -217,6 +217,8 @@ const deleteMyAccount = async (req: Request, res: Response) => {
 
   const { password } = req.body;
 
+  validateId(userId, res);
+
   try {
     const user = await User.findById(userId);
 

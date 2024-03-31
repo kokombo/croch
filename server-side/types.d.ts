@@ -37,7 +37,7 @@ type Notification = {
   message: string;
 };
 
-type Email = {
+interface Email {
   from: string;
   to: string | string[];
   subject: string;

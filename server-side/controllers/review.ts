@@ -53,7 +53,7 @@ const giveReview = async (req: Request, res: Response) => {
 const getCreativeReviews = async (req: Request, res: Response) => {
   const creativeId = req.query.creativeId as string;
 
-  validateId(creativeId, res);
+    validateId(creativeId, res);
   try {
     const reviews = await Review.find({ to: creativeId })
       .populate({
