@@ -26,11 +26,9 @@ const signUp = async (req: Request, res: Response) => {
     const userExists = await User.findOne({ email: refinedEmail });
 
     if (userExists) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({
-          message: "User with this email already exists. Please sign in.",
-        });
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: "User with this email already exists. Please sign in.",
+      });
     }
 
     const user = await User.create({ ...req.body, email: refinedEmail });
@@ -55,8 +53,6 @@ const updatePassword = async (req: Request, res: Response) => {
   const { _id } = req.user;
 
   const { oldPassword, newPassword } = req.body;
-
-  validateId(_id);
 
   try {
     const user = await User.findById(_id);
@@ -220,8 +216,6 @@ const deleteMyAccount = async (req: Request, res: Response) => {
   const { _id: userId } = req.user;
 
   const { password } = req.body;
-
-  validateId(userId);
 
   try {
     const user = await User.findById(userId);

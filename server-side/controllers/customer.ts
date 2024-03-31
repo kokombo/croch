@@ -9,9 +9,7 @@ const addAndRemoveWishlist = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  validateId(productId);
-
-  validateId(customerId);
+  validateId(productId, res);
 
   try {
     const customer = await Customer.findById(customerId).populate("wishLists");
@@ -63,9 +61,9 @@ const getWishlists = async (req: Request, res: Response) => {
 };
 
 const getCreativeAllProducts = async (req: Request, res: Response) => {
-  const { creativeId } = req.query;
+  const creativeId = req.query.creativeId as string;
 
-  validateId(creativeId as string);
+  validateId(creativeId, res);
 
   try {
     const products = await Product.find({ owner: creativeId });

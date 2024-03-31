@@ -13,8 +13,6 @@ const setupAccount = async (req: Request, res: Response) => {
 
   const { _id: creativeId } = req.user;
 
-  validateId(creativeId);
-
   try {
     const creative = await Creative.findById(creativeId);
 
@@ -53,8 +51,6 @@ const updateFunFacts = async (req: Request, res: Response) => {
 
   const { _id: creativeId } = req.user;
 
-  validateId(creativeId);
-
   try {
     const creative = await Creative.findById(creativeId);
 
@@ -76,8 +72,6 @@ const updateIsAvailable = async (req: Request, res: Response) => {
   const { isAvailable } = req.body;
 
   const { _id: creativeId } = req.user;
-
-  validateId(creativeId);
 
   try {
     const creative = await Creative.findById(creativeId);
@@ -101,8 +95,6 @@ const updatePersonalDescription = async (req: Request, res: Response) => {
 
   const { _id: creativeId } = req.user;
 
-  validateId(creativeId);
-
   try {
     const creative = await Creative.findById(creativeId);
 
@@ -124,8 +116,6 @@ const updateYearsOfExperience = async (req: Request, res: Response) => {
   const { yearsOfExperience } = req.body;
 
   const { _id: creativeId } = req.user;
-
-  validateId(creativeId);
 
   try {
     const creative = await Creative.findById(creativeId);
@@ -155,8 +145,6 @@ const setBrandName = async (req: Request, res: Response) => {
       .json({ message: "Brand name cannot be empty." });
   }
 
-  validateId(creativeId);
-
   try {
     const creative = await Creative.findById(creativeId);
 
@@ -178,8 +166,6 @@ const setBrandLogo = async (req: Request, res: Response) => {
   const files = req.files;
 
   const { _id: creativeId } = req.user;
-
-  validateId(creativeId);
 
   try {
     const creative = await Creative.findById(creativeId);
@@ -211,8 +197,6 @@ const setBrandLogo = async (req: Request, res: Response) => {
 const getOrders = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
 
-  validateId(creativeId);
-
   const status = req.query.status as string;
 
   try {
@@ -227,9 +211,9 @@ const getOrders = async (req: Request, res: Response) => {
 };
 
 const getCreativeById = async (req: Request, res: Response) => {
-  const { creativeId } = req.query;
+  const creativeId = req.query.creativeId as string;
 
-  validateId(creativeId as string);
+  validateId(creativeId, res);
 
   try {
     const creative = await Creative.findById(creativeId);
@@ -250,8 +234,6 @@ const getCreativeById = async (req: Request, res: Response) => {
 
 const accountSetupDone = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
-
-  validateId(creativeId);
 
   const creative = await Creative.findById(creativeId);
 

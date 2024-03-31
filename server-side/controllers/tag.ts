@@ -41,13 +41,13 @@ const getAllTags = async (req: Request, res: Response) => {
 };
 
 const updateTag = async (req: Request, res: Response) => {
-  const { tagId } = req.query;
+  const tagId = req.query.tagId as string;
 
   const { label } = req.body;
 
   const file = req.files[0];
 
-  validateId(tagId as string);
+  validateId(tagId, res);
 
   if (!label || !file) {
     return res

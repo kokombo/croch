@@ -73,9 +73,11 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const updateProduct = async (req: Request, res: Response) => {
-  const { productId } = req.query;
+  const productId = req.query.productId as string;
 
   const creative = req.user;
+
+  validateId(productId, res);
 
   const { title, availability, price, description, gender, tag }: ProductBody =
     req.body;
@@ -93,8 +95,6 @@ const updateProduct = async (req: Request, res: Response) => {
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Provide all necessary listing details." });
   }
-
-  validateId(productId as string);
 
   try {
     const urls: string[] = [];
@@ -151,9 +151,9 @@ const updateProduct = async (req: Request, res: Response) => {
 };
 
 const deleteProduct = async (req: Request, res: Response) => {
-  const { productId } = req.query;
+  const productId = req.query.productId as string;
 
-  validateId(productId as string);
+  validateId(productId, res);
 
   try {
     await Product.findByIdAndDelete(productId);
@@ -168,8 +168,6 @@ const deleteProduct = async (req: Request, res: Response) => {
 
 const getCreativeProducts = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
-
-  validateId(creativeId);
 
   try {
     let results = Product.find({ owner: creativeId });
@@ -247,9 +245,9 @@ const getAllProducts = async (req: Request, res: Response) => {
 };
 
 const getProduct = async (req: Request, res: Response) => {
-  const { productId } = req.query;
+  const productId = req.query.productId as string;
 
-  validateId(productId as string);
+  validateId(productId, res);
 
   try {
     const product = await Product.findById(productId).populate({

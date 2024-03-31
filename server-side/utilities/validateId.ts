@@ -1,20 +1,18 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import mongoose = require("mongoose");
 
 /**
  *
  * @param {string} id
- * @returns invalid id if mongo id is not valid.
+ * @returns true if id is valid and false if otherwise.
  */
 
-const validateId = (id: string) => {
-  const IdIsValid = mongoose.Types.ObjectId.isValid(id);
+const validateId = (id: string, res: Response) => {
+  const isValid = mongoose.Types.ObjectId.isValid(id);
 
-  if (!IdIsValid) {
-    return false;
+  if (!isValid) {
+    return res.status(400).json({ message: "INvalid request" });
   }
-
-  return true;
 };
 
 export = validateId;

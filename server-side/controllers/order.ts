@@ -9,13 +9,9 @@ const placeAnOrder = async (req: Request, res: Response) => {
 
   const { creativeId: creativeIdFromClient } = req.body;
 
-  validateId(customerId);
+  validateId(creativeIdFromClient, res);
 
-  const valid = validateId(creativeIdFromClient);
-
-  if (!valid) {
-    return res.status(400);
-  }
+  validateId(customerId, res);
 
   try {
     const customer = await Customer.findById(customerId).populate({
@@ -60,25 +56,33 @@ const cancelAnOrder = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  const order = await Order.findById(orderId);
+  validateId(orderId, res);
 
-  if (!order) {
+  try {
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "No order found!" });
+    }
+
+    if (customerId.toString() !== order.customerId.toString()) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "You cannot perform action." });
+    }
+
+    order.status = "cancelled";
+
+    await order.save();
+
+    return res.json({ message: "Order cancelled." });
+  } catch (error) {
     return res
-      .status(StatusCodes.NOT_FOUND)
-      .json({ message: "No order found!" });
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
   }
-
-  if (customerId.toString() !== order.customerId.toString()) {
-    return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .json({ message: "You cannot perform action." });
-  }
-
-  order.status = "cancelled";
-
-  await order.save();
-
-  return res.json({ message: "Order cancelled." });
 };
 
 const confirmAnOrder = async (req: Request, res: Response) => {
@@ -86,25 +90,33 @@ const confirmAnOrder = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  const order = await Order.findById(orderId);
+  validateId(orderId, res);
 
-  if (!order) {
+  try {
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "No order found!" });
+    }
+
+    if (customerId.toString() !== order.customerId.toString()) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "You cannot perform action." });
+    }
+
+    order.status = "fulfilled";
+
+    await order.save();
+
+    return res.json({ message: "You have confirmed this order as complete." });
+  } catch (error) {
     return res
-      .status(StatusCodes.NOT_FOUND)
-      .json({ message: "No order found!" });
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong, please try again." });
   }
-
-  if (customerId.toString() !== order.customerId.toString()) {
-    return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .json({ message: "You cannot perform action." });
-  }
-
-  order.status = "fulfilled";
-
-  await order.save();
-
-  return res.json({ message: "You have confirmed this order as complete." });
 };
 
 const getCustomerOrders = async (req: Request, res: Response) => {
@@ -124,9 +136,9 @@ const getCustomerOrders = async (req: Request, res: Response) => {
 };
 
 const getOrder = async (req: Request, res: Response) => {
-  const { orderId } = req.query;
+  const orderId = req.query.orderId as string;
 
-  validateId(orderId as string);
+  validateId(orderId, res);
 
   try {
     const order = await Order.findById(orderId);

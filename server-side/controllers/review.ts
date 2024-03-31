@@ -7,17 +7,17 @@ import { StatusCodes } from "http-status-codes";
 const giveReview = async (req: Request, res: Response) => {
   const { message, rating, to, forOrder } = req.body;
 
+  const { _id: from } = req.user;
+
   if (!message || !rating || !to || !forOrder) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "Invalid reviews data." });
   }
 
-  const { _id: from } = req.user;
+  validateId(to, res);
 
-  validateId(to);
-  validateId(forOrder);
-  validateId(from);
+  validateId(forOrder, res);
 
   try {
     const order = await Order.findById(forOrder);
@@ -53,8 +53,7 @@ const giveReview = async (req: Request, res: Response) => {
 const getCreativeReviews = async (req: Request, res: Response) => {
   const creativeId = req.query.creativeId as string;
 
-  validateId(creativeId);
-
+  validateId(creativeId, res);
   try {
     const reviews = await Review.find({ to: creativeId })
       .populate({
@@ -73,8 +72,6 @@ const getCreativeReviews = async (req: Request, res: Response) => {
 
 const getCustomerPostedReviews = async (req: Request, res: Response) => {
   const { _id: customerId } = req.user;
-
-  validateId(customerId);
 
   try {
     const reviews = await Review.find({ from: customerId });

@@ -107,7 +107,7 @@ const adminSignIn = async (req: Request, res: Response) => {
 const blockAUser = async (req: Request, res: Response) => {
   const { userId } = req.body;
 
-  validateId(userId);
+  validateId(userId, res);
 
   try {
     const user = await User.findById(userId);
@@ -127,7 +127,7 @@ const blockAUser = async (req: Request, res: Response) => {
 const unblockAUser = async (req: Request, res: Response) => {
   const { userId } = req.body;
 
-  validateId(userId);
+  validateId(userId, res);
 
   try {
     const user = await User.findById(userId);
@@ -181,7 +181,9 @@ const getAllCreatives = async (req: Request, res: Response) => {
 };
 
 const getCreative = async (req: Request, res: Response) => {
-  const { creativeId } = req.query;
+  const creativeId = req.query.creativeId as string;
+
+  validateId(creativeId, res);
 
   try {
     const creative = await Creative.findById(creativeId);
@@ -201,8 +203,9 @@ const getCreative = async (req: Request, res: Response) => {
 };
 
 const getCustomer = async (req: Request, res: Response) => {
-  const { customerId } = req.query;
+  const customerId = req.query.customerId as string;
 
+  validateId(customerId, res);
   try {
     const customer = await Customer.findById(customerId);
 
@@ -222,6 +225,8 @@ const getCustomer = async (req: Request, res: Response) => {
 
 const giveSuperCreativeTag = async (req: Request, res: Response) => {
   const { creativeId } = req.body;
+
+  validateId(creativeId, res);
 
   try {
     const creative = await Creative.findById(creativeId);

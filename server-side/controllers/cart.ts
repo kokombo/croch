@@ -10,9 +10,7 @@ const addToCart = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  validateId(productId);
-
-  validateId(customerId);
+  validateId(productId, res);
 
   try {
     const newlyAddedProduct = await Product.findById(productId);
@@ -56,9 +54,9 @@ const updateCartItemCount = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  validateId(productId);
+  validateId(productId, res);
 
-  validateId(creativeIdFromClient);
+  validateId(creativeIdFromClient, res);
 
   try {
     const customer = await Customer.findById(customerId).populate({
@@ -110,9 +108,7 @@ const removeFromCart = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  validateId(productId);
-
-  validateId(customerId);
+  validateId(productId, res);
 
   try {
     const product = await Product.findById(productId);
@@ -160,8 +156,6 @@ const removeFromCart = async (req: Request, res: Response) => {
 const getCarts = async (req: Request, res: Response) => {
   const { _id: customerId } = req.user;
 
-  validateId(customerId);
-
   try {
     const customer = await Customer.findById(customerId);
 
@@ -192,9 +186,7 @@ const getCartItems = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  validateId(customerId);
-
-  validateId(creativeIdFromClient as string);
+  validateId(creativeIdFromClient as string, res);
 
   try {
     const customer = await Customer.findById(customerId).populate({
@@ -237,9 +229,7 @@ const deleteCart = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-  validateId(customerId);
-
-  validateId(creativeIdFromClient as string);
+  validateId(creativeIdFromClient as string, res);
 
   try {
     const customer = await Customer.findById(customerId);

@@ -7,7 +7,7 @@ import { StatusCodes } from "http-status-codes";
 const createNotification = async (req: Request, res: Response) => {
   const { message: notificationMessage, receiver: userId } = req.body;
 
-  validateId(userId);
+  validateId(userId, res);
 
   try {
     const notification = await Notification.create({
@@ -38,8 +38,6 @@ const createNotification = async (req: Request, res: Response) => {
 const getNotifications = async (req: Request, res: Response) => {
   const { _id: userId } = req.user;
 
-  validateId(userId);
-
   try {
     const user = await User.findById(userId).populate("notifications");
 
@@ -58,7 +56,7 @@ const deleteNotification = async (req: Request, res: Response) => {
 
   const { _id: userId } = req.user;
 
-  validateId(notificationId as string);
+  validateId(notificationId, res);
 
   try {
     await User.findByIdAndUpdate(
