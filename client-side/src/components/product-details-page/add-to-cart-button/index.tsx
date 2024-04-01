@@ -45,6 +45,15 @@ const AddToCartButton = (props: Props) => {
       addToCart();
     }
   };
+
+  const removeProductFromCart = (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    removeFromCart();
+  };
+
   return (
     <span>
       {!session || !idsOfProductsInCart?.includes(props.product._id) ? (
@@ -58,7 +67,7 @@ const AddToCartButton = (props: Props) => {
         <CustomButton
           type="button"
           label="Remove"
-          onClick={removeFromCart}
+          onClick={removeProductFromCart}
           extraClasses="bg-black text-white font-medium w-full py-3 px-4 lg:py-4 lg:px-5"
         />
       )}
