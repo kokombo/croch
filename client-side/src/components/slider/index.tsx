@@ -21,11 +21,7 @@ const Slider = (props: Props) => {
 
   const handleTouchEnd = () => {
     if (offSet > 50 && index > 0) {
-      setIndex(
-        index === props.product.photos.length - 1
-          ? props.product.photos.length - 1
-          : index - 1
-      );
+      setIndex(index - 1);
     } else if (offSet < -50 && index < props.product.photos.length) {
       setIndex(
         index === props.product.photos.length - 1
