@@ -36,7 +36,7 @@ const Slider = (props: Props) => {
 
   return (
     <div
-      className="relative overflow-hidden w-full h-[270px] rounded-lg"
+      className="relative overflow-hidden w-full h-[300px] md:h-[270px] rounded-lg"
       onTouchStart={(e) => {
         setTouchStart(e.touches[0].clientX);
         setOffSet(0);

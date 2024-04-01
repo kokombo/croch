@@ -10,7 +10,7 @@ const FullScreenLoader = () => {
       </nav>
 
       <div className="grid place-items-center h-full">
-        <span className="lg:rounded-2xl lg:border_grey_1 lg:w-[70%] lg:h-[90%] lg:flex_item_justify_center">
+        <span className="border-hidden md:border-solid border_grey_1 rounded-2xl w-[70%] h-[90%] flex_item_justify_center">
           <ThreeDotsLoader />
         </span>
       </div>
