@@ -9,8 +9,8 @@ const FullScreenLoader = () => {
         <NavAccount onClick={() => {}} opened={false} />
       </nav>
 
-      <div className="grid place-items-center h-full">
-        <span className="border-hidden md:border-solid border_grey_1 rounded-2xl w-[70%] h-[90%] flex_item_justify_center">
+      <div className="grid place-items-center h-[85vh]">
+        <span className="border-hidden md:border-solid border_grey_1 md:rounded-2xl md:w-[70%] md:h-[90%] flex_item_justify_center">
           <ThreeDotsLoader />
         </span>
       </div>

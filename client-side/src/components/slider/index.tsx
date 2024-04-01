@@ -63,6 +63,7 @@ const Slider = (props: Props) => {
                   quality={100}
                   loading="lazy"
                   sizes="any"
+                  decoding="async"
                   className="object-cover"
                 />
               </div>
