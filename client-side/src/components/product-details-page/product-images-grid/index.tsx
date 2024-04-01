@@ -8,7 +8,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
 
   return (
     <>
-      <div className="grid grid-rows-2 lg:grid-rows-none grid-cols-none lg:grid-cols-2 gap-3">
+      <div className="grid grid-rows-2 lg:grid-rows-none grid-cols-none lg:grid-cols-2 gap-2">
         <div className="relative h-[356px] lg:h-[428px] w-full bg-grey rounded-t-xl lg:rounded-tr-none lg:rounded-l-[20px]">
           <Image
             src={photos[0]}
