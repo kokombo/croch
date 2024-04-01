@@ -15,6 +15,8 @@ const Home = () => {
     isError,
     error,
     isSuccess,
+    isPending,
+    isStale,
   } = useGetAllProducts();
 
   return (
@@ -34,6 +36,8 @@ const Home = () => {
           isError={isError}
           error={error}
           isSuccess={isSuccess}
+          isPending={isPending}
+          isStale={isStale}
         />
       </section>
 

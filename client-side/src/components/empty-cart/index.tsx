@@ -14,7 +14,7 @@ type Props = {
 
 const EmptyCart = (props: Props) => {
   return (
-    <div className="flex_item_justify_center flex-col gap-10">
+    <div className="flex_item_justify_center flex-col bg-white gap-10">
       <div className="h-[300px] w-[300px] rounded-full bg-grey flex_item_justify_center">
         <Image
           src={icons.emptycart}

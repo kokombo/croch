@@ -41,7 +41,7 @@ const ShoppingCard = () => {
   return (
     <main className="flex flex-col lg:flex-row paddingX py-8 lg:py-16 gap-4 lg:gap-6">
       <div className="lg:w-[68%]">
-        <div className=" flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit">
+        <div className="flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit bg-white">
           <span className="mx-4 lg:mx-8 block">
             <H3>Shopping Card</H3>
           </span>

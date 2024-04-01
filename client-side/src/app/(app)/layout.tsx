@@ -6,6 +6,7 @@ import {
   LoginForm,
   SignupForm,
   UserSegmentRedirect,
+  H5,
 } from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,9 +25,8 @@ export default function RootLayout({
 }>) {
   const [step, setStep] = useState(1);
 
-  const { openLoginModal, openSignupModal } = useSelector(
-    (state: StateType) => state.modal
-  );
+  const { openLoginModal, openSignupModal, openErrorModal, errorMessage } =
+    useSelector((state: StateType) => state.modal);
 
   const dispatch: DispatchType = useDispatch();
 
@@ -80,6 +80,12 @@ export default function RootLayout({
         >
           <SignupForm step={step} setStep={setStep} />
         </Modal>
+      )}
+
+      {openErrorModal && (
+        <div className="fixed left-1 bottom-10 card z-[100] h-fit w-[350px] bg-white">
+          <H5> {errorMessage}</H5>
+        </div>
       )}
     </UserSegmentRedirect>
   );

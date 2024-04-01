@@ -11,7 +11,7 @@ const ProductCard = (props: Props) => {
   const [hideButton, setHideButton] = useState(true);
 
   const productUrl = decodeURIComponent(
-    `/crafts?title=${props.product.title}&craftId=${props.product._id.substring(0, 16)}`
+    `/crafts?title=${props.product.title}&craftId=${props.product._id}`
   ).replaceAll(" ", "-");
 
   return (

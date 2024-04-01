@@ -1,5 +1,9 @@
 import { AxiosError } from "axios";
 import { ProductCard, ProductSkeleton } from "..";
+import { setOpenErrorModal } from "@/redux/slices/modal";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { DispatchType } from "@/redux/store";
 
 type Props = {
   products: Product[] | undefined;
@@ -7,20 +11,38 @@ type Props = {
   error: AxiosError<ErrorResponse> | null;
   isError: boolean;
   isSuccess: boolean;
+  isPending: boolean;
+  isStale: boolean;
 };
 
 const ProductsList = (props: Props) => {
+  const dispatch: DispatchType = useDispatch();
+
+  console.log(
+    props.isError,
+    props.isLoading,
+    props.isSuccess,
+    props.isStale,
+    props.isPending
+  );
+
+  useEffect(() => {
+    if (props.isError) {
+      dispatch(
+        setOpenErrorModal(
+          "Oops! This is taking too long. Please check your internet connection and refresh the page."
+        )
+      );
+    }
+  }, [props.isError, dispatch]);
+
   return (
     <>
-      {props.isLoading ? (
+      {props.isLoading || props.isError || props.isStale ? (
         <section className="product_list_container">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
           })}
-        </section>
-      ) : props.isError ? (
-        <section className="h-screen">
-          {props.error?.response?.data.message || props.error?.message}{" "}
         </section>
       ) : (
         <section className="product_list_container">

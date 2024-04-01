@@ -10,7 +10,7 @@ type Props = {
 
 const CrossSellCard = (props: Props) => {
   const productUrl = decodeURIComponent(
-    `/crafts?title=${props.product.title}&craftId=${props.product._id.substring(0, 16)}`
+    `/crafts?title=${props.product.title}&craftId=${props.product._id}`
   ).replaceAll(" ", "-");
 
   return (

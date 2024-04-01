@@ -10,12 +10,12 @@ type Props = {
 const SearchBox = (props: Props) => {
   return (
     <div
-      className={`${props.extraClasses} relative max-w-[458px] xl:h-14 h-16`}
+      className={`${props.extraClasses} relative max-w-[458px] xl:h-14 h-16 `}
     >
       <input
         type="search"
         autoFocus={false}
-        className=" h-full w-full border-[1px] border-grey rounded-md pl-6 text-sm font-medium"
+        className=" h-full w-full border-[1px] border-grey bg-white rounded-md pl-6 text-sm font-medium"
         value=""
         name=""
         id=""

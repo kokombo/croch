@@ -4,12 +4,16 @@ type InitialState = {
   openLoginModal: boolean;
   openSignupModal: boolean;
   openDropDown: boolean;
+  openErrorModal: boolean;
+  errorMessage: string;
 };
 
 const initialState: InitialState = {
   openLoginModal: false,
   openSignupModal: false,
   openDropDown: false,
+  openErrorModal: false,
+  errorMessage: "",
 };
 
 const modalSlice = createSlice({
@@ -27,10 +31,19 @@ const modalSlice = createSlice({
     setOpenDropDown: (state, action) => {
       state.openDropDown = action.payload;
     },
+
+    setOpenErrorModal: (state, action) => {
+      state.openErrorModal = true;
+      state.errorMessage = action.payload;
+    },
   },
 });
 
-export const { setOpenLoginModal, setOpenSignupModal, setOpenDropDown } =
-  modalSlice.actions;
+export const {
+  setOpenLoginModal,
+  setOpenSignupModal,
+  setOpenDropDown,
+  setOpenErrorModal,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;

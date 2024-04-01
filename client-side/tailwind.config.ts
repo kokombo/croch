@@ -15,7 +15,7 @@ const config: Config = {
       },
 
       colors: {
-        grey: "#DDDDDD",
+        grey: "#dddddd",
         green: "#006C00",
         gray: "#F3F3F3",
         fadeWhite: "#FAFAFA",
@@ -29,6 +29,7 @@ const config: Config = {
         lightgreen: "#2DB224",
         skyblue: "#2DA5F3",
         ash2: "#F7F7F7",
+        whitee: "#FAFAFA",
       },
 
       width: {

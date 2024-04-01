@@ -117,16 +117,14 @@ export const useGetAllProducts = () => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error, isSuccess } = useQuery<
-    Product[],
-    AxiosError<ErrorResponse>
-  >({
-    queryKey: ["getAllProducts"],
-    queryFn: getAllProductsRequest,
-    refetchOnWindowFocus: false,
-  });
+  const { data, isLoading, isError, error, isSuccess, isStale, isPending } =
+    useQuery<Product[], AxiosError<ErrorResponse>>({
+      queryKey: ["getAllProducts"],
+      queryFn: getAllProductsRequest,
+      refetchOnWindowFocus: false,
+    });
 
-  return { data, isLoading, isError, error, isSuccess };
+  return { data, isLoading, isError, error, isSuccess, isStale, isPending };
 };
 
 export const useGetProductById = (productId: string) => {
@@ -138,16 +136,15 @@ export const useGetProductById = (productId: string) => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error, isSuccess } = useQuery<
-    Product,
-    AxiosError<ErrorResponse>
-  >({
-    queryKey: ["getProductById", productId],
-    queryFn: getProductByIdRequest,
-    refetchOnWindowFocus: false,
-  });
+  const { data, isLoading, isError, error, isSuccess, isStale, isPending } =
+    useQuery<Product, AxiosError<ErrorResponse>>({
+      queryKey: ["getProductById", productId],
+      queryFn: getProductByIdRequest,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
+    });
 
-  return { data, isLoading, isError, error, isSuccess };
+  return { data, isLoading, isError, error, isSuccess, isStale, isPending };
 };
 
 export const useGetMyProducts = () => {

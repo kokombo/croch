@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #ffffff;
+  background-color: #fafafa;
   height: "100%";
   box-sizing: border-box;
   top: 0;
@@ -85,7 +85,7 @@ html {
 }
 
 .cart_container {
-  @apply p-4 lg:p-8 border-[1px] border-grey rounded-xl h-full w-full lg:w-[60vw];
+  @apply p-4 lg:p-8 bg-white border-[1px] border-grey rounded-xl h-full w-full lg:w-[60vw];
 }
 
 .card {
@@ -97,7 +97,7 @@ html {
 }
 
 .cart_card {
-  @apply card flex_center justify-between;
+  @apply card flex_center justify-between bg-whitee;
 }
 
 .paddingX {

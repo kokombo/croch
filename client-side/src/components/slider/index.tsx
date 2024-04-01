@@ -11,32 +11,38 @@ type Props = {
 const Slider = (props: Props) => {
   const [index, setIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
-  const [offSet, setOffSet] = useState(0)
+  const [offSet, setOffSet] = useState(0);
 
   const swipeSlider = (e: TouchEvent<HTMLDivElement>) => {
-    if (touchStart === 0)  return;
+    if (touchStart === 0) return;
     const delta = e.touches[0].clientX - touchStart;
-    setOffSet(delta)
+    setOffSet(delta);
   };
 
-  const handleTouchEnd  = ()=> {
-    if(offSet > 50 && index > 0){
-      setIndex(index === props.product.photos.length - 1? 0: index - 1)
-    }else if(offSet < -50 && index < props.product.photos.length){
-      setIndex(index === props.product.photos.length -1 ? props.product.photos.length -1 : index + 1)
-    }else{
-      setTouchStart(0)
-      setOffSet(0)
+  const handleTouchEnd = () => {
+    if (offSet > 50 && index > 0) {
+      setIndex(index === props.product.photos.length - 1 ? 0 : index - 1);
+    } else if (offSet < -50 && index < props.product.photos.length) {
+      setIndex(
+        index === props.product.photos.length - 1
+          ? props.product.photos.length - 1
+          : index + 1
+      );
+    } else {
+      setTouchStart(0);
+      setOffSet(0);
     }
-  }
+  };
 
   return (
     <div
       className="relative overflow-hidden w-full h-[270px] rounded-lg"
-      onTouchStart={(e) => {setTouchStart(e.touches[0].clientX); setOffSet(0)}}
+      onTouchStart={(e) => {
+        setTouchStart(e.touches[0].clientX);
+        setOffSet(0);
+      }}
       onTouchMove={swipeSlider}
       onTouchEnd={handleTouchEnd}
-      
     >
       <div className="flex">
         {props.product.photos?.map((data, sliderIndex) => {
@@ -48,21 +54,18 @@ const Slider = (props: Props) => {
               className={`w-full flex-shrink-0 transition-transform duration-500 ease-in-out bg-grey ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
-              
-              <div className = "relative h-[300px] md:h-[270px] " > 
-              <Image
-                key={sliderIndex}
-                src={data}
-                alt=""
-                fill
-                quality={100}
-                loading="lazy"
-                sizes="any"
-                className="object-cover"
-              />
-
+              <div className="relative h-[300px] md:h-[270px] ">
+                <Image
+                  key={sliderIndex}
+                  src={data}
+                  alt=""
+                  fill
+                  quality={100}
+                  loading="lazy"
+                  sizes="any"
+                  className="object-cover"
+                />
               </div>
-
             </div>
           );
         })}
@@ -118,12 +121,10 @@ const Slider = (props: Props) => {
           />
         )}
 
-        {!props.hideButton && (
-          <ProductCardOwnerInfo
-            product={props.product}
-            extraClasses="absolute bottom-4 right-[5%] left-[5%] "
-          />
-        )}
+        <ProductCardOwnerInfo
+          product={props.product}
+          extraClasses="absolute bottom-4 right-[5%] left-[5%] "
+        />
       </div>
     </div>
   );

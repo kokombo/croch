@@ -252,13 +252,11 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
 
 export const useGetCreativeById = (creativeId: string | undefined) => {
   const getCreativeByIdRequest = async () => {
-    if (creativeId) {
-      const res = await axios.get(
-        `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
-      );
+    const res = await axios.get(
+      `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
+    );
 
-      return res.data;
-    }
+    return res.data;
   };
 
   const { data, isLoading, isError, error } = useQuery<

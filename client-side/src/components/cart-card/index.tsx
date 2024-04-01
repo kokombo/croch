@@ -24,7 +24,7 @@ const CartCard = (props: Props) => {
   );
 
   return (
-    <div className="cart_card ">
+    <div className="cart_card">
       <div className="flex items-center gap-4 lg:gap-6">
         <div className="relative h-10 w-10 lg:h-[72px] lg:w-[72px] rounded-full bg-grey">
           <Image
