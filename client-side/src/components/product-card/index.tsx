@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { H4, Slider, UnclickableRating } from "..";
+import { H4, H6, Slider, UnclickableRating } from "..";
 import Link from "next/link";
 import commaNumber from "comma-number";
 import useScreenSize from "@/utilities/hooks/useScreenSize";
@@ -33,9 +33,15 @@ const ProductCard = (props: Props) => {
         <Slider showButton={showButton} product={props.product} />
 
         <div className="flex flex-col gap-2">
-          <UnclickableRating rating={props.product.rating} />
+          <>
+            {props.product.rating ? (
+              <UnclickableRating rating={props.product.rating} />
+            ) : (
+              <H6 extraClasses="underline"> No rating yet</H6>
+            )}
+          </>
 
-          <span className="h-8">
+          <span className="h-9">
             <h1 className="text-sm font-medium text-neutral">
               {props.product?.title}
             </h1>

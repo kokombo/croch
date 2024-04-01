@@ -9,7 +9,7 @@ const addAndRemoveWishlist = async (req: Request, res: Response) => {
 
   const { _id: customerId } = req.user;
 
-   validateId(productId, res);
+  validateId(productId, res);
 
   try {
     const customer = await Customer.findById(customerId).populate("wishLists");
@@ -48,6 +48,10 @@ const getWishlists = async (req: Request, res: Response) => {
   try {
     const customer = await Customer.findById(customerId).populate({
       path: "wishLists",
+      populate: {
+        path: "owner",
+        select: "_id firstName lastName profileImage",
+      },
     });
 
     const wishlists = customer.wishLists;
@@ -63,7 +67,7 @@ const getWishlists = async (req: Request, res: Response) => {
 const getCreativeAllProducts = async (req: Request, res: Response) => {
   const creativeId = req.query.creativeId as string;
 
- validateId(creativeId, res)
+  validateId(creativeId, res);
 
   try {
     const products = await Product.find({ owner: creativeId });

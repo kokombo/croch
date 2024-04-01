@@ -42,9 +42,17 @@ export const H5 = ({
   );
 };
 
-export const H6 = ({ children }: { children: React.ReactNode }) => {
+export const H6 = ({
+  children,
+  extraClasses,
+}: {
+  children: React.ReactNode;
+  extraClasses?: string;
+}) => {
   return (
-    <h6 className="font-medium text-customblack text-xs sm:text-sm">
+    <h6
+      className={` ${extraClasses} font-medium text-customblack text-xs sm:text-sm`}
+    >
       {children}
     </h6>
   );
