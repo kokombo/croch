@@ -64,16 +64,14 @@ export const useGetWishlists = () => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading, isSuccess } = useQuery<
-    Product[],
-    AxiosError<ErrorResponse>
-  >({
-    queryKey: ["getWishlists"],
-    queryFn: getWishlistsRequest,
-    enabled: !!accessToken,
-  });
+  const { data, isError, error, isLoading, isSuccess, isPending, isStale } =
+    useQuery<Product[], AxiosError<ErrorResponse>>({
+      queryKey: ["getWishlists"],
+      queryFn: getWishlistsRequest,
+      enabled: !!accessToken,
+    });
 
-  return { data, isError, error, isLoading, isSuccess };
+  return { data, isError, error, isLoading, isSuccess, isPending, isStale };
 };
 
 export const useGetCreativeAllProducts = (creativeId: string) => {

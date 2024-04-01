@@ -18,14 +18,6 @@ type Props = {
 const ProductsList = (props: Props) => {
   const dispatch: DispatchType = useDispatch();
 
-  console.log(
-    props.isError,
-    props.isLoading,
-    props.isSuccess,
-    props.isStale,
-    props.isPending
-  );
-
   useEffect(() => {
     if (props.isError) {
       dispatch(

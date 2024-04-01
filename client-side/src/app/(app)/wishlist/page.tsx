@@ -10,6 +10,8 @@ const WishList = () => {
     isError,
     error,
     isSuccess,
+    isPending,
+    isStale,
   } = useGetWishlists();
 
   return (
@@ -20,6 +22,8 @@ const WishList = () => {
         isError={isError}
         error={error}
         isSuccess={isSuccess}
+        isPending={isPending}
+        isStale={isStale}
       />
     </main>
   );
