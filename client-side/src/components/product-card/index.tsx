@@ -22,8 +22,7 @@ const ProductCard = (props: Props) => {
       <div
         onMouseEnter={()=> setHideButton(false)}
         onMouseLeave={()=> setHideButton(true)}
-      
-        className="w-full flex flex-col gap-3"
+        className="w-full flex flex-col gap-3 pointer-events-none md:pointer-events-auto"
       >
         <Slider hideButton={hideButton} product={props.product} />
 

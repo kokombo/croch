@@ -34,7 +34,7 @@ const ProductOwnerCard = (props: Props) => {
           </span>
 
           <span>
-            <p>{creative?.personalDescription}</p>
+            <p className="text-sm lg:text-base">{creative?.personalDescription}</p>
           </span>
 
           <div>
