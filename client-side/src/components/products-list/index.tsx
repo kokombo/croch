@@ -30,7 +30,7 @@ const ProductsList = (props: Props) => {
 
   return (
     <>
-      {props.isLoading || props.isError || props.isStale ? (
+      {props.isLoading || props.isError ? (
         <section className="product_list_container">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
