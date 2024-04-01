@@ -15,7 +15,7 @@ const CrossSellCard = (props: Props) => {
 
   return (
     <Link href={productUrl} target="_blank">
-      <article className="p-3 border_grey_1 rounded-2xl flex flex-col gap-6 w-[260px] md:w-[300px]">
+      <article className="p-3 border_grey_1 rounded-2xl flex flex-col gap-6 w-[280px] md:w-[300px]">
         <div className="relative w-full h-[240px] md:h-[260px] rounded-lg bg-grey">
           <Image
             src={props.product.photos[0]}

@@ -17,7 +17,7 @@ export const useGiveReview = (reviewData: ReviewData) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'Content-Type': "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -54,6 +54,7 @@ export const useGetCreativeReviews = (creativeId: string) => {
   >({
     queryKey: ["getCreativeReviews"],
     queryFn: getCreativeReviewsFunction,
+    refetchOnReconnect: true,
   });
 
   return { data, isLoading, isError, error, isSuccess };
@@ -84,6 +85,7 @@ export const useGetCustomerPostedReviews = () => {
   >({
     queryKey: ["getCustomerPostedReviews"],
     queryFn: getCustomerPostedReviewsFunction,
+    refetchOnReconnect: true,
   });
 
   return { data, isLoading, isError, error, isSuccess };

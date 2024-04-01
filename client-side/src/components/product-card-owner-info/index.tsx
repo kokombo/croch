@@ -24,6 +24,7 @@ const ProductCardOwnerInfo = (props: Props) => {
             className="rounded-full object-cover"
             loading="eager"
             blurDataURL=""
+            sizes="any"
           />
         )}
       </div>

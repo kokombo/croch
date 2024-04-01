@@ -19,8 +19,8 @@ const UnclickableRating = ({ rating }: { rating: number }) => {
                     alt=""
                     width={16}
                     height={16}
+                    priority
                     className="object-contain"
-                    sizes="any"
                   />
                 );
               }

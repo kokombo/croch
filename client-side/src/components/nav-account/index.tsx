@@ -24,7 +24,12 @@ const NavAccount = (props: Props) => {
       />
 
       <span className="h-8 w-8 lg:h-10 lg:w-10 rounded-full flex items-center justify-center bg-gray">
-        <Image src={icons.user} alt="user icon" className="w-[18px] h-[18px]" />
+        <Image
+          src={icons.user}
+          alt="user icon"
+          className="w-[18px] h-[18px]"
+          loading="eager"
+        />
       </span>
     </button>
   );

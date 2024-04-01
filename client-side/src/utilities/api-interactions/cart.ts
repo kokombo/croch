@@ -29,6 +29,7 @@ export const useGetCartItems = (creativeId: string) => {
     queryFn: getCartItemsRequest,
     enabled: !!accessToken && !!creativeId,
     refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
   });
 
   return { data, isError, error, isLoading, isSuccess };
@@ -59,6 +60,7 @@ export const useGetCarts = () => {
     queryKey: ["getCarts"],
     queryFn: getCartsRequest,
     enabled: !!accessToken,
+    refetchOnReconnect: true,
   });
 
   return { data, isError, error, isLoading };

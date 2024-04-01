@@ -18,7 +18,7 @@ export const useCreateNotification = (notificationData: NotificationData) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'Content-Type' : 'application/json'
+          "Content-Type": "application/json",
         },
       }
     );
@@ -67,6 +67,7 @@ export const useGetNotifications = () => {
     queryKey: ["getNotifications"],
     queryFn: getNotificationsRequest,
     enabled: !!accessToken,
+    refetchOnReconnect: true,
   });
 
   return { data, isError, error, isLoading };

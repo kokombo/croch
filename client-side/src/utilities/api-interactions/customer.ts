@@ -69,6 +69,7 @@ export const useGetWishlists = () => {
       queryKey: ["getWishlists"],
       queryFn: getWishlistsRequest,
       enabled: !!accessToken,
+      refetchOnReconnect: true,
     });
 
   return { data, isError, error, isLoading, isSuccess, isPending, isStale };
@@ -89,6 +90,7 @@ export const useGetCreativeAllProducts = (creativeId: string) => {
   >({
     queryKey: ["getCreativeAllProducts"],
     queryFn: getCreativeAllProductsRequest,
+    refetchOnReconnect: true,
   });
 
   return { data, isError, error, isLoading };

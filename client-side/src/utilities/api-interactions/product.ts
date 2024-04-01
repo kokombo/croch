@@ -122,6 +122,7 @@ export const useGetAllProducts = () => {
       queryKey: ["getAllProducts"],
       queryFn: getAllProductsRequest,
       refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
     });
 
   return { data, isLoading, isError, error, isSuccess, isStale, isPending };
@@ -168,6 +169,7 @@ export const useGetMyProducts = () => {
     queryKey: ["getMyProducts"],
     queryFn: getMyProductsRequest,
     enabled: !!accessToken,
+    refetchOnReconnect: true,
   });
 
   return { data, isLoading, isError, error };
