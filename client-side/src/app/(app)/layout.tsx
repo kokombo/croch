@@ -83,7 +83,7 @@ export default function RootLayout({
       )}
 
       {openErrorModal && (
-        <div className="fixed left-1 bottom-10 card z-[100] h-fit w-[350px] bg-white">
+        <div className="fixed left-1 bottom-10 card z-[100] h-fit w-[350px]">
           <H5> {errorMessage}</H5>
         </div>
       )}
