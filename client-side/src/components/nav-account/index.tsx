@@ -20,6 +20,7 @@ const NavAccount = (props: Props) => {
         src={icons.chevrondown}
         alt="show select options icon"
         className="w-5 h-5 lg:w-6 lg:h-6"
+        loading="eager"
       />
 
       <span className="h-8 w-8 lg:h-10 lg:w-10 rounded-full flex items-center justify-center bg-gray">

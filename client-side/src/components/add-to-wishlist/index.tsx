@@ -56,6 +56,7 @@ const AddToWishlist = (props: Props) => {
         alt="add-remove-from-wishlist-icon"
         height={28}
         width={28}
+        loading="eager"
       />
     </button>
   );

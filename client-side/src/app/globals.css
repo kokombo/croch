@@ -60,6 +60,10 @@ html {
   @apply flex items-center justify-between;
 }
 
+.flex_start_justify_between {
+  @apply flex items-start justify-between;
+}
+
 .border1 {
   @apply border-b-[1px] border-grey;
 }
@@ -114,4 +118,8 @@ html {
 
 .form {
   @apply flex flex-col gap-6 md:gap-8;
+}
+
+.cross_sell_products_wrapper {
+  @apply flex_center gap-4 overflow-x-auto max-w-full;
 }

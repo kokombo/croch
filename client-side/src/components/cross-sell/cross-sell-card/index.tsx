@@ -15,8 +15,8 @@ const CrossSellCard = (props: Props) => {
 
   return (
     <Link href={productUrl} target="_blank">
-      <article className="p-3 border_grey_1 rounded-2xl flex flex-col gap-6">
-        <div className="relative w-full h-[260px] rounded-lg bg-grey">
+      <article className="p-3 border_grey_1 rounded-2xl flex flex-col gap-6 w-[260px] md:w-[300px]">
+        <div className="relative w-full h-[240px] md:h-[260px] rounded-lg bg-grey">
           <Image
             src={props.product.photos[0]}
             alt={props.product.title.substring(0, 10)}
@@ -24,12 +24,11 @@ const CrossSellCard = (props: Props) => {
             quality={100}
             loading="lazy"
             sizes="any"
-            decoding="async"
             className="rounded-lg object-cover"
           />
         </div>
 
-        <span className="flex items-start justify-between gap-1 h-[30px]">
+        <span className="flex_start_justify_between gap-1 h-[30px]">
           <H5>{props.product.title} </H5>
 
           {props.product.rating && (
@@ -46,7 +45,7 @@ const CrossSellCard = (props: Props) => {
           )}
         </span>
 
-        <span className="flex_center justify-between">
+        <span className="flex_item_justify_between ">
           <H4>&#8358;{commaNumber(props.product?.price)}</H4>
 
           <AddToCartButton product={props.product} size="" count={1} />
