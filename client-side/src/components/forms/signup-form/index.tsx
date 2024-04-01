@@ -84,7 +84,7 @@ const SignupForm = (props: Props) => {
           return (
             <Form>
               {props.step === 1 && (
-                <div className="flex flex-col gap-8">
+                <div className="form">
                   <SelectAccountType
                     name="role"
                     label="Select account type"
@@ -115,7 +115,7 @@ const SignupForm = (props: Props) => {
               )}
 
               {props.step === 2 && (
-                <div className="flex flex-col gap-8">
+                <div className="form">
                   <TextField
                     type="email"
                     name="email"
@@ -135,7 +135,7 @@ const SignupForm = (props: Props) => {
               )}
 
               {props.step === 3 && (
-                <div className="flex flex-col gap-8">
+                <div className="form">
                   <TextField
                     name="firstName"
                     id="firstName"
@@ -164,7 +164,7 @@ const SignupForm = (props: Props) => {
               )}
 
               {props.step === 4 && (
-                <div className="flex flex-col gap-8">
+                <div className="form">
                   <TextField
                     name="password"
                     id="password"
@@ -187,18 +187,20 @@ const SignupForm = (props: Props) => {
                     }
                   />
 
-                  <FlatGreenButton
-                    label="Create Account"
-                    type="submit"
-                    disabled={isPending}
-                  />
-
-                  {isError && (
-                    <CustomError
-                      message={error?.response?.data.message}
-                      extraClasses="self-center"
+                  <span className="flex_col_center gap-1">
+                    <FlatGreenButton
+                      label="Create Account"
+                      type="submit"
+                      disabled={isPending}
                     />
-                  )}
+
+                    {isError && (
+                      <CustomError
+                        message={error?.response?.data.message}
+                        extraClasses="self-center"
+                      />
+                    )}
+                  </span>
                 </div>
               )}
             </Form>

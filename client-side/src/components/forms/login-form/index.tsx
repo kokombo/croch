@@ -79,7 +79,7 @@ const LoginForm = () => {
         onSubmit={login}
         validationSchema={loginFormValidationSchema}
       >
-        <Form className="flex flex-col gap-8">
+        <Form className="form">
           <TextField
             name="email"
             id="email"
@@ -98,7 +98,7 @@ const LoginForm = () => {
             }
           />
 
-          <span className="flex flex-col items-center gap-1">
+          <span className="flex_col_center gap-1">
             <FlatGreenButton
               label={loading ? "Signing in..." : "Sign in"}
               type="submit"

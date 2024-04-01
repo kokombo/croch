@@ -1,5 +1,6 @@
 import { Field, FieldProps, ErrorMessage } from "formik";
 import Image from "next/image";
+import { H5 } from "..";
 
 type Props = {
   name: string;
@@ -38,9 +39,10 @@ const SelectAccountType = (props: Props) => {
                         alt={`${option.value} radio button image`}
                         width={option.iconWidth}
                         height={option.iconHeight}
+                        loading="eager"
                       />
 
-                      <p className="capitalize">{option.value} </p>
+                      <H5 extraClasses="capitalize"> {option.value} </H5>
                     </div>
                   </label>
                 );

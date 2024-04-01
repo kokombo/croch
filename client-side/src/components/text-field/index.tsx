@@ -50,6 +50,7 @@ const TextField = (props: Props) => {
                 alt="hide password icon"
                 height={24}
                 width={24}
+                loading="eager"
               />
             ) : (
               <Image
@@ -57,6 +58,7 @@ const TextField = (props: Props) => {
                 alt="show password icon"
                 height={24}
                 width={24}
+                loading="eager"
               />
             )}
           </button>

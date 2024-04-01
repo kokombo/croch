@@ -35,8 +35,9 @@ const Modal = (props: Props) => {
             <Image
               src={props.icon}
               alt="modal header icon"
-              width={32}
-              height={32}
+              width={28}
+              height={28}
+              loading="eager"
             />
           </button>
 

@@ -6,6 +6,8 @@ body {
   background-color: #ffffff;
   height: "100%";
   box-sizing: border-box;
+  top: 0;
+  left: 0;
 }
 
 html {
@@ -99,7 +101,7 @@ html {
 }
 
 .nav_container {
-  @apply w-full flex_center justify-between lg:h-20 h-[70px] px-[2%] border-b-[1px] border-grey;
+  @apply w-full flex_center justify-between lg:h-20 h-[70px] px-[2%] border-b-[1px] border-grey bg-white sticky left-0 top-0 z-[100];
 }
 
 .product_list_container {
@@ -108,4 +110,8 @@ html {
 
 .dropdown_list_item {
   @apply text-sm font-medium hover:bg-gray px-5 py-3;
+}
+
+.form {
+  @apply flex flex-col gap-6 md:gap-8;
 }
