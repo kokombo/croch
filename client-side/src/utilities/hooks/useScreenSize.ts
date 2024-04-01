@@ -7,7 +7,9 @@ const useScreenSize = () => {
     initialState = window.innerWidth;
   }
 
-  const [screenSize, setScreeenSize] = useState(initialState);
+  const [screenSize, setScreeenSize] = useState<number | undefined>(
+    initialState
+  );
 
   useEffect(() => {
     const handleResize = () => {

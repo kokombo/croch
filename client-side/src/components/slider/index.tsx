@@ -4,7 +4,7 @@ import { AddToWishlist, ProductCardOwnerInfo, RoundIconButton } from "..";
 import { icons } from "@/constants";
 
 type Props = {
-  hideButton: boolean;
+  showButton: boolean;
   product: Product;
 };
 
@@ -83,7 +83,7 @@ const Slider = (props: Props) => {
           productId={props.product._id}
         />
 
-        {!props.hideButton && index > 0 && (
+        {props.showButton && index > 0 && (
           <RoundIconButton
             onClick={(e) => {
               e.preventDefault();
@@ -102,7 +102,7 @@ const Slider = (props: Props) => {
           />
         )}
 
-        {!props.hideButton && index < props.product.photos.length - 1 && (
+        {props.showButton && index < props.product.photos.length - 1 && (
           <RoundIconButton
             onClick={(e) => {
               e.preventDefault();

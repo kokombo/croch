@@ -2,26 +2,35 @@ import { useState } from "react";
 import { H4, Slider, UnclickableRating } from "..";
 import Link from "next/link";
 import commaNumber from "comma-number";
+import useScreenSize from "@/utilities/hooks/useScreenSize";
 
 type Props = {
   product: Product;
 };
 
 const ProductCard = (props: Props) => {
-  const [hideButton, setHideButton] = useState(true);
+  const [showButton, setShowButton] = useState(false);
 
   const productUrl = decodeURIComponent(
     `/crafts?title=${props.product.title}&craftId=${props.product._id}`
   ).replaceAll(" ", "-");
 
+  const { screenSize } = useScreenSize();
+
+  const handleMouseEnter = () => {
+    if (screenSize && screenSize > 768) {
+      setShowButton(true);
+    }
+  };
+
   return (
     <Link href={productUrl} target="_blank">
       <div
-        onMouseEnter={() => setHideButton(false)}
-        onMouseLeave={() => setHideButton(true)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={() => setShowButton(false)}
         className="w-full flex flex-col gap-3"
       >
-        <Slider hideButton={hideButton} product={props.product} />
+        <Slider showButton={showButton} product={props.product} />
 
         <div className="flex flex-col gap-2">
           <UnclickableRating rating={props.product.rating} />
