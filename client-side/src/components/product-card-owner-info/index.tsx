@@ -15,15 +15,17 @@ const ProductCardOwnerInfo = (props: Props) => {
       className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex_center justify-start gap-2 px-4 py-3`}
     >
       <div className="relative h-10 w-10 rounded-full bg-grey">
-        <Image
-          src={creative?.brandLogo!}
-          alt={`${creative?.brandName.substring(0, 1)}`}
-          quality={100}
-          fill
-          className="rounded-full object-cover"
-          loading="eager"
-          blurDataURL=""
-        />
+        {creative?.brandLogo && (
+          <Image
+            src={creative.brandLogo!}
+            alt={`${creative.brandName.substring(0, 1)}`}
+            quality={100}
+            fill
+            className="rounded-full object-cover"
+            loading="eager"
+            blurDataURL=""
+          />
+        )}
       </div>
 
       <H6> {props.product.owner.firstName} </H6>
