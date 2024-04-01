@@ -1,3 +1,5 @@
+import commaNumber from "comma-number";
+
 type Props = {
   product: Product;
   count: number;
@@ -9,7 +11,7 @@ const PriceBox = (props: Props) => {
       <span className={`${commonClasses} font-medium`}>
         <h5>Quantity price</h5>
 
-        <h6>&#8358; {props.product.price} </h6>
+        <h6>&#8358; {commaNumber(props.product.price)} </h6>
       </span>
 
       <span className={`${commonClasses} font-medium`}>
@@ -21,7 +23,7 @@ const PriceBox = (props: Props) => {
       <span className={`${commonClasses} font-bold`}>
         <h5>Total cost</h5>
 
-        <h6>&#8358; {props.product.price * props.count}</h6>
+        <h6>&#8358; {commaNumber(props.product.price * props.count)}</h6>
       </span>
     </div>
   );

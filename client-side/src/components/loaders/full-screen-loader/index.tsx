@@ -9,7 +9,7 @@ const FullScreenLoader = () => {
         <NavAccount onClick={() => {}} opened={false} />
       </nav>
 
-      <div className="flex items-center justify-center h-[80vh]">
+      <div className="flex_item_justify_center h-[80vh]">
         <ThreeDotsLoader />
       </div>
     </main>

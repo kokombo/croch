@@ -4,11 +4,14 @@ import { ChangeEventHandler } from "react";
 
 type Props = {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+  extraClasses?: string;
 };
 
 const SearchBox = (props: Props) => {
   return (
-    <div className="relative max-w-[458px] xl:h-14 h-16">
+    <div
+      className={`${props.extraClasses} relative max-w-[458px] xl:h-14 h-16`}
+    >
       <input
         type="search"
         autoFocus={false}
