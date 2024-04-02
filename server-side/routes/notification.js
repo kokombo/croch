@@ -1,0 +1,11 @@
+"use strict";
+const express = require("express");
+const router = express.Router();
+const notificationController = require("../controllers/notification");
+const authorization = require("../middlewares/authorization");
+const { authorizeUser } = authorization;
+const { createNotification, getNotifications, deleteNotification } = notificationController;
+router.post("/createNotification", authorizeUser, createNotification);
+router.get("/getNotifications", authorizeUser, getNotifications);
+router.delete("/deleteNotification", authorizeUser, deleteNotification);
+module.exports = router;

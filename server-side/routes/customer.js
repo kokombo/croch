@@ -1,0 +1,11 @@
+"use strict";
+const express = require("express");
+const router = express.Router();
+const customerController = require("../controllers/customer");
+const authorization = require("../middlewares/authorization");
+const { authorizeUser } = authorization;
+const { addAndRemoveWishlist, getWishlists, getCreativeAllProducts } = customerController;
+router.get("/getWishlists", authorizeUser, getWishlists);
+router.get("/getCreativeAllProducts", getCreativeAllProducts);
+router.put("/addAndRemoveWishlist", authorizeUser, addAndRemoveWishlist);
+module.exports = router;

@@ -1,0 +1,16 @@
+"use strict";
+const express = require("express");
+const router = express.Router();
+const productController = require("../controllers/product");
+const authorization = require("../middlewares/authorization");
+const imageOptimization = require("../middlewares/imageOptimization");
+const { authorizeUser, isCreative, isProductOwner } = authorization;
+const { resizePhoto, uploadPhoto } = imageOptimization;
+const { getAllProducts, getProduct, createProduct, updateProduct, deleteProduct, getCreativeProducts, } = productController;
+router.get("/getAllProducts", getAllProducts);
+router.get("/getProduct", getProduct);
+router.post("/createProduct", authorizeUser, isCreative, uploadPhoto.array("product-photos", 10), resizePhoto, createProduct);
+router.get("/getCreativeProducts", authorizeUser, getCreativeProducts);
+router.put("/updateProduct", authorizeUser, isProductOwner, uploadPhoto.array("product-photos", 10), resizePhoto, updateProduct);
+router.delete("/deleteProduct", authorizeUser, isProductOwner, deleteProduct);
+module.exports = router;
