@@ -42,13 +42,13 @@ const Billing = () => {
   });
 
   useEffect(() => {
-    if (!cart || cart?.cartItems.length === 0) {
-      router.push("/");
+    if (isSuccess && (!cart || cart?.cartItems.length === 0)) {
+      router.push("/cart");
     }
-  }, [cart, router]);
+  }, [cart, isSuccess, router]);
 
   return (
-    <main className="flex gap-6 paddingX py-16">
+    <main className="flex gap-6 paddingX py-8 lg:py-16">
       {placingOrderIsPending && <OverlayLoader />}
 
       <div className="w-70">

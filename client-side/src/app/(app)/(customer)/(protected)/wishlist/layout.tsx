@@ -1,9 +1,9 @@
 "use client";
 
-import "../../globals.css";
+import "../../../../globals.css";
 import { Footer, NavigationBar, ProtectRoute } from "@/components";
 
-export default function CartLayout({
+export default function ShoppingCardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

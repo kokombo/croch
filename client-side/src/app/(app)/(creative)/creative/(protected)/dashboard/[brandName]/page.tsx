@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useCreateProduct } from "@/utilities/api-interactions/product";
+import { OverlayLoader } from "@/components";
 
 const Dashboard = () => {
   const [photos, setPhotos] = useState<(File | null | undefined)[]>([]);

@@ -21,6 +21,10 @@ export const useCurrentUser = () => {
 
   const role = session?.user.role;
 
+  const isCustomer = session?.user.role === "customer";
+
+  const isCreative = session?.user.role === "creative";
+
   return {
     id,
     accessToken,
@@ -33,5 +37,7 @@ export const useCurrentUser = () => {
     sessionExpireTime,
     session,
     status,
+    isCustomer,
+    isCreative,
   };
 };

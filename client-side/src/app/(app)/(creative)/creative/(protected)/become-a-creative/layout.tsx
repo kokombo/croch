@@ -1,6 +1,6 @@
 "use client";
-import { ProtectRoute } from "@/components";
-import "../../../globals.css";
+
+import "../../../../../globals.css";
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
@@ -19,9 +19,11 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (creative?.accountSetupDone) {
-      router.push("/creative/dashboard");
+      router.push(
+        `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+      );
     }
-  }, [creative?.accountSetupDone, router]);
+  }, [creative, router]);
 
-  return <ProtectRoute>{children}</ProtectRoute>;
+  return <>{children}</>;
 }

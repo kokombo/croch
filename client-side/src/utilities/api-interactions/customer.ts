@@ -47,7 +47,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
 };
 
 export const useGetWishlists = () => {
-  const { accessToken } = useCurrentUser();
+  const { accessToken, isCustomer } = useCurrentUser();
 
   const getWishlistsRequest = async () => {
     const res = await axios.get(
@@ -68,7 +68,7 @@ export const useGetWishlists = () => {
     useQuery<Product[], AxiosError<ErrorResponse>>({
       queryKey: ["getWishlists"],
       queryFn: getWishlistsRequest,
-      enabled: !!accessToken,
+      enabled: !!accessToken && !!isCustomer,
       refetchOnReconnect: true,
     });
 

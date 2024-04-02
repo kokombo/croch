@@ -4,8 +4,8 @@ const RingsLoader = () => {
   return (
     <Rings
       visible={true}
-      height="80"
-      width="80"
+      height="90"
+      width="90"
       color="#2DB224"
       ariaLabel="rings-loading"
       wrapperStyle={{}}

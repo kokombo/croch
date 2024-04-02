@@ -18,7 +18,7 @@ const config: Config = {
         grey: "#dddddd",
         green: "#006C00",
         gray: "#F3F3F3",
-        fadeWhite: "#FAFAFA",
+        whitee: "#FAFAFA",
         modalblack: "rgba(0, 0, 0, 0.5)",
         inputborder: "#B8C5CA",
         neutral: "#717171",
@@ -29,7 +29,7 @@ const config: Config = {
         lightgreen: "#2DB224",
         skyblue: "#2DA5F3",
         ash2: "#F7F7F7",
-        whitee: "#FAFAFA",
+        transparentwhite: "#FFFFFFCC",
       },
 
       width: {

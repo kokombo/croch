@@ -93,7 +93,7 @@ html {
 }
 
 .white_card {
-  @apply card shadow-md;
+  @apply card shadow-sm;
 }
 
 .cart_card {

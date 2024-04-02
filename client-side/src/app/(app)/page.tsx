@@ -1,10 +1,12 @@
 "use client";
+
 import {
   ProductsList,
   TagsList,
   FilterButton,
   NavigationBar,
   Footer,
+  UserSegmentRedirect,
 } from "@/components";
 import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
@@ -20,29 +22,31 @@ const Home = () => {
   } = useGetAllProducts();
 
   return (
-    <main className="flex flex-col">
-      <NavigationBar />
+    <UserSegmentRedirect>
+      <main className="flex flex-col">
+        <NavigationBar />
 
-      <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
-        <TagsList />
+        <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
+          <TagsList />
 
-        <FilterButton />
-      </section>
+          <FilterButton />
+        </section>
 
-      <section className="paddingX py-10">
-        <ProductsList
-          products={products}
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-          isSuccess={isSuccess}
-          isPending={isPending}
-          isStale={isStale}
-        />
-      </section>
+        <section className="paddingX py-10">
+          <ProductsList
+            products={products}
+            isLoading={isLoading}
+            isError={isError}
+            error={error}
+            isSuccess={isSuccess}
+            isPending={isPending}
+            isStale={isStale}
+          />
+        </section>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </UserSegmentRedirect>
   );
 };
 

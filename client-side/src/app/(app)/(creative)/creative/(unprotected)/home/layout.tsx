@@ -1,6 +1,7 @@
 "use client";
+
 import { UserSegmentRedirect } from "@/components";
-import "../../../globals.css";
+import "../../../../../globals.css";
 
 export default function CreativeLayout({
   children,

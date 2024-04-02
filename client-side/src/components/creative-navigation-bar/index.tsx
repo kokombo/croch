@@ -19,7 +19,7 @@ const CreativeNavigationBar = () => {
   const authenticatedCreativeLinks = [
     {
       label: "My dashboard",
-      href: `/creative/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`,
+      href: `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`,
     },
 
     { label: "Profile", href: "/creative/profile" },

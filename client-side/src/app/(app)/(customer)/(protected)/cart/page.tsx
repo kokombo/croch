@@ -1,4 +1,5 @@
 "use client";
+
 import {
   CartCard,
   Divider,
@@ -12,7 +13,7 @@ const Cart = () => {
   const { data: carts, isLoading: cartsLoading, isError } = useGetCarts();
 
   return (
-    <main className="grid_center paddingX my-20">
+    <main className="grid_center paddingX py-8 lg:py-16">
       <div className="cart_container">
         {cartsLoading ? (
           <div className="h-200">

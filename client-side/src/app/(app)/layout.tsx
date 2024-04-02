@@ -1,13 +1,7 @@
 "use client";
 
 import "../globals.css";
-import {
-  Modal,
-  LoginForm,
-  SignupForm,
-  UserSegmentRedirect,
-  H5,
-} from "@/components";
+import { Modal, LoginForm, SignupForm, H5 } from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
@@ -41,7 +35,7 @@ export default function RootLayout({
   };
 
   return (
-    <UserSegmentRedirect>
+    <>
       <main onClick={() => dispatch(setOpenDropDown(false))}>{children}</main>
 
       {openLoginModal && (
@@ -87,6 +81,6 @@ export default function RootLayout({
           <H5> {errorMessage}</H5>
         </div>
       )}
-    </UserSegmentRedirect>
+    </>
   );
 }

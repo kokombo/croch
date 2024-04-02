@@ -1,6 +1,6 @@
 "use client";
-import { CreativeNavigationBar, ProtectRoute } from "@/components";
-import "../../../globals.css";
+import { CreativeNavigationBar } from "@/components";
+import "../../../../../globals.css";
 
 export default function DashboardLayout({
   children,
@@ -8,10 +8,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ProtectRoute>
+    <>
       <CreativeNavigationBar />
 
       {children}
-    </ProtectRoute>
+    </>
   );
 }
