@@ -1,4 +1,4 @@
-import {Response  } from "express";
+import { Response } from "express";
 import mongoose = require("mongoose");
 
 /**
@@ -10,8 +10,8 @@ import mongoose = require("mongoose");
 const validateId = (id: string, res: Response) => {
   const isValid = mongoose.Types.ObjectId.isValid(id);
 
-  if(!isValid){
-    return res.status(400).json({message: "Invalid request"})
+  if (!isValid) {
+    return res.status(400).json({ message: "Invalid request" });
   }
 };
 
