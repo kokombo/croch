@@ -23,10 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? ["https://croch.vercel.app", "https://croch.onrender.com"]
-        : "http://localhost:3000",
+    origin: [
+      "https://croch.vercel.app",
+      "https://croch.onrender.com",
+      "http://localhost:3000",
+    ],
+
     credentials: true,
     optionsSuccessStatus: 200,
   })
