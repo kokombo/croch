@@ -33,7 +33,7 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
-// app.use(limiter(1000 * 60 * 60, 20));
+// app.use(limiter(1000 * 60 * 60, 30));
 app.use(helmet());
 
 app.use("/api/v1/auth", authRouter);
