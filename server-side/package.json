@@ -1,13 +1,13 @@
 {
   "name": "crochet-marketplace-server-side",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "server.js",
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --files server.ts",
     "start": "node ./dist/server.js",
-    "build": "npm install && tsc",
-    "dev": "nodemon --files server.ts"
+    "build": "npm install && tsc"
   },
   "author": "",
   "license": "ISC",
