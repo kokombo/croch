@@ -29,6 +29,9 @@ import successgreen from "../../public/icons/successgreen.png";
 import star from "../../public/icons/star.png";
 import activedot from "../../public/icons/activedot.png";
 import inactivedot from "../../public/icons/inactivedot.png";
+import funfact1 from "../../public/icons/funfact1.png";
+import funfact2 from "../../public/icons/funfact2.png";
+import funfact3 from "../../public/icons/funfact3.png";
 
 const icons = {
   chevronleft,
@@ -62,6 +65,9 @@ const icons = {
   star,
   activedot,
   inactivedot,
+  funfact1,
+  funfact2,
+  funfact3,
 };
 
 export default icons;

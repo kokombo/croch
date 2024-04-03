@@ -79,6 +79,7 @@ import NavigationLinksCard from "./navigation-links-card";
 import CreativeNavigationBar from "./creative-navigation-bar";
 import SectionHeading from "./creative-landing-page/section-heading";
 import UserSegmentRedirect from "./user-segment-redirect";
+import ProductAvailability from "./product-availability";
 
 export {
   ProductDescription,
@@ -168,4 +169,5 @@ export {
   CreativeNavigationBar,
   SectionHeading,
   UserSegmentRedirect,
+  ProductAvailability,
 };

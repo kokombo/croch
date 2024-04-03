@@ -4,6 +4,7 @@ import {
   AddToWishlist,
   H5,
   H6,
+  ProductAvailability,
   ProductCardOwnerInfo,
   RoundIconButton,
 } from "..";
@@ -78,11 +79,10 @@ const Slider = (props: Props) => {
           );
         })}
 
-        <span
-          className={`${props.product.availability === "available" ? "text-lightgreen" : "text-skyblue"} absolute left-[5%] top-4 w-fit py-1 px-3 bg-white rounded capitalize text-sm`}
-        >
-          {props.product.availability}
-        </span>
+        <ProductAvailability
+          product={props.product}
+          extraClasses="absolute left-[5%] top-4"
+        />
 
         <AddToWishlist
           extraClasses="absolute right-[5%] top-4"

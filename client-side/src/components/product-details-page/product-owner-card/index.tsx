@@ -1,6 +1,8 @@
-import { CustomButton, H3, ThreeDotsLoader } from "@/components";
+import { CustomButton, H3, H6, ThreeDotsLoader } from "@/components";
 import CreativeInfo from "../creative-info";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
+import Image from "next/image";
+import { icons } from "@/constants";
 
 type Props = {
   product: Product;
@@ -22,7 +24,7 @@ const ProductOwnerCard = (props: Props) => {
         </div>
       ) : (
         <>
-          <span className="flex flex-col items-start gap-2 xl:gap-0 xl:flex-row xl:justify-between xl:items-center">
+          <span className=" flex flex-col items-start gap-2 xl:gap-0 xl:flex-row xl:justify-between">
             <CreativeInfo creative={creative} />
 
             <CustomButton
@@ -42,14 +44,32 @@ const ProductOwnerCard = (props: Props) => {
           <div>
             <H3>Fun Facts</H3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
               {creative?.funFacts.map((funFact, index) => {
                 return (
                   <article
                     key={index}
-                    className="py-2 px-3 border-[1px] border-grey rounded-xl text-sm h-fit min-h-[120px] lg:min-h-[250px] xl:min-h-[200px] shadow bg-whitee"
+                    className="flex flex-col gap-2 p-3 border-[1px] border-grey rounded-xl h-fit min-h-[140px] md:min-h-[180px] lg:min-h-[200px] xl:min-h-[240px] shadow bg-whitee"
                   >
-                    {funFact}
+                    <Image
+                      src={
+                        index === 0
+                          ? icons.funfact1
+                          : index === 1
+                            ? icons.funfact2
+                            : index === 2
+                              ? icons.funfact3
+                              : ""
+                      }
+                      alt=""
+                      height={40}
+                      width={40}
+                      loading="eager"
+                      sizes="any"
+                      className="object-contain"
+                    />
+
+                    <H6>{funFact} </H6>
                   </article>
                 );
               })}
