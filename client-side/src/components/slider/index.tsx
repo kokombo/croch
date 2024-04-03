@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { useState, TouchEvent } from "react";
-import { AddToWishlist, ProductCardOwnerInfo, RoundIconButton } from "..";
+import {
+  AddToWishlist,
+  H5,
+  H6,
+  ProductCardOwnerInfo,
+  RoundIconButton,
+} from "..";
 import { icons } from "@/constants";
 
 type Props = {
@@ -51,7 +57,7 @@ const Slider = (props: Props) => {
           return (
             <div
               key={sliderIndex}
-              className={`w-full flex-shrink-0 transition-transform duration-500 ease-in-out bg-grey ${opacity}`}
+              className={`w-full flex-shrink-0 transition-transform duration-400 ease-in-out bg-grey ${opacity}`}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               <div className="relative h-[310px] md:h-[270px] ">
@@ -127,6 +133,24 @@ const Slider = (props: Props) => {
           product={props.product}
           extraClasses="absolute bottom-4 right-[5%] left-[5%] "
         />
+
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-[2px]">
+          {[...Array(props.product.photos.length)].map((_, dotIndex) => {
+            return (
+              <div key={dotIndex} className="relative h-[6px] w-[6px]">
+                <Image
+                  src={index === dotIndex ? icons.activedot : icons.inactivedot}
+                  alt=""
+                  fill
+                  loading="eager"
+                  quality={100}
+                  sizes="any"
+                  className="object-contain"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

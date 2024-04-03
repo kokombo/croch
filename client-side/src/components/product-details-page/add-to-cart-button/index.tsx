@@ -61,14 +61,14 @@ const AddToCartButton = (props: Props) => {
           type="button"
           label="Add to cart"
           onClick={addProductToCart}
-          extraClasses="bg-green text-white font-medium w-full py-3 px-4 lg:py-4 lg:px-5"
+          extraClasses="bg-green text-white font-medium w-full py-3 px-4 lg:p-4"
         />
       ) : (
         <CustomButton
           type="button"
           label="Remove"
           onClick={removeProductFromCart}
-          extraClasses="bg-black text-white font-medium w-full py-3 px-4 lg:py-4 lg:px-5"
+          extraClasses="bg-black text-white font-medium w-full py-3 px-4 lg:p-4"
         />
       )}
     </span>

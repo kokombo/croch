@@ -27,6 +27,8 @@ import redheart from "../../public/icons/redheart.png";
 import paymentmethod from "../../public/icons/paymentmethod.png";
 import successgreen from "../../public/icons/successgreen.png";
 import star from "../../public/icons/star.png";
+import activedot from "../../public/icons/activedot.png";
+import inactivedot from "../../public/icons/inactivedot.png";
 
 const icons = {
   chevronleft,
@@ -57,7 +59,9 @@ const icons = {
   paymentmethod,
   arrowrightwhite,
   successgreen,
-  star
+  star,
+  activedot,
+  inactivedot,
 };
 
 export default icons;

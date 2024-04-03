@@ -92,6 +92,11 @@ const ProductSchema = new Schema(
         type: Number,
       },
     },
+
+    flagged: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   { timestamps: true }

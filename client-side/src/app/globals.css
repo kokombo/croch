@@ -105,7 +105,7 @@ html {
 }
 
 .nav_container {
-  @apply w-full flex_center justify-between lg:h-20 h-[70px] px-[2%] border-b-[1px] border-grey bg-white sticky left-0 top-0 z-[100];
+  @apply w-full flex_center justify-between lg:h-20 h-[72px] px-[2%] border-b-[1px] border-grey bg-white sticky left-0 top-0 z-[100];
 }
 
 .product_list_container {

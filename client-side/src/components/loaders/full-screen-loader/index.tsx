@@ -1,4 +1,4 @@
-import { Logo, NavAccount, ThreeDotsLoader } from "@/components";
+import { Footer, Logo, NavAccount, ThreeDotsLoader } from "@/components";
 
 const FullScreenLoader = () => {
   return (
@@ -10,10 +10,12 @@ const FullScreenLoader = () => {
       </nav>
 
       <div className="grid place-items-center h-[86vh]">
-        <span className="border-hidden md:border-solid border_grey_1 md:rounded-2xl md:w-[65%] md:h-[90%] flex_item_justify_center">
+        <span className="border-hidden md:border-solid border_grey_1 md:rounded-2xl md:w-[85%] md:h-[90%] flex_item_justify_center">
           <ThreeDotsLoader />
         </span>
       </div>
+
+      <Footer />
     </main>
   );
 };

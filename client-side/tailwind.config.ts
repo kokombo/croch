@@ -40,6 +40,10 @@ const config: Config = {
       height: {
         200: "200px",
       },
+
+      transitionDuration: {
+        400: "400ms",
+      },
     },
   },
   plugins: [],

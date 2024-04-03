@@ -47,7 +47,7 @@ const ProductOwnerCard = (props: Props) => {
                 return (
                   <article
                     key={index}
-                    className="py-2 px-3 border-[1px] border-grey rounded-xl text-sm h-fit min-h-[120px] lg:min-h-[250px] xl:min-h-[200px]"
+                    className="py-2 px-3 border-[1px] border-grey rounded-xl text-sm h-fit min-h-[120px] lg:min-h-[250px] xl:min-h-[200px] shadow bg-whitee"
                   >
                     {funFact}
                   </article>
