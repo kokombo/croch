@@ -43,7 +43,7 @@ const ShoppingCard = () => {
       <div className="lg:w-[68%]">
         <div className="flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit bg-white">
           <span className="mx-4 lg:mx-8 block">
-            <H3>Shopping Card</H3>
+            <H3 extraClasses="text-lightgreen">Shopping Card</H3>
           </span>
 
           <>

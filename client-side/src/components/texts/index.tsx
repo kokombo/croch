@@ -5,15 +5,23 @@ export const H1 = () => {
 export const H2 = ({ children }: { children: React.ReactNode }) => {
   return (
     <h2 className="text-xl lg:text-3xl font-bold text-customblack">
-      {children}{" "}
+      {children}
     </h2>
   );
 };
 
-export const H3 = ({ children }: { children: React.ReactNode }) => {
+export const H3 = ({
+  children,
+  extraClasses,
+}: {
+  children: React.ReactNode;
+  extraClasses?: string;
+}) => {
   return (
-    <h3 className="text-lg lg:text-xl font-bold text-customblack">
-      {children}{" "}
+    <h3
+      className={`${extraClasses} text-lg lg:text-xl font-bold text-customblack`}
+    >
+      {children}
     </h3>
   );
 };

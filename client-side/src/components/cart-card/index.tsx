@@ -57,7 +57,7 @@ const CartCard = (props: Props) => {
           <>
             <a id="delete-cart-anchor-element">
               <button type="button" onClick={() => setOpenDeleteBoard(true)}>
-                <Image src={icons.deleteicon} alt="" height={18} width={18} />
+                <Image src={icons.deleteicon} alt="" height={22} width={22} />
               </button>
             </a>
 

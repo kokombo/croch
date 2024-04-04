@@ -15,7 +15,7 @@ const CheckOutCard = (props: Props) => {
       <StyledLink
         href={`/cart/shopping_card/billing?for=${props.cart.cartItems[0]?.info.owner}`}
         label="Proceed to check out"
-        extraClasses="text-white bg-customblack p-4 w-full"
+        extraClasses="text-white bg-green p-4 w-full"
         rightIcon={icons.arrowrightwhite}
       />
 

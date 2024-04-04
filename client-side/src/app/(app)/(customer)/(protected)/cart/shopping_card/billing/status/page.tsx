@@ -9,7 +9,7 @@ const BillingStatus = () => {
   const status = params.getAll("")[0];
 
   return (
-    <main className="h-[85vh] grid place-items-center">
+    <main className=" grid place-items-center">
       {status === "success" ? (
         <OrderStatusSuccess />
       ) : "failed" ? (

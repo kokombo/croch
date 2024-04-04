@@ -31,7 +31,7 @@ const Cart = () => {
           />
         ) : (
           <div className="flex flex-col gap-6 lg:gap-8">
-            <H3>Cart</H3>
+            <H3 extraClasses="text-lightgreen">Cart</H3>
 
             <Divider />
 

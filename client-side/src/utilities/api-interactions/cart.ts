@@ -36,7 +36,7 @@ export const useGetCartItems = (creativeId: string) => {
 };
 
 export const useGetCarts = () => {
-  const { accessToken } = useCurrentUser();
+  const { accessToken, session } = useCurrentUser();
 
   const getCartsRequest = async () => {
     const res = await axios.get(
@@ -59,7 +59,7 @@ export const useGetCarts = () => {
   >({
     queryKey: ["getCarts"],
     queryFn: getCartsRequest,
-    enabled: !!accessToken,
+    enabled: !!session,
     refetchOnReconnect: true,
   });
 

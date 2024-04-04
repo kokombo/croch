@@ -29,7 +29,7 @@ export const usePlaceAnOrder = (
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'Content-Length': 'application/json'
+          "Content-Length": "application/json",
         },
       }
     );
@@ -37,7 +37,7 @@ export const usePlaceAnOrder = (
     return res.data;
   };
 
-  const { mutateAsync, data, isPending, error, isError, isSuccess, } =
+  const { mutateAsync, data, isPending, error, isError, isSuccess } =
     useMutation<
       { message: string; order: Order },
       AxiosError<ErrorResponse>,

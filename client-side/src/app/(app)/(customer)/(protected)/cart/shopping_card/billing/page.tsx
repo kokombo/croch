@@ -26,6 +26,7 @@ const Billing = () => {
     data: cart,
     isLoading: orderSummaryLoading,
     isError: orderSummaryLoadingError,
+    isSuccess: oSuccess,
   } = useGetCartItems(creativeId);
 
   const {
@@ -42,14 +43,20 @@ const Billing = () => {
   });
 
   useEffect(() => {
-    if (isSuccess && (!cart || cart?.cartItems.length === 0)) {
+    if ((oSuccess && !cart) || orderSummaryLoadingError) {
       router.push("/cart");
     }
-  }, [cart, isSuccess, router]);
+  }, [orderSummaryLoadingError, oSuccess, cart, router]);
 
   return (
     <main className="flex gap-6 paddingX py-8 lg:py-16">
-      {placingOrderIsPending && <OverlayLoader />}
+      {placingOrderIsPending && (
+        <OverlayLoader>
+          <RingsLoader />
+        </OverlayLoader>
+      )}
+
+      {orderSummaryLoading && <OverlayLoader />}
 
       <div className="w-70">
         <div>
@@ -82,7 +89,7 @@ const Billing = () => {
                 label="Place order"
                 onClick={placeAnOrder}
                 disabled={false}
-                extraClasses="text-white bg-customblack p-4 w-full"
+                extraClasses="text-white bg-green p-4 w-full"
                 rightIcon={icons.arrowrightwhite}
               />
             </div>
