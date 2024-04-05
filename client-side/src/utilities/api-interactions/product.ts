@@ -143,6 +143,7 @@ export const useGetProductById = (productId: string) => {
       queryFn: getProductByIdRequest,
       refetchOnWindowFocus: false,
       refetchOnReconnect: true,
+      enabled: !!productId,
     });
 
   return { data, isLoading, isError, error, isSuccess, isStale, isPending };
