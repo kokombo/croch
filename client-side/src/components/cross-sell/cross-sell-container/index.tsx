@@ -10,7 +10,7 @@ type Props = {
 };
 
 const CrossSellContainer = (props: Props) => {
-  const { data: creative } = useGetCreativeById(props.creativeId);
+  const { data: creative } = useGetCreativeById(props.creativeId, true);
 
   const { data: products } = useGetCreativeAllProducts(props.creativeId);
 

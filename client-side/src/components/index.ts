@@ -28,7 +28,6 @@ import TextArea from "./text-area/input";
 import CustomButton from "./buttons/custom-button";
 import UploadLogo from "./upload-logo/input";
 import Footer from "./footer";
-import RedirectCreative from "./redirect-creative";
 import About from "./creative-landing-page/about";
 import CreativesTestimonial from "./creative-landing-page/creatives-testimonial";
 import Hero from "./creative-landing-page/hero";
@@ -120,7 +119,6 @@ export {
   CustomButton,
   UploadLogo,
   Footer,
-  RedirectCreative,
   About,
   CreativesTestimonial,
   Hero,
