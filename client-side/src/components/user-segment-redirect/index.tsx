@@ -2,7 +2,7 @@ import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ColorRingLoader, OverlayLoader } from "..";
+import { ColorRingLoader, FullScreenLoader, OverlayLoader } from "..";
 
 const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
   const [redirecting, setRedirecting] = useState(false);
@@ -33,7 +33,9 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
     checkCurrentUser();
   }, [router, status, creative, redirecting]);
 
-  return redirecting ? (
+  return status === "loading" ? (
+    <FullScreenLoader />
+  ) : redirecting ? (
     <OverlayLoader>
       <ColorRingLoader />
     </OverlayLoader>
