@@ -14,7 +14,7 @@ const ProductOwnerCard = (props: Props) => {
     isLoading,
     isError,
     error,
-  } = useGetCreativeById(props.product.owner._id);
+  } = useGetCreativeById(props.product.owner._id, true);
 
   return (
     <div className="flex flex-col gap-8 border-[1px] border-grey rounded-xl p-4 lg:p-7">

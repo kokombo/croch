@@ -1,13 +1,15 @@
 import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { FullScreenLoader } from "..";
+import { useEffect, useState } from "react";
+import { ColorRingLoader, OverlayLoader, RingsLoader } from "..";
 
 const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
-  const { status, id } = useCurrentUser();
+  const [redirecting, setRedirecting] = useState(false);
 
-  const { data: creative, isLoading } = useGetCreativeById(id);
+  const { status, id, isCreative } = useCurrentUser();
+
+  const { data: creative } = useGetCreativeById(id, isCreative);
 
   const router = useRouter();
 
@@ -15,6 +17,8 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
     const checkCurrentUser = () => {
       if (status === "authenticated") {
         if (creative) {
+          setRedirecting(true);
+
           if (creative.accountSetupDone) {
             router.push(
               `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
@@ -27,9 +31,15 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
     };
 
     checkCurrentUser();
-  }, [router, status, creative]);
+  }, [router, status, creative, redirecting]);
 
-  return status === "loading" ? <FullScreenLoader /> : children;
+  return redirecting ? (
+    <OverlayLoader>
+      <ColorRingLoader />
+    </OverlayLoader>
+  ) : (
+    children
+  );
 };
 
 export default UserSegmentRedirect;

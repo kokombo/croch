@@ -30,7 +30,7 @@ const ShoppingCard = () => {
     isSuccess,
   } = useGetCartItems(creativeId);
 
-  const { data: creative } = useGetCreativeById(creativeId);
+  const { data: creative } = useGetCreativeById(creativeId, true);
 
   useEffect(() => {
     if (!isLoading && (!cart || cart?.cartItems.length < 1)) {

@@ -12,9 +12,9 @@ const CreativeNavigationBar = () => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { id } = useCurrentUser();
+  const { id, isCreative } = useCurrentUser();
 
-  const { data: creative } = useGetCreativeById(id);
+  const { data: creative } = useGetCreativeById(id, isCreative);
 
   const authenticatedCreativeLinks = [
     {

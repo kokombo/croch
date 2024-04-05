@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Counter } from "@/components";
+import { Counter, H6 } from "@/components";
 import { useEffect, useState } from "react";
 import { icons } from "@/constants";
 import {
@@ -39,46 +39,45 @@ const ShoppingCardListItem = (props: Props) => {
   };
 
   return (
-    <div className="flex lg:flex-row items-center gap-3 h-[72px]">
-      <div className="w-1/3 flex items-center gap-4">
-        <>
-          <a id="delete-cart-item-anchor-element">
-            <button type="button" onClick={removeFromCart}>
-              <Image
-                src={icons.closered}
-                alt="delete-cart-item-icon"
-                height={24}
-                width={24}
-              />
-            </button>
-          </a>
+    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:h-[72px]">
+      <div className="lg:w-1/3 flex-col items-start flex lg:flex-row lg:items-center gap-2 lg:gap-4">
+        <div className="flex items-center gap-2 lg:gap-4">
+          <>
+            <a id="delete-cart-item-anchor-element">
+              <button type="button" onClick={removeFromCart}>
+                <Image
+                  src={icons.closered}
+                  alt="delete-cart-item-icon"
+                  height={24}
+                  width={24}
+                />
+              </button>
+            </a>
 
-          <Tooltip
-            anchorSelect="#delete-cart-item-anchor-element"
-            content="Remove product"
-          />
-        </>
+            <Tooltip
+              anchorSelect="#delete-cart-item-anchor-element"
+              content="Remove product"
+            />
+          </>
 
-        <div className="relative h-[72px] w-[72px] rounded-[2px]">
-          <Image
-            src={props.cartItem.thumbNail}
-            alt=""
-            fill
-            quality={100}
-            loading="lazy"
-            className="rounded-[2px]"
-            sizes="any"
-          />
+          <div className="relative h-[72px] w-[72px] rounded-[2px]">
+            <Image
+              src={props.cartItem.thumbNail}
+              alt=""
+              fill
+              quality={100}
+              loading="lazy"
+              className="rounded-[2px]"
+              sizes="any"
+            />
+          </div>
         </div>
 
-        <h6 className="text-sm flex-wrap">
-          {" "}
-          {props.cartItem.title.slice(0, 25)}
-        </h6>
+        <H6 extraClasses="flex-wrap"> {props.cartItem.title.slice(0, 25)}</H6>
       </div>
 
-      <div className="w-2/3 grid grid-cols-4 place-items-center">
-        <h6> &#8358;{commaNumber(props.cartItem.info.price)} </h6>
+      <div className="lg:w-2/3 grid grid-cols-4 place-items-center">
+        <H6> &#8358;{commaNumber(props.cartItem.info.price)} </H6>
 
         <Counter
           count={count}
@@ -87,7 +86,7 @@ const ShoppingCardListItem = (props: Props) => {
           decreaseCountButtonDisabled={Boolean(count < 2)}
         />
 
-        <h6>
+        <H6>
           {props.cartItem.size === "small"
             ? "S"
             : props.cartItem.size === "medium"
@@ -97,9 +96,9 @@ const ShoppingCardListItem = (props: Props) => {
                 : props.cartItem.size === "extraLarge"
                   ? "XL"
                   : "Nil"}
-        </h6>
+        </H6>
 
-        <h6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </h6>
+        <H6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </H6>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ type Props = {
 };
 
 const ProductCardOwnerInfo = (props: Props) => {
-  const { data: creative } = useGetCreativeById(props.product.owner._id);
+  const { data: creative } = useGetCreativeById(props.product.owner._id, true);
 
   return (
     <div

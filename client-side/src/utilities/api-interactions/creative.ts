@@ -250,7 +250,10 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
   return { setBrandLogo, data, isError, isPending, error };
 };
 
-export const useGetCreativeById = (creativeId: string | undefined) => {
+export const useGetCreativeById = (
+  creativeId: string | undefined,
+  condition: boolean
+) => {
   const getCreativeByIdRequest = async () => {
     const res = await axios.get(
       `${api_base_url}/creative/getCreativeById?creativeId=${creativeId}`
@@ -265,7 +268,7 @@ export const useGetCreativeById = (creativeId: string | undefined) => {
   >({
     queryKey: ["getCreativeById", creativeId],
     queryFn: getCreativeByIdRequest,
-    enabled: !!creativeId,
+    enabled: !!creativeId && !!condition,
     refetchOnWindowFocus: false,
   });
 

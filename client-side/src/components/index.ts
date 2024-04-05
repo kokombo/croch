@@ -80,6 +80,7 @@ import CreativeNavigationBar from "./creative-navigation-bar";
 import SectionHeading from "./creative-landing-page/section-heading";
 import UserSegmentRedirect from "./user-segment-redirect";
 import ProductAvailability from "./product-availability";
+import ColorRingLoader from "./loaders/color-ring-loader";
 
 export {
   ProductDescription,
@@ -170,4 +171,5 @@ export {
   SectionHeading,
   UserSegmentRedirect,
   ProductAvailability,
+  ColorRingLoader,
 };

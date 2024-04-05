@@ -51,7 +51,7 @@ const Modal = (props: Props) => {
         </div>
 
         <div
-          className="max-w-full overflow-y-scroll h-[55vh] lg:h-[70vh] px-5 py-5 lg:px-10"
+          className="max-w-full overflow-y-scroll h-[55vh] sm:h-[65vh] lg:h-[70vh] px-5 py-5 lg:px-10"
           style={{ scrollbarWidth: "thin" }}
         >
           {props.children}
