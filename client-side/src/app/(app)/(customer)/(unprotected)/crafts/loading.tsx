@@ -1,3 +1,5 @@
+"use client";
+
 import { FullScreenLoader } from "@/components";
 
 const Loading = () => {
