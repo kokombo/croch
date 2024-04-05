@@ -18,19 +18,19 @@ import { useRouter } from "next/navigation";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const CreativeLanding = () => {
-  const { session, id, role } = useCurrentUser();
+  const { session, id, isCreative } = useCurrentUser();
 
   const router = useRouter();
 
   const dispatch: DispatchType = useDispatch();
 
-  const { data: creative } = useGetCreativeById(id);
+  const { data: creative } = useGetCreativeById(id, true);
 
   const initiateAccountSetup = () => {
     if (!session) {
       dispatch(setOpenLoginModal(true));
       document.body.style.overflow = "hidden";
-    } else if (role === "creative") {
+    } else if (isCreative) {
       if (creative?.accountSetupDone) {
         router.push(
           `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`

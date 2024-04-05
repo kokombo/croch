@@ -38,9 +38,9 @@ const CreativeAccountSetup = () => {
 
   const [showDropDown, setShowDropDown] = useState(false);
 
-  const { id } = useCurrentUser();
+  const { id, isCreative } = useCurrentUser();
 
-  const { data: creative } = useGetCreativeById(id);
+  const { data: creative } = useGetCreativeById(id, isCreative);
 
   const router = useRouter();
 

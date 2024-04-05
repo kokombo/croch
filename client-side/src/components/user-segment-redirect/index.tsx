@@ -2,7 +2,7 @@ import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ColorRingLoader, OverlayLoader, RingsLoader } from "..";
+import { ColorRingLoader, OverlayLoader } from "..";
 
 const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
   const [redirecting, setRedirecting] = useState(false);
