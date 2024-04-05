@@ -11,7 +11,7 @@ type Props = {
 const Logo = (props: Props) => {
   const { role, session, id } = useCurrentUser();
 
-  const { data: creative } = useGetCreativeById(id);
+  const { data: creative } = useGetCreativeById(id, true);
 
   return (
     <Link
