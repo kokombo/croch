@@ -44,6 +44,7 @@ const CreativeInfo = (props: Props) => {
                 <Tooltip
                   anchorSelect="#identity-verified-anchor-element"
                   content="The identity of this creative has been verified."
+                  style={{ width: "200px" }}
                 />
               </>
             ) : (
@@ -58,6 +59,7 @@ const CreativeInfo = (props: Props) => {
                 <Tooltip
                   anchorSelect="#identity-not-verified-anchor-element"
                   content="The identity of this creative has not been verified."
+                  style={{ width: "200px" }}
                 />
               </>
             )}
@@ -76,6 +78,7 @@ const CreativeInfo = (props: Props) => {
                 <Tooltip
                   anchorSelect="#custom-order-available-anchor-element"
                   content="This creative is currently available to take custom pre-orders."
+                  style={{ width: "200px" }}
                 />
               </>
             ) : (
@@ -90,6 +93,7 @@ const CreativeInfo = (props: Props) => {
                 <Tooltip
                   anchorSelect="#custom-order-available-anchor-element"
                   content="This creative is currently not available to take custom orders."
+                  style={{ width: "200px" }}
                 />
               </>
             )}

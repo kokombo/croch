@@ -3,6 +3,7 @@ import CreativeInfo from "../creative-info";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import Image from "next/image";
 import { icons } from "@/constants";
+import Link from "next/link";
 
 type Props = {
   product: Product;
@@ -24,14 +25,14 @@ const ProductOwnerCard = (props: Props) => {
         </div>
       ) : (
         <>
-          <span className=" flex flex-col items-start gap-2 xl:gap-0 xl:flex-row xl:justify-between">
+          <span className=" flex flex-col items-start gap-1 lg:gap-2 xl:gap-0 xl:flex-row xl:justify-between">
             <CreativeInfo creative={creative} />
 
             <CustomButton
               label="Contact Creative"
               onClick={() => {}}
               type="button"
-              extraClasses="text-black border_black_1 px-4 py-4 text-sm self-end"
+              extraClasses="text-black border_black_1 py-3 px-4 py-4 text-sm self-center"
             />
           </span>
 
