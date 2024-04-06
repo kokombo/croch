@@ -19,26 +19,8 @@ const CrossSellContainer = (props: Props) => {
       <H3>Explore other creatives by {creative?.brandName} </H3>
 
       <div className="flex flex-col gap-8 lg:gap-[60px] ">
-        {/* className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
-        gap-4" */}
-        {/* flex_center gap-4 overflow-x-auto max-w-full; */}
-
         {products && (
           <div className="flex flex-col gap-6">
-            <div
-              className="cross_sell_products_wrapper"
-              style={{ scrollbarWidth: "none" }}
-            >
-              {products
-                ?.filter((product) => product._id !== props.productId)
-                .slice(0, 4)
-                .map((product) => {
-                  return <CrossSellCard key={product._id} product={product} />;
-                })}
-            </div>
-
-            {/*BELOW TO BE CHANGED LATER: Only display below if cross sell products length is more than 4*/}
-
             <div
               className="cross_sell_products_wrapper"
               style={{ scrollbarWidth: "none" }}
