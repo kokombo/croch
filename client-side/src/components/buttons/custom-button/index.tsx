@@ -3,7 +3,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { MouseEvent } from "react";
 
 type Props = {
-  label: string;
+  label: string | JSX.Element;
   onClick?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
   extraClasses?: string;
   type: "submit" | "reset" | "button" | undefined;

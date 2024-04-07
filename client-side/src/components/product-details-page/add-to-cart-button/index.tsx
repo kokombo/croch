@@ -19,13 +19,15 @@ const AddToCartButton = (props: Props) => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { addToCart } = useAddToCart(
+  const { addToCart, isPending: addingToCart } = useAddToCart(
     props.product._id,
     props.size,
     props.count
   );
 
-  const { removeFromCart } = useRemoveFromCart(props.product._id);
+  const { removeFromCart, isPending: removingFromCart } = useRemoveFromCart(
+    props.product._id
+  );
 
   const { data: items } = useGetCartItems(props.product.owner._id);
 
@@ -59,14 +61,14 @@ const AddToCartButton = (props: Props) => {
       {!session || !idsOfProductsInCart?.includes(props.product._id) ? (
         <CustomButton
           type="button"
-          label="Add to cart"
+          label={addingToCart ? "Adding to cart..." : "Add to cart"}
           onClick={addProductToCart}
           extraClasses="bg-green text-white font-medium w-full py-3 px-4 lg:py-4"
         />
       ) : (
         <CustomButton
           type="button"
-          label="Remove"
+          label={removingFromCart ? "Removing..." : "Remove"}
           onClick={removeProductFromCart}
           extraClasses="bg-black text-white font-medium w-full py-3 px-4 lg:py-4"
         />

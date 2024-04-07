@@ -19,7 +19,7 @@ const StyledLink = (props: Props) => {
       href={props.href}
       onClick={props.onClick}
       aria-disabled={props.disabled}
-      className={`${props.extraClasses} py-3 px-5 lg:py-4 lg:px-6 rounded-lg text-base font-medium`}
+      className={`${props.extraClasses} px-5 py-4 lg:px-6 rounded-lg text-base font-medium`}
     >
       <span className="flex_item_justify_center gap-2">
         {props.leftIcon && (

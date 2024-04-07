@@ -1,16 +1,11 @@
 "use client";
 import {
-  CartItemsTableHead,
   CheckOutCard,
   CouponCard,
   CreativeInfo,
-  H3,
-  ShoppingCardListItem,
   ShoppingCardProductContainer,
-  StyledLink,
   ThreeDotsLoader,
 } from "@/components";
-import { icons } from "@/constants";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useSearchParams, useRouter } from "next/navigation";

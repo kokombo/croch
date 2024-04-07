@@ -81,6 +81,7 @@ import UserSegmentRedirect from "./user-segment-redirect";
 import ProductAvailability from "./product-availability";
 import ColorRingLoader from "./loaders/color-ring";
 import ShoppingCardProductContainer from "./shopping-card-page/shopping-card-product-container";
+import OvalLoader from "./loaders/oval-loader";
 
 export {
   ProductDescription,
@@ -172,4 +173,5 @@ export {
   ProductAvailability,
   ColorRingLoader,
   ShoppingCardProductContainer,
+  OvalLoader,
 };
