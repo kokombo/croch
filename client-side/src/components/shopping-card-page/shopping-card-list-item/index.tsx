@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Counter, H6 } from "@/components";
+import { Counter, H6, OvalLoader } from "@/components";
 import { useEffect, useState } from "react";
 import { icons } from "@/constants";
 import {
@@ -16,7 +16,11 @@ type Props = {
 const ShoppingCardListItem = (props: Props) => {
   const [count, setCount] = useState<number>(props.cartItem?.count);
 
-  const { updateCartItemCount, error } = useUpdateCartItemCount(
+  const {
+    updateCartItemCount,
+    error,
+    isPending: updatingCount,
+  } = useUpdateCartItemCount(
     props.cartItem.info._id,
     count,
     props.cartItem.info.owner
@@ -90,7 +94,11 @@ const ShoppingCardListItem = (props: Props) => {
                   : "Nil"}
         </H6>
 
-        <H6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </H6>
+        {updatingCount ? (
+          <OvalLoader height="20" width="20" color="#000000" />
+        ) : (
+          <H6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </H6>
+        )}
       </div>
     </article>
   );

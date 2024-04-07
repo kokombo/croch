@@ -3,6 +3,7 @@ import {
   CheckOutCard,
   CouponCard,
   CreativeInfo,
+  OverlayLoader,
   ShoppingCardProductContainer,
   ThreeDotsLoader,
 } from "@/components";
@@ -20,7 +21,7 @@ const ShoppingCard = () => {
 
   const {
     data: cart,
-    isLoading,
+    isLoading: cartItemsLoading,
     isError,
     error,
     isSuccess,
@@ -29,17 +30,19 @@ const ShoppingCard = () => {
   const { data: creative } = useGetCreativeById(creativeId, true);
 
   useEffect(() => {
-    if (!isLoading && (!cart || cart?.cartItems.length < 1)) {
+    if (!cartItemsLoading && (!cart || cart?.cartItems.length < 1)) {
       router.push("/cart");
     }
-  }, [cart, router, isLoading]);
+  }, [cart, router, cartItemsLoading]);
 
   return (
     <main className="flex flex-col lg:flex-row paddingX py-8 lg:py-16 gap-8 lg:gap-6">
+      {cartItemsLoading && <OverlayLoader />}
+
       <div className="lg:w-[68%]">
         <ShoppingCardProductContainer
           cart={cart}
-          isLoading={isLoading}
+          isLoading={cartItemsLoading}
           isSuccess={isSuccess}
         />
 
@@ -52,7 +55,7 @@ const ShoppingCard = () => {
 
       <div className="sm:w-[500px] lg:w-[32%] flex flex-col gap-8 lg:gap-6">
         <div className="white_card ">
-          {isLoading ? (
+          {cartItemsLoading ? (
             <div className="h-40">
               <ThreeDotsLoader />
             </div>
@@ -61,7 +64,7 @@ const ShoppingCard = () => {
           )}
         </div>
 
-        <CouponCard pageIsLoading={isLoading} />
+        <CouponCard pageIsLoading={cartItemsLoading} />
       </div>
     </main>
   );

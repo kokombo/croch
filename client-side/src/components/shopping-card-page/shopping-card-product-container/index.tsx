@@ -17,7 +17,7 @@ const ShoppingCardProductContainer = (props: Props) => {
   return (
     <div className="flex flex-col gap-1 py-8 border_grey_1 rounded-xl h-fit bg-white">
       <span className="mx-3 lg:mx-6 block">
-        <H3 extraClasses="text-lightgreen">Shopping Card</H3>
+        <H3>Shopping Card</H3>
       </span>
 
       <>
