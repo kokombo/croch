@@ -80,6 +80,7 @@ import SectionHeading from "./creative-landing-page/section-heading";
 import UserSegmentRedirect from "./user-segment-redirect";
 import ProductAvailability from "./product-availability";
 import ColorRingLoader from "./loaders/color-ring";
+import ShoppingCardProductContainer from "./shopping-card-page/shopping-card-product-container";
 
 export {
   ProductDescription,
@@ -170,4 +171,5 @@ export {
   UserSegmentRedirect,
   ProductAvailability,
   ColorRingLoader,
+  ShoppingCardProductContainer,
 };

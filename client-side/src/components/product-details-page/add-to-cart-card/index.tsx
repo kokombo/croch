@@ -39,6 +39,7 @@ const AddToCartCard = (props: Props) => {
           decreaseCount={() => setCount((prev) => prev - 1)}
           increaseCount={() => setCount((prev) => prev + 1)}
           decreaseCountButtonDisabled={Boolean(count < 2)}
+          extraClasses="py-4 px-5 gap-4"
         />
       </div>
 

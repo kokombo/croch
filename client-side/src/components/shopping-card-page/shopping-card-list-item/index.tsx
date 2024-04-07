@@ -39,26 +39,17 @@ const ShoppingCardListItem = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:h-[72px]">
-      <div className="lg:w-1/3 flex-col items-start flex lg:flex-row lg:items-center gap-2 lg:gap-4">
+    <article className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:h-[72px]">
+      <div className="w-full lg:w-1/3 flex flex-col items-start lg:flex-row lg:items-center gap-2 lg:gap-4">
         <div className="flex items-center gap-2 lg:gap-4">
-          <>
-            <a id="delete-cart-item-anchor-element">
-              <button type="button" onClick={removeFromCart}>
-                <Image
-                  src={icons.closered}
-                  alt="delete-cart-item-icon"
-                  height={24}
-                  width={24}
-                />
-              </button>
-            </a>
-
-            <Tooltip
-              anchorSelect="#delete-cart-item-anchor-element"
-              content="Remove product"
+          <button type="button" onClick={removeFromCart}>
+            <Image
+              src={icons.closered}
+              alt="delete-cart-item-icon"
+              height={24}
+              width={24}
             />
-          </>
+          </button>
 
           <div className="relative h-[72px] w-[72px] rounded-[2px]">
             <Image
@@ -73,17 +64,18 @@ const ShoppingCardListItem = (props: Props) => {
           </div>
         </div>
 
-        <H6 extraClasses="flex-wrap"> {props.cartItem.title.slice(0, 25)}</H6>
+        <H6 extraClasses="text-wrap"> {props.cartItem.title.slice(0, 25)}</H6>
       </div>
 
-      <div className="lg:w-2/3 grid grid-cols-4 place-items-center">
-        <H6> &#8358;{commaNumber(props.cartItem.info.price)} </H6>
+      <div className="w-full flex items-center justify-between lg:w-2/3 lg:grid lg:grid-cols-4 lg:place-items-center">
+        <H6>&#8358;{commaNumber(props.cartItem.info.price)}</H6>
 
         <Counter
           count={count}
           decreaseCount={decreaseCount}
           increaseCount={increaseCount}
           decreaseCountButtonDisabled={Boolean(count < 2)}
+          extraClasses="py-2 px-3 lg:py-3 lg:px-4 gap-2"
         />
 
         <H6>
@@ -100,7 +92,7 @@ const ShoppingCardListItem = (props: Props) => {
 
         <H6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </H6>
       </div>
-    </div>
+    </article>
   );
 };
 

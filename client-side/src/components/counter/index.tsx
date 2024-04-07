@@ -4,11 +4,14 @@ type Props = {
   count: number;
   decreaseCountButtonDisabled?: boolean;
   increaseCountButtonDisabled?: boolean;
+  extraClasses: string;
 };
 
 const Counter = (props: Props) => {
   return (
-    <div className="py-4 px-5 flex items-center gap-4 rounded-lg border-[0.5px] border-grey">
+    <div
+      className={`${props.extraClasses} flex items-center rounded-lg border-[0.5px] border-grey`}
+    >
       <button
         type="button"
         onClick={props.decreaseCount}

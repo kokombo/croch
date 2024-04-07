@@ -13,7 +13,7 @@ const Cart = () => {
   const { data: carts, isLoading: cartsLoading, isError } = useGetCarts();
 
   return (
-    <main className="grid_center paddingX py-8 lg:py-16">
+    <main className="grid_center paddingX py-8 lg:py-16 min-h-screen">
       <div className="cart_container">
         {cartsLoading ? (
           <div className="h-200">
