@@ -35,7 +35,7 @@ const ProductInfoPage = () => {
   ) : (
     <div>
       {product && (
-        <div className="paddingX py-5 flex flex-col gap-15 lg:gap-18 pb-10">
+        <div className="paddingX lg:py-5 flex flex-col gap-15 lg:gap-18 pb-10">
           <section className="flex flex-col gap-4 lg:gap-6 py-5 border-grey border-b-[1px]">
             <div className="flex items-center justify-between">
               <H3>{product?.title}</H3>

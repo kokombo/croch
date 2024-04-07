@@ -12,7 +12,7 @@ const ReviewsList = ({ creativeId }: { creativeId: string }) => {
             <H3>Reviews</H3>
           </span>
 
-          <div className="flex flex-col gap-[60px] w-[58%]">
+          <div className="flex flex-col gap-[60px] w-full lg:w-[58%]">
             {reviews?.map((review) => {
               return <ReviewCard key={review._id} review={review} />;
             })}

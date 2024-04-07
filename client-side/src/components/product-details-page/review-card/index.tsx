@@ -44,7 +44,9 @@ const ReviewCard = (props: Props) => {
         </span>
       </span>
 
-      <p className="text-base font-normal">{props.review.message}</p>
+      <p className="text-sm leading-6 lg:text-base lg:leading-7">
+        {props.review.message}
+      </p>
     </article>
   );
 };
