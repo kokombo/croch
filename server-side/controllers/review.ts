@@ -28,7 +28,7 @@ const giveReview = async (req: Request, res: Response) => {
         .json({ message: "Invalid request." });
     }
 
-    if (order.customerId.toString() !== from) {
+    if (!order.customerId.equals(from)) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
         .json({ message: "You are not authorized to perform action." });
@@ -53,12 +53,12 @@ const giveReview = async (req: Request, res: Response) => {
 const getCreativeReviews = async (req: Request, res: Response) => {
   const creativeId = req.query.creativeId as string;
 
-    validateId(creativeId, res);
+  validateId(creativeId, res);
   try {
     const reviews = await Review.find({ to: creativeId })
       .populate({
         path: "from",
-        select: "firstName, lastName, profileImage",
+        select: "firstName lastName profileImage",
       })
       .populate({ path: "to", select: "brandName" });
 

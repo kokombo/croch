@@ -44,6 +44,11 @@ const config: Config = {
       transitionDuration: {
         400: "400ms",
       },
+
+      gap: {
+        18: "72px",
+        15: "60px",
+      },
     },
   },
   plugins: [],

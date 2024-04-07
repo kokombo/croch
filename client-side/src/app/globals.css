@@ -73,6 +73,10 @@ html {
   @apply flex flex-col items-center;
 }
 
+.flex_col_start {
+  @apply flex flex-col items-start;
+}
+
 .grid_center {
   @apply grid place-items-center;
 }

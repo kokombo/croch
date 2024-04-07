@@ -2,7 +2,7 @@ import Skeleton from "./skeleton";
 
 const ProductInfoPageSkeleton = () => {
   return (
-    <section className="flex flex-col gap-4 py-10 px-[4.6%] ">
+    <section className="flex flex-col gap-4 py-5 paddingX ">
       <span className="h-8 block">
         <Skeleton classes="full width-45" />
       </span>

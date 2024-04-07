@@ -18,14 +18,14 @@ const ProductOwnerCard = (props: Props) => {
   } = useGetCreativeById(props.product.owner._id, true);
 
   return (
-    <div className="flex flex-col gap-8 border-[1px] border-grey rounded-xl p-4 lg:p-7">
+    <div className="border-[1px] border-grey rounded-xl p-4 lg:p-7">
       {isLoading || isError || !creative ? (
         <div className="h-[200px]">
           <ThreeDotsLoader />
         </div>
       ) : (
-        <>
-          <span className=" flex flex-col items-start gap-1 lg:gap-2 xl:gap-0 xl:flex-row xl:justify-between">
+        <div className="flex flex-col gap-8 ">
+          <span className="flex_col_start gap-1 lg:gap-2 xl:gap-0 xl:flex-row xl:justify-between">
             <CreativeInfo creative={creative} />
 
             <CustomButton
@@ -42,7 +42,7 @@ const ProductOwnerCard = (props: Props) => {
             </p>
           </span>
 
-          <div>
+          <div className=" flex flex-col gap-2">
             <H3>Fun Facts</H3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
@@ -76,7 +76,7 @@ const ProductOwnerCard = (props: Props) => {
               })}
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

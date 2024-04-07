@@ -6,8 +6,8 @@ const ReviewsList = ({ creativeId }: { creativeId: string }) => {
 
   return (
     <>
-      {isSuccess && reviews && reviews?.length > 1 && (
-        <section className="flex flex-col gap-11 py-5 lg:py-10">
+      {isSuccess && reviews && reviews?.length > 0 && (
+        <section className="flex flex-col gap-8">
           <span>
             <H3>Reviews</H3>
           </span>
@@ -18,10 +18,11 @@ const ReviewsList = ({ creativeId }: { creativeId: string }) => {
             })}
           </div>
 
+          {/* Only show below when reviews length is more than 4. Implement later */}
           <span>
             <CustomButton
               type="button"
-              label="Show all 24 reviews"
+              label={`Show all ${reviews.length} reviews`}
               onClick={() => {}}
               extraClasses="border-[1px] border-black px-7 py-5"
             />

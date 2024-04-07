@@ -35,8 +35,8 @@ const ProductInfoPage = () => {
   ) : (
     <div>
       {product && (
-        <div className="paddingX">
-          <section className="flex flex-col gap-4 lg:gap-6 py-5 lg:py-10 ">
+        <div className="paddingX py-5 flex flex-col gap-15 lg:gap-18 pb-10">
+          <section className="flex flex-col gap-4 lg:gap-6 py-5 border-grey border-b-[1px]">
             <div className="flex items-center justify-between">
               <H3>{product?.title}</H3>
 
@@ -60,8 +60,8 @@ const ProductInfoPage = () => {
             </span>
           </section>
 
-          <section className="py-5 lg:py-10 flex flex-col-reverse gap-10 lg:flex-row lg:justify-between lg:items-start w-full border-grey border-t-[1px]">
-            <div className="flex flex-col gap-10 lg:gap-[60px] lg:w-[58%] ">
+          <section className=" flex flex-col-reverse gap-10 lg:flex-row lg:justify-between lg:items-start w-full ">
+            <div className="flex flex-col gap-10 lg:w-[58%] ">
               <ProductDescription description={product.description} />
 
               <ProductOwnerCard product={product} />

@@ -35,7 +35,7 @@ export const useSetupCreativeAccount = () => {
 };
 
 export const useGetCreativeOrders = (status: string) => {
-  const { accessToken } = useCurrentUser();
+  const { accessToken, session } = useCurrentUser();
 
   const getCreativeOrdersRequest = async () => {
     const res = await axios.get(
@@ -57,7 +57,7 @@ export const useGetCreativeOrders = (status: string) => {
   >({
     queryKey: ["getCreativeOrders"],
     queryFn: getCreativeOrdersRequest,
-    enabled: !!accessToken,
+    enabled: !!session,
   });
 
   return { data, isError, isLoading, error };

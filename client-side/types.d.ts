@@ -154,7 +154,6 @@ type CreativeAccountSetupData = {
 
 type ReviewData = {
   to: string;
-  from: string;
   forOrder: string;
   message: string;
   rating: number;

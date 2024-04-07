@@ -6,8 +6,10 @@ import {
   EmptyCart,
   H3,
   ThreeDotsLoader,
+  StyledLink,
 } from "@/components";
 import { useGetCarts } from "@/utilities/api-interactions/cart";
+import { icons } from "@/constants";
 
 const Cart = () => {
   const { data: carts, isLoading: cartsLoading, isError } = useGetCarts();
@@ -31,7 +33,7 @@ const Cart = () => {
           />
         ) : (
           <div className="flex flex-col gap-6 lg:gap-8">
-            <H3 extraClasses="text-lightgreen">Cart</H3>
+            <H3>Cart</H3>
 
             <Divider />
 
@@ -39,6 +41,13 @@ const Cart = () => {
               {carts?.map((cart) => {
                 return <CartCard key={cart.creativeId} cart={cart} />;
               })}
+
+              <StyledLink
+                href="/"
+                label="Return to marketplace"
+                leftIcon={icons.arrowleft}
+                extraClasses="border_grey_1 w-fit mt-6 hover:bg-gray"
+              />
             </div>
           </div>
         )}
