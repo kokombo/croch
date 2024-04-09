@@ -20,7 +20,7 @@ const Slider = (props: Props) => {
   const [touchStart, setTouchStart] = useState(0);
   const [offSet, setOffSet] = useState(0);
 
-  const swipeSlider = (e: TouchEvent<HTMLDivElement>) => {
+  const swipeSlide = (e: TouchEvent<HTMLDivElement>) => {
     if (touchStart === 0) return;
     const delta = e.touches[0].clientX - touchStart;
     setOffSet(delta);
@@ -48,11 +48,11 @@ const Slider = (props: Props) => {
         setTouchStart(e.touches[0].clientX);
         setOffSet(0);
       }}
-      onTouchMove={swipeSlider}
+      onTouchMove={swipeSlide}
       onTouchEnd={handleTouchEnd}
     >
       <div className="flex">
-        {props.product.photos?.map((data, sliderIndex) => {
+        {props.product.photos?.map((photo, sliderIndex) => {
           const opacity = index === sliderIndex ? "opacity-[1]" : "";
 
           return (
@@ -64,7 +64,7 @@ const Slider = (props: Props) => {
               <div className="relative h-[310px] md:h-[270px] ">
                 <Image
                   key={sliderIndex}
-                  src={data}
+                  src={photo}
                   alt=""
                   fill
                   quality={100}
