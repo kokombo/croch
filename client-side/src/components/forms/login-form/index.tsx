@@ -40,7 +40,7 @@ const LoginForm = () => {
       }
 
       if (res?.error) {
-        setError(res.error);
+        setError(res.error || "Something went wrong, please try again.");
       }
     } catch (error: any) {
       return setError(
