@@ -4,7 +4,7 @@ import "../../../../../globals.css";
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 export default function DashboardLayout({
   children,
@@ -25,5 +25,5 @@ export default function DashboardLayout({
     }
   }, [creative, router]);
 
-  return <>{children}</>;
+  return <Fragment>{children}</Fragment>;
 }

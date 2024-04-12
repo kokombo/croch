@@ -1,6 +1,6 @@
 "use client";
 
-import { ProtectRoute } from "@/components";
+import { Footer, ProtectRoute } from "@/components";
 import "../../../../globals.css";
 
 export default function CreativeProtectedLayout({
@@ -8,5 +8,5 @@ export default function CreativeProtectedLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <ProtectRoute> {children}</ProtectRoute>;
+  return <ProtectRoute>{children}</ProtectRoute>;
 }

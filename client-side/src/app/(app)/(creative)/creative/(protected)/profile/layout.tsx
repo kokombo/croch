@@ -1,6 +1,8 @@
 "use client";
-import { CreativeNavigationBar } from "@/components";
+
+import { CreativeNavigationBar, Footer } from "@/components";
 import "../../../../../globals.css";
+import { Fragment } from "react";
 
 export default function DashboardLayout({
   children,
@@ -8,10 +10,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <Fragment>
       <CreativeNavigationBar />
 
       {children}
-    </>
+
+      <Footer />
+    </Fragment>
   );
 }

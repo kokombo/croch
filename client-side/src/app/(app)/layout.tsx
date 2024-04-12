@@ -10,7 +10,7 @@ import {
   setOpenSignupModal,
   setOpenDropDown,
 } from "@/redux/slices/modal";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 export default function RootLayout({
   children,
@@ -35,7 +35,7 @@ export default function RootLayout({
   };
 
   return (
-    <>
+    <Fragment>
       <main onClick={() => dispatch(setOpenDropDown(false))}>{children}</main>
 
       {openLoginModal && (
@@ -81,6 +81,6 @@ export default function RootLayout({
           <H5> {errorMessage}</H5>
         </div>
       )}
-    </>
+    </Fragment>
   );
 }
