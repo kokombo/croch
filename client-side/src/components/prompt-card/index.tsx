@@ -17,14 +17,14 @@ const PromptCard = (props: Props) => {
           <CustomButton
             type="button"
             label="Cancel"
-            extraClasses="text-xs text-grey3 bg-black p-2 text-white"
+            extraClasses="text-sm font-thin text-grey3 bg-black p-2 text-white"
             onClick={props.closeCard}
           />
 
           <CustomButton
             type="button"
             label="Delete"
-            extraClasses="text-xs text-grey3 bg-red-700 p-2 text-white"
+            extraClasses="text-sm font-thin text-grey3 bg-red-700 p-2 text-white"
             onClick={props.confirm}
           />
         </span>
