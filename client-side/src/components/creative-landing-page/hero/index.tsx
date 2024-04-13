@@ -38,6 +38,7 @@ const Hero = () => {
           fill
           quality={100}
           priority
+          loading="eager"
           className="rounded-3xl object-cover"
           sizes="any"
         />

@@ -49,7 +49,13 @@ const CreativeLanding = () => {
         <Logo />
 
         <CustomButton
-          label="Croch Store Setup"
+          label={
+            !session
+              ? "Croch Store Setup"
+              : isCreative
+                ? "Proceed"
+                : "Go to marketplace"
+          }
           extraClasses="bg-black text-white px-10 py-4"
           onClick={initiateAccountSetup}
           type="button"
