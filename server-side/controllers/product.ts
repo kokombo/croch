@@ -224,13 +224,13 @@ const getAllProducts = async (req: Request, res: Response) => {
 
     //Pagination
 
-    const page = Number(req.query.page);
+    // const page = Number(req.query.page);
 
-    const limit = Number(req.query.limit);
+    // const limit = Number(req.query.limit);
 
-    const skip = (page - 1) * limit;
+    // const skip = (page - 1) * limit;
 
-    result = result.skip(skip).limit(limit);
+    // result = result.skip(skip).limit(limit);
 
     //Implement search
 
