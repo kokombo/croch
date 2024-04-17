@@ -121,8 +121,6 @@ export const useGetAllProducts = () => {
     useQuery<Product[], AxiosError<ErrorResponse>>({
       queryKey: ["getAllProducts"],
       queryFn: getAllProductsRequest,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: true,
     });
 
   return { data, isLoading, isError, error, isSuccess, isStale, isPending };
