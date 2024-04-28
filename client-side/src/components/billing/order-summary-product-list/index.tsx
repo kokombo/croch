@@ -24,7 +24,7 @@ const OrderSummaryProductList = (props: Props) => {
             </div>
 
             <div className="flex flex-col gap-[6px] text-sm text-customblack">
-              <span>{item.title.slice(0, 25)} </span>
+              <span>{item.title.substring(0, 25)} </span>
 
               <span>
                 {item.count} x{" "}
