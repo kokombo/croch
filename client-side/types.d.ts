@@ -41,8 +41,10 @@ type Order = {
     _id: string;
   }[];
   status: string;
-  price: number;
+  totalPrice: number;
   _id: string;
+  createdAt: string;
+  brandName: string;
 };
 
 type Creative = {

@@ -3,6 +3,7 @@ import Order = require("../models/order");
 import Customer = require("../models/customer");
 import { StatusCodes } from "http-status-codes";
 import validateId = require("../utilities/validateId");
+import Creative = require("../models/creative");
 
 const placeAnOrder = async (req: Request, res: Response) => {
   const { _id: customerId } = req.user;
@@ -27,12 +28,15 @@ const placeAnOrder = async (req: Request, res: Response) => {
       if (Boolean(creativeId === creativeIdFromClient)) {
         const cartItems = cart.cartItems;
 
+        const creative = await Creative.findById(creativeId);
+
         order = await Order.create({
           items: cartItems,
           customerId,
-          creativeId: cartItems[0].info.owner,
+          creativeId,
           status: "pending",
           totalPrice: cart.totalPrice,
+          brandName: creative.brandName,
         });
 
         carts.delete(creativeIdFromClient);

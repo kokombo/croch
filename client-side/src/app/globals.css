@@ -16,6 +16,25 @@ html {
   scrollbar-width: thin;
 }
 
+table {
+  border: 1px solid lightgray;
+}
+
+tbody {
+  border-bottom: 1px solid lightgray;
+}
+
+th {
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  padding: 24px 54px;
+}
+
+td {
+  border-bottom: 1px solid lightgray;
+  padding: 24px 54px;
+}
+
 @keyframes modalKey {
   0% {
     transform: scale(0.5);

@@ -25,6 +25,10 @@ const OrderSchema = new Schema(
       ref: "Creative",
     },
 
+    brandName: {
+      type: String,
+    },
+
     status: {
       type: String, //pending, fulfilled, cancelled
     },
