@@ -10,7 +10,7 @@ import AddToWishlist from "./add-to-wishlist";
 import ProductCardOwnerInfo from "./product-card-owner-info";
 import ProductsList from "./products-list";
 import Logo from "./logo";
-import NavigationBar from "./navigation-bar";
+import CustomerNavigationBar from "./navigation-bar";
 import SearchBox from "./search-box";
 import NavAccount from "./nav-account";
 import Tag from "./tag";
@@ -82,6 +82,9 @@ import ProductAvailability from "./product-availability";
 import ColorRingLoader from "./loaders/color-ring";
 import ShoppingCardProductContainer from "./shopping-card-page/shopping-card-product-container";
 import OvalLoader from "./loaders/oval-loader";
+import SelectField from "./select-field";
+import OrderFilter from "./order/order-filter";
+import OrderTable from "./order/order-table";
 
 export {
   ProductDescription,
@@ -103,7 +106,7 @@ export {
   ProductCardOwnerInfo,
   ProductsList,
   Logo,
-  NavigationBar,
+  CustomerNavigationBar,
   SearchBox,
   NavAccount,
   Tag,
@@ -174,4 +177,7 @@ export {
   ColorRingLoader,
   ShoppingCardProductContainer,
   OvalLoader,
+  SelectField,
+  OrderFilter,
+  OrderTable
 };

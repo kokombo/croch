@@ -32,6 +32,7 @@ import inactivedot from "../../public/icons/inactivedot.png";
 import funfact1 from "../../public/icons/funfact1.png";
 import funfact2 from "../../public/icons/funfact2.png";
 import funfact3 from "../../public/icons/funfact3.png";
+import whitefilter from "../../public/icons/whitefilter.png";
 
 const icons = {
   chevronleft,
@@ -68,6 +69,7 @@ const icons = {
   funfact1,
   funfact2,
   funfact3,
+  whitefilter,
 };
 
 export default icons;

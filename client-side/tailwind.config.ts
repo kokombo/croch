@@ -30,6 +30,8 @@ const config: Config = {
         skyblue: "#2DA5F3",
         ash2: "#F7F7F7",
         transparentwhite: "#FFFFFFCC",
+        orange: "#EFD33D",
+        red: "#EE0F0F",
       },
 
       width: {

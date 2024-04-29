@@ -1,6 +1,10 @@
 "use client";
 
-import { Footer, NavigationBar, UserSegmentRedirect } from "@/components";
+import {
+  Footer,
+  CustomerNavigationBar,
+  UserSegmentRedirect,
+} from "@/components";
 import "../../globals.css";
 
 const CustomerLayout = ({
@@ -10,7 +14,7 @@ const CustomerLayout = ({
 }>) => {
   return (
     <UserSegmentRedirect>
-      <NavigationBar />
+      <CustomerNavigationBar />
 
       {children}
 

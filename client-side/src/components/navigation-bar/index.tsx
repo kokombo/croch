@@ -4,21 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, StateType } from "@/redux/store";
 import { setOpenDropDown } from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
+import { usePathname } from "next/navigation";
 
-const NavigationBar = () => {
+const CustomerNavigationBar = () => {
   const { openDropDown } = useSelector((state: StateType) => state.modal);
 
   const { session, role } = useCurrentUser();
-
   const dispatch: DispatchType = useDispatch();
+  const pathname = usePathname();
+
+  const showSearchBox = Boolean(pathname === "/" || pathname === "/craft");
 
   return (
     <nav className="nav_container">
       <Logo />
 
-      <span className="hidden lg:inline-block w-[40%]">
-        <SearchBox onChange={() => {}} />
-      </span>
+      {showSearchBox && (
+        <span className="hidden lg:inline-block w-[40%]">
+          <SearchBox onChange={() => {}} />
+        </span>
+      )}
 
       <div className="flex items-center">
         {(!session || role !== "customer") && (
@@ -47,4 +52,4 @@ const NavigationBar = () => {
   );
 };
 
-export default NavigationBar;
+export default CustomerNavigationBar;

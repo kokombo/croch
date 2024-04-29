@@ -4,7 +4,7 @@ import {
   ProductsList,
   TagsList,
   FilterButton,
-  NavigationBar,
+  CustomerNavigationBar,
   Footer,
   UserSegmentRedirect,
 } from "@/components";
@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <UserSegmentRedirect>
       <main className="flex flex-col">
-        <NavigationBar />
+        <CustomerNavigationBar />
 
         <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
           <TagsList />
