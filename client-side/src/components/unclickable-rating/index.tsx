@@ -1,10 +1,11 @@
+import { Fragment } from "react";
 import { icons } from "@/constants";
 import Image from "next/image";
 import { H6 } from "..";
 
 const UnclickableRating = ({ rating }: { rating: number }) => {
   return (
-    <>
+    <Fragment>
       {rating && rating > 1 && (
         <span className="flex gap-[2px]">
           <H6>{rating}</H6>
@@ -21,6 +22,8 @@ const UnclickableRating = ({ rating }: { rating: number }) => {
                     height={16}
                     priority
                     className="object-contain"
+                    sizes="100vw"
+                    quality={100}
                   />
                 );
               }
@@ -28,7 +31,7 @@ const UnclickableRating = ({ rating }: { rating: number }) => {
           </span>
         </span>
       )}
-    </>
+    </Fragment>
   );
 };
 

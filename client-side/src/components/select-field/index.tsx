@@ -1,14 +1,19 @@
 import { Dispatch, SetStateAction } from "react";
-import Select, { SingleValue } from "react-select";
+import Select, { SingleValue, Options, GroupBase } from "react-select";
+
+type Option = {
+  label: string;
+  value: string;
+};
 
 type Props = {
   label: string;
   name: string;
   id: string;
   disabled?: boolean;
-  options: Array<any>;
-  status: SingleValue<string>;
-  setStatus: Dispatch<SetStateAction<SingleValue<string>>>;
+  options: any[];
+  status: SingleValue<SelectOption>;
+  setStatus: Dispatch<SetStateAction<SingleValue<SelectOption>>>;
 };
 
 const SelectField = (props: Props) => {
@@ -24,7 +29,7 @@ const SelectField = (props: Props) => {
           name={props.name}
           id={props.id}
           value={props.status}
-          onChange={(value) => props.setStatus(value)}
+          onChange={(option) => props.setStatus(option)}
           isSearchable={false}
           styles={{
             control: (baseStyles, state) => ({

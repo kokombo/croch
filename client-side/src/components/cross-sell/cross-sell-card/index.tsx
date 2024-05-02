@@ -40,6 +40,9 @@ const CrossSellCard = (props: Props) => {
                 width={20}
                 height={20}
                 className="object-contain"
+                priority
+                sizes="100vw"
+                quality={100}
               />{" "}
             </span>
           )}

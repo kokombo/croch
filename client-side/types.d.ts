@@ -176,3 +176,8 @@ type Review = {
   message: string;
   rating: number;
 };
+
+type SelectOption = {
+  label: string;
+  value: string;
+};

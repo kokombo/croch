@@ -103,6 +103,7 @@ const Slider = (props: Props) => {
                 alt="chevron prev button icon"
                 height={10}
                 width={6}
+                priority
               />
             }
             extraClasses="absolute left-[5%] top-1/2 bg-white"
@@ -122,6 +123,7 @@ const Slider = (props: Props) => {
                 alt="chevron-next-button-icon"
                 height={10}
                 width={6}
+                priority
               />
             }
             extraClasses="absolute right-[5%] top-1/2 bg-white"

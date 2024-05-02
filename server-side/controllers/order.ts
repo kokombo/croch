@@ -128,8 +128,14 @@ const getCustomerOrders = async (req: Request, res: Response) => {
 
   const status = req.query.status as string;
 
+  let orders;
+
   try {
-    const orders = await Order.find({ customerId, status });
+    if (status === "all") {
+      orders = await Order.find({ customerId });
+    } else {
+      orders = await Order.find({ customerId, status });
+    }
 
     return res.json(orders);
   } catch (error) {

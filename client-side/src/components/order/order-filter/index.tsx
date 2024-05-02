@@ -1,12 +1,15 @@
 import SelectField from "@/components/select-field";
 import { icons } from "@/constants";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { SingleValue } from "react-select";
 
-const OrderFilter = () => {
-  const [status, setStatus] = useState<SingleValue<string>>("pending");
+type Props = {
+  status: SingleValue<SelectOption>;
+  setStatus: Dispatch<SetStateAction<SingleValue<SelectOption>>>;
+};
 
+const OrderFilter = (props: Props) => {
   return (
     <div className="flex_item_justify_between py-6  border-x-[1px] border-t-[1px] border-grey px-12">
       <div></div>
@@ -15,15 +18,15 @@ const OrderFilter = () => {
         <SelectField
           label="Status"
           options={[
-            { label: "All status", value: "all" },
+            { label: "All Orders", value: "all" },
             { label: "Pending", value: "pending" },
             { label: "Filfilled", value: "filfilled" },
             { label: "Cancelled", value: "cancelled" },
           ]}
           name="status"
           id="status"
-          status={status}
-          setStatus={setStatus}
+          status={props.status}
+          setStatus={props.setStatus}
         />
 
         {/* <SelectField /> */}

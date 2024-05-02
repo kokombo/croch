@@ -12,7 +12,7 @@ const FlatGreenButton = (props: Props) => {
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
-      className={`${props.extraClasses} w-full p-4 rounded-lg ${props.disabled ? "bg-grey" : "bg-green"} text-white`}
+      className={`${props.extraClasses} w-full p-4 rounded-lg ${props.disabled ? "bg-grey cursor-not-allowed" : "bg-green"} text-white`}
     >
       {props.label}
     </button>

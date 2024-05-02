@@ -162,14 +162,12 @@ export const useGetCustomerOrders = (status: string) => {
     return res.data;
   };
 
-  const { data, isError, isLoading, error, isSuccess } = useQuery<
-    Order[],
-    AxiosError<ErrorResponse>
-  >({
-    queryKey: ["getCustomerOrders"],
-    queryFn: getCustomerOrdersRequest,
-    enabled: !!accessToken,
-  });
+  const { data, isError, isLoading, error, isSuccess, refetch, isRefetching } =
+    useQuery<Order[], AxiosError<ErrorResponse>>({
+      queryKey: ["getCustomerOrders"],
+      queryFn: getCustomerOrdersRequest,
+      enabled: !!accessToken,
+    });
 
-  return { data, isError, isLoading, error, isSuccess };
+  return { data, isError, isLoading, error, isSuccess, refetch, isRefetching };
 };

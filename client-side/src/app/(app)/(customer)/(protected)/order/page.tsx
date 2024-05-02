@@ -2,10 +2,14 @@
 
 import { H2, H6, OrderFilter, OrderTable } from "@/components";
 import { useGetCustomerOrders } from "@/utilities/api-interactions/order";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { SingleValue } from "react-select";
 
 const Order = () => {
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState<SingleValue<SelectOption>>({
+    label: "All Orders",
+    value: "all",
+  });
 
   const {
     data: orders,
@@ -13,7 +17,13 @@ const Order = () => {
     isLoading,
     isSuccess,
     error,
-  } = useGetCustomerOrders(status);
+    refetch,
+    isRefetching,
+  } = useGetCustomerOrders(status?.value!);
+
+  useEffect(() => {
+    refetch();
+  }, [status]);
 
   return (
     <main className="paddingX py-10">
@@ -26,7 +36,7 @@ const Order = () => {
         <span></span>
       </div>
 
-      <OrderFilter />
+      <OrderFilter status={status} setStatus={setStatus} />
 
       <OrderTable
         orders={orders}
@@ -34,6 +44,7 @@ const Order = () => {
         isLoading={isLoading}
         isSuccess={isSuccess}
         error={error}
+        status={status}
       />
     </main>
   );

@@ -7,6 +7,7 @@ import {
 import { AxiosError } from "axios";
 import commaNumber from "comma-number";
 import { useEffect, useMemo, useState } from "react";
+import { SingleValue } from "react-select";
 
 type Props = {
   orders: Order[] | undefined;
@@ -14,6 +15,7 @@ type Props = {
   isSuccess: boolean;
   isError: boolean;
   error: AxiosError<ErrorResponse, any> | null;
+  status: SingleValue<SelectOption>;
 };
 
 const OrderTable = (props: Props) => {
@@ -105,7 +107,7 @@ const OrderTable = (props: Props) => {
       ) : props.orders && props.orders.length < 1 ? (
         <tbody className="h-200">
           <tr>
-            <td>There are no orders.</td>
+            <td>{`There are no ${props.status?.value} orders.`} </td>
           </tr>
         </tbody>
       ) : (
