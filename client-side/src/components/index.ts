@@ -85,6 +85,7 @@ import OvalLoader from "./loaders/oval-loader";
 import SelectField from "./select-field";
 import OrderFilter from "./order/order-filter";
 import OrderTable from "./order/order-table";
+import MyDateRangePicker from "./date-range-picker";
 
 export {
   ProductDescription,
@@ -179,5 +180,6 @@ export {
   OvalLoader,
   SelectField,
   OrderFilter,
-  OrderTable
+  OrderTable,
+  MyDateRangePicker,
 };

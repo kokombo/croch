@@ -27,6 +27,7 @@ import redheart from "../../public/icons/redheart.png";
 import paymentmethod from "../../public/icons/paymentmethod.png";
 import successgreen from "../../public/icons/successgreen.png";
 import star from "../../public/icons/star.png";
+import date from "../../public/icons/date.png";
 import activedot from "../../public/icons/activedot.png";
 import inactivedot from "../../public/icons/inactivedot.png";
 import funfact1 from "../../public/icons/funfact1.png";
@@ -70,6 +71,7 @@ const icons = {
   funfact2,
   funfact3,
   whitefilter,
+  date,
 };
 
 export default icons;

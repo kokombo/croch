@@ -3,6 +3,7 @@
 import { H2, H6, OrderFilter, OrderTable } from "@/components";
 import { useGetCustomerOrders } from "@/utilities/api-interactions/order";
 import { useEffect, useState } from "react";
+import { RangeKeyDict } from "react-date-range";
 import { SingleValue } from "react-select";
 
 const Order = () => {
@@ -10,6 +11,10 @@ const Order = () => {
     label: "All Orders",
     value: "all",
   });
+
+  const handleDateSelect = (rangesByKey: RangeKeyDict) => {
+    console.log(rangesByKey);
+  };
 
   const {
     data: orders,
@@ -36,7 +41,13 @@ const Order = () => {
         <span></span>
       </div>
 
-      <OrderFilter status={status} setStatus={setStatus} />
+      <OrderFilter
+        status={status}
+        setStatus={setStatus}
+        startDate={new Date()}
+        endDate={new Date()}
+        handleSelect={handleDateSelect}
+      />
 
       <OrderTable
         orders={orders}

@@ -1,3 +1,4 @@
+import { icons } from "@/constants";
 import {
   useReactTable,
   createColumnHelper,
@@ -6,6 +7,7 @@ import {
 } from "@tanstack/react-table";
 import { AxiosError } from "axios";
 import commaNumber from "comma-number";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { SingleValue } from "react-select";
 
@@ -34,7 +36,18 @@ const OrderTable = (props: Props) => {
       columnHelper.accessor("createdAt", {
         header: () => "Date",
         cell: (info) => (
-          <span> {new Date(info.getValue()).toDateString()} </span>
+          <div className="flex_center gap-2">
+            <Image
+              src={icons.date}
+              alt=""
+              height={20}
+              width={20}
+              priority
+              quality={100}
+              className="cursor-pointer"
+            />
+            {new Date(info.getValue()).toDateString()}
+          </div>
         ),
       }),
 

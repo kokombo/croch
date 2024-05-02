@@ -1,18 +1,47 @@
+import MyDateRangePicker from "@/components/date-range-picker";
 import SelectField from "@/components/select-field";
 import { icons } from "@/constants";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, Fragment, SetStateAction, useState } from "react";
+import { RangeKeyDict } from "react-date-range";
 import { SingleValue } from "react-select";
 
 type Props = {
   status: SingleValue<SelectOption>;
   setStatus: Dispatch<SetStateAction<SingleValue<SelectOption>>>;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  handleSelect: (rangesByKey: RangeKeyDict) => void;
 };
 
 const OrderFilter = (props: Props) => {
+  const [showCalender, setShowCalender] = useState(false);
+
   return (
     <div className="flex_item_justify_between py-6  border-x-[1px] border-t-[1px] border-grey px-12">
-      <div></div>
+      <div>
+        <span onClick={() => setShowCalender((showCalender) => !showCalender)}>
+          <Image
+            src={icons.date}
+            alt=""
+            height={20}
+            width={20}
+            priority
+            quality={100}
+            className="cursor-pointer"
+          />
+        </span>
+
+        <Fragment>
+          {showCalender && (
+            <MyDateRangePicker
+              startDate={props.startDate}
+              endDate={props.endDate}
+              handleSelect={props.handleSelect}
+            />
+          )}
+        </Fragment>
+      </div>
 
       <div className="flex_center gap-4">
         <SelectField
