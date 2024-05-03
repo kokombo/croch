@@ -34,7 +34,7 @@ const TextArea = (props: Props) => {
         name={props.name}
         component="div"
         id={props.id}
-        className="text-red-700 text-sm font-medium mt-[2px] absolute"
+        className="text-red text-sm font-medium mt-[2px] absolute"
       />
     </div>
   );

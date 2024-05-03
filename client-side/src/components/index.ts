@@ -22,11 +22,11 @@ import SignupForm from "./forms/signup-form";
 import FlatGreenButton from "./buttons/flat-green-button";
 import SelectAccountType from "./select-account-type";
 import CustomError from "./custom-error";
-import AccountSetupStep from "./account-setup-step";
-import AccountSetupStepInfo from "./account-setup-step-info";
-import TextArea from "./text-area/input";
+import AccountSetupStep from "./become-a-creative/account-setup-step";
+import AccountSetupStepInfo from "./become-a-creative/account-setup-step-info";
+import TextArea from "./text-area";
 import CustomButton from "./buttons/custom-button";
-import UploadLogo from "./upload-logo/input";
+import UploadLogo from "./upload-logo";
 import Footer from "./footer";
 import About from "./creative-landing-page/about";
 import CreativesTestimonial from "./creative-landing-page/creatives-testimonial";
@@ -86,6 +86,10 @@ import SelectField from "./select-field";
 import OrderFilter from "./order/order-filter";
 import OrderTable from "./order/order-table";
 import MyDateRangePicker from "./date-range-picker";
+import AccountSetupBar from "./become-a-creative/account-setup-bar";
+import AccountSetupContainer from "./become-a-creative/account-setup-container";
+import AccountSetupForm from "./become-a-creative/account-setup-form";
+import AccountSetupStepDescription from "./become-a-creative/account-setup-step-description";
 
 export {
   ProductDescription,
@@ -182,4 +186,8 @@ export {
   OrderFilter,
   OrderTable,
   MyDateRangePicker,
+  AccountSetupBar,
+  AccountSetupContainer,
+  AccountSetupForm,
+  AccountSetupStepDescription,
 };

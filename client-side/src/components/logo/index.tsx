@@ -15,7 +15,7 @@ const Logo = (props: Props) => {
 
   return (
     <Link
-      href={`${!session || role === "customer" ? "/" : `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`}`}
+      href={`${!session || role === "customer" ? "/" : `/creative/dashboard/${creative?.brandName?.toLowerCase()}~${creative?._id?.substring(0, 16)}`}`}
       aria-disabled={props.diabled}
     >
       <Image

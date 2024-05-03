@@ -11,7 +11,9 @@ export default function CreativeProtectedLayout({
 }>) {
   const pathname = usePathname();
 
-  const hideHeaderAndFooter = Boolean(pathname === "/become-a-creative");
+  const hideHeaderAndFooter = Boolean(
+    pathname === "/creative/become-a-creative"
+  );
 
   return (
     <ProtectRoute>
