@@ -1,7 +1,8 @@
 "use client";
 
 import "../../../../globals.css";
-import { CreativeNavigationBar, Footer, ProtectRoute } from "@/components";
+import { Footer, ProtectRoute } from "@/components";
+import { CreativeNavigationBar } from "@/components/navigation-bars";
 import { usePathname } from "next/navigation";
 
 export default function CreativeProtectedLayout({

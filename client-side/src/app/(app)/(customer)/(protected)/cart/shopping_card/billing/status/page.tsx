@@ -1,6 +1,6 @@
 "use client";
 
-import { OrderStatusSuccess } from "@/components";
+import { OrderStatusSuccess } from "@/components/order";
 import { useSearchParams } from "next/navigation";
 
 const BillingStatus = () => {

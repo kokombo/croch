@@ -1,14 +1,11 @@
-import {
-  AvailabilityAndGenderBox,
-  Counter,
-  CustomButton,
-  DeliveryTime,
-  Divider,
-  PriceBox,
-  SelectProductSize,
-  ProductInfo,
-  AddToCartButton,
-} from "@/components";
+import { Divider } from "@/components";
+import Counter from "@/components/product/counter";
+import AvailabilityAndGenderBox from "../availability+gender";
+import DeliveryTime from "../delivery-time";
+import PriceBox from "../price-box";
+import SelectProductSize from "../select-product-size";
+import ProductInfo from "../product-info";
+import AddToCartButton from "../add-to-cart-button";
 import { useState } from "react";
 
 type Props = {

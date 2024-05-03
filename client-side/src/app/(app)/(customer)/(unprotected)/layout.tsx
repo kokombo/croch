@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  Footer,
-  CustomerNavigationBar,
-  UserSegmentRedirect,
-} from "@/components";
 import "../../../globals.css";
+import { CustomerNavigationBar } from "@/components/navigation-bars";
+import { Footer, UserSegmentRedirect } from "@/components";
 
 const CustomerUnprotectedLayout = ({
   children,

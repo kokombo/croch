@@ -1,4 +1,6 @@
-import { H4, AddToCartButton, H5, ProductAvailability } from "@/components";
+import { H4, H5 } from "@/components";
+import { AddToCartButton } from "@/components/product-details-page";
+import { ProductAvailability } from "@/components/product";
 import Image from "next/image";
 import commaNumber from "comma-number";
 import { icons } from "@/constants";

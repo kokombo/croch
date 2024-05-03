@@ -3,151 +3,46 @@ import NextAuthProvider from "./next-auth-provider";
 import Slider from "./slider";
 import DropDown from "./drop-down";
 import Modal from "./modal";
-import RoundIconButton from "./buttons/round-icon-button";
-import UnclickableRating from "./unclickable-rating";
-import ProductCard from "./product-card";
-import AddToWishlist from "./add-to-wishlist";
-import ProductCardOwnerInfo from "./product-card-owner-info";
-import ProductsList from "./products-list";
 import Logo from "./logo";
-import CustomerNavigationBar from "./navigation-bar";
-import SearchBox from "./search-box";
-import NavAccount from "./nav-account";
-import Tag from "./tag";
-import TagsList from "./tags-list";
-import FilterButton from "./filter-button";
-import TextField from "./text-field";
 import LoginForm from "./forms/login-form";
 import SignupForm from "./forms/signup-form";
-import FlatGreenButton from "./buttons/flat-green-button";
-import SelectAccountType from "./select-account-type";
 import CustomError from "./custom-error";
-import AccountSetupStep from "./become-a-creative/account-setup-step";
-import AccountSetupStepInfo from "./become-a-creative/account-setup-step-info";
-import TextArea from "./text-area";
-import CustomButton from "./buttons/custom-button";
-import UploadLogo from "./upload-logo";
 import Footer from "./footer";
-import About from "./creative-landing-page/about";
-import CreativesTestimonial from "./creative-landing-page/creatives-testimonial";
-import Hero from "./creative-landing-page/hero";
-import HowItWorks from "./creative-landing-page/how-it-works";
-import WhyUs from "./creative-landing-page/why-us";
-import ProductOwnerCard from "./product-details-page/product-owner-card";
-import ProductInfo from "./product-details-page/product-info";
-import ProductImagesGrid from "./product-details-page/product-images-grid";
-import ProductDescription from "./product-details-page/product-description";
-import CreativePersonalDescription from "./product-details-page/creative-personal-description";
-import CreativeInfo from "./product-details-page/creative-info";
-import AddToCartCard from "./product-details-page/add-to-cart-card";
-import FullImagesList from "./product-details-page/full-images-list";
 import IconAndTextWrapper from "./icon-and-text-wrapper";
-import Counter from "./counter";
-import ReviewCard from "./product-details-page/review-card";
-import ReviewsList from "./product-details-page/reviews-list";
-import SelectProductSize from "./product-details-page/select-product-size";
-import CartCard from "./cart-card";
 import PromptCard from "./prompt-card";
-import ShoppingCardListItem from "./shopping-card-page/shopping-card-list-item";
 import ProtectRoute from "./protect-route";
 import Divider from "./divider";
-import DeliveryTime from "./product-details-page/delivery-time";
-import PriceBox from "./product-details-page/price-box";
-import AvailabilityAndGenderBox from "./product-details-page/availability+gender";
 import Location from "./location";
 import { H1, H2, H3, H5, H4, H6, SpanText } from "./texts";
 import RingsLoader from "./loaders/rings";
 import ThreeDotsLoader from "./loaders/three-dots";
 import ProductSkeleton from "./loaders/skeletons/product-skeleton";
 import ProductInfoPageSkeleton from "./loaders/skeletons/product-info-page-skeleton";
-import CheckOutCard from "./shopping-card-page/check-out-card";
-import CouponCard from "./shopping-card-page/coupon-card";
-import CartItemsTableHead from "./shopping-card-page/cart-items-table-head";
-import CheckOutLabel from "./shopping-card-page/check-out-label";
 import FullScreenLoader from "./loaders/full-screen-loader";
 import StyledLink from "./styled-link";
-import PricingBox from "./shopping-card-page/pricing-box";
 import OrderSummaryProductList from "./billing/order-summary-product-list";
 import OverlayLoader from "./loaders/overlay-loader";
-import OrderStatusSuccess from "./order/order-status-success";
-import EmptyCart from "./empty-cart";
-import AddToCartButton from "./product-details-page/add-to-cart-button";
-import CrossSellCard from "./cross-sell/cross-sell-card";
-import CrossSellContainer from "./cross-sell/cross-sell-container";
 import NavigationLinksCard from "./navigation-links-card";
-import CreativeNavigationBar from "./creative-navigation-bar";
-import SectionHeading from "./creative-landing-page/section-heading";
 import UserSegmentRedirect from "./user-segment-redirect";
-import ProductAvailability from "./product-availability";
 import ColorRingLoader from "./loaders/color-ring";
-import ShoppingCardProductContainer from "./shopping-card-page/shopping-card-product-container";
 import OvalLoader from "./loaders/oval-loader";
-import SelectField from "./select-field";
-import OrderFilter from "./order/order-filter";
-import OrderTable from "./order/order-table";
 import MyDateRangePicker from "./date-range-picker";
-import AccountSetupBar from "./become-a-creative/account-setup-bar";
-import AccountSetupContainer from "./become-a-creative/account-setup-container";
-import AccountSetupForm from "./become-a-creative/account-setup-form";
-import AccountSetupStepDescription from "./become-a-creative/account-setup-step-description";
 
 export {
-  ProductDescription,
-  ProductImagesGrid,
-  ProductOwnerCard,
-  ProductInfo,
-  CreativePersonalDescription,
-  CreativeInfo,
-  AddToCartCard,
   ReactQueryProvider,
   NextAuthProvider,
   Slider,
   DropDown,
   Modal,
-  RoundIconButton,
-  UnclickableRating,
-  ProductCard,
-  AddToWishlist,
-  ProductCardOwnerInfo,
-  ProductsList,
   Logo,
-  CustomerNavigationBar,
-  SearchBox,
-  NavAccount,
-  Tag,
-  TagsList,
-  FilterButton,
-  TextField,
   LoginForm,
   SignupForm,
-  FlatGreenButton,
-  SelectAccountType,
   CustomError,
-  AccountSetupStep,
-  AccountSetupStepInfo,
-  TextArea,
-  CustomButton,
-  UploadLogo,
   Footer,
-  About,
-  CreativesTestimonial,
-  Hero,
-  HowItWorks,
-  WhyUs,
-  FullImagesList,
   IconAndTextWrapper,
-  Counter,
-  ReviewCard,
-  ReviewsList,
-  SelectProductSize,
-  CartCard,
   PromptCard,
-  ShoppingCardListItem,
   ProtectRoute,
   Divider,
-  DeliveryTime,
-  PriceBox,
-  AvailabilityAndGenderBox,
   Location,
   H1,
   H2,
@@ -160,34 +55,13 @@ export {
   ThreeDotsLoader,
   ProductSkeleton,
   ProductInfoPageSkeleton,
-  CheckOutCard,
-  CouponCard,
-  CartItemsTableHead,
-  CheckOutLabel,
   FullScreenLoader,
   StyledLink,
-  PricingBox,
   OrderSummaryProductList,
   OverlayLoader,
-  OrderStatusSuccess,
-  EmptyCart,
-  AddToCartButton,
-  CrossSellCard,
-  CrossSellContainer,
   NavigationLinksCard,
-  CreativeNavigationBar,
-  SectionHeading,
   UserSegmentRedirect,
-  ProductAvailability,
   ColorRingLoader,
-  ShoppingCardProductContainer,
   OvalLoader,
-  SelectField,
-  OrderFilter,
-  OrderTable,
   MyDateRangePicker,
-  AccountSetupBar,
-  AccountSetupContainer,
-  AccountSetupForm,
-  AccountSetupStepDescription,
 };

@@ -1,12 +1,11 @@
 "use client";
+import { OverlayLoader, ThreeDotsLoader } from "@/components";
+import { CreativeInfo } from "@/components/product-details-page";
 import {
   CheckOutCard,
   CouponCard,
-  CreativeInfo,
-  OverlayLoader,
   ShoppingCardProductContainer,
-  ThreeDotsLoader,
-} from "@/components";
+} from "@/components/cart";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useSearchParams, useRouter } from "next/navigation";

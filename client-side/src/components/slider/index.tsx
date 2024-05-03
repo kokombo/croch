@@ -1,13 +1,11 @@
 import Image from "next/image";
 import { useState, TouchEvent } from "react";
+import { RoundIconButton } from "../buttons";
 import {
-  AddToWishlist,
-  H5,
-  H6,
   ProductAvailability,
   ProductCardOwnerInfo,
-  RoundIconButton,
-} from "..";
+  AddToWishlist,
+} from "../product";
 import { icons } from "@/constants";
 
 type Props = {

@@ -1,9 +1,9 @@
-import { CustomButton, H3, H6, ThreeDotsLoader } from "@/components";
+import { H3, H6, ThreeDotsLoader } from "@/components";
 import CreativeInfo from "../creative-info";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import Image from "next/image";
 import { icons } from "@/constants";
-import Link from "next/link";
+import { CustomButton } from "@/components/buttons";
 
 type Props = {
   product: Product;

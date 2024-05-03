@@ -1,6 +1,7 @@
 "use client";
 
-import { H2, H6, OrderFilter, OrderTable } from "@/components";
+import { H2, H6 } from "@/components";
+import { OrderFilter, OrderTable } from "@/components/order";
 import { useGetCustomerOrders } from "@/utilities/api-interactions/order";
 import { useEffect, useState } from "react";
 import { RangeKeyDict } from "react-date-range";

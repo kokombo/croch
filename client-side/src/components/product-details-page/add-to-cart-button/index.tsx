@@ -1,4 +1,4 @@
-import { CustomButton } from "@/components";
+import { CustomButton } from "@/components/buttons";
 import { useDispatch } from "react-redux";
 import { useCurrentUser } from "@/utilities";
 import { DispatchType } from "@/redux/store";

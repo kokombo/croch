@@ -5,7 +5,7 @@ import {
   AccountSetupForm,
   AccountSetupBar,
   AccountSetupStepDescription,
-} from "@/components";
+} from "@/components/become-a-creative";
 import {
   useAccountSetupDone,
   useSetupCreativeAccount,

@@ -1,11 +1,7 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import {
-  CustomError,
-  FlatGreenButton,
-  H2,
-  SelectAccountType,
-  TextField,
-} from "@/components";
+import { CustomError, H2 } from "@/components";
+import { SelectAccountType, TextField } from "@/components/input-fields";
+import { FlatGreenButton } from "@/components/buttons";
 import { icons } from "@/constants";
 import { SetStateAction, Dispatch, useState } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";

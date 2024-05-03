@@ -1,5 +1,5 @@
 import MyDateRangePicker from "@/components/date-range-picker";
-import SelectField from "@/components/select-field";
+import SelectField from "@/components/input-fields/select-field";
 import { icons } from "@/constants";
 import Image from "next/image";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";

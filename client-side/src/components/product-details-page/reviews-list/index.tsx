@@ -1,4 +1,6 @@
-import { CustomButton, H3, ReviewCard } from "@/components";
+import { H3 } from "@/components";
+import { CustomButton } from "@/components/buttons";
+import ReviewCard from "../review-card";
 import { useGetCreativeReviews } from "@/utilities/api-interactions/review";
 
 const ReviewsList = ({ creativeId }: { creativeId: string }) => {

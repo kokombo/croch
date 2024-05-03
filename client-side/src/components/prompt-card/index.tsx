@@ -1,4 +1,5 @@
-import { DropDown, CustomButton } from "..";
+import { DropDown } from "..";
+import { CustomButton } from "../buttons";
 
 type Props = {
   prompt: string;

@@ -1,4 +1,5 @@
-import { H6, UnclickableRating } from "@/components";
+import { H6 } from "@/components";
+import UnclickableRating from "@/components/product/unclickable-rating";
 
 type Props = {
   product: Product;

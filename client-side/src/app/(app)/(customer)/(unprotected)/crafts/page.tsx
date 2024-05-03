@@ -1,19 +1,16 @@
 "use client";
 
+import { Location, H3, ProductInfoPageSkeleton, H6 } from "@/components";
+import { CrossSellContainer } from "@/components/cross-sell";
+import { AddToWishlist } from "@/components/product";
 import {
   AddToCartCard,
-  AddToWishlist,
   ProductDescription,
   ProductImagesGrid,
   ProductInfo,
   ProductOwnerCard,
   ReviewsList,
-  Location,
-  H3,
-  ProductInfoPageSkeleton,
-  H6,
-  CrossSellContainer,
-} from "@/components";
+} from "@/components/product-details-page";
 import { icons } from "@/constants";
 import { useGetProductById } from "@/utilities/api-interactions/product";
 import { useSearchParams } from "next/navigation";

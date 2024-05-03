@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  CartCard,
-  Divider,
-  EmptyCart,
-  H3,
-  ThreeDotsLoader,
-  StyledLink,
-} from "@/components";
+import { Divider, H3, ThreeDotsLoader, StyledLink } from "@/components";
+import { CartCard, EmptyCart } from "@/components/cart";
 import { useGetCarts } from "@/utilities/api-interactions/cart";
 import { icons } from "@/constants";
 

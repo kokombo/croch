@@ -3,13 +3,13 @@
 import { useSearchParams } from "next/navigation";
 import { usePlaceAnOrder } from "@/utilities/api-interactions/order";
 import {
-  CustomButton,
   H3,
   OrderSummaryProductList,
   OverlayLoader,
-  PricingBox,
   RingsLoader,
 } from "@/components";
+import { CustomButton } from "@/components/buttons";
+import { PricingBox } from "@/components/cart";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";

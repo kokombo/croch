@@ -1,15 +1,14 @@
 "use client";
 
+import { Logo, Footer } from "@/components";
+import { CustomButton } from "@/components/buttons";
 import {
-  Logo,
   Hero,
   About,
   CreativesTestimonial,
   HowItWorks,
   WhyUs,
-  CustomButton,
-  Footer,
-} from "@/components";
+} from "@/components/creative-landing-page";
 import { useCurrentUser } from "@/utilities";
 import { setOpenLoginModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";

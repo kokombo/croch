@@ -1,8 +1,8 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import TextField from "../../text-field";
-import TextArea from "../../text-area";
+import TextField from "../../input-fields/text-field";
+import TextArea from "../../input-fields/text-area";
 import CustomButton from "../../buttons/custom-button";
-import UploadLogo from "../../upload-logo";
+import UploadLogo from "../../input-fields/upload-logo";
 import CustomError from "../../custom-error";
 import OverlayLoader from "../../loaders/overlay-loader";
 import { creativeAccountSetupValidationSchema } from "@/utilities/validation/form-validations";

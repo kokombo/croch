@@ -1,13 +1,10 @@
 "use client";
 
-import {
-  ProductsList,
-  TagsList,
-  FilterButton,
-  CustomerNavigationBar,
-  Footer,
-  UserSegmentRedirect,
-} from "@/components";
+import { Footer, UserSegmentRedirect } from "@/components";
+import { TagsList } from "@/components/tag";
+import { ProductsList } from "@/components/product";
+import { FilterButton } from "@/components/buttons";
+import { CustomerNavigationBar } from "@/components/navigation-bars";
 import { useGetAllProducts } from "@/utilities/api-interactions/product";
 
 const Home = () => {

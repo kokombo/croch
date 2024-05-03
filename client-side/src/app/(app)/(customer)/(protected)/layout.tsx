@@ -1,7 +1,8 @@
 "use client";
 
-import { CustomerNavigationBar, Footer, ProtectRoute } from "@/components";
 import "../../../globals.css";
+import { CustomerNavigationBar } from "@/components/navigation-bars";
+import { Footer, ProtectRoute } from "@/components";
 
 const CustomerProtectedLayout = ({
   children,

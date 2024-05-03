@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductsList } from "@/components";
+import { ProductsList } from "@/components/product";
 import { useGetWishlists } from "@/utilities/api-interactions/customer";
 
 const WishList = () => {

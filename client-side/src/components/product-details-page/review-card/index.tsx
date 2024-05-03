@@ -1,4 +1,5 @@
-import { H2, H6, UnclickableRating, H5 } from "@/components";
+import { H2, H6, H5 } from "@/components";
+import UnclickableRating from "@/components/product/unclickable-rating";
 import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 

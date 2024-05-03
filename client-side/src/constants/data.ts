@@ -20,3 +20,18 @@ export const CREATIVE_ACCOUNT_SETUP = {
       "Lorem ipsum dolor sit amet consectetur. Bibendum dignissim molestie vehicula et convallis massa enim porttitor. Odio pellentesque hac velit eget orci porttitor sed porta.  sit ",
   },
 };
+
+export const UNAUTHENTICATED_LINKS = [
+  { label: "Log in", href: "/login" },
+  { label: "Sign up", href: "/signup" },
+  { label: "Sell Your Creative", href: "/creative/home" },
+  { label: "Help center", href: "/help-center" },
+];
+
+export const AUTHENTICATED_CUSTOMER_LINKS = [
+  { label: "Cart", href: "/cart" },
+  { label: "Wishlist", href: "/wishlist" },
+  { label: "Order", href: "/order" },
+  { label: "Profile", href: "/profile" },
+  { label: "Sign out", href: "/signout" },
+];

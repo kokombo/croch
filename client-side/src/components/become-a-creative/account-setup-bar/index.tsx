@@ -1,5 +1,5 @@
 import DropDown from "@/components/drop-down";
-import NavAccount from "@/components/nav-account";
+import { NavAccountButton } from "@/components/buttons";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
@@ -15,7 +15,7 @@ const AccountSetupBar = (props: Props) => {
       <div />
 
       <div className="relative">
-        <NavAccount
+        <NavAccountButton
           onClick={() => {
             props.setShowDropDown((prev) => !prev);
           }}

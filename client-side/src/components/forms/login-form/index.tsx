@@ -1,4 +1,6 @@
-import { CustomError, FlatGreenButton, H2, H6, TextField } from "@/components";
+import { CustomError, H2, H6 } from "@/components";
+import { TextField } from "@/components/input-fields";
+import { FlatGreenButton } from "@/components/buttons";
 import { Formik, Form, FormikHelpers } from "formik";
 import { useState } from "react";
 import { loginFormValidationSchema } from "@/utilities";

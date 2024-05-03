@@ -1,4 +1,5 @@
-import { Footer, Logo, NavAccount, ThreeDotsLoader } from "@/components";
+import { Footer, Logo, ThreeDotsLoader } from "@/components";
+import { NavAccountButton } from "@/components/buttons";
 
 const FullScreenLoader = () => {
   return (
@@ -6,7 +7,7 @@ const FullScreenLoader = () => {
       <nav className="nav_container">
         <Logo diabled={true} />
 
-        <NavAccount onClick={() => {}} opened={false} />
+        <NavAccountButton onClick={() => {}} opened={false} />
       </nav>
 
       <div className="grid place-items-center h-[86vh]">

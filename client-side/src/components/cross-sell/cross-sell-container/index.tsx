@@ -1,4 +1,3 @@
-import { useGetAllProducts } from "@/utilities/api-interactions/product";
 import CrossSellCard from "../cross-sell-card";
 import { H3, StyledLink } from "@/components";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";

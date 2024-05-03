@@ -1,4 +1,4 @@
-import { CustomButton } from "@/components";
+import { CustomButton } from "@/components/buttons";
 import images from "@/constants/images";
 import Image from "next/image";
 

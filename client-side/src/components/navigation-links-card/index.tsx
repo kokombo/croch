@@ -9,26 +9,15 @@ import {
 import { DispatchType } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { signOut } from "next-auth/react";
-
-const unauthenticatedLinks = [
-  { label: "Log in", href: "/login" },
-  { label: "Sign up", href: "/signup" },
-  { label: "Sell Your Creative", href: "/creative/home" },
-  { label: "Help center", href: "/help-center" },
-];
-
-const authenticatedCustomerLinks = [
-  { label: "Cart", href: "/cart" },
-  { label: "Wishlist", href: "/wishlist" },
-  { label: "Order", href: "/order" },
-  { label: "Profile", href: "/profile" },
-  { label: "Sign out", href: "/signout" },
-];
+import {
+  AUTHENTICATED_CUSTOMER_LINKS,
+  UNAUTHENTICATED_LINKS,
+} from "@/constants/data";
 
 const NavigationLinksCard = () => {
   const dispatch: DispatchType = useDispatch();
 
-  const { session, role } = useCurrentUser();
+  const { session } = useCurrentUser();
 
   const openLoginModal = () => {
     dispatch(setOpenLoginModal(true));
@@ -43,7 +32,7 @@ const NavigationLinksCard = () => {
   return (
     <DropDown extraClasses="right-0 mt-2">
       {!session &&
-        unauthenticatedLinks.map((item, index) => {
+        UNAUTHENTICATED_LINKS.map((item, index) => {
           return (
             <Link
               href={item.href}
@@ -71,7 +60,7 @@ const NavigationLinksCard = () => {
         })}
 
       {session &&
-        authenticatedCustomerLinks.map((item, index) => {
+        AUTHENTICATED_CUSTOMER_LINKS.map((item, index) => {
           return (
             <Link
               key={index}
