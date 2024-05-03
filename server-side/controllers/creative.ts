@@ -37,7 +37,7 @@ const setupAccount = async (req: Request, res: Response) => {
 
     await creative.save();
 
-    return res.json({ message: "Account successfully setup" });
+    return res.json(creative);
   } catch (error) {
     console.log(error);
     return res

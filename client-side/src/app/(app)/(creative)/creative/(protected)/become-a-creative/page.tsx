@@ -8,22 +8,16 @@ import {
 } from "@/components";
 import {
   useAccountSetupDone,
-  useGetCreativeById,
   useSetupCreativeAccount,
 } from "@/utilities/api-interactions/creative";
 import { FormikHelpers } from "formik";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCurrentUser } from "@/utilities";
 
 const CreativeAccountSetup = () => {
   const [step, setStep] = useState(1);
 
   const [showDropDown, setShowDropDown] = useState(false);
-
-  const { id, isCreative } = useCurrentUser();
-
-  const { data: creative } = useGetCreativeById(id, isCreative);
 
   const router = useRouter();
 
@@ -47,7 +41,7 @@ const CreativeAccountSetup = () => {
     formData.append("yearsOfExperience", values.yearsOfExperience);
 
     await mutateAsync(formData, {
-      onSuccess: () => {
+      onSuccess: (creative) => {
         confirmAccountSetup();
         onsubmitProps.resetForm();
         router.push(

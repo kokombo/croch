@@ -12,7 +12,7 @@ const UploadLogo = () => {
         <Field name="logo" id="logo">
           {({ field, form, meta }: FieldProps) => {
             return (
-              <label>
+              <label className="cursor-pointer">
                 <input
                   type="file"
                   {...field}

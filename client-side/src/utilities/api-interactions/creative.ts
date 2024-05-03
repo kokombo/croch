@@ -26,7 +26,7 @@ export const useSetupCreativeAccount = () => {
   };
 
   const { mutateAsync, isPending, isError, isSuccess, data, error } =
-    useMutation<MessageResponse, AxiosError<ErrorResponse>, FormData>({
+    useMutation<Creative, AxiosError<ErrorResponse>, FormData>({
       mutationKey: ["setupCreativeAccount"],
       mutationFn: setupCreativeAccountRequest,
     });
