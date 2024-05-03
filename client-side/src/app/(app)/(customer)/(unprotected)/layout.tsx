@@ -5,9 +5,9 @@ import {
   CustomerNavigationBar,
   UserSegmentRedirect,
 } from "@/components";
-import "../../globals.css";
+import "../../../globals.css";
 
-const CustomerLayout = ({
+const CustomerUnprotectedLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -23,4 +23,4 @@ const CustomerLayout = ({
   );
 };
 
-export default CustomerLayout;
+export default CustomerUnprotectedLayout;

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProtectRoute } from "@/components";
+import { CustomerNavigationBar, Footer, ProtectRoute } from "@/components";
 import "../../../globals.css";
 
 const CustomerProtectedLayout = ({
@@ -8,7 +8,14 @@ const CustomerProtectedLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return <ProtectRoute>{children}</ProtectRoute>;
+  return (
+    <ProtectRoute>
+      <CustomerNavigationBar />
+      {children}
+
+      <Footer />
+    </ProtectRoute>
+  );
 };
 
 export default CustomerProtectedLayout;
