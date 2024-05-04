@@ -20,6 +20,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -35,7 +36,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
     mutationKey: ["addAndRemoveWishlist"],
     mutationFn: addAndRemoveWishlistRequest,
     onSuccess: () => {
-      queryClient.refetchQueries({ queryKey: ["getWishlists"] });
+      queryClient.invalidateQueries({ queryKey: ["getWishlists"] });
     },
   });
 

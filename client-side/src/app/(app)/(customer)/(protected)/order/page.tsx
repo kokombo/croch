@@ -29,6 +29,7 @@ const Order = () => {
 
   useEffect(() => {
     refetch();
+    //eslint-disable-next-line
   }, [status]);
 
   return (
@@ -53,7 +54,7 @@ const Order = () => {
       <OrderTable
         orders={orders}
         isError={isError}
-        isLoading={isLoading}
+        isLoading={isLoading || isRefetching}
         isSuccess={isSuccess}
         error={error}
         status={status}
