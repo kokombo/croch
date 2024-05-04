@@ -1,6 +1,7 @@
 import MyDateRangePicker from "@/components/date-range-picker";
 import SelectField from "@/components/input-fields/select-field";
 import { icons } from "@/constants";
+import { ORDER_STATUS } from "@/constants/data";
 import Image from "next/image";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { RangeKeyDict } from "react-date-range";
@@ -46,19 +47,12 @@ const OrderFilter = (props: Props) => {
       <div className="flex_center gap-4">
         <SelectField
           label="Status"
-          options={[
-            { label: "All Orders", value: "all" },
-            { label: "Pending", value: "pending" },
-            { label: "Filfilled", value: "filfilled" },
-            { label: "Cancelled", value: "cancelled" },
-          ]}
+          options={ORDER_STATUS}
           name="status"
           id="status"
           status={props.status}
           setStatus={props.setStatus}
         />
-
-        {/* <SelectField /> */}
 
         <button className="py-3 px-5 border-[1px] b rounded-[4px] bg-black">
           <span className="flex_item_justify_center gap-1">

@@ -35,3 +35,10 @@ export const AUTHENTICATED_CUSTOMER_LINKS = [
   { label: "Profile", href: "/profile" },
   { label: "Sign out", href: "/signout" },
 ];
+
+export const ORDER_STATUS = [
+  { label: "All Orders", value: "all" },
+  { label: "Pending", value: "pending" },
+  { label: "Filfilled", value: "filfilled" },
+  { label: "Cancelled", value: "cancelled" },
+];
