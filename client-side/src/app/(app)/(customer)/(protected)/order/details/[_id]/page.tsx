@@ -1,7 +1,11 @@
 "use client";
 
 import { H2, H6 } from "@/components";
-import { OrderDetailsTable } from "@/components/order-details";
+import {
+  OrderCustomerSummary,
+  OrderDetailsTable,
+} from "@/components/order-details";
+import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useGetOrder } from "@/utilities/api-interactions/order";
 import { useParams } from "next/navigation";
 
@@ -16,9 +20,11 @@ const OrderDetails = () => {
     isSuccess,
   } = useGetOrder(params._id as string);
 
+  const { data: creative } = useGetCreativeById(order?.creativeId, true);
+
   return (
     <main className="paddingX py-10">
-      <div className="flex">
+      <div className="flex gap-4">
         <div className="w-70">
           <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
             <span className="flex_col_start gap-2">
@@ -41,7 +47,9 @@ const OrderDetails = () => {
           />
         </div>
 
-        <div className="w-30"></div>
+        <div className="w-30">
+          <OrderCustomerSummary creative={creative} order={order} />
+        </div>
       </div>
 
       <div></div>
