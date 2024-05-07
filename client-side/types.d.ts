@@ -35,10 +35,14 @@ type Order = {
   customerId: string;
   items: {
     cummulativePrice: number;
-    info: string;
+    info: {
+      price: string;
+    };
     thumbNail: string;
     title: string;
     _id: string;
+    count: number;
+    size: string;
   }[];
   status: string;
   totalPrice: number;

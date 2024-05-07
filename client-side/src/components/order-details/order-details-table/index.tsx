@@ -1,4 +1,4 @@
-import { icons } from "@/constants";
+import { H6 } from "@/components/texts";
 import {
   useReactTable,
   createColumnHelper,
@@ -8,83 +8,77 @@ import {
 import { AxiosError } from "axios";
 import commaNumber from "comma-number";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { SingleValue } from "react-select";
+
+type Item = {
+  cummulativePrice: number;
+  info: {
+    price: string;
+  };
+  thumbNail: string;
+  title: string;
+  _id: string;
+  count: number;
+  size: string;
+};
 
 type Props = {
-  orders: Order[] | undefined;
+  order: Order | undefined;
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
   error: AxiosError<ErrorResponse, any> | null;
-  status: SingleValue<SelectOption>;
 };
 
-const OrderTable = (props: Props) => {
-  const [data, setData] = useState<Order[]>([]);
-
-  const router = useRouter();
+const OrderDetailsTable = (props: Props) => {
+  const [data, setData] = useState<Item[]>([]);
 
   useEffect(() => {
-    if (props.orders) {
-      setData(props.orders);
+    if (props.order) {
+      setData(props.order.items);
     }
-  }, [props.isSuccess, props.orders]);
+  }, [props.isSuccess, props.order]);
 
-  const columnHelper = createColumnHelper<Order>();
+  const columnHelper = createColumnHelper<Item>();
 
   const columns = useMemo(
     () => [
-      columnHelper.accessor("_id", {
-        header: () => "Order Id",
+      columnHelper.accessor("title", {
+        header: () => "TITLE",
         cell: (info) => (
-          <span>#CR{info.getValue().substring(18, 24).toUpperCase()} </span>
+          <p className="max-w-24 text-wrap"> {info.getValue()} </p>
         ),
       }),
 
-      columnHelper.accessor("createdAt", {
-        header: () => "Date",
+      columnHelper.accessor("thumbNail", {
+        header: () => "IMAGE",
         cell: (info) => (
-          <div className="flex_center gap-2">
-            <Image
-              src={icons.date}
-              alt=""
-              height={20}
-              width={20}
-              priority
-              quality={100}
-              className="cursor-pointer"
-            />
-            {new Date(info.getValue()).toDateString()}
-          </div>
+          <Image
+            src={info.getValue()}
+            alt=""
+            height={72}
+            width={72}
+            priority
+            quality={100}
+          />
         ),
       }),
 
-      columnHelper.accessor("items", {
-        header: () => "No. of items",
-        cell: (info) => <span>{info.getValue().length} </span>,
+      columnHelper.accessor("info", {
+        header: () => "PRICE",
+        cell: (info) => (
+          <span>&#8358;{commaNumber(info.renderValue()?.price!)} </span>
+        ),
       }),
 
-      columnHelper.accessor("brandName", {
-        header: () => "Customer",
-        cell: (info) => info.getValue(),
+      columnHelper.accessor("count", {
+        header: () => "COUNT",
+        cell: (info) => <span>{info.renderValue()} </span>,
       }),
 
-      columnHelper.accessor("totalPrice", {
-        header: () => "Price",
+      columnHelper.accessor("cummulativePrice", {
+        header: () => "SUB-TOTAL",
         cell: (info) => <span>&#8358;{commaNumber(info.renderValue()!)} </span>,
-      }),
-
-      columnHelper.accessor("status", {
-        header: () => "Status",
-        cell: (info) => (
-          <span
-            className={`${info.renderValue() === "pending" ? "text-orange" : "fulfilled" ? "text-lightgreen" : "text-red"}`}
-          >
-            {info.renderValue()}
-          </span>
-        ),
       }),
     ],
     [columnHelper]
@@ -127,22 +121,16 @@ const OrderTable = (props: Props) => {
             <td>Error</td>
           </tr>
         </tbody>
-      ) : props.orders && props.orders.length < 1 ? (
+      ) : props.order && props.order?.items.length < 1 ? (
         <tbody className="h-200">
           <tr>
-            <td>{`There are no ${props.status?.value} orders.`} </td>
+            <td>{`There are no items.`} </td>
           </tr>
         </tbody>
       ) : (
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr
-              key={row.id}
-              className="cursor-pointer hover:bg-gray"
-              onClick={() => {
-                router.push(`/order/details/${row.original._id}`);
-              }}
-            >
+            <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="border1 py-6 text-left px-4 ">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -156,4 +144,4 @@ const OrderTable = (props: Props) => {
   );
 };
 
-export default OrderTable;
+export default OrderDetailsTable;

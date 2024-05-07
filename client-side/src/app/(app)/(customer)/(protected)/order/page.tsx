@@ -34,7 +34,7 @@ const Order = () => {
 
   return (
     <main className="paddingX py-10">
-      <div className="flex_item_justify_between py-4  border-x-[1px] border-t-[1px] border-grey px-12">
+      <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
         <span>
           <H2>Orders</H2>
           <H6>{orders?.length} orders found</H6>

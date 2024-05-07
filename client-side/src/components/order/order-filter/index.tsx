@@ -19,7 +19,7 @@ const OrderFilter = (props: Props) => {
   const [showCalender, setShowCalender] = useState(false);
 
   return (
-    <div className="flex_item_justify_between py-6  border-x-[1px] border-t-[1px] border-grey px-12">
+    <div className="flex_item_justify_between py-6  border-x-[1px] border-t-[1px] border-grey px-4">
       <div>
         <span onClick={() => setShowCalender((showCalender) => !showCalender)}>
           <Image

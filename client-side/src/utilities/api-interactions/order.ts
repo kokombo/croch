@@ -126,9 +126,17 @@ export const useConfirmAnOrder = (orderId: string) => {
 };
 
 export const useGetOrder = (orderId: string) => {
+  const { accessToken } = useCurrentUser();
+
   const getOrderRequest = async () => {
     const res = await axios.get(
-      `${api_base_url}/order/getOrder?orderId=${orderId}`
+      `${api_base_url}/order/getOrder?orderId=${orderId}`,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
 
     return res.data;
@@ -167,6 +175,7 @@ export const useGetCustomerOrders = (status: string) => {
       queryKey: ["getCustomerOrders"],
       queryFn: getCustomerOrdersRequest,
       enabled: !!accessToken,
+      refetchOnWindowFocus: false,
     });
 
   return { data, isError, isLoading, error, isSuccess, refetch, isRefetching };

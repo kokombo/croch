@@ -12,6 +12,10 @@ const OrderSchema = new Schema(
         thumbNail: String,
 
         cummulativePrice: Number,
+
+        size: String,
+
+        count: Number,
       },
     ],
 

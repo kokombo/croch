@@ -151,7 +151,10 @@ const getOrder = async (req: Request, res: Response) => {
   validateId(orderId, res);
 
   try {
-    const order = await Order.findById(orderId);
+    const order = await Order.findById(orderId).populate({
+      path: "items.info",
+      select: "price",
+    });
 
     if (!order) {
       return res
