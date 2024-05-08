@@ -46,7 +46,7 @@ const OrderDetailsTable = (props: Props) => {
       columnHelper.accessor("title", {
         header: () => "TITLE",
         cell: (info) => (
-          <p className="max-w-24 text-wrap"> {info.getValue()} </p>
+          <p className="max-w-32 text-wrap"> {info.getValue()} </p>
         ),
       }),
 
@@ -132,7 +132,7 @@ const OrderDetailsTable = (props: Props) => {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="border1 py-6 text-left px-4 ">
+                <td key={cell.id} className="border1 py-6 text-left px-4">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

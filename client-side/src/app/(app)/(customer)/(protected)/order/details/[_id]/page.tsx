@@ -7,10 +7,11 @@ import {
 } from "@/components/order-details";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useGetOrder } from "@/utilities/api-interactions/order";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const OrderDetails = () => {
   const params = useParams();
+  const router = useRouter();
 
   const {
     data: order,
@@ -24,9 +25,17 @@ const OrderDetails = () => {
 
   return (
     <main className="paddingX py-20">
+      <button
+        onClick={() => {
+          router.push("/order");
+        }}
+      >
+        Orders
+      </button>
+
       <div className="flex gap-4">
         <div className="w-70">
-          <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey rounded-r-xl">
+          <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
             {order && (
               <span className="flex_col_start gap-2">
                 <H2>Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
