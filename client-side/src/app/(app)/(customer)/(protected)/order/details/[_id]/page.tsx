@@ -27,13 +27,15 @@ const OrderDetails = () => {
       <div className="flex gap-4">
         <div className="w-70">
           <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
-            <span className="flex_col_start gap-2">
-              <H2>Order #CR{order?._id.substring(18, 24).toUpperCase()}</H2>
-              <p>{new Date(order?.createdAt as string).toDateString()} </p>
-              <p>
-                {new Date(order?.createdAt as string).toLocaleTimeString()}{" "}
-              </p>
-            </span>
+            {order && (
+              <span className="flex_col_start gap-2">
+                <H2>Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
+                <p>{new Date(order.createdAt as string).toDateString()} </p>
+                <p>
+                  {new Date(order.createdAt as string).toLocaleTimeString()}{" "}
+                </p>
+              </span>
+            )}
 
             <span></span>
           </div>

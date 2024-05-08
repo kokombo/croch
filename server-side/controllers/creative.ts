@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Creative = require("../models/creative");
 import Order = require("../models/order");
+import Product = require("../models/product");
 import { Response, Request } from "express";
 import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
@@ -223,6 +224,24 @@ const getCreativeById = async (req: Request, res: Response) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ message: "Creative not found" });
     }
+
+    const creativeProducts: Product[] = await Product.find({
+      owner: creativeId,
+    });
+
+    const ratingsArray = creativeProducts.map((product) => product.rating);
+
+    let cummulativeRating = 0;
+
+    for (let i = 0; i < ratingsArray.length; i++) {
+      cummulativeRating += ratingsArray[i];
+    }
+
+    const averageRating = cummulativeRating / ratingsArray.length;
+
+    creative.rating = averageRating;
+
+    await creative.save();
 
     return res.json(creative);
   } catch (error) {

@@ -57,6 +57,7 @@ type Creative = {
   funFacts: string[];
   isAvailable: boolean;
   superCreative: boolean;
+  rating: number;
   personalDescription: string;
   yearsOfExperience: number;
   _id: string;

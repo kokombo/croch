@@ -31,6 +31,7 @@ type Creative = {
   yearsOfExperience: number;
   personalDescription: string;
   funFacts: string[];
+  rating: number;
 };
 
 type Notification = {
@@ -43,7 +44,7 @@ interface Email {
   subject: string;
   text: string;
   html: string;
-};
+}
 
 interface Product extends ProductBody {
   _id: string;
@@ -51,6 +52,7 @@ interface Product extends ProductBody {
   colors: string[];
   sizes: string[];
   owner: string;
+  rating: number;
 }
 
 type CartItem = {

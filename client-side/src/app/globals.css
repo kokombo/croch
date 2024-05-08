@@ -53,12 +53,16 @@ html {
   @apply flex items-center;
 }
 
+.flex_col {
+  @apply flex flex-col;
+}
+
 .flex_item_justify_center {
-  @apply flex items-center justify-center;
+  @apply flex_center justify-center;
 }
 
 .flex_item_justify_between {
-  @apply flex items-center justify-between;
+  @apply flex_center justify-between;
 }
 
 .flex_start_justify_between {
@@ -66,11 +70,11 @@ html {
 }
 
 .flex_col_center {
-  @apply flex flex-col items-center;
+  @apply flex_col items-center;
 }
 
 .flex_col_start {
-  @apply flex flex-col items-start;
+  @apply flex_col items-start;
 }
 
 .grid_center {
