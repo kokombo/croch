@@ -24,7 +24,7 @@ const OrderDetails = () => {
   const { data: creative } = useGetCreativeById(order?.creativeId, true);
 
   return (
-    <main className="paddingX py-20">
+    <main className="paddingX py-10">
       <button
         onClick={() => {
           router.push("/order");

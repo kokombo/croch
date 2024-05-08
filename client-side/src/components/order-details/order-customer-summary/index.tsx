@@ -1,7 +1,6 @@
 import Divider from "@/components/divider";
 import { UnclickableRating } from "@/components/product";
 import { H4, H5, H6 } from "@/components/texts";
-import commaNumber from "comma-number";
 import Image from "next/image";
 import { Fragment } from "react";
 
@@ -12,7 +11,7 @@ type Props = {
 
 const OrderCustomerSummary = (props: Props) => {
   return (
-    <div className="border_grey_1 rounded-xl py-6 px-5 flex_col gap-7">
+    <div className="border_grey_1 py-6 px-5 flex_col gap-7">
       <div className="flex_col gap-3">
         <H4>Summary</H4>
 
@@ -73,7 +72,7 @@ const OrderCustomerSummary = (props: Props) => {
             <span className="flex_item_justify_between">
               <H4>Total Cost</H4>
 
-              <H4> &#8358;{commaNumber(props.order?.totalPrice)}</H4>
+              <H4> &#8358;{props.order?.totalPrice.toLocaleString()}</H4>
             </span>
           </div>
         )}

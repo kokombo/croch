@@ -2,7 +2,6 @@ import { H4, H5 } from "@/components";
 import { AddToCartButton } from "@/components/product-details-page";
 import { ProductAvailability } from "@/components/product";
 import Image from "next/image";
-import commaNumber from "comma-number";
 import { icons } from "@/constants";
 import Link from "next/link";
 
@@ -51,7 +50,7 @@ const CrossSellCard = (props: Props) => {
         </span>
 
         <span className="flex_item_justify_between ">
-          <H4>&#8358;{commaNumber(props.product?.price)}</H4>
+          <H4>&#8358;{props.product?.price.toLocaleString()}</H4>
 
           <AddToCartButton product={props.product} size="" count={1} />
         </span>

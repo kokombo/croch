@@ -46,7 +46,7 @@ const OrderFilter = (props: Props) => {
 
       <div className="flex_center gap-4">
         <SelectField
-          label="Status"
+          label=""
           options={ORDER_STATUS}
           name="status"
           id="status"

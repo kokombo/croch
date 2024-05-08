@@ -7,7 +7,6 @@ import {
   useRemoveFromCart,
   useUpdateCartItemCount,
 } from "@/utilities/api-interactions/cart";
-import commaNumber from "comma-number";
 
 type Props = {
   cartItem: CartItem;
@@ -72,7 +71,7 @@ const ShoppingCardListItem = (props: Props) => {
       </div>
 
       <div className="w-full flex items-center justify-between lg:w-2/3 lg:grid lg:grid-cols-4 lg:place-items-center">
-        <H6>&#8358;{commaNumber(props.cartItem.info.price)}</H6>
+        <H6>&#8358;{props.cartItem.info.price.toLocaleString()}</H6>
 
         <Counter
           count={count}
@@ -97,7 +96,7 @@ const ShoppingCardListItem = (props: Props) => {
         {updatingCount ? (
           <OvalLoader height="20" width="20" color="#000000" />
         ) : (
-          <H6> &#8358;{commaNumber(props.cartItem.cummulativePrice)} </H6>
+          <H6> &#8358;{props.cartItem.cummulativePrice.toLocaleString()} </H6>
         )}
       </div>
     </article>

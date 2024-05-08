@@ -2,7 +2,6 @@ import { useState } from "react";
 import { H4, H6, Slider } from "../..";
 import UnclickableRating from "../unclickable-rating";
 import Link from "next/link";
-import commaNumber from "comma-number";
 import useScreenSize from "@/utilities/hooks/useScreenSize";
 
 type Props = {
@@ -48,7 +47,7 @@ const ProductCard = (props: Props) => {
             </h1>
           </span>
 
-          <H4>&#8358;{commaNumber(props.product?.price)}</H4>
+          <H4>&#8358;{props.product?.price.toLocaleString()}</H4>
         </div>
       </div>
     </Link>

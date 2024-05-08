@@ -6,7 +6,6 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { AxiosError } from "axios";
-import commaNumber from "comma-number";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
@@ -67,7 +66,7 @@ const OrderDetailsTable = (props: Props) => {
       columnHelper.accessor("info", {
         header: () => "PRICE",
         cell: (info) => (
-          <span>&#8358;{commaNumber(info.renderValue()?.price!)} </span>
+          <span>&#8358;{info.renderValue()?.price!.toLocaleString()} </span>
         ),
       }),
 
@@ -78,7 +77,9 @@ const OrderDetailsTable = (props: Props) => {
 
       columnHelper.accessor("cummulativePrice", {
         header: () => "SUB-TOTAL",
-        cell: (info) => <span>&#8358;{commaNumber(info.renderValue()!)} </span>,
+        cell: (info) => (
+          <span>&#8358;{info.renderValue()!.toLocaleString()} </span>
+        ),
       }),
     ],
     [columnHelper]

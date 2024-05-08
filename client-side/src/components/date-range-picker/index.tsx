@@ -21,6 +21,9 @@ const MyDateRangePicker = (props: Props) => {
       ranges={[selectionRange]}
       onChange={props.handleSelect}
       className="absolute z-[1000]"
+      editableDateInputs
+
+      // inputRanges={}
     />
   );
 };

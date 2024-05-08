@@ -1,4 +1,3 @@
-import commaNumber from "comma-number";
 import { H6, Divider } from "@/components";
 
 type Props = {
@@ -11,7 +10,7 @@ const PricingBox = (props: Props) => {
       <span className="flex flex-col gap-3">
         <SpanItem
           label="Sub-total"
-          value={`\u20A6${commaNumber(props.cart?.totalPrice)}`}
+          value={`\u20A6${props.cart?.totalPrice.toLocaleString()}`}
         />
         <SpanItem label="Shipping" value="Free" />
 
@@ -24,7 +23,7 @@ const PricingBox = (props: Props) => {
 
       <SpanItem
         label="Total"
-        value={`\u20A6${commaNumber(props.cart.totalPrice)}`}
+        value={`\u20A6${props.cart.totalPrice.toLocaleString()}`}
       />
     </div>
   );

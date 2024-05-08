@@ -1,5 +1,4 @@
 import Image from "next/image";
-import commaNumber from "comma-number";
 
 type Props = {
   cartItems: CartItem[];
@@ -30,7 +29,7 @@ const OrderSummaryProductList = (props: Props) => {
                 {item.count} x{" "}
                 <span className="text-skyblue">
                   {" "}
-                  &#8358;{commaNumber(item.info.price)}
+                  &#8358;{item.info.price.toLocaleString()}
                 </span>{" "}
               </span>
             </div>
