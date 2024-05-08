@@ -239,7 +239,7 @@ const getCreativeById = async (req: Request, res: Response) => {
 
     const averageRating = cummulativeRating / ratingsArray.length;
 
-    creative.rating = averageRating;
+    creative.rating = averageRating.toFixed(1);
 
     await creative.save();
 

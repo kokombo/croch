@@ -1,6 +1,6 @@
 "use client";
 
-import { H2, H6 } from "@/components";
+import { H2, H6, H5 } from "@/components";
 import {
   OrderCustomerSummary,
   OrderDetailsTable,
@@ -23,17 +23,25 @@ const OrderDetails = () => {
   const { data: creative } = useGetCreativeById(order?.creativeId, true);
 
   return (
-    <main className="paddingX py-10">
+    <main className="paddingX py-20">
       <div className="flex gap-4">
         <div className="w-70">
-          <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
+          <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey rounded-r-xl">
             {order && (
               <span className="flex_col_start gap-2">
                 <H2>Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
-                <p>{new Date(order.createdAt as string).toDateString()} </p>
-                <p>
-                  {new Date(order.createdAt as string).toLocaleTimeString()}{" "}
-                </p>
+
+                <H5>{new Date(order.createdAt as string).toDateString()} </H5>
+
+                <H5>
+                  {new Date(order.createdAt as string).toLocaleTimeString()}
+                </H5>
+
+                <H6
+                  extraClasses={`${order.status === "pending" ? "text-orange" : "fulfilled" ? "text-lightgreen" : "text-red"} capitalize`}
+                >
+                  {order.status}
+                </H6>
               </span>
             )}
 
