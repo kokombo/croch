@@ -37,21 +37,25 @@ const OrderDetails = () => {
         <div className="w-70">
           <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
             {order && (
-              <span className="flex_col_start gap-2">
-                <H2>Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
+              <article className="flex justify-between w-full">
+                <span className="flex_col_start gap-2">
+                  <H2>Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
 
-                <H5>{new Date(order.createdAt as string).toDateString()} </H5>
+                  <H5>{new Date(order.createdAt as string).toDateString()} </H5>
 
-                <H5>
-                  {new Date(order.createdAt as string).toLocaleTimeString()}
-                </H5>
+                  <H5>
+                    {new Date(order.createdAt as string).toLocaleTimeString()}
+                  </H5>
+                </span>
 
-                <H6
-                  extraClasses={`${order.status === "pending" ? "text-orange" : "fulfilled" ? "text-lightgreen" : "text-red"} capitalize`}
-                >
-                  {order.status}
-                </H6>
-              </span>
+                <span>
+                  <H6
+                    extraClasses={`${order.status === "pending" ? "text-orange" : "fulfilled" ? "text-lightgreen" : "text-red"} capitalize`}
+                  >
+                    {order.status}
+                  </H6>
+                </span>
+              </article>
             )}
 
             <span></span>

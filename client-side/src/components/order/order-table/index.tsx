@@ -141,7 +141,7 @@ const OrderTable = (props: Props) => {
               key={row.id}
               className="cursor-pointer hover:bg-gray"
               onClick={() => {
-                router.push(`/order/details/${row.original._id}`);
+                router.push(`/order/${row.original._id}/details`);
               }}
             >
               {row.getVisibleCells().map((cell) => (
