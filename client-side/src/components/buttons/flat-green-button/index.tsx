@@ -17,7 +17,8 @@ const FlatGreenButton = (props: Props) => {
       className={twMerge(
         props.extraClasses,
         props.disabled ? "bg-grey cursor-not-allowed" : "bg-green",
-        "text-white"
+        "text-white",
+        "w-full p-4 rounded-lg"
       )}
     >
       {props.label}
