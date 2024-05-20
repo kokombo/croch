@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { MouseEvent } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   label: string | JSX.Element;
@@ -18,7 +19,10 @@ const CustomButton = (props: Props) => {
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
-      className={`${props.extraClasses} rounded-lg text-sm lg:text-base font-medium`}
+      className={twMerge(
+        props.extraClasses,
+        "rounded-lg text-sm lg:text-base font-medium "
+      )}
     >
       <span className="flex_item_justify_center gap-2">
         {props.leftIcon && (

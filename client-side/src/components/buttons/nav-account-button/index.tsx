@@ -1,5 +1,6 @@
 import { icons } from "@/constants";
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   onClick: () => void;
@@ -13,7 +14,10 @@ const NavAccountButton = (props: Props) => {
         e.stopPropagation();
         props.onClick();
       }}
-      className={`h-[46px] w-[86px] lg:w-[101px] lg:h-[56px] p-2 flex items-center justify-center gap-2 border-[1px] border-grey rounded-[100px] hover:shadow-lg ${props.opened ? "shadow-lg" : ""}`}
+      className={twMerge(
+        props.opened ? "shadow-lg" : "",
+        "h-[46px] w-[86px] lg:w-[101px] lg:h-[56px] p-2 flex items-center justify-center gap-2 border-[1px] border-grey rounded-[100px] hover:shadow-lg"
+      )}
       aria-label="account dropdown button"
     >
       <Image

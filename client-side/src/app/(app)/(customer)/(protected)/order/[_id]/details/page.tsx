@@ -8,6 +8,7 @@ import {
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useGetOrder } from "@/utilities/api-interactions/order";
 import { useParams, useRouter } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 const OrderDetails = () => {
   const params = useParams();
@@ -50,7 +51,14 @@ const OrderDetails = () => {
 
                 <span>
                   <H6
-                    extraClasses={`${order.status === "pending" ? "text-orange" : "fulfilled" ? "text-lightgreen" : "text-red"} capitalize`}
+                    extraClasses={twMerge(
+                      order.status === "pending"
+                        ? "text-orange"
+                        : "fulfilled"
+                          ? "text-lightgreen"
+                          : "text-red",
+                      "capitalize"
+                    )}
                   >
                     {order.status}
                   </H6>

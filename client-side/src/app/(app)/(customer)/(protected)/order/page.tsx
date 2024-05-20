@@ -32,8 +32,6 @@ const Order = () => {
     //eslint-disable-next-line
   }, [status]);
 
-  // console.log(new Date().setFullYear(new Date().getFullYear() - 2));
-
   return (
     <main className="paddingX py-10">
       <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">

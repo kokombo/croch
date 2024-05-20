@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 type Props = {
   hidden?: boolean;
   onClick?: (e: any) => void;
@@ -11,7 +13,10 @@ const RoundIconButton = (props: Props) => {
     <button
       hidden={props.hidden}
       type="button"
-      className={`${props.extraClasses} flex items-center justify-center rounded-full h-8 w-8 text-[10px] hover:scale-110 transition-transform duration-300 ease-in-out`}
+      className={twMerge(
+        props.extraClasses,
+        "flex items-center justify-center rounded-full h-8 w-8 text-[10px] hover:scale-110 transition-transform duration-300 ease-in-out"
+      )}
       onClick={props.onClick}
       aria-label={props.arialabel}
     >
