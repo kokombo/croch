@@ -19,6 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html>
+      <head>
+        <title>Sell your creatives online</title>
+
+        <meta charSet="utf-8" />
+
+        <link rel="icon" href="/icons/logo.png" type="image/png" sizes="any" />
+      </head>
+
       <body className={MacanRegular.className}>
         <Provider store={store}>
           <NextAuthProvider>

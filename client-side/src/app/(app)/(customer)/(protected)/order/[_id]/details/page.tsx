@@ -1,6 +1,7 @@
 "use client";
 
 import { H2, H6, H5 } from "@/components";
+import { OrderStatusCard } from "@/components/order";
 import {
   OrderCustomerSummary,
   OrderDetailsTable,
@@ -30,11 +31,12 @@ const OrderDetails = () => {
         onClick={() => {
           router.push("/order");
         }}
+        className="underline text-lightgreen"
       >
-        Orders
+        Back
       </button>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-4">
         <div className="w-70">
           <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
             {order && (
@@ -49,20 +51,7 @@ const OrderDetails = () => {
                   </H5>
                 </span>
 
-                <span>
-                  <H6
-                    extraClasses={twMerge(
-                      order.status === "pending"
-                        ? "text-orange"
-                        : "fulfilled"
-                          ? "text-lightgreen"
-                          : "text-red",
-                      "capitalize"
-                    )}
-                  >
-                    {order.status}
-                  </H6>
-                </span>
+                <OrderStatusCard status={order.status} />
               </article>
             )}
 

@@ -55,8 +55,8 @@ const OrderDetailsTable = (props: Props) => {
           <Image
             src={info.getValue()}
             alt=""
-            height={72}
-            width={72}
+            height={50}
+            width={50}
             priority
             quality={100}
           />

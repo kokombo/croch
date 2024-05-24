@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { SingleValue } from "react-select";
+import OrderStatusCard from "../order-status-card";
 
 type Props = {
   orders: Order[] | undefined;
@@ -79,13 +80,7 @@ const OrderTable = (props: Props) => {
 
       columnHelper.accessor("status", {
         header: () => "Status",
-        cell: (info) => (
-          <span
-            className={`${info.renderValue() === "pending" ? "text-orange" : "fulfilled" ? "text-lightgreen" : "text-red"}`}
-          >
-            {info.renderValue()}
-          </span>
-        ),
+        cell: (info) => <OrderStatusCard status={info.renderValue()!} />,
       }),
     ],
     [columnHelper]
