@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { H4, H6, Slider } from "../..";
 import UnclickableRating from "../unclickable-rating";
 import Link from "next/link";
@@ -33,13 +33,13 @@ const ProductCard = (props: Props) => {
         <Slider showButton={showButton} product={props.product} />
 
         <div className="flex flex-col gap-2">
-          <>
-            {props.product.rating ? (
+          <Fragment>
+            {props.product.rating > 0 ? (
               <UnclickableRating rating={props.product.rating} />
             ) : (
               <H6 extraClasses="underline"> No rating yet</H6>
             )}
-          </>
+          </Fragment>
 
           <span className="h-9">
             <h1 className="text-sm font-medium text-neutral">
@@ -47,7 +47,7 @@ const ProductCard = (props: Props) => {
             </h1>
           </span>
 
-          <H4>&#8358;{props.product?.price.toLocaleString()}</H4>
+          <H4>&#x24;{props.product?.price.toLocaleString()}</H4>
         </div>
       </div>
     </Link>

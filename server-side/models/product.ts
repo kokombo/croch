@@ -53,6 +53,7 @@ const ProductSchema = new Schema(
 
     rating: {
       type: Number,
+      default: 0,
     },
 
     numberOfReviews: {

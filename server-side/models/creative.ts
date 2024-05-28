@@ -24,6 +24,7 @@ const CreativeSchema = new Schema(
 
     rating: {
       type: Number,
+      default: 0,
     },
 
     superCreative: {
