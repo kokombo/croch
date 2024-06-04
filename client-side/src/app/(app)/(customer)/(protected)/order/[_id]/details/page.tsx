@@ -6,10 +6,11 @@ import {
   OrderCustomerSummary,
   OrderDetailsTable,
 } from "@/components/order-details";
+import { icons } from "@/constants";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useGetOrder } from "@/utilities/api-interactions/order";
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { twMerge } from "tailwind-merge";
 
 const OrderDetails = () => {
   const params = useParams();
@@ -41,14 +42,27 @@ const OrderDetails = () => {
           <div className="flex_item_justify_between p-4  border-x-[1px] border-t-[1px] border-grey">
             {order && (
               <article className="flex justify-between w-full">
-                <span className="flex_col_start gap-2">
-                  <H2>Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
+                <span className="flex_col_start gap-6">
+                  <H2> Order #CR{order._id.substring(18, 24).toUpperCase()}</H2>
 
-                  <H5>{new Date(order.createdAt as string).toDateString()} </H5>
+                  <span className="flex_center gap-2">
+                    <Image
+                      src={icons.date}
+                      alt=""
+                      height={20}
+                      width={20}
+                      priority
+                      quality={100}
+                    />
 
-                  <H5>
-                    {new Date(order.createdAt as string).toLocaleTimeString()}
-                  </H5>
+                    <H5>
+                      {new Date(order.createdAt as string).toDateString()}{" "}
+                    </H5>
+
+                    <H5>
+                      {new Date(order.createdAt as string).toLocaleTimeString()}
+                    </H5>
+                  </span>
                 </span>
 
                 <OrderStatusCard status={order.status} />
