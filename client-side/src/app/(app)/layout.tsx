@@ -38,49 +38,51 @@ export default function RootLayout({
     <Fragment>
       <main onClick={() => dispatch(setOpenDropDown(false))}>{children}</main>
 
-      {openLoginModal && (
-        <Modal
-          closeModal={() => dispatch(setOpenLoginModal(false))}
-          onClickModalButton={() => {
-            dispatch(setOpenLoginModal(false));
-            document.body.style.overflow = "auto";
-          }}
-          icon={icons.close}
-          label="Log in"
-        >
-          <LoginForm />
-        </Modal>
-      )}
+      <Fragment>
+        {openLoginModal && (
+          <Modal
+            closeModal={() => dispatch(setOpenLoginModal(false))}
+            onClickModalButton={() => {
+              dispatch(setOpenLoginModal(false));
+              document.body.style.overflow = "auto";
+            }}
+            icon={icons.close}
+            label="Log in"
+          >
+            <LoginForm />
+          </Modal>
+        )}
 
-      {openSignupModal && (
-        <Modal
-          closeModal={() => {
-            dispatch(setOpenSignupModal(false));
-            setStep(1);
-          }}
-          onClickModalButton={onClickSignupModalButton}
-          icon={step > 1 ? icons.arrowleft : icons.close}
-          label={
-            step === 1
-              ? "Sign up"
-              : step === 2
+        {openSignupModal && (
+          <Modal
+            closeModal={() => {
+              dispatch(setOpenSignupModal(false));
+              setStep(1);
+            }}
+            onClickModalButton={onClickSignupModalButton}
+            icon={step > 1 ? icons.arrowleft : icons.close}
+            label={
+              step === 1
                 ? "Sign up"
-                : step === 3
-                  ? "Personal Details"
-                  : step === 4
-                    ? "Create Password"
-                    : ""
-          }
-        >
-          <SignupForm step={step} setStep={setStep} />
-        </Modal>
-      )}
+                : step === 2
+                  ? "Sign up"
+                  : step === 3
+                    ? "Personal Details"
+                    : step === 4
+                      ? "Create Password"
+                      : ""
+            }
+          >
+            <SignupForm step={step} setStep={setStep} />
+          </Modal>
+        )}
 
-      {openErrorModal && (
-        <div className="fixed left-1 bottom-10 card z-[100] h-fit w-[350px]">
-          <H5> {errorMessage}</H5>
-        </div>
-      )}
+        {openErrorModal && (
+          <div className="fixed left-1 bottom-10 card z-[100] h-fit w-[350px]">
+            <H5> {errorMessage}</H5>
+          </div>
+        )}
+      </Fragment>
     </Fragment>
   );
 }
