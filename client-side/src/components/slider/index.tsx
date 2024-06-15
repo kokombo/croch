@@ -7,6 +7,7 @@ import {
   AddToWishlist,
 } from "../product";
 import { icons } from "@/constants";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   showButton: boolean;
@@ -56,7 +57,10 @@ const Slider = (props: Props) => {
           return (
             <div
               key={sliderIndex}
-              className={`w-full flex-shrink-0 transition-transform duration-400 ease-in-out bg-grey ${opacity}`}
+              className={twMerge(
+                "w-full flex-shrink-0 transition-transform duration-400 ease-in-out bg-grey",
+                opacity
+              )}
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               <div className="relative h-[310px] md:h-[270px] ">
