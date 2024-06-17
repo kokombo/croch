@@ -30,6 +30,7 @@ export const usePlaceAnOrder = (
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Length": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -70,6 +71,8 @@ export const useCancelAnOrder = (orderId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -105,6 +108,8 @@ export const useConfirmAnOrder = (orderId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -135,6 +140,7 @@ export const useGetOrder = (orderId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -163,6 +169,7 @@ export const useGetCustomerOrders = (status: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );

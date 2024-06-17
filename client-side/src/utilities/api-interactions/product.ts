@@ -90,6 +90,7 @@ export const useDeleteProduct = (productId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -112,7 +113,11 @@ export const useDeleteProduct = (productId: string) => {
 
 export const useGetAllProducts = () => {
   const getAllProductsRequest = async () => {
-    const res = await axios.get(`${api_base_url}/product/getAllProducts`);
+    const res = await axios.get(`${api_base_url}/product/getAllProducts`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
     return res.data;
   };
@@ -130,7 +135,12 @@ export const useGetAllProducts = () => {
 export const useGetProductById = (productId: string) => {
   const getProductByIdRequest = async () => {
     const res = await axios.get(
-      `${api_base_url}/product/getProduct?productId=${productId}`
+      `${api_base_url}/product/getProduct?productId=${productId}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
     );
 
     return res.data;
@@ -156,6 +166,7 @@ export const useGetMyProducts = () => {
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json",
       },
     });
 

@@ -5,7 +5,12 @@ import { useCurrentUser } from "..";
 
 export const useSignup = () => {
   const signupRequest = async (signupData: SignupDataType) => {
-    const res = await axios.post(`${api_base_url}/user/signup`, signupData);
+    const res = await axios.post(`${api_base_url}/user/signup`, signupData, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
 
     return res.data;
   };
@@ -46,7 +51,14 @@ export const useSendEmailVerificationToken = (email: string) => {
     const res = await axios.post(
       `${api_base_url}/user/sendEmailVerificationToken`,
 
-      { email }
+      { email },
+
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
     );
 
     return res.data;
@@ -71,7 +83,10 @@ export const useSendEmailVerificationToken = (email: string) => {
 export const useVerifyEmail = (token: string) => {
   const verifyEmailRequest = async () => {
     const res = await axios.post(
-      `${api_base_url}/user/verifyEmail?token=${token}`
+      `${api_base_url}/user/verifyEmail?token=${token}`,
+      {
+        Accept: "application/json",
+      }
     );
 
     return res.data;
@@ -102,6 +117,8 @@ export const useUpdatePassword = (passwordInfo: UpdatePassword) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -130,7 +147,14 @@ export const useSendForgotPasswordToken = (email: string) => {
     const res = await axios.post(
       `${api_base_url}/user/sendForgotPasswordToken`,
 
-      { email }
+      { email },
+
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
     );
 
     return res.data;
@@ -155,7 +179,12 @@ export const useSendForgotPasswordToken = (email: string) => {
 export const useResetPassword = (token: string) => {
   const resetPasswordRequest = async (token: string) => {
     const res = await axios.patch(
-      `${api_base_url}/user/resetPassword?token=${token}`
+      `${api_base_url}/user/resetPassword?token=${token}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
     );
 
     return res.data;
@@ -185,6 +214,7 @@ export const useDeleteMyAccount = () => {
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json",
       },
     });
 

@@ -18,6 +18,7 @@ export const useGiveReview = (reviewData: ReviewData) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -42,7 +43,12 @@ export const useGetCreativeReviews = (creativeId: string) => {
   const getCreativeReviewsFunction = async () => {
     const res = await axios.get(
       `${api_base_url}/review/getCreativeReviews?creativeId=${creativeId}
-    `
+    `,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
     );
 
     return res.data;
@@ -72,6 +78,7 @@ export const useGetCustomerPostedReviews = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );

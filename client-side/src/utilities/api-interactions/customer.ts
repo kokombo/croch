@@ -21,6 +21,7 @@ export const useAddAndRemoveWishlist = (productId: string) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -58,6 +59,7 @@ export const useGetWishlists = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -79,7 +81,12 @@ export const useGetWishlists = () => {
 export const useGetCreativeAllProducts = (creativeId: string) => {
   const getCreativeAllProductsRequest = async () => {
     const res = await axios.get(
-      `${api_base_url}/customer/getCreativeAllProducts?creativeId=${creativeId}`
+      `${api_base_url}/customer/getCreativeAllProducts?creativeId=${creativeId}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
     );
 
     return res.data;

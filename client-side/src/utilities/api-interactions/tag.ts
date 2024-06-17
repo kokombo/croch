@@ -81,7 +81,11 @@ export const useUpdateTag = (tagId: string, tagData: FormData) => {
 
 export const useGetAllTags = () => {
   const getAllTagsRequest = async () => {
-    const res = await axios.get(`${api_base_url}/tag/getAllTags`);
+    const res = await axios.get(`${api_base_url}/tag/getAllTags`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
     return res.data;
   };

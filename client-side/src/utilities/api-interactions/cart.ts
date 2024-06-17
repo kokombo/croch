@@ -14,6 +14,7 @@ export const useGetCartItems = (creativeId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -46,6 +47,7 @@ export const useGetCarts = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -90,6 +92,7 @@ export const useAddToCart = (
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -133,6 +136,8 @@ export const useRemoveFromCart = (productId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -191,6 +196,7 @@ export const useUpdateCartItemCount = (
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -230,6 +236,7 @@ export const useDeleteCart = (creativeId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );

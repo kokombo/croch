@@ -44,6 +44,7 @@ export const useGetCreativeOrders = (status: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -77,6 +78,7 @@ export const useUpdateYearsOfExperience = (yearsOfExperience: number) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -114,6 +116,7 @@ export const useUpdateFunFacts = (funFacts: string[]) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -153,6 +156,7 @@ export const useUpdatePersonalDescription = (personalDescription: string) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -190,6 +194,7 @@ export const useSetBrandName = (brandName: string) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -227,6 +232,7 @@ export const useSetBrandLogo = (brandLogo: FormData) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "multipart/form-data",
+          Accept: "application/json",
         },
       }
     );
@@ -288,6 +294,7 @@ export const useAccountSetupDone = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );

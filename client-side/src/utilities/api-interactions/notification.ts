@@ -19,6 +19,7 @@ export const useCreateNotification = (notificationData: NotificationData) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -53,6 +54,7 @@ export const useGetNotifications = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
@@ -84,6 +86,7 @@ export const useDeleteNotification = (notificationId: string) => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json",
         },
       }
     );
