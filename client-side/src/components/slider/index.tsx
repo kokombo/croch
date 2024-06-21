@@ -67,13 +67,12 @@ const Slider = (props: Props) => {
                 <Image
                   key={sliderIndex}
                   src={photo}
-                  alt=""
+                  alt="croch image"
                   fill
                   quality={100}
-                  loading={sliderIndex > 1 ? "lazy" : "eager"}
-                  priority={sliderIndex < 2}
+                  loading={sliderIndex === 0 ? "eager" : "lazy"}
+                  priority={sliderIndex === 0}
                   sizes="any"
-                  decoding="async"
                   className="object-cover"
                 />
               </div>
