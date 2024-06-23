@@ -2,28 +2,24 @@ import User = require("../models/user");
 import Creative = require("../models/creative");
 import Customer = require("../models/customer");
 import Product = require("../models/product");
-import generateAccessToken = require("../utilities/generateAccessToken");
-import generateRefreshToken = require("../utilities/generateRefreshToken");
 import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
-import jwt = require("jsonwebtoken");
 import validateId = require("../utilities/validateId");
 import sendEmail = require("../utilities/sendEmail");
 import crypto = require("crypto");
+import {
+  signupFormValidationSchema,
+  updatePasswordValidationSchema,
+} from "../validators";
+import { ValidationError } from "yup";
 
 const signUp = async (req: Request, res: Response) => {
-  const { firstName, lastName, email, password, role } = req.body;
-
-  if (!firstName || !lastName || !email || !password || !role) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Please provide all necessary credentials." });
-  }
-
-  const refinedEmail = email.toLowerCase();
+  const { email, role } = req.body;
 
   try {
-    const userExists = await User.findOne({ email: refinedEmail });
+    await signupFormValidationSchema.validate(req.body);
+
+    const userExists = await User.findOne({ email: email.toLowerCase() });
 
     if (userExists) {
       return res.status(StatusCodes.BAD_REQUEST).json({
@@ -31,18 +27,22 @@ const signUp = async (req: Request, res: Response) => {
       });
     }
 
-    const user = await User.create({ ...req.body, email: refinedEmail });
+    const user = await User.create({ ...req.body, email: email.toLowerCase() });
 
     if (role === "customer") {
       await Customer.create({ _id: user._id });
-    }
-
-    if (role === "creative") {
+    } else if (role === "creative") {
       await Creative.create({ _id: user._id });
     }
 
     return res.json(user);
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: error.errors[0] });
+    }
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
@@ -55,6 +55,8 @@ const updatePassword = async (req: Request, res: Response) => {
   const { oldPassword, newPassword } = req.body;
 
   try {
+    updatePasswordValidationSchema.validate(req.body);
+
     const user = await User.findById(_id);
 
     const passwordIsCorrect = await user.checkPassword(oldPassword);
@@ -78,6 +80,12 @@ const updatePassword = async (req: Request, res: Response) => {
 
     return res.json({ message: "Password updated." });
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: error.errors[0] });
+    }
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });

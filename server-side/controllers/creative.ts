@@ -5,6 +5,8 @@ import Product = require("../models/product");
 import { Response, Request } from "express";
 import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
+import { creativeAccountSetupValidationSchema } from "../validators";
+import { ValidationError } from "yup";
 
 const setupAccount = async (req: Request, res: Response) => {
   const { brandName, personalDescription, yearsOfExperience, funFacts } =
@@ -15,6 +17,8 @@ const setupAccount = async (req: Request, res: Response) => {
   const { _id: creativeId } = req.user;
 
   try {
+    await creativeAccountSetupValidationSchema.validate(req.body);
+
     const creative = await Creative.findById(creativeId);
 
     creative.brandName = brandName;
@@ -27,7 +31,7 @@ const setupAccount = async (req: Request, res: Response) => {
     if (!file) {
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "Invalid input." });
+        .json({ message: "Upload a valid brand logo" });
     }
 
     const { path } = file;
@@ -40,7 +44,12 @@ const setupAccount = async (req: Request, res: Response) => {
 
     return res.json(creative);
   } catch (error) {
-    console.log(error);
+    if (error instanceof ValidationError) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: error.errors[0] });
+    }
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });

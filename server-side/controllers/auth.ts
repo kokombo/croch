@@ -4,20 +4,16 @@ import generateRefreshToken = require("../utilities/generateRefreshToken");
 import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
 import jwt = require("jsonwebtoken");
+import { loginFormValidationSchema } from "../validators";
+import { ValidationError } from "yup";
 
 const signIn = async (req: Request, res: Response) => {
   const { password, email } = req.body;
 
-  if (!email || !password) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Provide your login credentials." });
-  }
-
-  const refinedEmail = email.toLowerCase();
-
   try {
-    const user = await User.findOne({ email: refinedEmail });
+    await loginFormValidationSchema.validate(req.body);
+
+    const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
       return res
@@ -48,6 +44,7 @@ const signIn = async (req: Request, res: Response) => {
     res.cookie("crochRefreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: true,
     });
 
     const accessToken = generateAccessToken(user?._id);
@@ -63,6 +60,12 @@ const signIn = async (req: Request, res: Response) => {
       emailVerified: user?.emailVerified,
     });
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: error.errors[0] });
+    }
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
