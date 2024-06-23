@@ -70,8 +70,8 @@ const Slider = (props: Props) => {
                   alt="croch image"
                   fill
                   quality={100}
-                  loading={sliderIndex === 0 ? "eager" : "lazy"}
-                  priority={sliderIndex === 0}
+                  loading={sliderIndex < 1 ? "eager" : "lazy"}
+                  priority={sliderIndex < 1}
                   sizes="any"
                   className="object-cover"
                 />
