@@ -7,20 +7,19 @@ import { StatusCodes } from "http-status-codes";
 import validateId = require("../utilities/validateId");
 import generateAccessToken = require("../utilities/generateAccessToken");
 import generateRefreshToken = require("../utilities/generateRefreshToken");
+import {
+  adminSignupValidationSchema,
+  loginFormValidationSchema,
+} from "../validators";
+import { ValidationError } from "yup";
 
 const createAdminAccount = async (req: Request, res: Response) => {
-  const { firstName, lastName, email, password } = req.body;
-
-  if (!firstName || !lastName || !email || !password) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Please provide all necessary credentials." });
-  }
-
-  const refinedEmail = email.toLowerCase();
+  const { email } = req.body;
 
   try {
-    const adminExists = await User.findOne({ email: refinedEmail });
+    await adminSignupValidationSchema.validate(req.body);
+
+    const adminExists = await User.findOne({ email: email.toLowerCase() });
 
     if (adminExists) {
       return res
@@ -30,12 +29,18 @@ const createAdminAccount = async (req: Request, res: Response) => {
 
     const admin = await User.create({
       ...req.body,
-      email: refinedEmail,
+      email: email.toLowerCase(),
       role: "admin",
     });
 
     return res.json(admin);
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: error.errors[0] });
+    }
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });
@@ -45,16 +50,10 @@ const createAdminAccount = async (req: Request, res: Response) => {
 const adminSignIn = async (req: Request, res: Response) => {
   const { password, email } = req.body;
 
-  if (!email || !password) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Provide your login credentials." });
-  }
-
-  const refinedEmail = email.toLowerCase();
-
   try {
-    const user = await User.findOne({ email: refinedEmail });
+    await loginFormValidationSchema.validate(req.body);
+
+    const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user || user.role !== "admin") {
       return res
@@ -85,6 +84,7 @@ const adminSignIn = async (req: Request, res: Response) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 60 * 1000,
+      secure: true,
     });
 
     const accessToken = generateAccessToken(user?._id);
@@ -98,6 +98,12 @@ const adminSignIn = async (req: Request, res: Response) => {
       accessToken,
     });
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: error.errors[0] });
+    }
+
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: "Something went wrong, please try again." });

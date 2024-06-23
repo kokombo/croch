@@ -4,6 +4,7 @@ import {
   creativeAccountSetupValidationSchema,
   updatePasswordValidationSchema,
   uploadProductValidationSchema,
+  adminSignupValidationSchema,
 } from "./formValidators";
 
 export {
@@ -12,4 +13,5 @@ export {
   creativeAccountSetupValidationSchema,
   updatePasswordValidationSchema,
   uploadProductValidationSchema,
+  adminSignupValidationSchema,
 };

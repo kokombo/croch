@@ -72,3 +72,14 @@ export const uploadProductValidationSchema = Yup.object({
   tag: Yup.string().required("Choose a the best product tag"),
   photos: Yup.mixed().required("Select product photos to showcase your work"),
 });
+
+export const adminSignupValidationSchema = Yup.object({
+  email: Yup.string()
+    .required("Enter your email address")
+    .email("Invalid email format"),
+  firstName: Yup.string().required("First name is required "),
+  lastName: Yup.string().required("Last name is required"),
+  password: Yup.string()
+    .required("Enter your password")
+    .min(6, "Password must be at least 6 characters"),
+});
