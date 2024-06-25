@@ -24,7 +24,7 @@ export default function RootLayout({
 
         <meta charSet="utf-8" />
 
-        <link rel="icon" href="/icons/logo.png" type="image/png" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="any" />
       </head>
 
       <body className={MacanRegular.className}>
