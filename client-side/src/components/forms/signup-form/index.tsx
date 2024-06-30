@@ -5,14 +5,12 @@ import { FlatGreenButton } from "@/components/buttons";
 import { icons } from "@/constants";
 import { SetStateAction, Dispatch, useState } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";
-import {
-  useSignup,
-  useUpdatePassword,
-} from "@/utilities/api-interactions/user";
+import { useSignup } from "@/utilities/api-interactions/user";
 import { signIn } from "next-auth/react";
 import { setOpenSignupModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "@/redux/store";
+import { useClearErrorMessage } from "@/utilities/hooks/useClearErrorMessage";
 
 type Props = {
   step: number;
@@ -32,7 +30,7 @@ const SignupForm = (props: Props) => {
 
   const dispatch: DispatchType = useDispatch();
 
-  const { mutateAsync, data, isError, isPending, error } = useSignup();
+  const { mutateAsync, isPending, error, setError } = useSignup();
 
   const createAccount = async (
     values: SignupDataType,
@@ -53,6 +51,8 @@ const SignupForm = (props: Props) => {
       });
     });
   };
+
+  useClearErrorMessage(setError);
 
   return (
     <div className="flex flex-col gap-6 lg:gap-8 ">
@@ -190,11 +190,8 @@ const SignupForm = (props: Props) => {
                       disabled={isPending}
                     />
 
-                    {isError && (
-                      <CustomError
-                        message={error?.response?.data.message}
-                        extraClasses="self-center"
-                      />
+                    {error && (
+                      <CustomError message={error} extraClasses="self-center" />
                     )}
                   </span>
                 </div>

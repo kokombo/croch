@@ -2,8 +2,10 @@ import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
+import { useState } from "react";
 
 export const useSignup = () => {
+  const [error, setError] = useState<string | undefined>("");
   const signupRequest = async (signupData: SignupDataType) => {
     const res = await axios.post(`${api_base_url}/user/signup`, signupData, {
       headers: {
@@ -15,35 +17,19 @@ export const useSignup = () => {
     return res.data;
   };
 
-  const { mutateAsync, data, isError, isPending, error } = useMutation<
+  const { mutateAsync, data, isPending } = useMutation<
     any,
     AxiosError<ErrorResponse>,
     SignupDataType
   >({
     mutationKey: ["signup"],
     mutationFn: signupRequest,
+    onError: (error) => {
+      setError(error.response?.data.message);
+    },
   });
 
-  return { data, isError, isPending, error, mutateAsync };
-};
-
-export const useRefreshAccessToken = () => {
-  const refreshAccessTokenRequest = async () => {
-    const res = await axios.post(`${api_base_url}/auth/refreshToken`, {});
-
-    return res.data;
-  };
-
-  const { mutateAsync } = useMutation({
-    mutationKey: ["refreshAccessToken"],
-    mutationFn: refreshAccessTokenRequest,
-  });
-
-  const refreshAccessToken = async () => {
-    await mutateAsync();
-  };
-
-  return { refreshAccessToken };
+  return { data, isPending, error, setError, mutateAsync };
 };
 
 export const useSendEmailVerificationToken = (email: string) => {

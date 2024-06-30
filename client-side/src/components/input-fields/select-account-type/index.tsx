@@ -1,6 +1,7 @@
 import { Field, FieldProps, ErrorMessage } from "formik";
 import Image from "next/image";
 import { H5 } from "../..";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   name: string;
@@ -14,7 +15,7 @@ const SelectAccountType = (props: Props) => {
       <label htmlFor="role">{props.label} </label>
 
       <Field>
-        {({ field, meta, form }: FieldProps) => {
+        {({ field }: FieldProps) => {
           return (
             <div
               {...field}
@@ -25,14 +26,19 @@ const SelectAccountType = (props: Props) => {
                   <label key={index}>
                     <input
                       type="radio"
-                      id={option.value}
+                      id={props.name}
                       name={props.name}
                       value={option.value}
                       className="hidden"
                     />
 
                     <div
-                      className={`${field.value.role === option.value ? "border-black border-[2px]" : ""} flex flex-col justify-end h-[238px] bg-ash rounded-lg p-6`}
+                      className={twMerge(
+                        "flex flex-col items-center justify-end gap-1 h-[238px] bg-ash rounded-lg p-6",
+                        field.value.role === option.value
+                          ? "border-black border-[2px]"
+                          : ""
+                      )}
                     >
                       <Image
                         src={option.img}
