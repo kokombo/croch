@@ -12,7 +12,6 @@ type Props = {
 const Modal = (props: Props) => {
   const closeModal = () => {
     props.closeModal();
-
     document.body.style.overflow = "auto";
   };
 
@@ -43,7 +42,7 @@ const Modal = (props: Props) => {
 
           <H3>{props.label}</H3>
 
-          <div className="w-8"></div>
+          <div className="w-8" />
         </div>
 
         <div className="mt-2 lg:mt-4">
