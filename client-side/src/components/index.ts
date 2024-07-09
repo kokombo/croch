@@ -13,7 +13,7 @@ import PromptCard from "./prompt-card";
 import ProtectRoute from "./protect-route";
 import Divider from "./divider";
 import Location from "./location";
-import { H1, H2, H3, H5, H4, H6, SpanText } from "./texts";
+import { H2, H3, H5, H4, H6 } from "./texts";
 import RingsLoader from "./loaders/rings";
 import ThreeDotsLoader from "./loaders/three-dots";
 import ProductSkeleton from "./loaders/skeletons/product-skeleton";
@@ -44,13 +44,11 @@ export {
   ProtectRoute,
   Divider,
   Location,
-  H1,
   H2,
   H3,
   H4,
   H5,
   H6,
-  SpanText,
   RingsLoader,
   ThreeDotsLoader,
   ProductSkeleton,
