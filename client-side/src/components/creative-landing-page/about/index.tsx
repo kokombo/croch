@@ -77,7 +77,7 @@ const About = () => {
           <CustomButton
             type="button"
             label="Start Selling"
-            extraClasses="py-[10px] px-10 bg-black text-white"
+            className="py-[10px] px-10 bg-black text-white"
           />
         </span>
       </div>

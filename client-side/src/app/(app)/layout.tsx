@@ -4,7 +4,7 @@ import "../globals.css";
 import { Modal, LoginForm, SignupForm, H5 } from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { DispatchType, StateType } from "@/redux/store";
+import type { DispatchType, StateType } from "@/redux/store";
 import {
   setOpenLoginModal,
   setOpenSignupModal,
@@ -36,7 +36,12 @@ export default function RootLayout({
 
   return (
     <Fragment>
-      <main onClick={() => dispatch(setOpenDropDown(false))}>{children}</main>
+      <main
+        onClick={() => dispatch(setOpenDropDown(false))}
+        onKeyDown={() => dispatch(setOpenDropDown(false))}
+      >
+        {children}
+      </main>
 
       <Fragment>
         {openLoginModal && (

@@ -1,7 +1,3 @@
-export const H1 = () => {
-  return <h1></h1>;
-};
-
 export const H2 = ({ children }: { children: React.ReactNode }) => {
   return (
     <h2 className="text-xl lg:text-3xl font-bold text-customblack">
@@ -65,14 +61,3 @@ export const H6 = ({
     </h6>
   );
 };
-
-export const P = () => {
-  return <p></p>;
-};
-
-export const SpanText = () => {
-  return <span></span>;
-};
-
-// const Texts = { H1, H2, H3, H4, H5, H6, P, SpanText };
-// export default Texts;

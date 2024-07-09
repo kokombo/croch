@@ -1,15 +1,17 @@
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form } from "formik";
+import type { FormikHelpers } from "formik";
 import { CustomError, H2 } from "@/components";
 import { SelectAccountType, TextField } from "@/components/input-fields";
 import { FlatGreenButton } from "@/components/buttons";
 import { icons } from "@/constants";
-import { SetStateAction, Dispatch, useState } from "react";
+import { useState } from "react";
+import type { SetStateAction, Dispatch } from "react";
 import { signupFormValidationSchema } from "@/utilities/validation/form-validations";
 import { useSignup } from "@/utilities/api-interactions/user";
 import { signIn } from "next-auth/react";
 import { setOpenSignupModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 import { useClearErrorMessage } from "@/utilities/hooks/useClearErrorMessage";
 
 type Props = {

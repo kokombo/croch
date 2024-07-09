@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
-import Select, { SingleValue, Options, GroupBase } from "react-select";
+import type { Dispatch, SetStateAction } from "react";
+import Select from "react-select";
+import type { SingleValue, GroupBase } from "react-select";
 
 type Option = {
   label: string;
@@ -11,7 +12,7 @@ type Props = {
   name: string;
   id: string;
   disabled?: boolean;
-  options: any[];
+  options: readonly (SelectOption | GroupBase<SelectOption>)[];
   status: SingleValue<SelectOption>;
   setStatus: Dispatch<SetStateAction<SingleValue<SelectOption>>>;
 };

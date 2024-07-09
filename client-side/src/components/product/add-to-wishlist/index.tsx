@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setOpenLoginModal } from "@/redux/slices/modal";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 import { useCurrentUser } from "@/utilities";
 import {
   useAddAndRemoveWishlist,
   useGetWishlists,
 } from "@/utilities/api-interactions/customer";
-import { MouseEvent } from "react";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import type { MouseEvent } from "react";
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 type Props = {
   extraClasses?: string;
@@ -19,11 +19,8 @@ type Props = {
 
 const AddToWishlist = (props: Props) => {
   const dispatch: DispatchType = useDispatch();
-
   const { session } = useCurrentUser();
-
   const { addAndRemoveWishlist } = useAddAndRemoveWishlist(props.productId);
-
   const { data: wishlist } = useGetWishlists();
 
   const idsInWishlist = wishlist?.map((product) => product._id);

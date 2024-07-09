@@ -1,4 +1,5 @@
 "use client";
+
 import { ReactQueryProvider, NextAuthProvider } from "@/components";
 import "./globals.css";
 import { Provider } from "react-redux";
@@ -18,15 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <head>
-        <title>Sell your creatives online</title>
-
-        <meta charSet="utf-8" />
-
-        <link rel="icon" href="/logo.png" type="image/png" sizes="any" />
-      </head>
-
+    <html lang="en">
       <body className={MacanRegular.className}>
         <Provider store={store}>
           <NextAuthProvider>

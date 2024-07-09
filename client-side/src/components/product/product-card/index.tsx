@@ -24,7 +24,7 @@ const ProductCard = (props: Props) => {
   };
 
   return (
-    <Link href={productUrl} target="_blank">
+    <Link href={productUrl} target="_blank" rel="noreferrer">
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setShowButton(false)}

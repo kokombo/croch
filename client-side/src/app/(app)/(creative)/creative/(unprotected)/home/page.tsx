@@ -55,7 +55,7 @@ const CreativeLanding = () => {
                 ? "Proceed"
                 : "Go to marketplace"
           }
-          extraClasses="bg-black text-white px-10 py-4"
+          className="bg-black text-white px-10 py-4"
           onClick={initiateAccountSetup}
           type="button"
         />

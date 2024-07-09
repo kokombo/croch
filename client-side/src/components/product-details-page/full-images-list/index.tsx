@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { icons } from "@/constants";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { H4 } from "@/components";
 
 type Props = {
@@ -36,9 +36,9 @@ const FullImagesList = (props: Props) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 lg:gap-5 mb-10 ">
-          {props.photos.map((photo, index) => {
+          {props.photos.map((photo) => {
             return (
-              <div key={index} className="relative w-full h-[204px] bg-grey">
+              <div key={photo} className="relative w-full h-[204px] bg-grey">
                 <Image
                   src={photo}
                   alt=""

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useState, TouchEvent } from "react";
+import { useId, useState } from "react";
+import type { TouchEvent } from "react";
 import { RoundIconButton } from "../buttons";
 import {
   ProductAvailability,
@@ -18,6 +19,7 @@ const Slider = (props: Props) => {
   const [index, setIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [offSet, setOffSet] = useState(0);
+  const id = useId();
 
   const swipeSlide = (e: TouchEvent<HTMLDivElement>) => {
     if (touchStart === 0) return;
@@ -56,7 +58,7 @@ const Slider = (props: Props) => {
 
           return (
             <div
-              key={sliderIndex}
+              key={`${sliderIndex}-${photo[sliderIndex]}`}
               className={twMerge(
                 "w-full flex-shrink-0 transition-transform duration-400 ease-in-out bg-grey",
                 opacity
@@ -65,7 +67,6 @@ const Slider = (props: Props) => {
             >
               <div className="relative h-[310px] md:h-[270px] ">
                 <Image
-                  key={sliderIndex}
                   src={photo}
                   alt="croch image"
                   fill
@@ -107,7 +108,7 @@ const Slider = (props: Props) => {
                 priority
               />
             }
-            extraClasses="absolute left-[5%] top-1/2 bg-white"
+            className="absolute left-[5%] top-1/2 bg-white"
             arialabel="Slider prev button"
           />
         )}
@@ -127,7 +128,7 @@ const Slider = (props: Props) => {
                 priority
               />
             }
-            extraClasses="absolute right-[5%] top-1/2 bg-white"
+            className="absolute right-[5%] top-1/2 bg-white"
             arialabel="Slider next button"
           />
         )}
@@ -140,7 +141,7 @@ const Slider = (props: Props) => {
         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-[2px]">
           {[...Array(props.product.photos.length)].map((_, dotIndex) => {
             return (
-              <div key={dotIndex} className="relative h-[6px] w-[6px]">
+              <div key={id} className="relative h-[6px] w-[6px]">
                 <Image
                   src={index === dotIndex ? icons.activedot : icons.inactivedot}
                   alt=""

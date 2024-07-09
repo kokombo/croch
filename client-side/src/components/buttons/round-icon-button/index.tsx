@@ -1,10 +1,11 @@
+import type { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
   hidden?: boolean;
-  onClick?: (e: any) => void;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   label: string | React.JSX.Element;
-  extraClasses?: string;
+  className?: string;
   arialabel: string;
 };
 
@@ -14,7 +15,7 @@ const RoundIconButton = (props: Props) => {
       hidden={props.hidden}
       type="button"
       className={twMerge(
-        props.extraClasses,
+        props.className,
         "flex items-center justify-center rounded-full h-8 w-8 text-[10px] hover:scale-110 transition-transform duration-300 ease-in-out"
       )}
       onClick={props.onClick}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NextAuthOptions, User } from "next-auth";
+import type { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { api_base_url } from "../constant";
 
@@ -18,19 +18,22 @@ export const authOptions: NextAuthOptions = {
         const password = credentials?.password;
 
         return await axios
-          .post(`${api_base_url}/auth/signin`, { email, password }, {
-            headers: {
-               'Content-Type': "application/json",
+          .post(
+            `${api_base_url}/auth/signin`,
+            { email, password },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
             }
-          })
+          )
           .then((res) => {
             const user: User = res.data;
 
             if (user) {
               return user;
-            } else {
-              return null;
             }
+            return null;
           })
           .catch((error) => {
             throw new Error(error?.response?.data?.message);

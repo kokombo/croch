@@ -1,4 +1,5 @@
-import { Field, FieldProps, ErrorMessage } from "formik";
+import { Field, ErrorMessage } from "formik";
+import type { FieldProps } from "formik";
 import Image from "next/image";
 import { H5 } from "../..";
 import { twMerge } from "tailwind-merge";
@@ -23,7 +24,7 @@ const SelectAccountType = (props: Props) => {
             >
               {props.data.map((option, index) => {
                 return (
-                  <label key={index}>
+                  <label key={`${index}-${option.value}`}>
                     <input
                       type="radio"
                       id={props.name}

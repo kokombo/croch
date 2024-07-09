@@ -1,4 +1,5 @@
-import { Field, ErrorMessage, FieldProps } from "formik";
+import { Field, ErrorMessage } from "formik";
+import type { FieldProps } from "formik";
 
 type Props = {
   name: string;
@@ -12,7 +13,7 @@ type Props = {
 const TextArea = (props: Props) => {
   return (
     <div className="relative w-full">
-      <label htmlFor={props.name}></label>
+      <label htmlFor={props.name} />
 
       <Field name={props.name} id={props.id}>
         {({ field, form, meta }: FieldProps) => {

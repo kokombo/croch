@@ -1,4 +1,5 @@
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form } from "formik";
+import type { FormikHelpers } from "formik";
 import TextField from "../../input-fields/text-field";
 import TextArea from "../../input-fields/text-area";
 import CustomButton from "../../buttons/custom-button";
@@ -6,8 +7,8 @@ import UploadLogo from "../../input-fields/upload-logo";
 import CustomError from "../../custom-error";
 import OverlayLoader from "../../loaders/overlay-loader";
 import { creativeAccountSetupValidationSchema } from "@/utilities/validation/form-validations";
-import { Dispatch, SetStateAction } from "react";
-import { AxiosError } from "axios";
+import type { Dispatch, SetStateAction } from "react";
+import type { AxiosError } from "axios";
 
 type Props = {
   step: number;
@@ -64,7 +65,7 @@ const AccountSetupForm = (props: Props) => {
                     label="Next"
                     type="button"
                     onClick={() => props.setStep(2)}
-                    extraClasses="bg-customblack text-white px-10 py-4 "
+                    className="bg-customblack text-white px-10 py-4 "
                     disabled={
                       !formik.values.brandName ||
                       !formik.values.personalDescription ||
@@ -119,14 +120,14 @@ const AccountSetupForm = (props: Props) => {
                     label="Previous"
                     type="button"
                     onClick={() => props.setStep((prev) => prev - 1)}
-                    extraClasses="text-customblack border-grey border-[1px] px-10 py-4"
+                    className="text-customblack border-grey border-[1px] px-10 py-4"
                   />
 
                   <CustomButton
                     label="Next"
                     type="button"
                     onClick={() => props.setStep(3)}
-                    extraClasses="bg-customblack text-white px-10 py-4"
+                    className="bg-customblack text-white px-10 py-4"
                     disabled={
                       !formik.values.yearsOfExperience ||
                       !formik.values.funFacts ||
@@ -147,25 +148,21 @@ const AccountSetupForm = (props: Props) => {
                     label="Previous"
                     type="button"
                     onClick={() => props.setStep((prev) => prev - 1)}
-                    extraClasses="text-customblack border-black border-[2px]  px-10 py-4"
+                    className="text-customblack border-black border-[2px]  px-10 py-4"
                   />
 
                   <CustomButton
                     label="Finish"
                     type="submit"
-                    extraClasses="bg-customblack text-white  px-10 py-4"
+                    className="bg-customblack text-white  px-10 py-4"
                   />
                 </span>
 
-                <span>
-                  {props.isError && (
-                    <CustomError
-                      message={props.error?.response?.data.message}
-                    />
-                  )}
+                {props.isError && (
+                  <CustomError message={props.error?.response?.data.message} />
+                )}
 
-                  {props.isPending && <OverlayLoader />}
-                </span>
+                {props.isPending && <OverlayLoader />}
               </div>
             )}
           </Form>

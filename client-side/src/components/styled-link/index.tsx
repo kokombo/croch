@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { MouseEvent } from "react";
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
+import type { MouseEvent } from "react";
 
 type Props = {
   label: string;

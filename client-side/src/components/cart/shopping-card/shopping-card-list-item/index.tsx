@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { H6, OvalLoader } from "@/components";
 import { Counter } from "@/components/product";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { icons } from "@/constants";
 import {
   useRemoveFromCart,
@@ -27,18 +27,14 @@ const ShoppingCardListItem = (props: Props) => {
 
   const { removeFromCart } = useRemoveFromCart(props.cartItem.info._id);
 
-  useEffect(() => {
-    updateCartItemCount();
-
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [count]);
-
   const decreaseCount = () => {
     setCount((prev) => prev - 1);
+    updateCartItemCount();
   };
 
   const increaseCount = () => {
     setCount((prev) => prev + 1);
+    updateCartItemCount();
   };
 
   return (

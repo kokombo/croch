@@ -3,9 +3,10 @@ import SelectField from "@/components/input-fields/select-field";
 import { icons } from "@/constants";
 import { ORDER_STATUS } from "@/constants/data";
 import Image from "next/image";
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
-import { RangeKeyDict } from "react-date-range";
-import { SingleValue } from "react-select";
+import { Fragment, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import type { RangeKeyDict } from "react-date-range";
+import type { SingleValue } from "react-select";
 
 type Props = {
   status: SingleValue<SelectOption>;
@@ -54,7 +55,10 @@ const OrderFilter = (props: Props) => {
           setStatus={props.setStatus}
         />
 
-        <button className="py-3 px-5 border-[1px] b rounded-[4px] bg-black">
+        <button
+          type="button"
+          className="py-3 px-5 border-[1px] b rounded-[4px] bg-black"
+        >
           <span className="flex_item_justify_center gap-1">
             <Image
               src={icons.whitefilter}

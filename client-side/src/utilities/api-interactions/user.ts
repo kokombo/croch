@@ -1,8 +1,9 @@
-import axios, { AxiosError } from "axios";
+import axios, { type AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api_base_url } from "../constant";
 import { useCurrentUser } from "..";
 import { useState } from "react";
+import type { User } from "next-auth";
 
 export const useSignup = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -18,7 +19,7 @@ export const useSignup = () => {
   };
 
   const { mutateAsync, data, isPending } = useMutation<
-    any,
+    User,
     AxiosError<ErrorResponse>,
     SignupDataType
   >({

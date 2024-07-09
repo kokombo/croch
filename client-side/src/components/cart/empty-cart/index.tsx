@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { icons } from "@/constants";
 import { H3, H6, StyledLink } from "../..";
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 type Props = {
   heading: string;

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 type Props = {
   data: string[];
@@ -15,7 +15,7 @@ const SelectProductSize = (props: Props) => {
       <div className="grid grid-cols-4 gap-1 place-items-center">
         {props.data.map((option, index) => {
           return (
-            <label key={index}>
+            <label key={option}>
               <input
                 type="radio"
                 id={option}

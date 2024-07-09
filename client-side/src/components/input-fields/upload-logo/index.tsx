@@ -1,5 +1,6 @@
 import { icons } from "@/constants";
-import { Field, FieldProps, ErrorMessage } from "formik";
+import { Field, ErrorMessage } from "formik";
+import type { FieldProps } from "formik";
 import Image from "next/image";
 import { useState } from "react";
 

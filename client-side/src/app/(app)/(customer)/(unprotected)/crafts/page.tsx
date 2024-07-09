@@ -20,12 +20,7 @@ const ProductInfoPage = () => {
 
   const craftId = params.get("craftId") as string;
 
-  const {
-    data: product,
-    isLoading,
-    isError,
-    error,
-  } = useGetProductById(craftId);
+  const { data: product, isLoading, isError } = useGetProductById(craftId);
 
   return isLoading || isError ? (
     <ProductInfoPageSkeleton />

@@ -2,7 +2,7 @@ import DropDown from "@/components/drop-down";
 import { NavAccountButton } from "@/components/buttons";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 type Props = {
   showDropDown: boolean;

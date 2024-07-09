@@ -3,7 +3,7 @@ import { Logo, NavigationLinksCard } from "../..";
 import { NavAccountButton } from "@/components/buttons";
 import { SearchBox } from "@/components/input-fields";
 import { useDispatch, useSelector } from "react-redux";
-import { DispatchType, StateType } from "@/redux/store";
+import type { DispatchType, StateType } from "@/redux/store";
 import { setOpenDropDown } from "@/redux/slices/modal";
 import { useCurrentUser } from "@/utilities";
 import { usePathname } from "next/navigation";

@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 type Props = {
-  status: string;
+  status: string | null;
 };
 
 const OrderStatusCard = (props: Props) => {
@@ -10,7 +10,7 @@ const OrderStatusCard = (props: Props) => {
       className={twMerge(
         props.status === "pending"
           ? "border-orange text-orange"
-          : "fulfilled"
+          : props.status === "fulfilled"
             ? "border-lightgreen text-lightgreen"
             : "border-red text-red",
         "border-[1px] h-8 w-fit px-2 rounded-md flex_center font-medium text-xs sm:text-sm capitalize"

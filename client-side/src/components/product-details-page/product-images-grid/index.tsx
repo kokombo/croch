@@ -78,6 +78,7 @@ const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
 
               {photos.length > 5 && (
                 <button
+                  type="button"
                   onClick={() => {
                     document.body.style.overflow = "hidden";
                     setShowMorePhotos(true);

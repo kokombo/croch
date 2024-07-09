@@ -1,4 +1,5 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import { Divider, H3 } from "..";
 
 type Props = {
@@ -16,10 +17,12 @@ const Modal = (props: Props) => {
   };
 
   return (
+    // biome-ignore lint:
     <div
       onClick={closeModal}
       className="fixed top-0 left-0 flex items-start justify-center w-full h-full md:px-0 px-5 z-[9999] bg-modalblack"
     >
+      {/* biome-ignore lint: */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="bg-white z-1 h-fit rounded-[10px] w-[98vw] sm:w-[70vw] lg:w-[45vw] mt-12 py-4 lg:py-6 modal"

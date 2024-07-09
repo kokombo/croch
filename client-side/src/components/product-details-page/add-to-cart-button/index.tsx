@@ -1,12 +1,12 @@
 import { CustomButton } from "@/components/buttons";
 import { useDispatch } from "react-redux";
 import { useCurrentUser } from "@/utilities";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 import { useAddToCart } from "@/utilities/api-interactions/cart";
 import { useRemoveFromCart } from "@/utilities/api-interactions/cart";
 import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { setOpenLoginModal } from "@/redux/slices/modal";
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 type Props = {
   product: Product;
@@ -63,14 +63,14 @@ const AddToCartButton = (props: Props) => {
           type="button"
           label={addingToCart ? "Adding to cart..." : "Add to cart"}
           onClick={addProductToCart}
-          extraClasses="bg-green text-white font-medium w-full py-3 px-4 lg:py-4"
+          className="bg-green text-white font-medium w-full py-3 px-4 lg:py-4"
         />
       ) : (
         <CustomButton
           type="button"
           label={removingFromCart ? "Removing..." : "Remove"}
           onClick={removeProductFromCart}
-          extraClasses="bg-black text-white font-medium w-full py-3 px-4 lg:py-4"
+          className="bg-black text-white font-medium w-full py-3 px-4 lg:py-4"
         />
       )}
     </span>

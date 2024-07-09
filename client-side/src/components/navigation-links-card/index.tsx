@@ -6,7 +6,7 @@ import {
   setOpenSignupModal,
   setOpenDropDown,
 } from "@/redux/slices/modal";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { signOut } from "next-auth/react";
 import {
@@ -36,7 +36,7 @@ const NavigationLinksCard = () => {
           return (
             <Link
               href={item.href}
-              key={index}
+              key={`${index}-${item.label}`}
               className="dropdown_list_item"
               onClick={(e) => {
                 item.href === "/login"
@@ -63,7 +63,7 @@ const NavigationLinksCard = () => {
         AUTHENTICATED_CUSTOMER_LINKS.map((item, index) => {
           return (
             <Link
-              key={index}
+              key={`${index}-${item.label}`}
               href={item.href}
               className="dropdown_list_item"
               onClick={(e) => {

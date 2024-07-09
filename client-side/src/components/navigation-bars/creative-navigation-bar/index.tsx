@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DropDown, Logo } from "../..";
 import { NavAccountButton } from "@/components/buttons";
 import { useDispatch, useSelector } from "react-redux";
-import { DispatchType, StateType } from "@/redux/store";
+import type { DispatchType, StateType } from "@/redux/store";
 import { setOpenDropDown } from "@/redux/slices/modal";
 import { signOut } from "next-auth/react";
 import { useCurrentUser } from "@/utilities";
@@ -46,7 +46,7 @@ const CreativeNavigationBar = () => {
             {authenticatedCreativeLinks.map((item, index) => {
               return (
                 <Link
-                  key={index}
+                  key={`${index}-${item.label}`}
                   href={item.href}
                   className="dropdown_list_item"
                   onClick={(e) => {

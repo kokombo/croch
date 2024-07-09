@@ -29,6 +29,7 @@ const OrderDetails = () => {
   return (
     <main className="paddingX py-10">
       <button
+        type="button"
         onClick={() => {
           router.push("/order");
         }}
@@ -69,7 +70,7 @@ const OrderDetails = () => {
               </article>
             )}
 
-            <span></span>
+            <span />
           </div>
 
           <OrderDetailsTable
@@ -86,7 +87,7 @@ const OrderDetails = () => {
         </div>
       </div>
 
-      <div></div>
+      <div />
     </main>
   );
 };

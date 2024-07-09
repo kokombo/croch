@@ -20,13 +20,13 @@ const Hero = () => {
           <CustomButton
             type="button"
             label="Start Selling"
-            extraClasses="py-[10px] px-10 bg-black text-white"
+            className="py-[10px] px-10 bg-black text-white"
           />
 
           <CustomButton
             type="button"
             label="Learn More"
-            extraClasses="py-[10px] px-10 border-black border-[1px]"
+            className="py-[10px] px-10 border-black border-[1px]"
           />
         </span>
       </div>

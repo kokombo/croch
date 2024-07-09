@@ -1,13 +1,14 @@
 import { CustomError, H2, H6 } from "@/components";
 import { TextField } from "@/components/input-fields";
 import { FlatGreenButton } from "@/components/buttons";
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form } from "formik";
+import type { FormikHelpers } from "formik";
 import { useState } from "react";
 import { loginFormValidationSchema } from "@/utilities";
 import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { setOpenLoginModal, setOpenSignupModal } from "@/redux/slices/modal";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 import { useClearErrorMessage } from "@/utilities/hooks/useClearErrorMessage";
 
 const initialValues = {

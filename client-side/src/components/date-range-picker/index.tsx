@@ -1,7 +1,8 @@
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-import { DateRangePicker, RangeKeyDict } from "react-date-range";
+import { DateRangePicker } from "react-date-range";
+import type { RangeKeyDict } from "react-date-range";
 
 type Props = {
   startDate: Date | undefined;

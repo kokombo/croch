@@ -10,7 +10,7 @@ import {
   useAccountSetupDone,
   useSetupCreativeAccount,
 } from "@/utilities/api-interactions/creative";
-import { FormikHelpers } from "formik";
+import type { FormikHelpers } from "formik";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -34,9 +34,9 @@ const CreativeAccountSetup = () => {
 
     formData.append("logo", values.logo);
     formData.append("brandName", values.brandName);
-    values.funFacts.forEach((funFact) => {
+    for (const funFact of values.funFacts) {
       formData.append("funFacts", funFact);
-    });
+    }
     formData.append("personalDescription", values.personalDescription);
     formData.append("yearsOfExperience", values.yearsOfExperience);
 
@@ -52,7 +52,10 @@ const CreativeAccountSetup = () => {
   };
 
   return (
-    <main onClick={() => setShowDropDown(false)}>
+    <main
+      onClick={() => setShowDropDown(false)}
+      onKeyDown={() => setShowDropDown(false)}
+    >
       <AccountSetupBar
         showDropDown={showDropDown}
         setShowDropDown={setShowDropDown}

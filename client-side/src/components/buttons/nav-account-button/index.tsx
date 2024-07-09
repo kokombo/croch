@@ -10,6 +10,7 @@ type Props = {
 const NavAccountButton = (props: Props) => {
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.stopPropagation();
         props.onClick();

@@ -2,8 +2,8 @@ import { twMerge } from "tailwind-merge";
 
 type Props = {
   label: string;
-  onClick?: any;
-  extraClasses?: string;
+  onClick?: () => void;
+  className?: string;
   type: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;
 };
@@ -15,10 +15,8 @@ const FlatGreenButton = (props: Props) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={twMerge(
-        props.extraClasses,
-        props.disabled ? "bg-grey cursor-not-allowed" : "bg-green",
-        "text-white",
-        "w-full p-4 rounded-lg"
+        props.className,
+        "disabled:bg-grey disabled:cursor-not-allowed transition bg-green w-full p-4 rounded-lg"
       )}
     >
       {props.label}

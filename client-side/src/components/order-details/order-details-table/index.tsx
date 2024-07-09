@@ -1,11 +1,10 @@
-import { H6 } from "@/components/texts";
 import {
   useReactTable,
   createColumnHelper,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
@@ -26,7 +25,7 @@ type Props = {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
-  error: AxiosError<ErrorResponse, any> | null;
+  error: AxiosError<ErrorResponse> | null;
 };
 
 const OrderDetailsTable = (props: Props) => {
@@ -36,7 +35,7 @@ const OrderDetailsTable = (props: Props) => {
     if (props.order) {
       setData(props.order.items);
     }
-  }, [props.isSuccess, props.order]);
+  }, [props.order]);
 
   const columnHelper = createColumnHelper<Item>();
 
@@ -66,7 +65,7 @@ const OrderDetailsTable = (props: Props) => {
       columnHelper.accessor("info", {
         header: () => "PRICE",
         cell: (info) => (
-          <span>&#8358;{info.renderValue()?.price!.toLocaleString()} </span>
+          <span>&#8358;{info.renderValue()?.price.toLocaleString()} </span>
         ),
       }),
 
@@ -78,7 +77,7 @@ const OrderDetailsTable = (props: Props) => {
       columnHelper.accessor("cummulativePrice", {
         header: () => "SUB-TOTAL",
         cell: (info) => (
-          <span>&#8358;{info.renderValue()!.toLocaleString()} </span>
+          <span>&#8358;{info.renderValue()?.toLocaleString()} </span>
         ),
       }),
     ],
@@ -125,7 +124,7 @@ const OrderDetailsTable = (props: Props) => {
       ) : props.order && props.order?.items.length < 1 ? (
         <tbody className="h-200">
           <tr>
-            <td>{`There are no items.`} </td>
+            <td>There are no items </td>
           </tr>
         </tbody>
       ) : (

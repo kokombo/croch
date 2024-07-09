@@ -89,7 +89,7 @@ const Billing = () => {
                 label="Place order"
                 onClick={placeAnOrder}
                 disabled={false}
-                extraClasses="text-white bg-green p-4 w-full"
+                className="text-white bg-green p-4 w-full"
                 rightIcon={icons.arrowrightwhite}
               />
             </div>

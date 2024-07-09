@@ -17,7 +17,7 @@ const ProductCardOwnerInfo = (props: Props) => {
       <div className="relative h-10 w-10 rounded-full bg-grey">
         {creative?.brandLogo && (
           <Image
-            src={creative.brandLogo!}
+            src={creative.brandLogo}
             alt={`${creative.brandName.substring(0, 1)}`}
             quality={100}
             fill

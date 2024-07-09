@@ -28,7 +28,7 @@ const CouponCard = (props: Props) => {
               type="submit"
               onClick={() => {}}
               label="Apply coupon"
-              extraClasses="text-white bg-customblack px-6 py-4"
+              className="text-white bg-customblack px-6 py-4"
             />
           </Form>
         </Formik>

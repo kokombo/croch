@@ -14,7 +14,7 @@ const HowItWorks = () => {
         {data.map((item, index) => {
           return (
             <article
-              key={index}
+              key={`${index}-${item.heading}`}
               className="bg-white h-[400px] rounded-xl px-4 py-6 flex flex-col justify-between"
             >
               <div />

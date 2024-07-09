@@ -1,9 +1,10 @@
 import { icons } from "@/constants";
 import TagItem from "../tag-item";
+import { useId } from "react";
 
-type Props = {};
+const TagsList = () => {
+  const id = useId();
 
-const TagsList = (props: Props) => {
   return (
     <div
       className="flex items-center overflow-x-auto max-w-full gap-2 lg:gap-4 lg:h-20 h-[70px]"
@@ -12,10 +13,10 @@ const TagsList = (props: Props) => {
       {[...Array(10)].map((_, index) => {
         return (
           <TagItem
-            key={index}
+            key={id}
             label="Beanie"
             icon={icons.top}
-            activeTab={index === 0 ? true : false}
+            activeTab={index === 0}
           />
         );
       })}

@@ -4,8 +4,8 @@ import { H2, H6 } from "@/components";
 import { OrderFilter, OrderTable } from "@/components/order";
 import { useGetCustomerOrders } from "@/utilities/api-interactions/order";
 import { useEffect, useState } from "react";
-import { RangeKeyDict } from "react-date-range";
-import { SingleValue } from "react-select";
+import type { RangeKeyDict } from "react-date-range";
+import type { SingleValue } from "react-select";
 
 const Order = () => {
   const [status, setStatus] = useState<SingleValue<SelectOption>>({
@@ -25,12 +25,12 @@ const Order = () => {
     error,
     refetch,
     isRefetching,
-  } = useGetCustomerOrders(status?.value!);
+  } = useGetCustomerOrders(status?.value as string);
 
+  // biome-ignore lint:
   useEffect(() => {
     refetch();
-    //eslint-disable-next-line
-  }, [status]);
+  }, [status, refetch]);
 
   return (
     <main className="paddingX py-10">
@@ -40,7 +40,7 @@ const Order = () => {
           <H6>{orders?.length} orders found</H6>
         </span>
 
-        <span></span>
+        <span />
       </div>
 
       <OrderFilter

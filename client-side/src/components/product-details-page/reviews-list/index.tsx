@@ -26,7 +26,7 @@ const ReviewsList = ({ creativeId }: { creativeId: string }) => {
               type="button"
               label={`Show all ${reviews.length} reviews`}
               onClick={() => {}}
-              extraClasses="border-[1px] border-black px-7 py-5"
+              className="border-[1px] border-black px-7 py-5"
             />
           </span>
         </section>

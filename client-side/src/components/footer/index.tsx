@@ -44,7 +44,7 @@ const Footer = () => {
           </H6>
         </span>
 
-        <span></span>
+        <span />
       </div>
     </footer>
   );

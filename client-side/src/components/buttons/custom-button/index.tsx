@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { MouseEvent } from "react";
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
+import type { MouseEvent } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
   label: string | JSX.Element;
   onClick?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
-  extraClasses?: string;
+  className?: string;
   type: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;
   leftIcon?: string | StaticImport;
@@ -20,7 +20,7 @@ const CustomButton = (props: Props) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={twMerge(
-        props.extraClasses,
+        props.className,
         "rounded-lg text-sm lg:text-base font-medium "
       )}
     >

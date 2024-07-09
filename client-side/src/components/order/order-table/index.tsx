@@ -5,11 +5,11 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { SingleValue } from "react-select";
+import type { SingleValue } from "react-select";
 import OrderStatusCard from "../order-status-card";
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
-  error: AxiosError<ErrorResponse, any> | null;
+  error: AxiosError<ErrorResponse> | null;
   status: SingleValue<SelectOption>;
 };
 
@@ -30,7 +30,7 @@ const OrderTable = (props: Props) => {
     if (props.orders) {
       setData(props.orders);
     }
-  }, [props.isSuccess, props.orders]);
+  }, [props.orders]);
 
   const columnHelper = createColumnHelper<Order>();
 
@@ -74,13 +74,13 @@ const OrderTable = (props: Props) => {
       columnHelper.accessor("totalPrice", {
         header: () => "Price",
         cell: (info) => (
-          <span>&#8358;{info.renderValue()!.toLocaleString()} </span>
+          <span>&#8358;{info.renderValue()?.toLocaleString()} </span>
         ),
       }),
 
       columnHelper.accessor("status", {
         header: () => "Status",
-        cell: (info) => <OrderStatusCard status={info.renderValue()!} />,
+        cell: (info) => <OrderStatusCard status={info.renderValue()} />,
       }),
     ],
     [columnHelper]

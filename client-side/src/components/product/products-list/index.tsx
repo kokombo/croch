@@ -1,10 +1,10 @@
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import { ProductSkeleton } from "../..";
 import ProductCard from "../product-card";
 import { setOpenErrorModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 
 type Props = {
   products: Product[] | undefined;

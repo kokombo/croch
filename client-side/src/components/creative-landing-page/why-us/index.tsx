@@ -13,14 +13,14 @@ const WhyUs = () => {
 
       <div className="grid grid-rows-2 gap-4 w-full">
         <div className="grid grid-cols-10 gap-4 ">
-          <div className={`col-span-4 ${card}`}></div>
-          <div className={`col-span-6 ${card}`}></div>
+          <div className={`col-span-4 ${card}`} />
+          <div className={`col-span-6 ${card}`} />
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-          <div className={`${card}`}></div>
-          <div className={`${card}`}></div>
-          <div className={`${card}`}></div>
+          <div className={`${card}`} />
+          <div className={`${card}`} />
+          <div className={`${card}`} />
         </div>
       </div>
     </section>

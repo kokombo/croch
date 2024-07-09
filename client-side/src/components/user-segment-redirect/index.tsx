@@ -6,7 +6,6 @@ import { ColorRingLoader, FullScreenLoader, OverlayLoader } from "..";
 
 const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
   const [redirecting, setRedirecting] = useState(false);
-
   const { status, id, isCreative } = useCurrentUser();
 
   const { data: creative } = useGetCreativeById(id, isCreative);
@@ -31,7 +30,7 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
     };
 
     checkCurrentUser();
-  }, [router, status, creative, redirecting]);
+  }, [router, status, creative]);
 
   return status === "loading" ? (
     <FullScreenLoader />
