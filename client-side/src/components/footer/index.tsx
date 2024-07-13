@@ -10,14 +10,14 @@ const Footer = () => {
         {links.map((item, index) => {
           const { heading, subLinks } = item;
           return (
-            <div key={index.toString()} className="flex flex-col gap-6">
+            <div key={`${index}-${heading}`} className="flex flex-col gap-6">
               <H4>{heading} </H4>
 
               <div className="flex flex-col gap-4">
                 {subLinks.map((link, index) => {
                   return (
                     <Link
-                      key={index.toString()}
+                      key={`${index}-${link.linkLabel}`}
                       href={link.href}
                       className="text-customblack text-sm lg:text-base hover:underline"
                     >

@@ -1,8 +1,8 @@
 "use client";
-
-import "../../../globals.css";
+import "@/app/globals.css";
 import { CustomerNavigationBar } from "@/components/navigation-bars";
-import { Footer, ProtectRoute } from "@/components";
+import { Footer } from "@/components";
+import { Fragment } from "react";
 
 const CustomerProtectedLayout = ({
   children,
@@ -10,12 +10,11 @@ const CustomerProtectedLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <ProtectRoute>
+    <Fragment>
       <CustomerNavigationBar />
       {children}
-
       <Footer />
-    </ProtectRoute>
+    </Fragment>
   );
 };
 

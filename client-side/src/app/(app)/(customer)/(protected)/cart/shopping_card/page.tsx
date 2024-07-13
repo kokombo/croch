@@ -13,9 +13,7 @@ import { useEffect } from "react";
 
 const ShoppingCard = () => {
   const params = useSearchParams();
-
   const router = useRouter();
-
   const creativeId = params.get("id") as string;
 
   const {

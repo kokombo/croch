@@ -10,11 +10,8 @@ import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const CreativeNavigationBar = () => {
   const { openDropDown } = useSelector((state: StateType) => state.modal);
-
   const dispatch: DispatchType = useDispatch();
-
   const { id, isCreative } = useCurrentUser();
-
   const { data: creative } = useGetCreativeById(id, isCreative);
 
   const authenticatedCreativeLinks = [

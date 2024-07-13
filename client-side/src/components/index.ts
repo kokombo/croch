@@ -1,5 +1,3 @@
-import ReactQueryProvider from "./react-query-provider";
-import NextAuthProvider from "./next-auth-provider";
 import Slider from "./slider";
 import DropDown from "./drop-down";
 import Modal from "./modal";
@@ -10,7 +8,6 @@ import CustomError from "./custom-error";
 import Footer from "./footer";
 import IconAndTextWrapper from "./icon-and-text-wrapper";
 import PromptCard from "./prompt-card";
-import ProtectRoute from "./protect-route";
 import Divider from "./divider";
 import Location from "./location";
 import { H2, H3, H5, H4, H6 } from "./texts";
@@ -29,8 +26,6 @@ import OvalLoader from "./loaders/oval-loader";
 import MyDateRangePicker from "./date-range-picker";
 
 export {
-  ReactQueryProvider,
-  NextAuthProvider,
   Slider,
   DropDown,
   Modal,
@@ -41,7 +36,6 @@ export {
   Footer,
   IconAndTextWrapper,
   PromptCard,
-  ProtectRoute,
   Divider,
   Location,
   H2,

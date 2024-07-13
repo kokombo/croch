@@ -1,10 +1,7 @@
 import { icons } from "@/constants";
 import TagItem from "../tag-item";
-import { useId } from "react";
 
 const TagsList = () => {
-  const id = useId();
-
   return (
     <div
       className="flex items-center overflow-x-auto max-w-full gap-2 lg:gap-4 lg:h-20 h-[70px]"
@@ -13,7 +10,7 @@ const TagsList = () => {
       {[...Array(10)].map((_, index) => {
         return (
           <TagItem
-            key={id}
+            key={index.toString()}
             label="Beanie"
             icon={icons.top}
             activeTab={index === 0}

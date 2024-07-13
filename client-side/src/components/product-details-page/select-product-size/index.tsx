@@ -15,7 +15,7 @@ const SelectProductSize = (props: Props) => {
       <div className="grid grid-cols-4 gap-1 place-items-center">
         {props.data.map((option, index) => {
           return (
-            <label key={option}>
+            <label key={`${index}-${option}`}>
               <input
                 type="radio"
                 id={option}

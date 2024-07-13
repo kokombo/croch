@@ -1,7 +1,6 @@
 "use client";
-
-import "../globals.css";
-import { Modal, LoginForm, SignupForm, H5 } from "@/components";
+import "@/app/globals.css";
+import { H5 } from "@/components";
 import { icons } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import type { DispatchType, StateType } from "@/redux/store";
@@ -11,6 +10,15 @@ import {
   setOpenDropDown,
 } from "@/redux/slices/modal";
 import { useState, Fragment } from "react";
+import dynamic from "next/dynamic";
+
+const Modal = dynamic(() => import("@/components/modal"), { ssr: false });
+const LoginForm = dynamic(() => import("@/components/forms/login-form"), {
+  ssr: false,
+});
+const SignupForm = dynamic(() => import("@/components/forms/signup-form"), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
@@ -18,10 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [step, setStep] = useState(1);
-
   const { openLoginModal, openSignupModal, openErrorModal, errorMessage } =
     useSelector((state: StateType) => state.modal);
-
   const dispatch: DispatchType = useDispatch();
 
   const onClickSignupModalButton = () => {

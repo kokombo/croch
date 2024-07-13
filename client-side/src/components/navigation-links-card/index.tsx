@@ -16,7 +16,6 @@ import {
 
 const NavigationLinksCard = () => {
   const dispatch: DispatchType = useDispatch();
-
   const { session } = useCurrentUser();
 
   const openLoginModal = () => {
@@ -36,7 +35,7 @@ const NavigationLinksCard = () => {
           return (
             <Link
               href={item.href}
-              key={`${index}-${item.label}`}
+              key={`${index}-${item}`}
               className="dropdown_list_item"
               onClick={(e) => {
                 item.href === "/login"

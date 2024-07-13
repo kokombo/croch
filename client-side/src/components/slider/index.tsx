@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useId, useState } from "react";
+import { useState } from "react";
 import type { TouchEvent } from "react";
 import { RoundIconButton } from "../buttons";
 import {
@@ -19,7 +19,6 @@ const Slider = (props: Props) => {
   const [index, setIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [offSet, setOffSet] = useState(0);
-  const id = useId();
 
   const swipeSlide = (e: TouchEvent<HTMLDivElement>) => {
     if (touchStart === 0) return;
@@ -58,7 +57,7 @@ const Slider = (props: Props) => {
 
           return (
             <div
-              key={`${sliderIndex}-${photo[sliderIndex]}`}
+              key={`${sliderIndex}-${photo}`}
               className={twMerge(
                 "w-full flex-shrink-0 transition-transform duration-400 ease-in-out bg-grey",
                 opacity
@@ -141,7 +140,10 @@ const Slider = (props: Props) => {
         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-[2px]">
           {[...Array(props.product.photos.length)].map((_, dotIndex) => {
             return (
-              <div key={id} className="relative h-[6px] w-[6px]">
+              <div
+                key={dotIndex.toString()}
+                className="relative h-[6px] w-[6px]"
+              >
                 <Image
                   src={index === dotIndex ? icons.activedot : icons.inactivedot}
                   alt=""

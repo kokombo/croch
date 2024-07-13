@@ -1,6 +1,5 @@
 "use client";
-
-import "../../../globals.css";
+import "@/app/globals.css";
 import { CustomerNavigationBar } from "@/components/navigation-bars";
 import { Footer, UserSegmentRedirect } from "@/components";
 
@@ -12,9 +11,7 @@ const CustomerUnprotectedLayout = ({
   return (
     <UserSegmentRedirect>
       <CustomerNavigationBar />
-
       {children}
-
       <Footer />
     </UserSegmentRedirect>
   );

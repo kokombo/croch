@@ -17,9 +17,7 @@ import { icons } from "@/constants";
 
 const Billing = () => {
   const params = useSearchParams();
-
   const router = useRouter();
-
   const creativeId = params.get("for") as string;
 
   const {
@@ -38,7 +36,7 @@ const Billing = () => {
     data,
   } = usePlaceAnOrder(creativeId, {
     onSuccess: () => {
-      router.push(`/cart/shopping_card/billing/status?=success`);
+      router.push("/cart/shopping_card/billing/status?=success");
     },
   });
 

@@ -1,5 +1,4 @@
 "use client";
-
 import { Footer, UserSegmentRedirect } from "@/components";
 import { TagsList } from "@/components/tag";
 import { ProductsList } from "@/components/product";
@@ -25,7 +24,6 @@ const Home = () => {
 
         <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
           <TagsList />
-
           <FilterButton />
         </section>
 

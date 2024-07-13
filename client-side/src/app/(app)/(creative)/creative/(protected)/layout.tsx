@@ -1,9 +1,9 @@
 "use client";
-
-import "../../../../globals.css";
-import { Footer, ProtectRoute } from "@/components";
+import "@/app/globals.css";
+import { Footer } from "@/components";
 import { CreativeNavigationBar } from "@/components/navigation-bars";
 import { usePathname } from "next/navigation";
+import { Fragment } from "react";
 
 export default function CreativeProtectedLayout({
   children,
@@ -11,18 +11,15 @@ export default function CreativeProtectedLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-
   const hideHeaderAndFooter = Boolean(
     pathname === "/creative/become-a-creative"
   );
 
   return (
-    <ProtectRoute>
+    <Fragment>
       {!hideHeaderAndFooter && <CreativeNavigationBar />}
-
       {children}
-
       {!hideHeaderAndFooter && <Footer />}
-    </ProtectRoute>
+    </Fragment>
   );
 }

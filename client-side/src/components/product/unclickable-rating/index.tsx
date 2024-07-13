@@ -1,11 +1,9 @@
-import { Fragment, useId } from "react";
+import { Fragment } from "react";
 import { icons } from "@/constants";
 import Image from "next/image";
 import { H6 } from "../..";
 
 const UnclickableRating = ({ rating }: { rating: number }) => {
-  const id = useId();
-
   return (
     <Fragment>
       {rating && rating > 1 && (
@@ -15,10 +13,10 @@ const UnclickableRating = ({ rating }: { rating: number }) => {
           <span className="flex">
             {[
               ...Array(Number.parseInt(rating?.toString().substring(0, 1))),
-            ].map((_) => {
+            ].map((_, index) => {
               return (
                 <Image
-                  key={id}
+                  key={index.toString()}
                   src={icons.star}
                   alt=""
                   width={16}

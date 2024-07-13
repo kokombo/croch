@@ -49,7 +49,7 @@ const ProductOwnerCard = (props: Props) => {
               {creative?.funFacts.map((funFact, index) => {
                 return (
                   <article
-                    key={index}
+                    key={`${index}-${funFact}`}
                     className="flex flex-col gap-2 p-3 border-[1px] border-grey rounded-xl h-fit min-h-[140px] md:min-h-[180px] lg:min-h-[200px] xl:min-h-[240px] shadow bg-whitee"
                   >
                     <Image

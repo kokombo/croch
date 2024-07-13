@@ -14,14 +14,13 @@ const HowItWorks = () => {
         {data.map((item, index) => {
           return (
             <article
-              key={`${index}-${item.heading}`}
+              key={`${index}-${item}`}
               className="bg-white h-[400px] rounded-xl px-4 py-6 flex flex-col justify-between"
             >
               <div />
 
               <span className="flex flex-col gap-3">
                 <H3>{item.heading} </H3>
-
                 <H6>{item.subheading} </H6>
               </span>
             </article>
