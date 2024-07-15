@@ -11,7 +11,6 @@ export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
   const isLoggedIn = !!token;
 
-  const isApiRoute = nextUrl.pathname.startsWith("/api");
   const isCreative = token?.role === "creative";
   const isCustomer = token?.role === "customer";
   const isCustomerProtectedRoute = customerProtectedRoutes.includes(
@@ -20,10 +19,6 @@ export const middleware = async (req: NextRequest) => {
   const isCreativeProtectedRoute = creativeProtectedRoutes.includes(
     nextUrl.pathname
   );
-
-  if (isApiRoute) {
-    return null;
-  }
 
   if ((isCreativeProtectedRoute || isCustomerProtectedRoute) && !isLoggedIn) {
     return NextResponse.redirect(new URL("/", nextUrl));
