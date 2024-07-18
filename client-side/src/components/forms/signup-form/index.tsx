@@ -29,7 +29,6 @@ const initialValues = {
 
 const SignupForm = (props: Props) => {
   const [showPassword, setShowPassword] = useState(false);
-
   const dispatch: DispatchType = useDispatch();
 
   const { mutateAsync, isPending, error, setError } = useSignup();
