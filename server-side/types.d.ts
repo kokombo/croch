@@ -62,11 +62,11 @@ type CartItem = {
     owner: mongoose.Types.ObjectId;
   };
 
-  title: String;
+  title: string;
 
-  size: String;
+  size: string;
 
-  thumbNail: String;
+  thumbNail: string;
 
   count: number;
 
@@ -79,3 +79,24 @@ type Cart = {
 };
 
 type Carts = Map<string, Cart>;
+
+type Order = {
+  creativeId: string;
+  customerId: string;
+  items: {
+    cummulativePrice: number;
+    info: {
+      price: string;
+    };
+    thumbNail: string;
+    title: string;
+    _id: string;
+    count: number;
+    size: string;
+  }[];
+  status: string;
+  totalPrice: number;
+  _id: string;
+  createdAt: string;
+  brandName: string;
+};

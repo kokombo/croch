@@ -2,7 +2,7 @@ import User = require("../models/user");
 import generateAccessToken = require("../utilities/generateAccessToken");
 import generateRefreshToken = require("../utilities/generateRefreshToken");
 import { StatusCodes } from "http-status-codes";
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import jwt = require("jsonwebtoken");
 import { loginFormValidationSchema } from "../validators";
 import { ValidationError } from "yup";
@@ -104,11 +104,10 @@ const handleRefreshToken = async (req: Request, res: Response) => {
           return res
             .status(StatusCodes.FORBIDDEN)
             .json({ message: "There is an issue with the refreshToken." });
-        } else {
-          const accessToken = generateAccessToken(user._id);
-
-          user.accessToken = accessToken;
         }
+        const accessToken = generateAccessToken(user._id);
+
+        user.accessToken = accessToken;
       }
     );
 

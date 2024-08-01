@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import Product = require("../models/product");
 import { StatusCodes } from "http-status-codes";
 import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
-import fs = require("fs");
+import fs = require("node:fs");
 import { uploadProductValidationSchema } from "../validators";
 import { ValidationError } from "yup";
 
@@ -36,7 +36,7 @@ const createProduct = async (req: Request, res: Response) => {
     const product = await Product.create({
       ...req.body,
 
-      nationwideDelivery: req.body.nationwideDelivery === "true" ? true : false,
+      nationwideDelivery: req.body.nationwideDelivery === "true",
 
       primaryLocation: JSON.parse(req.body.primaryLocation),
 
@@ -45,7 +45,7 @@ const createProduct = async (req: Request, res: Response) => {
           ? JSON.parse(req.body.otherLocations)
           : null,
 
-      price: parseInt(req.body.price),
+      price: Number.parseInt(req.body.price),
 
       photos: urls.map((url) => {
         return url;
@@ -104,8 +104,7 @@ const updateProduct = async (req: Request, res: Response) => {
       {
         ...req.body,
 
-        nationwideDelivery:
-          req.body.nationwideDelivery === "true" ? true : false,
+        nationwideDelivery: req.body.nationwideDelivery === "true",
 
         primaryLocation: JSON.parse(req.body.primaryLocation),
 
@@ -114,7 +113,7 @@ const updateProduct = async (req: Request, res: Response) => {
             ? JSON.parse(req.body.otherLocations)
             : null,
 
-        price: parseInt(req.body.price),
+        price: Number.parseInt(req.body.price),
 
         photos: urls.map((url) => {
           return url;

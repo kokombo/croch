@@ -36,6 +36,8 @@ const LoginForm = () => {
         redirect: false,
       });
 
+      console.log(res);
+
       if (res?.ok) {
         dispatch(setOpenLoginModal(false));
         document.body.style.overflow = "auto";
@@ -51,6 +53,8 @@ const LoginForm = () => {
       setLoading(false);
     }
   };
+
+  console.log(error);
 
   useClearErrorMessage(setError);
 
@@ -106,7 +110,7 @@ const LoginForm = () => {
               disabled={loading}
             />
 
-            {error && <CustomError message={error} />}
+            {!!error && <CustomError message={error} />}
           </span>
         </Form>
       </Formik>

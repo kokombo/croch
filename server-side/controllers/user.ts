@@ -3,10 +3,10 @@ import Creative = require("../models/creative");
 import Customer = require("../models/customer");
 import Product = require("../models/product");
 import { StatusCodes } from "http-status-codes";
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import validateId = require("../utilities/validateId");
 import sendEmail = require("../utilities/sendEmail");
-import crypto = require("crypto");
+import crypto = require("node:crypto");
 import {
   signupFormValidationSchema,
   updatePasswordValidationSchema,

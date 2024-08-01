@@ -1,6 +1,6 @@
 import User = require("../models/user");
 import jwt = require("jsonwebtoken");
-import { Response, Request, NextFunction } from "express";
+import type { Response, Request, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import Product = require("../models/product");
 
@@ -11,7 +11,7 @@ const authorizeUser = async (
 ) => {
   const authHeader = req.headers.authorization;
 
-  if (authHeader && authHeader.startsWith("Bearer")) {
+  if (authHeader?.startsWith("Bearer")) {
     const token = authHeader.split(" ")[1];
 
     try {
@@ -52,9 +52,8 @@ const isCreative = async (req: Request, res: Response, next: NextFunction) => {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "You are not authorized to perform action." });
-  } else {
-    next();
   }
+  next();
 };
 
 const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
@@ -66,9 +65,8 @@ const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "You are not authorized to perform action." });
-  } else {
-    next();
   }
+  next();
 };
 
 const isProductOwner = async (
@@ -92,9 +90,8 @@ const isProductOwner = async (
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: "You are not authorized to perform action." });
-  } else {
-    next();
   }
+  next();
 };
 
 export = { authorizeUser, isCreative, isProductOwner, isAdmin };

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import Customer = require("../models/customer");
 import validateId = require("../utilities/validateId");
 import { StatusCodes } from "http-status-codes";
@@ -28,13 +28,13 @@ const addAndRemoveWishlist = async (req: Request, res: Response) => {
       });
 
       return res.json({ message: "Product removed from wishlist." });
-    } else {
-      await Customer.findByIdAndUpdate(customerId, {
-        $push: { wishLists: productId },
-      });
-
-      return res.json({ message: "Product added to wishlist." });
     }
+
+    await Customer.findByIdAndUpdate(customerId, {
+      $push: { wishLists: productId },
+    });
+
+    return res.json({ message: "Product added to wishlist." });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

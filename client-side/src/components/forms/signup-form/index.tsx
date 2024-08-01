@@ -61,12 +61,12 @@ const SignupForm = (props: Props) => {
         {props.step === 1
           ? "Create an Account"
           : props.step === 2
-            ? "Welcome to Croch"
-            : props.step === 3
-              ? "Enter Your Personal Details"
-              : props.step === 4
-                ? "Create Your Password"
-                : ""}
+          ? "Welcome to Croch"
+          : props.step === 3
+          ? "Enter Your Personal Details"
+          : props.step === 4
+          ? "Create Your Password"
+          : ""}
       </H2>
 
       <Formik
@@ -191,7 +191,7 @@ const SignupForm = (props: Props) => {
                       disabled={isPending}
                     />
 
-                    {error && (
+                    {!!error && (
                       <CustomError message={error} extraClasses="self-center" />
                     )}
                   </span>

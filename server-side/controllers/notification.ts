@@ -1,4 +1,4 @@
-import { Response, Request } from "express";
+import type { Response, Request } from "express";
 import Notification = require("../models/notification");
 import User = require("../models/user");
 import validateId = require("../utilities/validateId");

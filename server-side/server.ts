@@ -53,8 +53,8 @@ const Start = async () => {
     app.listen(port, () => {
       console.log(`app listening in port ${port}`);
     });
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error) {
+    if (error instanceof Error) throw new Error(error.message);
   }
 };
 

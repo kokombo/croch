@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import Order = require("../models/order");
 import Customer = require("../models/customer");
 import { StatusCodes } from "http-status-codes";
@@ -22,10 +22,10 @@ const placeAnOrder = async (req: Request, res: Response) => {
 
     const carts: Carts = customer.carts;
 
-    let order;
+    let order: Order | null = null;
 
     for (const [creativeId, cart] of carts.entries()) {
-      if (Boolean(creativeId === creativeIdFromClient)) {
+      if (creativeId === creativeIdFromClient) {
         const cartItems = cart.cartItems;
 
         const creative = await Creative.findById(creativeId);
@@ -41,6 +41,12 @@ const placeAnOrder = async (req: Request, res: Response) => {
 
         carts.delete(creativeIdFromClient);
       }
+    }
+
+    if (!order) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Order could not be placed." });
     }
 
     await customer.save();
@@ -128,7 +134,7 @@ const getCustomerOrders = async (req: Request, res: Response) => {
 
   const status = req.query.status as string;
 
-  let orders;
+  let orders: Order[] = [];
 
   try {
     if (status === "all") {

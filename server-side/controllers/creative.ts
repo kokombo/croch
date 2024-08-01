@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import Creative = require("../models/creative");
 import Order = require("../models/order");
 import Product = require("../models/product");
-import { Response, Request } from "express";
+import type { Response, Request } from "express";
 import validateId = require("../utilities/validateId");
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
 import { creativeAccountSetupValidationSchema } from "../validators";
@@ -23,7 +23,7 @@ const setupAccount = async (req: Request, res: Response) => {
 
     creative.brandName = brandName;
     creative.personalDescription = personalDescription;
-    creative.yearsOfExperience = parseInt(yearsOfExperience);
+    creative.yearsOfExperience = Number.parseInt(yearsOfExperience);
     creative.funFacts = funFacts;
 
     const file = files[0];

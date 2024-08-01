@@ -17,18 +17,18 @@ const Modal = (props: Props) => {
   };
 
   return (
-    // biome-ignore lint:
     <div
       onClick={closeModal}
+      onKeyDown={() => {}}
       className="fixed top-0 left-0 flex items-start justify-center w-full h-full md:px-0 px-5 z-[9999] bg-modalblack"
     >
-      {/* biome-ignore lint: */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white z-1 h-fit rounded-[10px] w-[98vw] sm:w-[70vw] lg:w-[45vw] mt-12 py-4 lg:py-6 modal"
+        onKeyDown={() => {}}
+        className="bg-white z-1 h-fit rounded-[10px] w-[98vw] sm:w-[70vw] md:w-[65vw] lg:w-[45vw] mt-12 py-4 lg:py-6 modal"
         style={{ scrollbarWidth: "none" }}
       >
-        <div className="px-5 lg:px-10 flex items-center justify-between w-full ">
+        <div className="px-5 md:px-10 flex items-center justify-between w-full ">
           <button
             type="button"
             onClick={props.onClickModalButton}
@@ -53,7 +53,7 @@ const Modal = (props: Props) => {
         </div>
 
         <div
-          className="max-w-full overflow-y-scroll h-[55vh] sm:h-[65vh] lg:h-[70vh] px-5 py-5 lg:px-10"
+          className="max-w-full overflow-y-scroll h-[55vh] sm:h-[65vh] lg:h-[70vh] px-5 py-5 md:px-10"
           style={{ scrollbarWidth: "thin" }}
         >
           {props.children}

@@ -3,7 +3,7 @@ import { ProductSkeleton } from "../..";
 import ProductCard from "../product-card";
 import { setOpenErrorModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
 import type { DispatchType } from "@/redux/store";
 
 type Props = {
@@ -30,8 +30,8 @@ const ProductsList = (props: Props) => {
   }, [props.isError, dispatch]);
 
   return (
-    <>
-      {props.isLoading || props.isError ? (
+    <Fragment>
+      {props.isLoading || props.isError || props.products === undefined ? (
         <section className="product_list_container">
           {[...Array(8)].map((_, index) => {
             return <ProductSkeleton key={index.toString()} />;
@@ -44,50 +44,8 @@ const ProductsList = (props: Props) => {
           })}
         </section>
       )}
-    </>
+    </Fragment>
   );
 };
 
 export default ProductsList;
-
-const dummyProduct = {
-  _id: "2343434",
-  title: "Product A",
-  availability: "Available",
-  price: 4000,
-  description: "This is an amazing product",
-  gender: "male",
-  tag: "beenie",
-  colors: ["green", "red", "yellow"],
-  nationwideDelivery: true,
-  owner: {
-    _id: "ABABAB23",
-    firstName: "Samuel",
-    lastName: "Oluwanbowa",
-    picture: "/cp.png",
-  },
-  rating: 4.5,
-  numberOfReviews: 30,
-  photos: [
-    "/product1.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-    "/sp.png",
-    "/cp.png",
-  ],
-  sizes: ["", "", ""],
-  primaryLocation: {
-    minDeliveryDays: 2,
-    maxDeliveryDays: 5,
-  },
-  otherLocations: {
-    minDeliveryDays: 5,
-    maxDeliveryDays: 7,
-  },
-};

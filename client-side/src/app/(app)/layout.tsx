@@ -40,6 +40,11 @@ export default function RootLayout({
     }
   };
 
+  const closeLoginModal = () => {
+    dispatch(setOpenLoginModal(false));
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <Fragment>
       <main
@@ -52,11 +57,8 @@ export default function RootLayout({
       <Fragment>
         {openLoginModal && (
           <Modal
-            closeModal={() => dispatch(setOpenLoginModal(false))}
-            onClickModalButton={() => {
-              dispatch(setOpenLoginModal(false));
-              document.body.style.overflow = "auto";
-            }}
+            closeModal={closeLoginModal}
+            onClickModalButton={closeLoginModal}
             icon={icons.close}
             label="Log in"
           >
@@ -76,12 +78,12 @@ export default function RootLayout({
               step === 1
                 ? "Sign up"
                 : step === 2
-                  ? "Sign up"
-                  : step === 3
-                    ? "Personal Details"
-                    : step === 4
-                      ? "Create Password"
-                      : ""
+                ? "Sign up"
+                : step === 3
+                ? "Personal Details"
+                : step === 4
+                ? "Create Password"
+                : ""
             }
           >
             <SignupForm step={step} setStep={setStep} />

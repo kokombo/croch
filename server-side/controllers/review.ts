@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import validateId = require("../utilities/validateId");
 import Review = require("../models/review");
 import Order = require("../models/order");

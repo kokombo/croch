@@ -18,7 +18,10 @@ const UserSegmentRedirect = ({ children }: { children: React.ReactNode }) => {
 
           if (creative.accountSetupDone) {
             router.push(
-              `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+              `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(
+                0,
+                16
+              )}`
             );
           } else {
             router.push("/creative/become-a-creative");

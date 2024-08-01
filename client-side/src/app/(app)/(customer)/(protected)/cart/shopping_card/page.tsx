@@ -10,11 +10,15 @@ import { useGetCartItems } from "@/utilities/api-interactions/cart";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import type { DispatchType } from "@/redux/store";
+import { setOpenErrorModal } from "@/redux/slices/modal";
 
 const ShoppingCard = () => {
   const params = useSearchParams();
   const router = useRouter();
   const creativeId = params.get("id") as string;
+  const dispatch: DispatchType = useDispatch();
 
   const {
     data: cart,
@@ -27,10 +31,15 @@ const ShoppingCard = () => {
   const { data: creative } = useGetCreativeById(creativeId, true);
 
   useEffect(() => {
-    if (!cartItemsLoading && (!cart || cart?.cartItems.length < 1)) {
+    if (isSuccess && (!cart || cart?.cartItems.length < 1)) {
       router.push("/cart");
     }
-  }, [cart, router, cartItemsLoading]);
+
+    if (isError) {
+      dispatch(setOpenErrorModal(error?.response?.data.message));
+      router.push("/cart");
+    }
+  }, [cart, router, isSuccess, isError, dispatch, error]);
 
   return (
     <main className="flex flex-col lg:flex-row paddingX py-8 lg:py-16 gap-8 lg:gap-6">

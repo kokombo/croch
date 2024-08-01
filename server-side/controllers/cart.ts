@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import Customer = require("../models/customer");
 import Creative = require("../models/creative");
 import validateId = require("../utilities/validateId");
@@ -64,13 +64,13 @@ const updateCartItemCount = async (req: Request, res: Response) => {
       select: "price",
     });
 
-    let vendorCart;
+    let vendorCart: Cart = { cartItems: [], totalPrice: 0 };
     let totalPrice = 0;
 
     const carts: Carts = customer.carts;
 
     for (const [creativeId, cart] of carts.entries()) {
-      if (Boolean(creativeId === creativeIdFromClient)) {
+      if (creativeId === creativeIdFromClient) {
         vendorCart = cart;
 
         const vendorCartItems: CartItem[] = vendorCart.cartItems;
@@ -134,7 +134,7 @@ const removeFromCart = async (req: Request, res: Response) => {
     const carts: Carts = customer.carts;
 
     for (const [creativeId, cart] of carts.entries()) {
-      if (Boolean(creativeId === productOwnerId.toString())) {
+      if (creativeId === productOwnerId.toString()) {
         const vendorCartItems: CartItem[] = cart.cartItems;
 
         if (vendorCartItems.length < 1) {
@@ -161,7 +161,7 @@ const getCarts = async (req: Request, res: Response) => {
 
     const carts: Carts = customer.carts;
 
-    let result = [];
+    const result = [];
 
     for (const [creativeId, cart] of carts.entries()) {
       const creative = await Creative.findById(creativeId);
@@ -198,10 +198,10 @@ const getCartItems = async (req: Request, res: Response) => {
 
     let totalPrice = 0;
 
-    let vendorCart;
+    let vendorCart: Cart = { cartItems: [], totalPrice: 0 };
 
     for (const [creativeId, cart] of carts.entries()) {
-      if (Boolean(creativeId === creativeIdFromClient)) {
+      if (creativeId === creativeIdFromClient) {
         vendorCart = cart;
 
         const vendorCartItems: CartItem[] = vendorCart.cartItems;

@@ -1,5 +1,5 @@
 import Tag = require("../models/tag");
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import uploadImageToCloudinary = require("../utilities/uploadImageToCloudinary");
 import validateId = require("../utilities/validateId");
