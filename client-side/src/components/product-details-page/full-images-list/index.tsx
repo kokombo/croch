@@ -14,7 +14,7 @@ const FullImagesList = (props: Props) => {
     <div
       className={`fixed top-0 left-0 flex items-start md:justify-center w-full h-full z-[9999] inset-0 transform ${
         props.showMorePhotos ? "translate-y-0" : "translate-y-full"
-      } duration-500 ease-in-out`}
+      } duration-700 ease-in-out`}
     >
       <div
         className="w-full h-full bg-white px-8 overflow-y-scroll"

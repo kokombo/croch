@@ -31,7 +31,7 @@ const Modal = (props: Props) => {
       <div
         onClick={(e) => e.stopPropagation()}
         onKeyDown={() => {}}
-        className="bg-white z-1 h-fit rounded-[10px] w-[98vw] sm:w-[70vw] md:w-[65vw] lg:w-[45vw] mt-12 py-4 lg:py-6 modal"
+        className="bg-white z-1 h-fit rounded-xl w-[98vw] sm:w-[70vw] md:w-[65vw] lg:w-[45vw] mt-12 py-4 lg:py-6 modal"
         style={{ scrollbarWidth: "none" }}
       >
         <div className="px-5 md:px-10 flex items-center justify-between w-full ">
