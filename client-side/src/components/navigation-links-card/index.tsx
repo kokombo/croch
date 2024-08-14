@@ -20,12 +20,10 @@ const NavigationLinksCard = () => {
 
   const openLoginModal = () => {
     dispatch(setOpenLoginModal(true));
-    document.body.style.overflow = "hidden";
   };
 
   const openSignupModal = () => {
     dispatch(setOpenSignupModal(true));
-    document.body.style.overflow = "hidden";
   };
 
   return (
@@ -41,14 +39,14 @@ const NavigationLinksCard = () => {
                 item.href === "/login"
                   ? e.preventDefault()
                   : item.href === "/signup"
-                    ? e.preventDefault()
-                    : null;
+                  ? e.preventDefault()
+                  : null;
 
                 item.href === "/login"
                   ? openLoginModal()
                   : item.href === "/signup"
-                    ? openSignupModal()
-                    : null;
+                  ? openSignupModal()
+                  : null;
 
                 setOpenDropDown(false);
               }}

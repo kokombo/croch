@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type InitialState = {
-  openLoginModal: boolean;
-  openSignupModal: boolean;
-  openDropDown: boolean;
-  openErrorModal: boolean;
+  isLoginModalOpen: boolean;
+  isSignupModalOpen: boolean;
+  isDropDownOpen: boolean;
+  isErrorModalOpen: boolean;
   errorMessage: string;
 };
 
 const initialState: InitialState = {
-  openLoginModal: false,
-  openSignupModal: false,
-  openDropDown: false,
-  openErrorModal: false,
+  isLoginModalOpen: false,
+  isSignupModalOpen: false,
+  isDropDownOpen: false,
+  isErrorModalOpen: false,
   errorMessage: "",
 };
 
@@ -21,19 +21,19 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     setOpenLoginModal: (state, action) => {
-      state.openLoginModal = action.payload;
+      state.isLoginModalOpen = action.payload;
     },
 
     setOpenSignupModal: (state, action) => {
-      state.openSignupModal = action.payload;
+      state.isSignupModalOpen = action.payload;
     },
 
     setOpenDropDown: (state, action) => {
-      state.openDropDown = action.payload;
+      state.isDropDownOpen = action.payload;
     },
 
     setOpenErrorModal: (state, action) => {
-      state.openErrorModal = true;
+      state.isErrorModalOpen = true;
       state.errorMessage = action.payload;
     },
   },

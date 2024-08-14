@@ -9,7 +9,7 @@ import { useCurrentUser } from "@/utilities";
 import { usePathname } from "next/navigation";
 
 const CustomerNavigationBar = () => {
-  const { openDropDown } = useSelector((state: StateType) => state.modal);
+  const { isDropDownOpen } = useSelector((state: StateType) => state.modal);
 
   const { session, role } = useCurrentUser();
   const dispatch: DispatchType = useDispatch();
@@ -40,14 +40,14 @@ const CustomerNavigationBar = () => {
         <span className="relative">
           <NavAccountButton
             onClick={() => {
-              openDropDown
+              isDropDownOpen
                 ? dispatch(setOpenDropDown(false))
                 : dispatch(setOpenDropDown(true));
             }}
-            opened={openDropDown}
+            opened={isDropDownOpen}
           />
 
-          {openDropDown && <NavigationLinksCard />}
+          {isDropDownOpen && <NavigationLinksCard />}
         </span>
       </div>
     </nav>

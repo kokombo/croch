@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { Divider, H3 } from "..";
+import { useLockBodyScroll } from "@/utilities/hooks/useLockBodyScroll";
 
 type Props = {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ type Props = {
   icon: string | StaticImageData;
   closeModal: () => void;
   label: string;
+  isModalOpen: boolean;
 };
 
 const Modal = (props: Props) => {
@@ -15,6 +17,10 @@ const Modal = (props: Props) => {
     props.closeModal();
     document.body.style.overflow = "auto";
   };
+
+  useLockBodyScroll(props.isModalOpen);
+
+  if (!props.isModalOpen) return null;
 
   return (
     <div

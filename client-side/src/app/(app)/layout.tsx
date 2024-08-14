@@ -3,9 +3,17 @@ import "@/app/globals.css";
 import { useDispatch } from "react-redux";
 import type { DispatchType } from "@/redux/store";
 import { setOpenDropDown } from "@/redux/slices/modal";
-import LoginModal from "@/components/login-modal";
-import SignupModal from "@/components/sign-up-modal";
-import ErrorModal from "@/components/error-modal";
+import dynamic from "next/dynamic";
+
+const LoginModal = dynamic(() => import("@/components/login-modal"), {
+  ssr: false,
+});
+const SignupModal = dynamic(() => import("@/components/sign-up-modal"), {
+  ssr: false,
+});
+const ErrorModal = dynamic(() => import("@/components/error-modal"), {
+  ssr: false,
+});
 
 export default function AppLayout({
   children,
