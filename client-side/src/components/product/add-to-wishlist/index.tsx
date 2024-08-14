@@ -32,7 +32,6 @@ const AddToWishlist = (props: Props) => {
 
     if (!session) {
       dispatch(setOpenLoginModal(true));
-      document.body.style.overflow = "hidden";
     } else {
       addAndRemoveWishlist();
     }

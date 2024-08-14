@@ -40,7 +40,6 @@ const LoginForm = () => {
 
       if (res?.ok) {
         dispatch(setOpenLoginModal(false));
-        document.body.style.overflow = "auto";
         onsubmitProps.resetForm();
       }
 

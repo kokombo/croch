@@ -53,13 +53,12 @@ const Modal = (props: Props) => {
 
           <div className="w-8" />
         </div>
-
         <div className="mt-2 lg:mt-4">
           <Divider />
         </div>
 
         <div
-          className="max-w-full overflow-y-scroll h-[55vh] sm:h-[65vh] lg:h-[70vh] px-5 py-5 md:px-10"
+          className="max-w-full overflow-y-scroll px-5 pt-5 pb-12 md:px-10"
           style={{ scrollbarWidth: "thin" }}
         >
           {props.children}

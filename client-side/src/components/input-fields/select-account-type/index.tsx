@@ -20,7 +20,7 @@ const SelectAccountType = (props: Props) => {
           return (
             <div
               {...field}
-              className="grid grid-cols-2 gap-2 place-items-center"
+              className="grid grid-cols-2 gap-2 md:gap-4 place-items-center"
             >
               {props.data.map((option, index) => {
                 return (
@@ -35,7 +35,7 @@ const SelectAccountType = (props: Props) => {
 
                     <div
                       className={twMerge(
-                        "flex flex-col items-center justify-end gap-1 h-[238px] bg-ash rounded-lg p-6",
+                        "flex flex-col items-center justify-end gap-1 bg-ash rounded-lg p-6",
                         field.value.role === option.value
                           ? "border-black border-[2px]"
                           : ""
@@ -44,9 +44,10 @@ const SelectAccountType = (props: Props) => {
                       <Image
                         src={option.img}
                         alt={`${option.value} radio button image`}
-                        width={option.iconWidth}
-                        height={option.iconHeight}
+                        width={150}
+                        height={150}
                         loading="eager"
+                        className="w-56 h-36 object-contain"
                       />
 
                       <H5 extraClasses="capitalize"> {option.value} </H5>

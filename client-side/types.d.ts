@@ -130,8 +130,6 @@ type Tag = {
 type AccountType = {
   img: string | StaticImageData;
   value: string;
-  iconWidth: number | `${number}` | undefined;
-  iconHeight: number | `${number}` | undefined;
 };
 
 type ErrorResponse = {

@@ -46,7 +46,6 @@ const SignupForm = (props: Props) => {
       }).then((res) => {
         if (res?.ok) {
           dispatch(setOpenSignupModal(false));
-          document.body.style.overflow = "auto";
           onsubmitProps.resetForm();
         }
       });
@@ -89,15 +88,11 @@ const SignupForm = (props: Props) => {
                       {
                         img: icons.customer,
                         value: "customer",
-                        iconHeight: `${177}`,
-                        iconWidth: `${172}`,
                       },
 
                       {
                         img: icons.creative,
                         value: "creative",
-                        iconHeight: `${166}`,
-                        iconWidth: `${294}`,
                       },
                     ]}
                   />

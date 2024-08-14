@@ -12,7 +12,7 @@ import {
 import { useCurrentUser } from "@/utilities";
 import { setOpenLoginModal } from "@/redux/slices/modal";
 import { useDispatch } from "react-redux";
-import { DispatchType } from "@/redux/store";
+import type { DispatchType } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
@@ -28,11 +28,13 @@ const CreativeLanding = () => {
   const initiateAccountSetup = () => {
     if (!session) {
       dispatch(setOpenLoginModal(true));
-      document.body.style.overflow = "hidden";
     } else if (isCreative) {
       if (creative?.accountSetupDone) {
         router.push(
-          `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(0, 16)}`
+          `/creative/dashboard/${creative?.brandName.toLowerCase()}~${creative?._id.substring(
+            0,
+            16
+          )}`
         );
       } else {
         router.push("/creative/become-a-creative");
@@ -52,8 +54,8 @@ const CreativeLanding = () => {
             !session
               ? "Croch Store Setup"
               : isCreative
-                ? "Proceed"
-                : "Go to marketplace"
+              ? "Proceed"
+              : "Go to marketplace"
           }
           className="bg-black text-white px-10 py-4"
           onClick={initiateAccountSetup}
