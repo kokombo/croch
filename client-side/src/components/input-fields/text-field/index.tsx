@@ -26,7 +26,7 @@ const TextField = (props: Props) => {
           return (
             <input
               {...field}
-              className="border-grey border-[1px] rounded-lg w-full p-4 text-sm lg:text-base"
+              className="border-grey border-[1px] rounded-lg w-full p-4"
               type={props.type}
               placeholder={props.placeholder}
               autoComplete={props.autoComplete}
