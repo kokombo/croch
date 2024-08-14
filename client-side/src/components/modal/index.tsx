@@ -19,7 +19,7 @@ const Modal = (props: Props) => {
   return (
     <div
       onClick={closeModal}
-      onKeyDown={closeModal}
+      onKeyDown={() => {}}
       className="fixed top-0 left-0 flex items-start justify-center w-full h-screen md:px-0 px-5 z-[9999] bg-modalblack"
     >
       <div
