@@ -9,7 +9,7 @@ import { useCurrentUser } from "@/utilities";
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 
 const CreativeNavigationBar = () => {
-  const { openDropDown } = useSelector((state: StateType) => state.modal);
+  const { isDropDownOpen } = useSelector((state: StateType) => state.modal);
   const dispatch: DispatchType = useDispatch();
   const { id, isCreative } = useCurrentUser();
   const { data: creative } = useGetCreativeById(id, isCreative);
@@ -17,7 +17,10 @@ const CreativeNavigationBar = () => {
   const authenticatedCreativeLinks = [
     {
       label: "My dashboard",
-      href: `/creative/dashboard/${creative?.brandName?.toLowerCase()}~${creative?._id?.substring(0, 16)}`,
+      href: `/creative/dashboard/${creative?.brandName?.toLowerCase()}~${creative?._id?.substring(
+        0,
+        16
+      )}`,
     },
 
     { label: "Profile", href: "/creative/profile" },
@@ -31,14 +34,14 @@ const CreativeNavigationBar = () => {
       <span className="relative">
         <NavAccountButton
           onClick={() => {
-            openDropDown
+            isDropDownOpen
               ? dispatch(setOpenDropDown(false))
               : dispatch(setOpenDropDown(true));
           }}
-          opened={openDropDown}
+          opened={isDropDownOpen}
         />
 
-        {openDropDown && (
+        {isDropDownOpen && (
           <DropDown extraClasses="right-0 mt-2">
             {authenticatedCreativeLinks.map((item, index) => {
               return (
