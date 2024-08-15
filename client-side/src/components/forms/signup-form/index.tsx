@@ -183,7 +183,9 @@ const SignupForm = (props: Props) => {
 
                   <span className="flex_col_center gap-1">
                     <FlatGreenButton
-                      label="Create Account"
+                      label={
+                        isPending ? "Creating account..." : "Create Account"
+                      }
                       type="submit"
                       disabled={isPending}
                     />
