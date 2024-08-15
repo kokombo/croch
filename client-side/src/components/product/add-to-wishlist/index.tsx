@@ -23,7 +23,7 @@ const AddToWishlist = (props: Props) => {
   const { addAndRemoveWishlist } = useAddAndRemoveWishlist(props.productId);
   const { data: wishlist } = useGetWishlists();
 
-  const idsInWishlist = wishlist?.map((product) => product._id);
+  const idsInWishlist = new Set(wishlist?.map((product) => product._id));
 
   const addOrRemoveItemFromWishlist = (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
@@ -45,7 +45,7 @@ const AddToWishlist = (props: Props) => {
     >
       <Image
         src={
-          !session || !idsInWishlist?.includes(props.productId)
+          !session || !idsInWishlist?.has(props.productId)
             ? props.notInWishlistIcon
             : props.alreadyInWishlistIcon
         }

@@ -135,6 +135,7 @@ const OrderTable = (props: Props) => {
             <tr
               key={row.id}
               className="cursor-pointer hover:bg-gray"
+              onKeyDown={() => {}}
               onClick={() => {
                 router.push(`/order/${row.original._id}/details`);
               }}
