@@ -55,7 +55,7 @@ export const useGetCarts = () => {
     return res.data;
   };
 
-  const { data, isError, error, isLoading } = useQuery<
+  const { data, isError, error, isLoading, refetch } = useQuery<
     Carts,
     AxiosError<ErrorResponse>
   >({
@@ -65,7 +65,7 @@ export const useGetCarts = () => {
     refetchOnReconnect: true,
   });
 
-  return { data, isError, error, isLoading };
+  return { data, isError, error, isLoading, refetch };
 };
 
 export const useAddToCart = (
