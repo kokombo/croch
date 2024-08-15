@@ -166,6 +166,7 @@ const SignupForm = (props: Props) => {
                     togglePasswordVisibilityIcon={() =>
                       setShowPassword((prev) => !prev)
                     }
+                    disabled={isPending}
                   />
 
                   <TextField
@@ -177,6 +178,7 @@ const SignupForm = (props: Props) => {
                     togglePasswordVisibilityIcon={() =>
                       setShowPassword((prev) => !prev)
                     }
+                    disabled={isPending}
                   />
 
                   <span className="flex_col_center gap-1">

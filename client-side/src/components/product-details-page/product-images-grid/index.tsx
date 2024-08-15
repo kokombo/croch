@@ -1,7 +1,11 @@
 import { icons } from "@/constants";
 import Image from "next/image";
 import { useState } from "react";
-import FullImagesList from "../full-images-list";
+import dynamic from "next/dynamic";
+
+const FullImagesList = dynamic(() => import("../full-images-list"), {
+  ssr: false,
+});
 
 const ProductImagesGrid = ({ photos }: { photos: string[] }) => {
   const [showMorePhotos, setShowMorePhotos] = useState(false);
