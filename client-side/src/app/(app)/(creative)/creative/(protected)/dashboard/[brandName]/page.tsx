@@ -32,15 +32,17 @@ const Dashboard = () => {
     "otherLocations",
     JSON.stringify({ minDeliveryDays: 5, maxDeliveryDays: 7 })
   );
-  sizes.forEach((size) => {
+  for (const size of sizes) {
     formData.append("sizes", size);
-  });
-  colors.forEach((color) => {
+  }
+  for (const color of colors) {
     formData.append("colors", color);
-  });
-  photos.forEach((photo) => {
+  }
+  for (const photo of photos) {
     if (photo) formData.append("product-photos", photo);
-  });
+  }
+
+  //instead of the entire above. use Object.entries(fields).forEach(([key, value])=>{formData.append(key, value as strin)})
 
   const { isError, isPending, isSuccess, createProduct, data, error } =
     useCreateProduct(formData);
