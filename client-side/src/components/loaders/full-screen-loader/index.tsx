@@ -3,7 +3,7 @@ import { NavAccountButton } from "@/components/buttons";
 
 const FullScreenLoader = () => {
   return (
-    <main className="h-screen w-full">
+    <div className="h-screen w-full">
       <nav className="nav_container">
         <Logo diabled={true} />
 
@@ -16,7 +16,7 @@ const FullScreenLoader = () => {
         </span>
       </div>
       <Footer />
-    </main>
+    </div>
   );
 };
 

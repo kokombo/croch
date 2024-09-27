@@ -45,14 +45,17 @@ const CreativeAccountSetup = () => {
         confirmAccountSetup();
         onsubmitProps.resetForm();
         router.push(
-          `/creative/dashboard/${creative?.brandName?.toLowerCase()}~${creative?._id?.substring(0, 16)}`
+          `/creative/dashboard/${creative?.brandName?.toLowerCase()}~${creative?._id?.substring(
+            0,
+            16
+          )}`
         );
       },
     });
   };
 
   return (
-    <main
+    <div
       onClick={() => setShowDropDown(false)}
       onKeyDown={() => setShowDropDown(false)}
     >
@@ -75,7 +78,7 @@ const CreativeAccountSetup = () => {
           setStep={setStep}
         />
       </section>
-    </main>
+    </div>
   );
 };
 

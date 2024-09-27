@@ -53,8 +53,6 @@ const LoginForm = () => {
     }
   };
 
-  console.log(error);
-
   useClearErrorMessage(setError);
 
   return (

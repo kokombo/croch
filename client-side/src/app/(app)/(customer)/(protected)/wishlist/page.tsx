@@ -15,7 +15,7 @@ const WishList = () => {
   } = useGetWishlists();
 
   return (
-    <main className="paddingX py-10">
+    <div className="paddingX py-10">
       <ProductsList
         products={wishlist}
         isLoading={isLoading}
@@ -25,7 +25,7 @@ const WishList = () => {
         isPending={isPending}
         isStale={isStale}
       />
-    </main>
+    </div>
   );
 };
 

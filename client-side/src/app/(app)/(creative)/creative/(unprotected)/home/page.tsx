@@ -45,7 +45,7 @@ const CreativeLanding = () => {
   };
 
   return (
-    <main>
+    <div>
       <nav className="flex items-center justify-between py-[18px] paddingX">
         <Logo />
 
@@ -74,7 +74,7 @@ const CreativeLanding = () => {
       <CreativesTestimonial />
 
       <Footer />
-    </main>
+    </div>
   );
 };
 

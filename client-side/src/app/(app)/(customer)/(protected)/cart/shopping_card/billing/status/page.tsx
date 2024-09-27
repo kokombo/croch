@@ -7,7 +7,7 @@ const BillingStatus = () => {
   const status = params.getAll("")[0];
 
   return (
-    <main className=" grid place-items-center">
+    <div className=" grid place-items-center">
       {status === "success" ? (
         <OrderStatusSuccess />
       ) : status === "failed" ? (
@@ -15,7 +15,7 @@ const BillingStatus = () => {
       ) : (
         ""
       )}
-    </main>
+    </div>
   );
 };
 

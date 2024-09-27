@@ -10,7 +10,7 @@ const Cart = () => {
   const { data: carts, isLoading, isError, error, refetch } = useGetCarts();
 
   return (
-    <main className="grid_center paddingX py-8 lg:py-16 ">
+    <div className="grid_center paddingX py-8 lg:py-16 ">
       <div className="cart_container">
         {isLoading ? (
           <div className="h-200">
@@ -56,7 +56,7 @@ const Cart = () => {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 };
 

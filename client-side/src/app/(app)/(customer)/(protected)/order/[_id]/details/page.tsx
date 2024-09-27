@@ -27,7 +27,7 @@ const OrderDetails = () => {
   const { data: creative } = useGetCreativeById(order?.creativeId, true);
 
   return (
-    <main className="paddingX py-10">
+    <div className="paddingX py-10">
       <button
         type="button"
         onClick={() => {
@@ -88,7 +88,7 @@ const OrderDetails = () => {
       </div>
 
       <div />
-    </main>
+    </div>
   );
 };
 

@@ -19,28 +19,26 @@ const Home = () => {
 
   return (
     <UserSegmentRedirect>
-      <main className="flex flex-col">
-        <CustomerNavigationBar />
+      <CustomerNavigationBar />
 
-        <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
-          <TagsList />
-          <FilterButton />
-        </section>
+      <section className="paddingX flex items-center gap-3 lg:gap-4 border-b-[1px] border-grey w-full">
+        <TagsList />
+        <FilterButton />
+      </section>
 
-        <section className="paddingX py-10">
-          <ProductsList
-            products={products}
-            isLoading={isLoading}
-            isError={isError}
-            error={error}
-            isSuccess={isSuccess}
-            isPending={isPending}
-            isStale={isStale}
-          />
-        </section>
+      <section className="paddingX py-10">
+        <ProductsList
+          products={products}
+          isLoading={isLoading}
+          isError={isError}
+          error={error}
+          isSuccess={isSuccess}
+          isPending={isPending}
+          isStale={isStale}
+        />
+      </section>
 
-        <Footer />
-      </main>
+      <Footer />
     </UserSegmentRedirect>
   );
 };

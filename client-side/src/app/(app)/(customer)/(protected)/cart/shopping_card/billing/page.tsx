@@ -47,7 +47,7 @@ const Billing = () => {
   }, [orderSummaryLoadingError, oSuccess, cart, router]);
 
   return (
-    <main className="flex gap-6 paddingX py-8 lg:py-16">
+    <div className="flex gap-6 paddingX py-8 lg:py-16">
       {placingOrderIsPending && (
         <OverlayLoader>
           <RingsLoader />
@@ -94,7 +94,7 @@ const Billing = () => {
           )
         )}
       </div>
-    </main>
+    </div>
   );
 };
 

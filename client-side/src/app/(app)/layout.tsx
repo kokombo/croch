@@ -23,7 +23,7 @@ export default function AppLayout({
   const dispatch: DispatchType = useDispatch();
 
   return (
-    <main
+    <div
       onClick={() => dispatch(setOpenDropDown(false))}
       onKeyDown={() => dispatch(setOpenDropDown(false))}
     >
@@ -34,6 +34,6 @@ export default function AppLayout({
       <SignupModal />
 
       <ErrorModal />
-    </main>
+    </div>
   );
 }

@@ -42,7 +42,7 @@ const ShoppingCard = () => {
   }, [cart, router, isSuccess, isError, dispatch, error]);
 
   return (
-    <main className="flex flex-col lg:flex-row paddingX py-8 lg:py-16 gap-8 lg:gap-6">
+    <div className="flex flex-col lg:flex-row paddingX py-8 lg:py-16 gap-8 lg:gap-6">
       {cartItemsLoading && <OverlayLoader />}
 
       <div className="lg:w-[68%]">
@@ -72,7 +72,7 @@ const ShoppingCard = () => {
 
         <CouponCard pageIsLoading={cartItemsLoading} />
       </div>
-    </main>
+    </div>
   );
 };
 

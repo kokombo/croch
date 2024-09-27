@@ -25,7 +25,7 @@ const ProductInfoPage = () => {
   return isLoading || isError ? (
     <ProductInfoPageSkeleton />
   ) : (
-    <main>
+    <div>
       {product && (
         <div className="paddingX lg:py-5 flex flex-col gap-15 lg:gap-18 pb-10">
           <section className="flex flex-col gap-4 lg:gap-6 py-5 border-grey border-b-[1px]">
@@ -72,7 +72,7 @@ const ProductInfoPage = () => {
           />
         </div>
       )}
-    </main>
+    </div>
   );
 };
 
