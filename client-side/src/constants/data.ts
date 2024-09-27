@@ -22,10 +22,8 @@ export const CREATIVE_ACCOUNT_SETUP = {
 };
 
 export const UNAUTHENTICATED_LINKS = [
-  // { label: "Log in", href: "/login" },
-  // { label: "Sign up", href: "/signup" },
   { label: "Sell Your Creative", href: "/creative/home" },
-  { label: "Help center", href: "/help-center" },
+  { label: "Help center", href: "#" },
 ];
 
 export const AUTHENTICATED_CUSTOMER_LINKS = [
