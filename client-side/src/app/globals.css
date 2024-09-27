@@ -126,7 +126,7 @@ html {
 }
 
 .dropdown_list_item {
-  @apply text-sm font-medium hover:bg-gray px-5 py-3;
+  @apply text-sm font-medium hover:bg-gray px-5 w-full py-2;
 }
 
 .form {

@@ -31,7 +31,7 @@ const NavigationLinksCard = () => {
   return (
     <DropDown className="right-0 mt-2">
       {!session && (
-        <div>
+        <div className="flex flex-col gap-3">
           <button
             type="button"
             onClick={openLoginModal}
