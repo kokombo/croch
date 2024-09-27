@@ -9,9 +9,10 @@ import {
 } from "@/utilities/api-interactions/customer";
 import type { MouseEvent } from "react";
 import type { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
-  extraClasses?: string;
+  className?: string;
   productId: string;
   notInWishlistIcon: string | StaticImport;
   alreadyInWishlistIcon: string | StaticImport;
@@ -41,7 +42,10 @@ const AddToWishlist = (props: Props) => {
     <button
       type="button"
       onClick={addOrRemoveItemFromWishlist}
-      className={`${props.extraClasses} hover:scale-110 transition-transform duration-300 ease-in-out`}
+      className={twMerge(
+        props.className,
+        "hover:scale-110 transition-transform duration-300 ease-in-out"
+      )}
     >
       <Image
         src={

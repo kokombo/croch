@@ -1,5 +1,6 @@
 import { Field, ErrorMessage } from "formik";
 import type { FieldProps } from "formik";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   name: string;
@@ -7,7 +8,7 @@ type Props = {
   placeholder?: string;
   disabled?: boolean;
   maxLength?: number;
-  extraClasses?: string;
+  className?: string;
 };
 
 const TextArea = (props: Props) => {
@@ -20,7 +21,10 @@ const TextArea = (props: Props) => {
           return (
             <textarea
               {...field}
-              className={`${props.extraClasses} border-grey border-[1px] rounded-lg w-full p-4`}
+              className={twMerge(
+                "border-grey border-[1px] rounded-lg w-full p-4",
+                props.className
+              )}
               placeholder={props.placeholder}
               disabled={props.disabled}
               maxLength={props.maxLength}

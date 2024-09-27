@@ -23,7 +23,7 @@ const AccountSetupBar = (props: Props) => {
         />
 
         {props.showDropDown && (
-          <DropDown extraClasses="right-0 mt-2">
+          <DropDown className="right-0 mt-2">
             <Link
               href={"/signout"}
               className="text-sm font-medium hover:bg-gray px-5 py-3"

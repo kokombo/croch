@@ -56,7 +56,7 @@ const CartCard = (props: Props) => {
 
         <div className="relative">
           <>
-            <a id="delete-cart-anchor-element">
+            <a href="#de" id="delete-cart-anchor-element">
               <button type="button" onClick={() => setOpenDeleteBoard(true)}>
                 <Image src={icons.deleteicon} alt="" height={22} width={22} />
               </button>
@@ -76,7 +76,7 @@ const CartCard = (props: Props) => {
                 deleteCart();
                 setOpenDeleteBoard(false);
               }}
-              extraClasses="right-0 lg:left-0 top-0"
+              className="right-0 lg:left-0 top-0"
             />
           )}
         </div>

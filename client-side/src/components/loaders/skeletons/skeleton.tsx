@@ -1,7 +1,7 @@
 import "./skeleton.css";
 
-const Skeleton = ({ classes }: { classes: string }) => {
-  const classNames = `skeleton animate-pulse ${classes}`;
+const Skeleton = ({ className }: { className: string }) => {
+  const classNames = `skeleton animate-pulse ${className}`;
   return <div className={classNames} />;
 };
 

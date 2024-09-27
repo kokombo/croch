@@ -37,7 +37,7 @@ const ProductCard = (props: Props) => {
             {props.product.rating > 0 ? (
               <UnclickableRating rating={props.product.rating} />
             ) : (
-              <H6 extraClasses="underline"> No rating yet</H6>
+              <H6 className="underline"> No rating yet</H6>
             )}
           </Fragment>
 

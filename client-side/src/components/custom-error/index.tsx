@@ -1,11 +1,13 @@
+import { twMerge } from "tailwind-merge";
+
 type Props = {
   message: string | undefined;
-  extraClasses?: string;
+  className?: string;
 };
 
 const CustomError = (props: Props) => {
   return (
-    <div className={`text-red font-medium text-sm ${props.extraClasses}`}>
+    <div className={twMerge("text-red font-medium text-sm", props.className)}>
       {props.message}
     </div>
   );

@@ -56,7 +56,7 @@ const AccountSetupForm = (props: Props) => {
                   name="personalDescription"
                   id="personalDescription"
                   placeholder="Tell us about you and your brand. Feel free to sell yourself."
-                  extraClasses=" h-[296px]"
+                  className=" h-[296px]"
                   maxLength={501}
                 />
 
@@ -91,7 +91,7 @@ const AccountSetupForm = (props: Props) => {
                   id="funFacts"
                   name="funFacts[0]"
                   placeholder="Tell us a fun fact about how you make your products. e.g. I am more inspired when listening to afrobeat while crocheting."
-                  extraClasses="h-[100px]"
+                  className="h-[100px]"
                   maxLength={151}
                 />
 
@@ -100,7 +100,7 @@ const AccountSetupForm = (props: Props) => {
                     id="funFacts"
                     name="funFacts[1]"
                     placeholder="Another fun fact."
-                    extraClasses="h-[100px]"
+                    className="h-[100px]"
                     maxLength={151}
                   />
                 )}
@@ -110,7 +110,7 @@ const AccountSetupForm = (props: Props) => {
                     id="funFacts"
                     name="funFacts[2]"
                     placeholder="And the last fun fact."
-                    extraClasses="h-[100px]"
+                    className="h-[100px]"
                     maxLength={151}
                   />
                 )}

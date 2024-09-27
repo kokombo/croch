@@ -42,7 +42,7 @@ const CreativeNavigationBar = () => {
         />
 
         {isDropDownOpen && (
-          <DropDown extraClasses="right-0 mt-2">
+          <DropDown className="right-0 mt-2">
             {authenticatedCreativeLinks.map((item, index) => {
               return (
                 <Link

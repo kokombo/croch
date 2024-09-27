@@ -2,11 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import type { StaticImport } from "next/dist/shared/lib/get-img-props";
 import type { MouseEvent } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   label: string;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
-  extraClasses?: string;
+  className?: string;
   disabled?: boolean;
   href: string;
   leftIcon?: string | StaticImport;
@@ -19,7 +20,10 @@ const StyledLink = (props: Props) => {
       href={props.href}
       onClick={props.onClick}
       aria-disabled={props.disabled}
-      className={`${props.extraClasses} px-5 py-4 lg:px-6 rounded-lg text-base font-medium`}
+      className={twMerge(
+        props.className,
+        "px-5 py-4 lg:px-6 rounded-lg text-base font-medium"
+      )}
     >
       <span className="flex_item_justify_center gap-2">
         {props.leftIcon && (

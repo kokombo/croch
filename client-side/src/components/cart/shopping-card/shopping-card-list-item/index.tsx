@@ -63,7 +63,7 @@ const ShoppingCardListItem = (props: Props) => {
           </div>
         </div>
 
-        <H6 extraClasses="text-wrap"> {props.cartItem.title.slice(0, 25)}</H6>
+        <H6 className="text-wrap"> {props.cartItem.title.slice(0, 25)}</H6>
       </div>
 
       <div className="w-full flex items-center justify-between lg:w-2/3 lg:grid lg:grid-cols-4 lg:place-items-center">
@@ -74,19 +74,19 @@ const ShoppingCardListItem = (props: Props) => {
           decreaseCount={decreaseCount}
           increaseCount={increaseCount}
           decreaseCountButtonDisabled={Boolean(count < 2)}
-          extraClasses="py-2 px-3 lg:py-3 lg:px-4 gap-2"
+          className="py-2 px-3 lg:py-3 lg:px-4 gap-2"
         />
 
         <H6>
           {props.cartItem.size === "small"
             ? "S"
             : props.cartItem.size === "medium"
-              ? "M"
-              : props.cartItem.size === "large"
-                ? "L"
-                : props.cartItem.size === "extraLarge"
-                  ? "XL"
-                  : "Nil"}
+            ? "M"
+            : props.cartItem.size === "large"
+            ? "L"
+            : props.cartItem.size === "extraLarge"
+            ? "XL"
+            : "Nil"}
         </H6>
 
         {updatingCount ? (

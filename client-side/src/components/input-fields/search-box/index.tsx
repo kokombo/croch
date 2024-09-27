@@ -1,16 +1,20 @@
 import { icons } from "@/constants";
 import Image from "next/image";
 import type { ChangeEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
-  extraClasses?: string;
+  className?: string;
 };
 
 const SearchBox = (props: Props) => {
   return (
     <div
-      className={`${props.extraClasses} relative max-w-[458px] xl:h-14 h-16 `}
+      className={twMerge(
+        props.className,
+        "relative max-w-[458px] xl:h-14 h-16"
+      )}
     >
       <input
         type="search"

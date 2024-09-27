@@ -1,13 +1,18 @@
+import { twMerge } from "tailwind-merge";
+
 const DropDown = ({
   children,
-  extraClasses,
+  className,
 }: {
   children: React.ReactNode;
-  extraClasses?: string;
+  className?: string;
 }) => {
   return (
     <div
-      className={`${extraClasses} absolute  bg-white py-3 rounded-lg flex flex-col gap-1 w-[185px] h-fit shadow-lg z-10`}
+      className={twMerge(
+        className,
+        "absolute  bg-white py-3 rounded-lg flex flex-col gap-1 w-[185px] h-fit shadow-lg z-10"
+      )}
     >
       {children}
     </div>

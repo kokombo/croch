@@ -50,7 +50,7 @@ const SelectAccountType = (props: Props) => {
                         className="w-56 h-36 object-contain"
                       />
 
-                      <H5 extraClasses="capitalize"> {option.value} </H5>
+                      <H5 className="capitalize"> {option.value} </H5>
                     </div>
                   </label>
                 );

@@ -57,7 +57,7 @@ const CrossSellCard = (props: Props) => {
 
         <ProductAvailability
           product={props.product}
-          extraClasses="absolute left-[6%] top-4"
+          className="absolute left-[6%] top-4"
         />
       </article>
     </Link>

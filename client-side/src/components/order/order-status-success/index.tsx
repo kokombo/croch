@@ -30,14 +30,14 @@ const OrderStatusSuccess = () => {
           label="Go to marketplace"
           href="/"
           leftIcon={icons.arrowleft}
-          extraClasses="border_black_1 text-black w-fit"
+          className="border_black_1 text-black w-fit"
         />
 
         <StyledLink
           label="View order"
           href="/order"
           rightIcon={icons.arrowrightwhite}
-          extraClasses="text-white bg-customblack w-fit"
+          className="text-white bg-customblack w-fit"
         />
       </span>
     </div>

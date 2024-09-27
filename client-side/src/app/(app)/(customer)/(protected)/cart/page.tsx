@@ -50,7 +50,7 @@ const Cart = () => {
                 href="/"
                 label="Return to marketplace"
                 leftIcon={icons.arrowleft}
-                extraClasses="border_grey_1 w-fit mt-6 hover:bg-gray"
+                className="border_grey_1 w-fit mt-6 hover:bg-gray"
               />
             </div>
           </div>

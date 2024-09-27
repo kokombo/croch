@@ -191,7 +191,7 @@ const SignupForm = (props: Props) => {
                     />
 
                     {!!error && (
-                      <CustomError message={error} extraClasses="self-center" />
+                      <CustomError message={error} className="self-center" />
                     )}
                   </span>
                 </div>

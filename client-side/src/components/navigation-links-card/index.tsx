@@ -27,7 +27,7 @@ const NavigationLinksCard = () => {
   };
 
   return (
-    <DropDown extraClasses="right-0 mt-2">
+    <DropDown className="right-0 mt-2">
       {!session &&
         UNAUTHENTICATED_LINKS.map((item, index) => {
           return (
@@ -36,7 +36,7 @@ const NavigationLinksCard = () => {
               key={`${index}-${item}`}
               className="dropdown_list_item"
               onClick={(e) => {
-                item.href === "/login"
+                item.href === ""
                   ? e.preventDefault()
                   : item.href === "/signup"
                   ? e.preventDefault()
@@ -64,7 +64,7 @@ const NavigationLinksCard = () => {
               href={item.href}
               className="dropdown_list_item"
               onClick={(e) => {
-                item.href === "/signout" ? e.preventDefault() : null;
+                item.href === "#" ? e.preventDefault() : null;
 
                 item.href === "/signout" ? signOut() : null;
               }}

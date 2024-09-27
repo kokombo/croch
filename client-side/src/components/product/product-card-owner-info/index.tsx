@@ -1,10 +1,11 @@
 import { useGetCreativeById } from "@/utilities/api-interactions/creative";
 import Image from "next/image";
 import { H6 } from "../..";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   product: Product;
-  extraClasses?: string;
+  className?: string;
 };
 
 const ProductCardOwnerInfo = (props: Props) => {
@@ -12,7 +13,10 @@ const ProductCardOwnerInfo = (props: Props) => {
 
   return (
     <div
-      className={`${props.extraClasses} w-[90%] h-12 bg-white rounded flex_center justify-start gap-2 px-4 py-3`}
+      className={twMerge(
+        "w-[90%] h-12 bg-white rounded flex_center justify-start gap-2 px-4 py-3",
+        props.className
+      )}
     >
       <div className="relative h-10 w-10 rounded-full bg-grey">
         {creative?.brandLogo && (

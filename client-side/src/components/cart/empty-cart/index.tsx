@@ -36,7 +36,7 @@ const EmptyCart = (props: Props) => {
         href={props.href}
         onClick={props.onClick}
         label={props.buttonLabel}
-        extraClasses={props.buttonExtraClasses}
+        className={props.buttonExtraClasses}
         rightIcon={icons.arrowrightwhite}
       />
     </div>

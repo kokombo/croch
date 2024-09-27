@@ -5,12 +5,12 @@ type Props = {
   prompt: string;
   closeCard: () => void;
   confirm: () => void;
-  extraClasses?: string;
+  className?: string;
 };
 
 const PromptCard = (props: Props) => {
   return (
-    <DropDown extraClasses={props.extraClasses}>
+    <DropDown className={props.className}>
       <div className="flex flex-col items-center gap-3 ">
         <h4 className="text-sm">{props.prompt}</h4>
 

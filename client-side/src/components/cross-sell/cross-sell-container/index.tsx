@@ -36,7 +36,7 @@ const CrossSellContainer = (props: Props) => {
         <StyledLink
           href=""
           label="Show all products"
-          extraClasses="border_black_1 text-customblack self-start lg:self-center"
+          className="border_black_1 text-customblack self-start lg:self-center"
         />
       </div>
     </section>

@@ -1,16 +1,21 @@
+import { twMerge } from "tailwind-merge";
+
 type Props = {
   decreaseCount: () => void;
   increaseCount: () => void;
   count: number;
   decreaseCountButtonDisabled?: boolean;
   increaseCountButtonDisabled?: boolean;
-  extraClasses: string;
+  className: string;
 };
 
 const Counter = (props: Props) => {
   return (
     <div
-      className={`${props.extraClasses} flex items-center rounded-lg border-[0.5px] border-grey`}
+      className={twMerge(
+        props.className,
+        "flex items-center rounded-lg border-[0.5px] border-grey"
+      )}
     >
       <button
         type="button"

@@ -44,7 +44,7 @@ const ShoppingCardProductContainer = (props: Props) => {
           href="/cart"
           label="Return to cart"
           leftIcon={icons.arrowleft}
-          extraClasses="border_grey_1 w-fit ml-3 lg:ml-8 mt-12 hover:bg-gray"
+          className="border_grey_1 w-fit ml-3 lg:ml-8 mt-12 hover:bg-gray"
         />
       )}
     </div>

@@ -82,11 +82,11 @@ const Slider = (props: Props) => {
 
         <ProductAvailability
           product={props.product}
-          extraClasses="absolute left-[5%] top-4"
+          className="absolute left-[5%] top-4"
         />
 
         <AddToWishlist
-          extraClasses="absolute right-[5%] top-4"
+          className="absolute right-[5%] top-4"
           notInWishlistIcon={icons.bookmark}
           alreadyInWishlistIcon={icons.redheart}
           productId={props.product._id}
@@ -134,7 +134,7 @@ const Slider = (props: Props) => {
 
         <ProductCardOwnerInfo
           product={props.product}
-          extraClasses="absolute bottom-4 right-[5%] left-[5%] "
+          className="absolute bottom-4 right-[5%] left-[5%] "
         />
 
         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-[2px]">
