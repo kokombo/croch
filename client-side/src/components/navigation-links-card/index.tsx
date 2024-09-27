@@ -20,59 +20,72 @@ const NavigationLinksCard = () => {
 
   const openLoginModal = () => {
     dispatch(setOpenLoginModal(true));
+    dispatch(setOpenDropDown(false));
   };
 
   const openSignupModal = () => {
     dispatch(setOpenSignupModal(true));
+    dispatch(setOpenDropDown(false));
   };
 
   return (
     <DropDown className="right-0 mt-2">
-      {!session &&
-        UNAUTHENTICATED_LINKS.map((item, index) => {
-          return (
-            <Link
-              href={item.href}
-              key={`${index}-${item}`}
-              className="dropdown_list_item"
-              onClick={(e) => {
-                item.href === ""
-                  ? e.preventDefault()
-                  : item.href === "/signup"
-                  ? e.preventDefault()
-                  : null;
+      {!session && (
+        <div>
+          <button
+            type="button"
+            onClick={openLoginModal}
+            className="dropdown_list_item"
+          >
+            Login
+          </button>
 
-                item.href === "/login"
-                  ? openLoginModal()
-                  : item.href === "/signup"
-                  ? openSignupModal()
-                  : null;
+          <button
+            type="button"
+            onClick={openSignupModal}
+            className="dropdown_list_item"
+          >
+            Sign up
+          </button>
 
-                setOpenDropDown(false);
-              }}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+          {UNAUTHENTICATED_LINKS.map((item, index) => {
+            return (
+              <Link
+                key={index.toString()}
+                href={item.href}
+                className="dropdown_list_item"
+                onClick={() => dispatch(setOpenDropDown(false))}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
 
-      {session &&
-        AUTHENTICATED_CUSTOMER_LINKS.map((item, index) => {
-          return (
-            <Link
-              key={`${index}-${item.label}`}
-              href={item.href}
-              className="dropdown_list_item"
-              onClick={(e) => {
-                item.href === "#" ? e.preventDefault() : null;
+      {session && (
+        <div>
+          {AUTHENTICATED_CUSTOMER_LINKS.map((item, index) => {
+            return (
+              <Link
+                key={index.toString()}
+                href={item.href}
+                className="dropdown_list_item"
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
-                item.href === "/signout" ? signOut() : null;
-              }}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+          <button
+            type="button"
+            onClick={() => signOut()}
+            className="dropdown_list_item"
+          >
+            Signout
+          </button>
+        </div>
+      )}
     </DropDown>
   );
 };
